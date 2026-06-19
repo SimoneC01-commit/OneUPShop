@@ -13,37 +13,42 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="lib/commons-9.6.0.jar">
+	<classpathentry kind="lib" path="src/main/webapp/META-INF/lib/commons-9.6.0.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/io-9.6.0.jar">
+	<classpathentry kind="lib" path="src/main/webapp/META-INF/lib/io-9.6.0.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/jstl-1.2.jar">
+	<classpathentry kind="lib" path="src/main/webapp/META-INF/lib/jstl-1.2.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/kernel-9.6.0.jar">
+	<classpathentry kind="lib" path="src/main/webapp/META-INF/lib/kernel-9.6.0.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/layout-9.6.0.jar">
+	<classpathentry kind="lib" path="src/main/webapp/META-INF/lib/layout-9.6.0.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/slf4j-api-2.0.18.jar">
+	<classpathentry kind="lib" path="src/main/webapp/META-INF/lib/slf4j-api-2.0.18.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/slf4j-simple-2.0.18.jar">
+	<classpathentry kind="lib" path="src/main/webapp/META-INF/lib/slf4j-simple-2.0.18.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/main/webapp/META-INF/lib/mysql-connector-j-9.7.0.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
