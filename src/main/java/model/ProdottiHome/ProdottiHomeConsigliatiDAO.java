@@ -27,7 +27,7 @@ public class ProdottiHomeConsigliatiDAO implements DAOInterface<ProdottiHomeBean
 	@Override
 	public List<ProdottiHomeBean> doRetrieveAll() throws SQLException {
 		Connection conn = null;
-		String query = "SELECT * FROM oneupshop.prodotti_home_nuovi ORDER BY RAND()";
+		String query = "SELECT Titolo, Foto_BLOB, Prezzo_Attuale FROM prodotto ORDER BY RAND() LIMIT 10";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
