@@ -16,6 +16,7 @@
 		<h1>Lista nuovi prodotti:</h1>
 		<ul>
 		<%
+			@SuppressWarnings("unchecked")
 			List<ProdottiHomeBean> lista1 = (List<ProdottiHomeBean>) request.getAttribute("prodottiHomeNuovi");
 			
 			if(lista1 != null && !lista1.isEmpty()){
@@ -36,6 +37,7 @@
 		<h1>Lista prodotti consigliati:</h1>
 		<ul>
 		<%
+			@SuppressWarnings("unchecked")
 			List<ProdottiHomeBean> lista2 = (List<ProdottiHomeBean>) request.getAttribute("prodottiHomeConsigliati");
 			
 			if(lista2 != null && !lista2.isEmpty()){
