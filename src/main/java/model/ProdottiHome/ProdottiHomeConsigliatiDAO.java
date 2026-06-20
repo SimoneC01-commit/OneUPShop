@@ -27,7 +27,7 @@ public class ProdottiHomeConsigliatiDAO implements DAOInterface<ProdottiHomeBean
 	@Override
 	public List<ProdottiHomeBean> doRetrieveAll() throws SQLException {
 		Connection conn = null;
-		String query = "SELECT Titolo, Foto_BLOB, Prezzo_Attuale FROM prodotto ORDER BY RAND() LIMIT 10";
+		String query = "SELECT ID_Prodotto, Titolo, Foto_BLOB, Tipo, Prezzo_Attuale, Stato FROM prodotto ORDER BY RAND() LIMIT 10";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
@@ -41,9 +41,12 @@ public class ProdottiHomeConsigliatiDAO implements DAOInterface<ProdottiHomeBean
 			while(rs.next()) {
 				ProdottiHomeBean bean = new ProdottiHomeBean();
 				
-				bean.setTitolo(rs.getString(1));
-				bean.setCopertina(rs.getBytes(2));
-				bean.setPrezzo(rs.getFloat(3));
+				bean.setID(rs.getInt(1));
+				bean.setTitolo(rs.getString(2));
+				bean.setCopertina(rs.getBytes(3));
+				bean.setTipo(rs.getString(4));
+				bean.setPrezzo(rs.getFloat(5));
+				bean.setStato(rs.getString(6));
 				
 				lp.add(bean);
 			}

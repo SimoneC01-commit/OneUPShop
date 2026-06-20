@@ -22,7 +22,7 @@
 			if(lista1 != null && !lista1.isEmpty()){
 				for(ProdottiHomeBean prodotto: lista1){
 					%>
-					<li>Titolo: <%=prodotto.getTitolo()%> (<%=prodotto.getPrezzo()%> &euro;)</li>
+					<li>(<%=prodotto.getID()%>#) Titolo: <%=prodotto.getTitolo()%> (<%=prodotto.getPrezzo()%> &euro;)</li>
 					<%
 				}
 			}
@@ -43,7 +43,7 @@
 			if(lista2 != null && !lista2.isEmpty()){
 				for(ProdottiHomeBean prodotto: lista2){
 					%>
-					<li>Titolo: <%=prodotto.getTitolo()%> (<%=prodotto.getPrezzo()%> &euro;)</li>
+					<li>(<%=prodotto.getID()%>#) Titolo: <%=prodotto.getTitolo()%> (<%=prodotto.getPrezzo()%> &euro;)</li>
 					<%
 				}
 			}
