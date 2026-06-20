@@ -36,23 +36,16 @@ public class Home extends HttpServlet {
 		try {
 			List<ProdottiHomeBean> prodNuovi = new ProdottiHomeNuoviDAO().doRetrieveAll();
 			
-			request.setAttribute("prodottiHomeNuovi", prodNuovi);
-		}
-		catch(SQLException e){
-			e.printStackTrace();
-			
-			request.setAttribute("errorMessage", "Errore nel recuperare i prodotti nuovi");
-		}
-		
-		try {
 			List<ProdottiHomeBean> prodConsigliati = new ProdottiHomeConsigliatiDAO().doRetrieveAll();
+			
+			request.setAttribute("prodottiHomeNuovi", prodNuovi);
 			
 			request.setAttribute("prodottiHomeConsigliati", prodConsigliati);
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 			
-			request.setAttribute("errorMessage", "Errore nel recuperare i prodotti consigliati");
+			request.setAttribute("errorMessage", "Errore nel caricamento della home");
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
