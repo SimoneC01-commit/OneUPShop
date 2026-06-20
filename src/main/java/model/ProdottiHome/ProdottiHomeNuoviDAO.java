@@ -28,7 +28,7 @@ public class ProdottiHomeNuoviDAO implements DAOInterface<ProdottiHomeBean, Inte
 	public List<ProdottiHomeBean> doRetrieveAll() throws SQLException {
 		
 		Connection conn = null;
-		String query = "SELECT * FROM oneupshop.prodotti_home_nuovi";
+		String query = "SELECT Titolo, Foto_BLOB, Prezzo_Attuale FROM prodotto ORDER BY Data_Aggiunta DESC LIMIT 10";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
