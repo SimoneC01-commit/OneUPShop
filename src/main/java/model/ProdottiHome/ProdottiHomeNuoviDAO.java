@@ -28,9 +28,13 @@ public class ProdottiHomeNuoviDAO implements DAOInterface<ProdottiHomeBean, Inte
 	public List<ProdottiHomeBean> doRetrieveAll() throws SQLException {
 		
 		Connection conn = null;
-		String query = "SELECT ID_Prodotto, Titolo, Foto_BLOB, Tipo, Prezzo_Attuale, Stato FROM prodotto ORDER BY Data_Aggiunta DESC LIMIT 10";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		
+		String query = "SELECT ID_Prodotto, Titolo, Foto_BLOB, Tipo, Prezzo_Attuale, Stato " +
+				"FROM prodotto " +
+				"ORDER BY Data_Aggiunta " +
+				"DESC LIMIT 10";
 		
 		List<ProdottiHomeBean> lp = new ArrayList<ProdottiHomeBean>();
 		
@@ -41,13 +45,13 @@ public class ProdottiHomeNuoviDAO implements DAOInterface<ProdottiHomeBean, Inte
 			
 			while(rs.next()) {
 				ProdottiHomeBean bean = new ProdottiHomeBean();
-				
-				bean.setID(rs.getInt(1));
-				bean.setTitolo(rs.getString(2));
-				bean.setCopertina(rs.getBytes(3));
-				bean.setTipo(rs.getString(4));
-				bean.setPrezzo(rs.getFloat(5));
-				bean.setStato(rs.getString(6));
+
+				bean.setID(rs.getInt("ID_Prodotto"));
+				bean.setTitolo(rs.getString("Titolo"));
+				bean.setCopertina(rs.getBytes("Foto_BLOB"));
+				bean.setTipo(rs.getString("Tipo"));
+				bean.setPrezzo(rs.getFloat("Prezzo_Attuale"));
+				bean.setStato(rs.getString("Stato"));
 				
 				lp.add(bean);
 			}

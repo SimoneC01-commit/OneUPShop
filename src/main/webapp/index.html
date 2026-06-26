@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Navigazione di Test - RetroGaming</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 40px;
+            color: #333;
+        }
+        .nav-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-top: 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 15px;
+        }
+        a {
+            display: block;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+        .note {
+            font-size: 0.85em;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-container">
+        <h1>Pannello di Test</h1>
+        
+        <ul>
+            <li><a href="Home">Vai alla Home</a></li>
+            
+            <li><a href="Catalogo">Vai al Catalogo</a></li>
+            
+            <li><a href="DettagliProdotto?idProdotto=1">Vai a Dettagli Prodotto (ID: 1)</a></li>
+            
+            <li><a href="Registrazione">Vai alla Registrazione</a></li>
+            
+            <li><a href="Login">Vai al Login</a></li>
+        </ul>
+
+        <p class="note">
+            Ricorda: questi pulsanti chiamano le <strong>Servlet</strong>, che a loro volta mostreranno le JSP nascoste in WEB-INF.
+        </p>
+    </div>
+
+</body>
+</html>
