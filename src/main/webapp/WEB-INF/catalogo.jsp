@@ -116,7 +116,7 @@
                                         <c:choose>
                                             <c:when test="${not empty p.foto}">
                                                 <%
-                                                    model.Catalogo.ProdottoBean pb = (model.Catalogo.ProdottoBean) pageContext.getAttribute("p");
+                                                    model.catalogo.ProdottoBean pb = (model.catalogo.ProdottoBean) pageContext.getAttribute("p");
                                                     String b64 = Base64.getEncoder().encodeToString(pb.getFoto());
                                                 %>
                                                 <img src="data:image/jpeg;base64,<%= b64 %>" alt="${p.titolo}">
