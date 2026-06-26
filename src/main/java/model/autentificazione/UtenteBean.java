@@ -1,4 +1,4 @@
-package model.Autentificazione;
+package model.autentificazione;
 
 import java.math.BigDecimal;
 

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Catalogo.CatalogoDAO;
-import model.Catalogo.ProdottoBean;
+import model.catalogo.CatalogoDAO;
+import model.catalogo.ProdottoBean;
 
 /**
  * Servlet implementation class Catalogo

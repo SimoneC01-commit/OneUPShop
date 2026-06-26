@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.utility.PasswordEncrypter;
-import model.Autentificazione.UtenteBean;
-import model.Autentificazione.UtenteDAO;
+import model.autentificazione.UtenteBean;
+import model.autentificazione.UtenteDAO;
 
 /**
  * Servlet implementation class Login

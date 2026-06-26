@@ -1,4 +1,4 @@
-package model.ProdottiHome;
+package model.prodottiHome;
 
 public class ProdottiHomeBean {
     private int ID;

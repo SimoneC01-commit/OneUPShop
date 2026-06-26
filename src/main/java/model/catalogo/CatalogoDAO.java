@@ -1,4 +1,4 @@
-package model.Catalogo;
+package model.catalogo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

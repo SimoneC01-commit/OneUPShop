@@ -1,6 +1,6 @@
 package controller.servlet;
 
-import model.ProdottiHome.*;
+import model.prodottiHome.*;
 
 import java.io.IOException;
 import java.sql.SQLException;

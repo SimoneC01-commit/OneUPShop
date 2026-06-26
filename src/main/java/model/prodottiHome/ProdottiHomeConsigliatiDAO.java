@@ -1,4 +1,4 @@
-package model.ProdottiHome;
+package model.prodottiHome;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
