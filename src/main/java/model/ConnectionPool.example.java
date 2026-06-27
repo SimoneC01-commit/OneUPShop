@@ -10,7 +10,7 @@ public class ConnectionPool {
             + "&useLegacyDatetimecode=false&serverTimezone=UTC";
 
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "SS123ss!?";
+    private static final String PASSWORD = "root";
 
     private static int INITIAL_POOL_SIZE = 5;
     private static final int MAX_POOL_SIZE = 20;
