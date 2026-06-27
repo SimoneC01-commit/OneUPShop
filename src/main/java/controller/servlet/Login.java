@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import controller.utility.PasswordEncrypter;
 import model.autentificazione.UtenteBean;
 import model.autentificazione.UtenteDAO;
+import model.carrello.Carrello;
 
 /**
  * Servlet implementation class Login
@@ -74,8 +75,11 @@ public class Login extends HttpServlet {
 					sessione.invalidate();
 				}
 				
+				Carrello carrello = new Carrello();
+				
 				sessione = request.getSession(true);
 				sessione.setAttribute("utente", utente);
+				sessione.setAttribute("carrello", carrello);
 				
 				response.sendRedirect(request.getContextPath() + "/Home");
 				return;
@@ -91,7 +95,6 @@ public class Login extends HttpServlet {
 			request.setAttribute("errorMessage", "Errore durante il login. Riprova.");
 			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Errore durante il login. Riprova.");
 			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);

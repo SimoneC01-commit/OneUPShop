@@ -26,6 +26,15 @@
                 <p><strong>Anno di Rilascio:</strong> ${prodotto.annoRilascio}</p>
                 <p><strong>Stato:</strong> ${prodotto.stato}</p>
                 
+                <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="post" style="margin-top: 20px;">
+    
+				    <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
+				    
+				    <button type="submit" class="btn-aggiungi-rapido">
+				        🛒 Inserisci nel Carrello
+				    </button>
+				</form>
+                
                 <c:if test="${not empty prodotto.noteDifetti}">
                     <p class="error"><strong>Note Difetti:</strong> ${prodotto.noteDifetti}</p>
                 </c:if>

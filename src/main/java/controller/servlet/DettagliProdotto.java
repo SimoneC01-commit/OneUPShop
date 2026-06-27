@@ -36,7 +36,8 @@ public class DettagliProdotto extends HttpServlet {
 		String idProdottoStr = request.getParameter("idProdotto");
 		
 		if(idProdottoStr == null || idProdottoStr.isEmpty()) {
-			response.sendError(404, "Campo ID mancante");	
+			response.sendError(404, "Campo ID mancante");
+			return;
 		}
 		
 		try {

@@ -133,6 +133,9 @@
                                     <div class="price">€ ${p.prezzo}</div>
                                     <a href="DettagliProdotto?idProdotto=${p.ID}" class="btn-link">Vedi Dettagli</a>
                                 </div>
+                                <div>
+                                    <a href="AggiungiAlCarrello?idProdotto=${p.ID}" class="btn-link">Aggiungi al carrello</a>
+                                </div>
                             </div>
                         </c:forEach>
                     </div>
