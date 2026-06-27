@@ -2,28 +2,30 @@ package controller.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import model.dettagliProdotto.DettagliProdottoBean;
-import model.dettagliProdotto.DettagliProdottoDAO;
+import model.autentificazione.UtenteBean;
+import model.ordine.OrdineBean;
+import model.ordine.OrdineDAO;
 
 /**
- * Servlet implementation class DettagliProdotto
+ * Servlet implementation class Ordini
  */
-@WebServlet("/DettagliProdotto")
-public class DettagliProdotto extends HttpServlet {
+@WebServlet("/Ordini")
+public class Ordini extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DettagliProdotto() {
+    public Ordini() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,39 +35,30 @@ public class DettagliProdotto extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String idProdottoStr = request.getParameter("idProdotto");
+		HttpSession sessione = request.getSession();
+
+		UtenteBean utente = (UtenteBean) sessione.getAttribute("utente");
 		
-		if(idProdottoStr == null || idProdottoStr.isEmpty()) {
-			response.sendError(404, "Campo ID mancante");
+		if(utente == null) {
+			request.setAttribute("errorMessage", "Devi essere loggato per poter visualizzare i tuoi ordini.");
+			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 			return;
 		}
 		
 		try {
+			ArrayList<OrdineBean> ordini = new OrdineDAO().retrieveOrdini(utente.getEmail());
 			
-			int idProdotto = Integer.parseInt(idProdottoStr);
+			request.setAttribute("ordini", ordini);
 			
-			DettagliProdottoBean bean = new DettagliProdottoDAO().doRetrieveByKey(idProdotto);
-			
-			if(bean == null) {
-				response.sendError(404, "Il prodotto non esiste...");
-				return;
-			}
-			
-			request.setAttribute("prodotto", bean);
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/dettagliProdotto.jsp");
-			rd.forward(request, response);
-			
-		} catch(NullPointerException e) {
-			e.printStackTrace();
-			
-			response.sendError(404, "ID prodotto non valido");
+			request.getRequestDispatcher("/WEB-INF/ordini.jsp").forward(request, response);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-
-			response.sendError(500, "Errore nel database");
+			
+			request.setAttribute("errorMessage", "Errore durante il recupero ordini. Riprova.");
+			request.getRequestDispatcher("/Home").forward(request, response);
 		}
+		
 	}
 
 	/**

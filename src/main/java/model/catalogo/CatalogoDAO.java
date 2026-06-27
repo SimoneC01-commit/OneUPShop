@@ -8,39 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.ConnectionPool;
-import model.DAOInterface;
 
-public class CatalogoDAO implements DAOInterface<ProdottoBean, Integer> {
+public class CatalogoDAO {
 
-	@Override
-	public void doSave(ProdottoBean entry) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public ProdottoBean doRetrieveByKey(Integer key) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ProdottoBean> doRetrieveAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void doUpdate(ProdottoBean entry) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void doDelete(Integer key) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public List<ProdottoBean> doRetriveByPages(Integer minYear, Integer maxYear, String tipo, Float minPrice, Float maxPrice, String stato, int pagCorrente, int elemForPage) throws SQLException{
 

@@ -4,20 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import model.ConnectionPool;
-import model.DAOInterface;
 
-public class ProdottoCarrelloDAO implements DAOInterface<ProdottoCarrelloBean, Integer> {
+public class ProdottoCarrelloDAO {
 
-	@Override
-	public void doSave(ProdottoCarrelloBean entry) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public ProdottoCarrelloBean doRetrieveByKey(Integer key) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -63,23 +54,4 @@ public class ProdottoCarrelloDAO implements DAOInterface<ProdottoCarrelloBean, I
 		
 		return prodotto;
 	}
-
-	@Override
-	public List<ProdottoCarrelloBean> doRetrieveAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void doUpdate(ProdottoCarrelloBean entry) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void doDelete(Integer key) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

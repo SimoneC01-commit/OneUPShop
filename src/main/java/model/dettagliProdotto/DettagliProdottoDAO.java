@@ -4,20 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import model.ConnectionPool;
-import model.DAOInterface;
 
-public class DettagliProdottoDAO implements DAOInterface<DettagliProdottoBean, Integer> {
+public class DettagliProdottoDAO {
 
-	@Override
-	public void doSave(DettagliProdottoBean entry) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public DettagliProdottoBean doRetrieveByKey(Integer key) throws SQLException {
 		// TODO Auto-generated method stub
 		Connection conn = null;
@@ -109,23 +100,4 @@ public class DettagliProdottoDAO implements DAOInterface<DettagliProdottoBean, I
 		
 		return dpb;
 	}
-
-	@Override
-	public List<DettagliProdottoBean> doRetrieveAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void doUpdate(DettagliProdottoBean entry) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void doDelete(Integer key) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

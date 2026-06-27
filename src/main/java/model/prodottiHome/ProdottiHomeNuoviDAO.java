@@ -8,23 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import model.ConnectionPool;
 
-import model.DAOInterface;
+public class ProdottiHomeNuoviDAO {
 
-public class ProdottiHomeNuoviDAO implements DAOInterface<ProdottiHomeBean, Integer>{
-
-	@Override
-	public void doSave(ProdottiHomeBean entry) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public ProdottiHomeBean doRetrieveByKey(Integer key) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<ProdottiHomeBean> doRetrieveAll() throws SQLException {
 		
 		Connection conn = null;
@@ -75,17 +60,4 @@ public class ProdottiHomeNuoviDAO implements DAOInterface<ProdottiHomeBean, Inte
 		}
 		return lp;
 	}
-
-	@Override
-	public void doUpdate(ProdottiHomeBean entry) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void doDelete(Integer key) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

@@ -78,7 +78,7 @@
                 Totale Ordine: ${sessionScope.carrello.totale} &euro;
             </div>
             
-            <form action="${pageContext.request.contextPath}/ProcediOrdine" method="post">
+            <form action="${pageContext.request.contextPath}/Checkout" method="post">
                 <button type="submit" class="btn-checkout">Procedi all'Acquisto</button>
             </form>
             

@@ -4,14 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import model.ConnectionPool;
-import model.DAOInterface;
 
-public class UtenteDAO implements DAOInterface<UtenteBean, String> {
+public class UtenteDAO {
 
-	@Override
 	public void doSave(UtenteBean entry) throws SQLException {
 		// TODO Auto-generated method stub
 		Connection conn = null;
@@ -43,27 +40,14 @@ public class UtenteDAO implements DAOInterface<UtenteBean, String> {
 	    	}
 	    }
 	}
-
-	@Override
-	public List<UtenteBean> doRetrieveAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void doUpdate(UtenteBean entry) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
+	
 	public UtenteBean doRetrieveByKey(String key) throws SQLException {
 		// TODO Auto-generated method stub
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		String query = "SELECT ID_Utente, Nome, Cognome, Email, Password, Telefono, Indirizzo, Ruolo, Saldo_Wallet, Metodo_Pagamento_Default " +
+		String query = "SELECT Nome, Cognome, Email, Password, Ruolo, Saldo_Wallet " +
 						"FROM utente " +
 						"WHERE Email = ?";
 	    UtenteBean utenteEsistente = null;
@@ -79,16 +63,12 @@ public class UtenteDAO implements DAOInterface<UtenteBean, String> {
 			if(rs.next()) {
 				utenteEsistente = new UtenteBean();
 				
-				utenteEsistente.setIdUtente(rs.getInt("ID_Utente"));
 	            utenteEsistente.setNome(rs.getString("Nome"));
 	            utenteEsistente.setCognome(rs.getString("Cognome"));
 	            utenteEsistente.setEmail(rs.getString("Email"));
 	            utenteEsistente.setPassword(rs.getString("Password"));
-	            utenteEsistente.setTelefono(rs.getString("Telefono"));
-	            utenteEsistente.setIndirizzo(rs.getString("Indirizzo"));
 	            utenteEsistente.setRuolo(rs.getString("Ruolo"));
 	            utenteEsistente.setSaldoWallet(rs.getBigDecimal("Saldo_Wallet"));
-	            utenteEsistente.setMetodoPagamentoDefault(rs.getString("Metodo_Pagamento_Default"));
 			}
 		}
 		catch(SQLException e) {
@@ -109,11 +89,4 @@ public class UtenteDAO implements DAOInterface<UtenteBean, String> {
 	    
 	    return utenteEsistente;
 	}
-
-	@Override
-	public void doDelete(String key) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

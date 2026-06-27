@@ -9,6 +9,10 @@ public class Carrello {
 		lista = new ArrayList<ProdottoCarrelloBean>();
 	}
 	
+	public ArrayList<ProdottoCarrelloBean> getLista(){
+		return lista;
+	}
+	
 	public void aggiungiProdotto(ProdottoCarrelloBean prodotto) {
 	    for (ProdottoCarrelloBean p : lista) {
 	        if (p.getId() == prodotto.getId()) {

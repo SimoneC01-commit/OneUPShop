@@ -77,7 +77,7 @@ public class Registrazione extends HttpServlet {
 			
 			dao.doSave(utente);
 			
-			response.sendRedirect(request.getContextPath() + "/Home");
+			response.sendRedirect(request.getContextPath() + "/WEB-INF/login.jsp?registrato=true");
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
