@@ -191,4 +191,61 @@ public class OrdineDAO {
     	
     	return bean;
     }
+
+	public void deleteOrdineByKey(int idOrdine) throws SQLException {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+        PreparedStatement psOrdine = null;
+        PreparedStatement psDettaglio = null;
+    	
+    	String queryDettaglio = "DELETE FROM dettaglio_ordine WHERE ID_Ordine = ?";
+    	String queryOrdine = "DELETE FROM ordine WHERE ID_Ordine = ?";
+    	
+    	try {
+    		conn = ConnectionPool.getConnection();
+    		
+    		conn.setAutoCommit(false);
+    		
+    		psDettaglio = conn.prepareStatement(queryDettaglio);
+    		psDettaglio.setInt(1, idOrdine);
+    		psDettaglio.executeUpdate();
+    		
+    		psOrdine = conn.prepareStatement(queryOrdine);
+    		psOrdine.setInt(1, idOrdine);
+    		psOrdine.executeUpdate();
+    		
+    		conn.commit();
+    	}
+    	catch(SQLException e) {
+    		if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+    		
+    		e.printStackTrace();
+    		
+    		throw e;
+    	}
+    	finally {
+    		if (conn != null) {
+                try {
+                    conn.setAutoCommit(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+			if(psOrdine != null) {
+				psOrdine.close();
+			}
+			if(psDettaglio != null) {
+				psDettaglio.close();
+			}
+			if(conn != null) {
+				ConnectionPool.releaseConnection(conn);
+			}
+		}
+	}
 }

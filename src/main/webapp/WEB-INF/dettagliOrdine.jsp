@@ -80,6 +80,21 @@
         .btn-back:hover {
             background: #95a5a6;
         }
+        .btn-delete {
+            display: inline-block;
+            background: #d63031; /* Rosso */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-delete:hover {
+            background: #c0392b; /* Rosso scuro al passaggio del mouse */
+        }
         .badge {
             padding: 5px 10px;
             border-radius: 20px;
@@ -167,16 +182,28 @@
         </tbody>
     </table>
 
-    <div class="totale-box">
-        <strong>Totale Ordine: </strong> 
-        <span style="color: #27ae60;">
-            <fmt:formatNumber value="${ordine.totaleOrdine}" type="currency" currencySymbol="€"/>
-        </span>
-    </div>
-
-    <a href="${pageContext.request.contextPath}/Ordini" class="btn-back">← Torna ai Miei Ordini</a>
-
-</div>
+	<div class="totale-box">
+	        <strong>Totale Ordine: </strong> 
+	        <span style="color: #27ae60;">
+	            <fmt:formatNumber value="${ordine.totaleOrdine}" type="currency" currencySymbol="€"/>
+	        </span>
+	    </div>
+	
+	    <div style="margin-top: 30px; display: flex; justify-content: space-between; align-items: center;">
+	        
+	        <a href="${pageContext.request.contextPath}/Ordini" class="btn-back" style="margin-top: 0;">← Torna ai Miei Ordini</a>
+	        
+	        <form action="${pageContext.request.contextPath}/CancellazioneOrdine" method="post" 
+	              onsubmit="return confirm('Sei sicuro di voler annullare definitivamente questo ordine?');">
+	            
+	            <input type="hidden" name="idOrdine" value="${ordine.idOrdine}">
+	            
+	            <button type="submit" class="btn-delete">Annulla Ordine</button>
+	        </form>
+	        
+	    </div>
+	
+	</div>
 
 </body>
 </html>
