@@ -8,7 +8,7 @@ public class OrdineBean {
     private Timestamp dataOrdine;
     private String statoOrdine;
     private float totaleOrdine;
-    private String indirizzoSpedizioneStorico;
+    private String indirizzoSpedizione;
     private String telefono;
     private String metodoPagamento;
     
@@ -27,8 +27,8 @@ public class OrdineBean {
     public float getTotaleOrdine() { return totaleOrdine; }
     public void setTotaleOrdine(float totaleOrdine) { this.totaleOrdine = totaleOrdine; }
 
-    public String getIndirizzoSpedizioneStorico() { return indirizzoSpedizioneStorico; }
-    public void setIndirizzoSpedizioneStorico(String indirizzoSpedizioneStorico) { this.indirizzoSpedizioneStorico = indirizzoSpedizioneStorico; }
+    public String getIndirizzoSpedizione() { return indirizzoSpedizione; }
+    public void setIndirizzoSpedizione(String indirizzoSpedizione) { this.indirizzoSpedizione = indirizzoSpedizione; }
     
 	public String getTelefono() { return telefono; }
 	public void setTelefono(String telefono) { this.telefono = telefono; }

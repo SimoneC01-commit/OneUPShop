@@ -18,7 +18,7 @@ public class OrdineDAO {
         PreparedStatement psDettaglio = null;
         ResultSet rs = null;
         
-        String queryOrdine = "INSERT INTO ordine (Email_Utente, Totale_Ordine, Indirizzo_Spedizione_Storico, Telefono, Metodo_Pagamento) VALUES (?, ?, ?, ?, ?)";
+        String queryOrdine = "INSERT INTO ordine (Email_Utente, Totale_Ordine, Indirizzo_Spedizione, Telefono, Metodo_Pagamento) VALUES (?, ?, ?, ?, ?)";
         String queryDettaglio = "INSERT INTO dettaglio_ordine (ID_Ordine, ID_Prodotto, Prezzo_Vendita_Storico) VALUES (?, ?, ?)";
         
         try {
@@ -28,7 +28,7 @@ public class OrdineDAO {
             psOrdine = conn.prepareStatement(queryOrdine, Statement.RETURN_GENERATED_KEYS);
             psOrdine.setString(1, ordine.getEmailUtente());
             psOrdine.setFloat(2, ordine.getTotaleOrdine());
-            psOrdine.setString(3, ordine.getIndirizzoSpedizioneStorico());
+            psOrdine.setString(3, ordine.getIndirizzoSpedizione());
             psOrdine.setString(4, ordine.getTelefono());
             psOrdine.setString(5, ordine.getMetodoPagamento());
             
@@ -89,7 +89,7 @@ public class OrdineDAO {
     	PreparedStatement ps = null;
     	ResultSet rs = null;
     	
-    	String query = "SELECT ID_Ordine, Email_Utente, Data_Ordine, Stato_Ordine, Totale_Ordine, Indirizzo_Spedizione_Storico, Telefono, Metodo_Pagamento " +
+    	String query = "SELECT ID_Ordine, Email_Utente, Data_Ordine, Stato_Ordine, Totale_Ordine, Indirizzo_Spedizione, Telefono, Metodo_Pagamento " +
     					"FROM ordine " +
     					"WHERE Email_Utente = ?";
     	
@@ -113,7 +113,7 @@ public class OrdineDAO {
     			bean.setDataOrdine(rs.getTimestamp("Data_Ordine")); 
     			bean.setStatoOrdine(rs.getString("Stato_Ordine"));
     			bean.setTotaleOrdine(rs.getFloat("Totale_Ordine"));
-    			bean.setIndirizzoSpedizioneStorico(rs.getString("Indirizzo_Spedizione_Storico"));
+    			bean.setIndirizzoSpedizione(rs.getString("Indirizzo_Spedizione"));
     			bean.setTelefono(rs.getString("Telefono"));
     			bean.setMetodoPagamento(rs.getString("Metodo_Pagamento"));
     			
@@ -145,7 +145,7 @@ public class OrdineDAO {
     	PreparedStatement ps = null;
     	ResultSet rs = null;
     	
-    	String query = "SELECT ID_Ordine, Email_Utente, Data_Ordine, Stato_Ordine, Totale_Ordine, Indirizzo_Spedizione_Storico, Telefono, Metodo_Pagamento " +
+    	String query = "SELECT ID_Ordine, Email_Utente, Data_Ordine, Stato_Ordine, Totale_Ordine, Indirizzo_Spedizione, Telefono, Metodo_Pagamento " +
 				"FROM ordine " +
 				"WHERE ID_Ordine = ?";
     	
@@ -167,7 +167,7 @@ public class OrdineDAO {
     			bean.setDataOrdine(rs.getTimestamp("Data_Ordine")); 
     			bean.setStatoOrdine(rs.getString("Stato_Ordine"));
     			bean.setTotaleOrdine(rs.getFloat("Totale_Ordine"));
-    			bean.setIndirizzoSpedizioneStorico(rs.getString("Indirizzo_Spedizione_Storico"));
+    			bean.setIndirizzoSpedizione(rs.getString("Indirizzo_Spedizione"));
     			bean.setTelefono(rs.getString("Telefono"));
     			bean.setMetodoPagamento(rs.getString("Metodo_Pagamento"));
     		}

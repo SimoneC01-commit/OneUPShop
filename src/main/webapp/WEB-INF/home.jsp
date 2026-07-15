@@ -29,7 +29,7 @@
                     
                     <p class="category">${prodotto.tipo}</p>
                     <h3 class="title">${prodotto.titolo}</h3>
-                    <p class="price">${prodotto.prezzo} &euro;</p>
+                    <p class="price">${prodotto.prezzo} &euro; (IVA: ${prodotto.iva}%)</p>
                 </div>
                 
             </c:forEach>

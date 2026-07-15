@@ -6,16 +6,17 @@ public class ProdottiHomeBean {
     private byte[] copertina;
     private String tipo;
     private float prezzo;
+    private int iva;
     private String stato;
 
     public ProdottiHomeBean() {
     }
 
-    public int getID() {
+    public int getId() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setId(int ID) {
         this.ID = ID;
     }
 
@@ -49,6 +50,14 @@ public class ProdottiHomeBean {
     
     public void setPrezzo(float prezzo) {
         this.prezzo = prezzo;
+    }
+    
+    public int getIva() {
+        return iva;
+    }
+    
+    public void setIva(int iva) {
+        this.iva = iva;
     }
 
     public String getStato() {

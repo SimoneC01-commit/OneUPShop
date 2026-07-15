@@ -84,7 +84,7 @@ public class Checkout extends HttpServlet {
 		
 		ordine.setEmailUtente(utente.getEmail());
 		ordine.setTotaleOrdine(carrello.getTotale());
-		ordine.setIndirizzoSpedizioneStorico(indirizzo);
+		ordine.setIndirizzoSpedizione(indirizzo);
 		ordine.setTelefono(telefono.trim());
 		ordine.setMetodoPagamento(metodoPagamento.trim());
 		

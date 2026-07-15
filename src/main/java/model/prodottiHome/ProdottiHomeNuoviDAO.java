@@ -16,7 +16,7 @@ public class ProdottiHomeNuoviDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		String query = "SELECT ID_Prodotto, Titolo, Foto_BLOB, Tipo, Prezzo_Attuale, Stato " +
+		String query = "SELECT ID_Prodotto, Titolo, Foto_BLOB, Tipo, Prezzo_Attuale, IVA, Stato " +
 				"FROM prodotto " +
 				"ORDER BY Data_Aggiunta " +
 				"DESC LIMIT 10";
@@ -31,11 +31,12 @@ public class ProdottiHomeNuoviDAO {
 			while(rs.next()) {
 				ProdottiHomeBean bean = new ProdottiHomeBean();
 
-				bean.setID(rs.getInt("ID_Prodotto"));
+				bean.setId(rs.getInt("ID_Prodotto"));
 				bean.setTitolo(rs.getString("Titolo"));
 				bean.setCopertina(rs.getBytes("Foto_BLOB"));
 				bean.setTipo(rs.getString("Tipo"));
 				bean.setPrezzo(rs.getFloat("Prezzo_Attuale"));
+				bean.setIva(rs.getInt("IVA"));
 				bean.setStato(rs.getString("Stato"));
 				
 				lp.add(bean);
