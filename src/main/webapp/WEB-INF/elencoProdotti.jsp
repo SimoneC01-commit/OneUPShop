@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="model.admin.elencoProdotti.ProdottoElencoBean" %>
+<%@ page import="model.admin.elencoProdotti.ProdottoBean" %>
 <%@ page import="java.util.Base64" %>
 
 <!DOCTYPE html>
@@ -55,7 +55,7 @@
 
     <%
         // Recuperiamo la lista dei prodotti passata dalla servlet
-        ArrayList<ProdottoElencoBean> prodotti = (ArrayList<ProdottoElencoBean>) request.getAttribute("prodotti");
+        ArrayList<ProdottoBean> prodotti = (ArrayList<ProdottoBean>) request.getAttribute("prodotti");
         
         if (prodotti == null || prodotti.isEmpty()) {
     %>
@@ -82,7 +82,7 @@
             </thead>
             <tbody>
                 <%
-                    for (ProdottoElencoBean p : prodotti) {
+                    for (ProdottoBean p : prodotti) {
                         // Converte i byte del blob in una stringa Base64 per visualizzare l'immagine
                         String base64Image = "";
                         if (p.getFotoBlob() != null && p.getFotoBlob().length > 0) {
