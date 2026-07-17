@@ -146,7 +146,7 @@
 					        </td>
 					        <td>
 					            <div class="Dettagli-storici">
-					                <strong>Indirizzo:</strong> ${ordine.indirizzoSpedizioneStorico}<br>
+					                <strong>Indirizzo:</strong> ${ordine.indirizzoSpedizione}<br>
 					                <strong>Tel:</strong> ${ordine.telefono}
 					            </div>
 					        </td>

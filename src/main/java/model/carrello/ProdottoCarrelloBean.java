@@ -6,6 +6,7 @@ public class ProdottoCarrelloBean {
     private String titolo;
     private byte[] foto;
     private float prezzo;
+    private int iva;
 
     public ProdottoCarrelloBean() {
     }
@@ -41,4 +42,12 @@ public class ProdottoCarrelloBean {
     public void setPrezzo(float prezzo) {
         this.prezzo = prezzo;
     }
+
+	public int getIva() {
+		return iva;
+	}
+
+	public void setIva(int iva) {
+		this.iva = iva;
+	}
 }
