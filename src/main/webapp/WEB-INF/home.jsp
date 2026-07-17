@@ -1,68 +1,75 @@
-<%@page import="controller.servlet.Home"%>
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1UpShop</title>
+    <title>OneUp Shop - Home</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 
-    <section class="hero-banner">
-        <div class="banner-placeholder">
-            <h1>Presentazione Sito Retrogaming</h1>
-        </div>
-    </section>
+   <%-- <jsp:include page="header.jsp" /> --%>
 
-    <section class="product-section">
-        <h2>Nuovi Prodotti</h2>
-        
-        <div class="scrolling-wrapper">
-            
-            <c:forEach items="${prodottiHomeNuovi}" var="prodotto">
-                
-                <div class="product-card">
-                    <div class="image-box"> [Immagine del Gioco] </div>
-                    
-                    <p class="category">${prodotto.tipo}</p>
-                    <h3 class="title">${prodotto.titolo}</h3>
-                    <p class="price">${prodotto.prezzo} &euro; (IVA: ${prodotto.iva}%)</p>
+    <main class="container">
+        <section class="hero-banner">
+            <div class="banner-placeholder">
+                	<h1>Presentazione Sito Retrogaming</h1>
                 </div>
-                
-            </c:forEach>
-            
-            <c:if test="${empty prodottiHomeNuovi}">
-                <p>Nessun nuovo prodotto trovato.</p>
-            </c:if>
+        </section>
 
-        </div>
-    </section>
+        <section class="product-section">
+            <h2>New Products</h2>
+            <div class="product-grid">
+                <c:forEach var="prodotto" items="${prodottiHomeNuovi}">
+                    <article class="product-card">
+                        
+                        <div class="img-placeholder">
+                            </div>
+                        
+                        <div class="card-details">
+                            <span class="category">${prodotto.tipo}</span>
+                            <h3 class="title">${prodotto.titolo}</h3>
+                            <p class="price">$$ ${prodotto.prezzo}</p> 
+                            
+                            <form action="${pageContext.request.contextPath}/AddToCart" method="POST">
+                                <input type="hidden" name="idProdotto" value="${prodotto.id}">
+                                <button type="submit" class="btn-black">Aggiungi al carrello</button>
+                            </form>
+                        </div>
+                    </article>
+                </c:forEach>
+            </div>
+        </section>
 
-    <section class="product-section">
-        <h2>Prodotti Consigliati</h2>
-        
-        <div class="scrolling-wrapper">
-            
-            <c:forEach items="${prodottiHomeConsigliati}" var="prodotto">
-                
-                <div class="product-card">
-                    <div class="image-box"> [Immagine del Gioco] </div>
-                    <p class="category">${prodotto.tipo}</p>
-                    <h3 class="title">${prodotto.titolo}</h3>
-                    <p class="price">${prodotto.prezzo} &euro;</p>
-                </div>
-                
-            </c:forEach>
-            
-            <c:if test="${empty prodottiHomeConsigliati}">
-                <p>Nessun prodotto consigliato trovato.</p>
-            </c:if>
+        <section class="product-section">
+            <h2>Recommended Products</h2>
+            <div class="product-grid">
+                <c:forEach var="prodotto" items="${prodottiHomeConsigliati}">
+                    <article class="product-card">
+                        
+                        <div class="img-placeholder">
+                            </div>
+                        
+                        <div class="card-details">
+                            <span class="category">${prodotto.tipo}</span>
+                            <h3 class="title">${prodotto.titolo}</h3>
+                            <p class="price">$$ ${prodotto.prezzo}</p> 
+                            
+                            <form action="${pageContext.request.contextPath}/AddToCart" method="POST">
+                                <input type="hidden" name="idProdotto" value="${prodotto.id}">
+                                <button type="submit" class="btn-black">Aggiungi al carrello</button>
+                            </form>
+                        </div>
+                    </article>
+                </c:forEach>
+            </div>
+        </section>
+    </main>
 
-        </div>
-    </section>
+   <%-- <jsp:include page="footer.jsp" /> --%>
 
 </body>
 </html>
