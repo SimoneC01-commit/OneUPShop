@@ -19,7 +19,7 @@ public class OrdineDAO {
         ResultSet rs = null;
         
         String queryOrdine = "INSERT INTO ordine (Email_Utente, Totale_Ordine, Indirizzo_Spedizione, Telefono, Metodo_Pagamento) VALUES (?, ?, ?, ?, ?)";
-        String queryDettaglio = "INSERT INTO dettaglio_ordine (ID_Ordine, ID_Prodotto, Prezzo_Vendita_Storico) VALUES (?, ?, ?)";
+        String queryDettaglio = "INSERT INTO dettaglio_ordine (ID_Ordine, ID_Prodotto, Prezzo_Vendita_Storico, IVA_Storico) VALUES (?, ?, ?, ?)";
         
         try {
             conn = ConnectionPool.getConnection();
@@ -49,6 +49,7 @@ public class OrdineDAO {
                 psDettaglio.setInt(1, idOrdineGenerato);
                 psDettaglio.setInt(2, p.getId());
                 psDettaglio.setFloat(3, p.getPrezzo());
+                psDettaglio.setInt(4, p.getIva());
                 psDettaglio.addBatch();
             }
             
