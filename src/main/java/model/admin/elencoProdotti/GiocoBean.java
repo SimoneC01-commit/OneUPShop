@@ -1,6 +1,6 @@
 package model.admin.elencoProdotti;
 
-public class GiocoBean extends ProdottoElencoBean {
+public class GiocoBean extends ProdottoBean {
     
     private String sviluppatore;
     

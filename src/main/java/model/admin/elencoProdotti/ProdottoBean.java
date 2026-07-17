@@ -3,7 +3,7 @@ package model.admin.elencoProdotti;
 import java.math.BigDecimal;
 import java.sql.Date;
 
-public class ProdottoElencoBean {
+public class ProdottoBean {
 	
 	private int idProdotto;
     private String titolo;

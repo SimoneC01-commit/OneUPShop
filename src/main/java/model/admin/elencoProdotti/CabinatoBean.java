@@ -1,6 +1,6 @@
 package model.admin.elencoProdotti;
 
-public class CabinatoBean extends ProdottoElencoBean {
+public class CabinatoBean extends ProdottoBean {
 	
     private String tipoSistemaArcade;
     private String dimensioniCm;

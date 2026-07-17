@@ -11,7 +11,7 @@ import model.ConnectionPool;
 
 public class ElencoProdottiDAO {
 	
-	public ArrayList<ProdottoElencoBean> doRetrieveAll() throws SQLException{
+	public ArrayList<ProdottoBean> doRetrieveAll() throws SQLException{
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -23,7 +23,7 @@ public class ElencoProdottiDAO {
 					    "FROM prodotto " +
 					    "ORDER BY ID_Prodotto DESC";
 		
-		ArrayList<ProdottoElencoBean> prodotti = null;
+		ArrayList<ProdottoBean> prodotti = null;
 		
 		try {
     		conn = ConnectionPool.getConnection();
@@ -31,10 +31,10 @@ public class ElencoProdottiDAO {
     		
     		rs = ps.executeQuery();
     		
-    		prodotti = new ArrayList<ProdottoElencoBean>();
+    		prodotti = new ArrayList<ProdottoBean>();
     		
     		while (rs.next()) {
-                ProdottoElencoBean bean = new ProdottoElencoBean();
+    			ProdottoBean bean = new ProdottoBean();
                 
                 bean.setIdProdotto(rs.getInt("ID_Prodotto"));
                 bean.setTitolo(rs.getString("Titolo"));
@@ -123,7 +123,7 @@ public class ElencoProdottiDAO {
 		
 	}
 	
-	public ProdottoElencoBean doRetrieveByKey(int id) throws SQLException{
+	public ProdottoBean doRetrieveByKey(int id) throws SQLException{
 		Connection conn = null;
     	PreparedStatement ps = null;
     	ResultSet rs = null;
@@ -134,7 +134,7 @@ public class ElencoProdottiDAO {
 					    "FROM prodotto " +
 					    "WHERE ID_Prodotto = ?";
     	
-    	ProdottoElencoBean prodotto = null;
+    	ProdottoBean prodotto = null;
 		
     	try {
     		conn = ConnectionPool.getConnection();
@@ -145,7 +145,7 @@ public class ElencoProdottiDAO {
     		rs = ps.executeQuery();
     		
     		if(rs.next()) {
-    			prodotto = new ProdottoElencoBean();
+    			prodotto = new ProdottoBean();
                 
     			prodotto.setIdProdotto(rs.getInt("ID_Prodotto"));
     			prodotto.setTitolo(rs.getString("Titolo"));
@@ -183,7 +183,7 @@ public class ElencoProdottiDAO {
 		return prodotto;
 	}
 	
-	public void doSave(ProdottoElencoBean prodotto) throws SQLException{
+	public void doSave(ProdottoBean prodotto) throws SQLException{
 		Connection conn = null;
         PreparedStatement psProdotto = null;
         PreparedStatement psTipo = null;

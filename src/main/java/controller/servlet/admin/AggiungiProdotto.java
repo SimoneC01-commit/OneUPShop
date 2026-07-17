@@ -19,7 +19,7 @@ import model.admin.elencoProdotti.ConsoleBean;
 import model.admin.elencoProdotti.ElencoProdottiDAO;
 import model.admin.elencoProdotti.GadgetBean;
 import model.admin.elencoProdotti.GiocoBean;
-import model.admin.elencoProdotti.ProdottoElencoBean;
+import model.admin.elencoProdotti.ProdottoBean;
 import model.autentificazione.UtenteBean;
 
 /**
@@ -66,7 +66,7 @@ public class AggiungiProdotto extends HttpServlet {
 		}
 		
 		String tipo = request.getParameter("tipo");
-	    ProdottoElencoBean prodotto = null;
+		ProdottoBean prodotto = null;
 	    
 	    if(tipo == null || tipo.trim().isEmpty()) {
 	    	request.setAttribute("errorMessage", "Errore compilazione form. Tutti i campi sono obbligatori.");

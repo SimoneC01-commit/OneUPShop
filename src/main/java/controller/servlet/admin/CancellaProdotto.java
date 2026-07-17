@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.admin.elencoProdotti.ElencoProdottiDAO;
-import model.admin.elencoProdotti.ProdottoElencoBean;
+import model.admin.elencoProdotti.ProdottoBean;
 import model.autentificazione.UtenteBean;
 
 /**
@@ -62,7 +62,7 @@ public class CancellaProdotto extends HttpServlet {
 		try {	
 			int idProdotto = Integer.parseInt(idProdottoStr);
 			
-			ProdottoElencoBean prodotto = new ElencoProdottiDAO().doRetrieveByKey(idProdotto);
+			ProdottoBean prodotto = new ElencoProdottiDAO().doRetrieveByKey(idProdotto);
 			
 			if(prodotto == null) {
 				response.sendError(404, "Prodotto non trovato");

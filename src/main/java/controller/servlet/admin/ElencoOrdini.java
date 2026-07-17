@@ -11,21 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.admin.elencoProdotti.ElencoProdottiDAO;
-import model.admin.elencoProdotti.ProdottoBean;
+import model.admin.elencoOrdini.ElencoOrdiniDAO;
+import model.admin.elencoOrdini.OrdineBean;
 import model.autentificazione.UtenteBean;
 
 /**
- * Servlet implementation class ElencoProdotti
+ * Servlet implementation class ElencoOrdini
  */
-@WebServlet("/ElencoProdotti")
-public class ElencoProdotti extends HttpServlet {
+@WebServlet("/ElencoOrdini")
+public class ElencoOrdini extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ElencoProdotti() {
+    public ElencoOrdini() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,16 +47,16 @@ public class ElencoProdotti extends HttpServlet {
 		}
 		
 		try {
-			ArrayList<ProdottoBean> prodotti = new ElencoProdottiDAO().doRetrieveAll();
+			ArrayList<OrdineBean> ordini = new ElencoOrdiniDAO().doRetrieveAll();
 			
-			request.setAttribute("prodotti", prodotti);
+			request.setAttribute("ordini", ordini);
 			
-			request.getRequestDispatcher("/WEB-INF/elencoProdotti.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/elencoOrdini.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
-			request.setAttribute("errorMessage", "Errore durante il recupero prodotti. Riprova.");
+			request.setAttribute("errorMessage", "Errore durante il recupero ordini. Riprova.");
 			request.getRequestDispatcher("/Profilo").forward(request, response);
 		}
 	}

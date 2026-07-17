@@ -1,6 +1,6 @@
 package model.admin.elencoProdotti;
 
-public class ConsoleBean extends ProdottoElencoBean {
+public class ConsoleBean extends ProdottoBean {
 
     private String modelloSpecifico;
 
