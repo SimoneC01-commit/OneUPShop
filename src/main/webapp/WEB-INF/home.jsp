@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OneUp Shop - Home</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/style.css">
 </head>
 <body>
 
@@ -31,12 +31,13 @@
                         
                         <div class="card-details">
                             <span class="category">${prodotto.tipo}</span>
-                            <h3 class="title">${prodotto.titolo}</h3>
-                            <p class="price">$$ ${prodotto.prezzo}</p> 
+                            <h3 class="title"><a href="${pageContext.request.contextPath}/DettagliProdotto?idProdotto=${prodotto.id}">
+                            	${prodotto.titolo} </a></h3>
+                            <p class="price">€ ${prodotto.prezzo} EUR </p> 
                             
-                            <form action="${pageContext.request.contextPath}/AddToCart" method="POST">
+                            <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="POST">
                                 <input type="hidden" name="idProdotto" value="${prodotto.id}">
-                                <button type="submit" class="btn-black">Aggiungi al carrello</button>
+                                <button type="submit" class="bottone">Aggiungi al carrello</button>
                             </form>
                         </div>
                     </article>
@@ -55,12 +56,13 @@
                         
                         <div class="card-details">
                             <span class="category">${prodotto.tipo}</span>
-                            <h3 class="title">${prodotto.titolo}</h3>
-                            <p class="price">$$ ${prodotto.prezzo}</p> 
+	                           <h3 class="title"><a href="${pageContext.request.contextPath}/DettagliProdotto?idProdotto=${prodotto.id}">
+                            	${prodotto.titolo} </a></h3>
+                            <p class="price"> € ${prodotto.prezzo} EUR</p> 
                             
-                            <form action="${pageContext.request.contextPath}/AddToCart" method="POST">
+                            <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="POST">
                                 <input type="hidden" name="idProdotto" value="${prodotto.id}">
-                                <button type="submit" class="btn-black">Aggiungi al carrello</button>
+                                <button type="submit" class="bottone">Aggiungi al carrello</button>
                             </form>
                         </div>
                     </article>
