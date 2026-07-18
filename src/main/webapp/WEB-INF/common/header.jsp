@@ -1,64 +1,60 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="it">
-<head>
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>1-UpShop</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-</head>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/header/style.css">
 
-<body>
-	<header>
+<header class="main-header">
+    <div class="container">
+        
+        <!-- RIGA SUPERIORE -->
         <div class="header-top">
+            <!-- Logo -->
             <div class="logo">
-            <a href="${pageContext.request.contextPath}/Home">1UpShop</a>
+                <a href="${pageContext.request.contextPath}/Home">LOGO</a>
             </div>
-            
-            <div class="search-bar"> <%--Barra di ricerca --%>
-                <form action="${pageContext.request.contextPath}/Cerca" method="GET">
-                    <input type="text" name="query" placeholder="Search for...">
+
+            <!-- Barra di ricerca -->
+            <div class="search-container">
+                <form action="${pageContext.request.contextPath}/Ricerca" method="GET" class="search-form">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" name="q" placeholder="Search for..." class="search-input">
                 </form>
             </div>
-            
+
+            <!-- Icone destra -->
             <div class="header-icons">
-                <a href="carrello.jsp" class="cart-icon">Carrello <span class="badge">0</span></a> <%--Serve per far apparire il pallino di notifica --%>
-                <a href="wishlist.jsp">Wishlist</a>
-                <a href="account.jsp">Account</a>
+                <a href="${pageContext.request.contextPath}/DettagliCarrello" class="icon-link">Carrello</a>
+                <a href="#" class="icon-link">🤍</a>
+                <a href="${pageContext.request.contextPath}/Login" class="icon-link">👤</a>
             </div>
         </div>
 
-       <nav class="sub-navbar">
-            <ul class="categories-menu">
-                
-                <%-- Questo ciclo legge la lista delle aziende dal database--%>
-              <c:forEach items="${sessionScope.listaAziende}" var="azienda">
-                    <li class="dropdown-item">
-                        <a href="#">${azienda.nome}</a>
-                        
-                        <%-- Il menu a tendina sdoppiato come nel tuo wireframe --%>
-                        <div class="mega-menu">
-                            <%-- Lato sinistro: i link --%>
-                            <div class="menu-links-side">
-                                <ul>
-                                    <li><a href="catalogo?brand=${azienda.id}&cat=console">&gt; Console</a></li>
-                                    <li><a href="catalogo?brand=${azienda.id}&cat=games">&gt; Games</a></li>
-                                    <li><a href="catalogo?brand=${azienda.id}&cat=gadget">&gt; Gadget</a></li>
-                                </ul>
-                            </div>
-                            <%-- Lato destro: l'immagine pubblicitaria --%>
-                            <div class="menu-image-side">
-                                <img src="${pageContext.request.contextPath}/images/${azienda.immaginePromo}" alt="Promo ${azienda.nome}">
-                            </div>
-                        </div>
-                    </li>
-                </c:forEach>
-
-            </ul>
+        <!-- RIGA INFERIORE -->
+        <div class="header-bottom">
+            <!-- Link centrali -->
+            <nav class="company-links">
+                <ul>
+                    <li><a href="#">Nintendo - </a></li>
+                    <li><a href="#">Sony -</a></li>
+                    <li><a href="#">Microsoft -</a></li>
+                    <li><a href="#">Cabinati -</a></li>
+                </ul>
+            </nav>
             
+           <!--  <nav class="company-links">
+    <ul>
+        Passiamo il parametro 'azienda' alla Servlet 'Catalogo'
+        <li><a href="${pageContext.request.contextPath}/Catalogo?azienda=Nintendo">• Nintendo</a></li>
+        <li><a href="${pageContext.request.contextPath}/Catalogo?azienda=Sony">• Sony</a></li>
+        <li><a href="${pageContext.request.contextPath}/Catalogo?azienda=Sega">• Sega</a></li>
+        <li><a href="${pageContext.request.contextPath}/Catalogo?azienda=Atari">• Atari</a></li>
+    </ul>
+</nav> -->
+            
+            <!-- Link supporto a destra -->
             <div class="support-link">
-                <a href="#">🎧 Support</a>
+                <a href="#">Support</a>
             </div>
-        </nav>
-    </header>
+        </div>
+        
+    </div>
+</header>

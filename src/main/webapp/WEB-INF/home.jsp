@@ -11,15 +11,18 @@
 </head>
 <body>
 
-   <%-- <jsp:include page="header.jsp" /> --%>
+  <jsp:include page="common/header.jsp" />
 
-    <main class="container">
+   
         <section class="hero-banner">
-            <div class="banner-placeholder">
+        	<div class="banner-overlay">
+            	<div class="banner-content">
                 	<h1>Presentazione Sito Retrogaming</h1>
+                	</div>
                 </div>
         </section>
-
+        
+ <main class="container">
         <section class="product-section">
             <h2>New Products</h2>
             <div class="product-grid">
@@ -33,7 +36,7 @@
                             <span class="category">${prodotto.tipo}</span>
                             <h3 class="title"><a href="${pageContext.request.contextPath}/DettagliProdotto?idProdotto=${prodotto.id}">
                             	${prodotto.titolo} </a></h3>
-                            <p class="price">€ ${prodotto.prezzo} EUR </p> 
+                            <p class="price"><b>€ ${prodotto.prezzo} EUR </b></p> 
                             
                             <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="POST">
                                 <input type="hidden" name="idProdotto" value="${prodotto.id}">
@@ -58,7 +61,7 @@
                             <span class="category">${prodotto.tipo}</span>
 	                           <h3 class="title"><a href="${pageContext.request.contextPath}/DettagliProdotto?idProdotto=${prodotto.id}">
                             	${prodotto.titolo} </a></h3>
-                            <p class="price"> € ${prodotto.prezzo} EUR</p> 
+                            <p class="price"><b>€ ${prodotto.prezzo} EUR </b></p> 
                             
                             <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="POST">
                                 <input type="hidden" name="idProdotto" value="${prodotto.id}">

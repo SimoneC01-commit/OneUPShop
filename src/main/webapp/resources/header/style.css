@@ -1,0 +1,151 @@
+@charset "UTF-8";
+
+/* =========================================
+   HEADER
+   ========================================= */
+.main-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaeaea; /* Linea leggera che separa l'header dal sito */
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+/* --- RIGA SUPERIORE --- */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo a {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #777; /* Grigio del wireframe */
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.search-container {
+    flex-grow: 1; /* La barra si espande al centro */
+    max-width: 650px;
+    margin: 0 40px; /* Distanza dal logo e dalle icone */
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    background-color: #f1f3f4; /* Sfondo grigio chiaro */
+    border-radius: 4px;
+    padding: 10px 15px;
+}
+
+.search-icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    opacity: 0.6;
+}
+
+.search-input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    outline: none;
+}
+
+.header-icons {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.icon-link {
+    text-decoration: none;
+    font-size: 1.6rem; /* Grandezza delle icone */
+    color: #333;
+    position: relative; /* Fondamentale per posizionare il badge rosso */
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background-color: #cc0000;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 2px 7px;
+    border-radius: 50%; /* Lo rende tondo */
+} 
+
+/* --- RIGA INFERIORE --- */
+.header-bottom {
+    display: flex;
+    justify-content: center; /* Centra i link delle aziende */
+    align-items: center;
+    position: relative; /* Serve per mettere il Support tutto a destra */
+    border-top: 1px solid #f0f0f0;
+    padding-top: 15px;
+}
+
+.company-links ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.company-links a {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.company-links a:hover {
+    color: #cc0000;
+}
+
+.support-link {
+    position: absolute; /* Lo "strappa" dal centro e lo fissa a destra */
+    right: 0;
+}
+
+.support-link a {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column; /* Incolonna Logo, Barra e Icone */
+        gap: 20px;
+    }
+    
+    .search-container {
+        margin: 0;
+        width: 100%;
+    }
+    
+    .header-bottom {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .support-link {
+        position: static; /* Rimuove il posizionamento a destra su schermi piccoli */
+    }
+    
+    .company-links ul {
+        flex-wrap: wrap; /* Permette ai link di andare a capo */
+        justify-content: center;
+    }
+}
