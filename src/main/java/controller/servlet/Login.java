@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.utility.PasswordEncrypter;
-import model.autentificazione.UtenteBean;
-import model.autentificazione.UtenteDAO;
 import model.carrello.Carrello;
+import model.utente.UtenteBean;
+import model.utente.UtenteDAO;
 
 /**
  * Servlet implementation class Login

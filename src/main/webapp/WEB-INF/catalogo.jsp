@@ -114,10 +114,10 @@
                                 <div>
                                     <div class="img-box">
                                         <c:choose>
-                                            <c:when test="${not empty p.foto}">
+                                            <c:when test="${not empty p.fotoBlob}">
                                                 <%
-                                                    model.catalogo.ProdottoBean pb = (model.catalogo.ProdottoBean) pageContext.getAttribute("p");
-                                                    String b64 = Base64.getEncoder().encodeToString(pb.getFoto());
+                                                    model.prodotto.ProdottoBean pb = (model.prodotto.ProdottoBean) pageContext.getAttribute("p");
+                                                    String b64 = Base64.getEncoder().encodeToString(pb.getFotoBlob());
                                                 %>
                                                 <img src="data:image/jpeg;base64,<%= b64 %>" alt="${p.titolo}">
                                             </c:when>
@@ -130,11 +130,11 @@
                                 </div>
                                 
                                 <div>
-                                    <div class="price">€ ${p.prezzo}</div>
-                                    <a href="DettagliProdotto?idProdotto=${p.ID}" class="btn-link">Vedi Dettagli</a>
+                                    <div class="price">€ ${p.prezzoAttuale}</div>
+                                    <a href="DettagliProdotto?idProdotto=${p.idProdotto}" class="btn-link">Vedi Dettagli</a>
                                 </div>
                                 <div>
-                                    <a href="AggiungiAlCarrello?idProdotto=${p.ID}" class="btn-link">Aggiungi al carrello</a>
+                                    <a href="AggiungiAlCarrello?idProdotto=${p.idProdotto}" class="btn-link">Aggiungi al carrello</a>
                                 </div>
                             </div>
                         </c:forEach>

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- Importiamo la classe UtenteBean per poterla usare nel codice Java -->
-<%@ page import="model.autentificazione.UtenteBean" %>
+<%@ page import="model.utente.UtenteBean" %>
 
 <!DOCTYPE html>
 <html lang="it">

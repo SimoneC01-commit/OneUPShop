@@ -1,30 +1,31 @@
-package controller.servlet;
+package controller.servlet.utente.ordine;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import model.prodotto.ProdottoBean;
-import model.prodotto.ProdottoDAO;
+import model.utente.UtenteBean;
+import model.ordine.OrdineBean;
+import model.ordine.OrdineDAO;
 
 /**
- * Servlet implementation class ProdottiHome
+ * Servlet implementation class Ordini
  */
-@WebServlet("/Home")
-public class Home extends HttpServlet {
+@WebServlet("/Ordini")
+public class Ordini extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Home() {
+    public Ordini() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,23 +35,30 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		try {
-			List<ProdottoBean> prodNuovi = new ProdottoDAO().doRetrieveAllNew().subList(0, 9);
-			
-			List<ProdottoBean> prodConsigliati = new ProdottoDAO().doRetrieveAllSuggested().subList(0, 9);
-			
-			request.setAttribute("prodottiNuovi", prodNuovi);
-			
-			request.setAttribute("prodottiConsigliati", prodConsigliati);
-		}
-		catch(SQLException e){
-			e.printStackTrace();
-			
-			request.setAttribute("errorMessage", "Errore nel caricamento della home");
+		HttpSession sessione = request.getSession();
+
+		UtenteBean utente = (UtenteBean) sessione.getAttribute("utente");
+		
+		if(utente == null) {
+			request.setAttribute("errorMessage", "Devi essere loggato per poter visualizzare i tuoi ordini.");
+			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+			return;
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
-		rd.forward(request, response);
+		try {
+			List<OrdineBean> ordini = new OrdineDAO().doRetrieveAllForUser(utente.getEmail());
+			
+			request.setAttribute("ordini", ordini);
+			
+			request.getRequestDispatcher("/WEB-INF/ordini.jsp").forward(request, response);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+			request.setAttribute("errorMessage", "Errore durante il recupero ordini. Riprova.");
+			request.getRequestDispatcher("/Home").forward(request, response);
+		}
+		
 	}
 
 	/**

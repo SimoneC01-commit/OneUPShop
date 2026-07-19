@@ -1,30 +1,31 @@
-package controller.servlet;
+package controller.servlet.utente.wishlist;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import model.prodotto.ProdottoBean;
-import model.prodotto.ProdottoDAO;
+import model.utente.UtenteBean;
+import model.wishlist.WishlistBean;
+import model.wishlist.WishlistDAO;
 
 /**
- * Servlet implementation class ProdottiHome
+ * Servlet implementation class Wishlist
  */
-@WebServlet("/Home")
-public class Home extends HttpServlet {
+@WebServlet("/Wishlist")
+public class Wishlist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Home() {
+    public Wishlist() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,23 +35,24 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		HttpSession sessione = request.getSession();
+		
+		UtenteBean utente = (UtenteBean) sessione.getAttribute("utente");
+
 		try {
-			List<ProdottoBean> prodNuovi = new ProdottoDAO().doRetrieveAllNew().subList(0, 9);
+			List<WishlistBean> lista = new WishlistDAO().doRetrieveByUser(utente.getEmail());
+
+			request.setAttribute("wishlist", lista);
 			
-			List<ProdottoBean> prodConsigliati = new ProdottoDAO().doRetrieveAllSuggested().subList(0, 9);
-			
-			request.setAttribute("prodottiNuovi", prodNuovi);
-			
-			request.setAttribute("prodottiConsigliati", prodConsigliati);
-		}
-		catch(SQLException e){
+			request.getRequestDispatcher("/WEB-INF/wishlist.jsp").forward(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
-			request.setAttribute("errorMessage", "Errore nel caricamento della home");
+			request.setAttribute("errorMessage", "Errore durante il recupero della wishlist. Riprova.");
+			request.getRequestDispatcher("/Profilo").forward(request, response);
 		}
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
-		rd.forward(request, response);
 	}
 
 	/**

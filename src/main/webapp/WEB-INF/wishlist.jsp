@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="model.wishlist.ElementoWishlistBean" %>
+<%@ page import="model.wishlist.WishlistBean" %>
+<%@ page import="model.prodotto.ProdottoBean" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,20 +99,20 @@
             <tbody>
                 <% 
                     @SuppressWarnings("unchecked")
-                    ArrayList<ElementoWishlistBean> wishlist = (ArrayList<ElementoWishlistBean>) request.getAttribute("wishlist");
+                    ArrayList<WishlistBean> wishlist = (ArrayList<WishlistBean>) request.getAttribute("wishlist");
                     if (wishlist != null && !wishlist.isEmpty()) {
-                        for (ElementoWishlistBean item : wishlist) {
+                        for (WishlistBean item : wishlist) {
                 %>
                 <tr>
-                    <td>#<%= item.getIdProdotto() %></td>
+                    <td>#<%= item.getProdotto().getIdProdotto() %></td>
                     <td><%= item.getDataInserimento() %></td>
                     <td>
-                        <a href="<%= request.getContextPath() %>/DettaglioProdotto?id=<%= item.getIdProdotto() %>" class="btn-view">
+                        <a href="<%= request.getContextPath() %>/DettaglioProdotto?id=<%= item.getProdotto().getIdProdotto() %>" class="btn-view">
                             Vedi Prodotto
                         </a>
                         
                         <form action="<%= request.getContextPath() %>/RimuoviDaWishlist" method="POST" style="display:inline;" onsubmit="return confirm('Rimuovere il prodotto dalla wishlist?');">
-                            <input type="hidden" name="idProdotto" value="<%= item.getIdProdotto() %>">
+                            <input type="hidden" name="idProdotto" value="<%= item.getProdotto().getIdProdotto() %>">
                             <button type="submit" class="btn-remove">Rimuovi</button>
                         </form>
                     </td>

@@ -1,30 +1,26 @@
-package controller.servlet;
+package controller.servlet.utente;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import model.prodotto.ProdottoBean;
-import model.prodotto.ProdottoDAO;
+import model.utente.UtenteBean;
 
 /**
- * Servlet implementation class ProdottiHome
+ * Servlet implementation class Profilo
  */
-@WebServlet("/Home")
-public class Home extends HttpServlet {
+@WebServlet("/Profilo")
+public class Profilo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Home() {
+    public Profilo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,23 +30,17 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		try {
-			List<ProdottoBean> prodNuovi = new ProdottoDAO().doRetrieveAllNew().subList(0, 9);
-			
-			List<ProdottoBean> prodConsigliati = new ProdottoDAO().doRetrieveAllSuggested().subList(0, 9);
-			
-			request.setAttribute("prodottiNuovi", prodNuovi);
-			
-			request.setAttribute("prodottiConsigliati", prodConsigliati);
-		}
-		catch(SQLException e){
-			e.printStackTrace();
-			
-			request.setAttribute("errorMessage", "Errore nel caricamento della home");
+		HttpSession sessione = request.getSession();
+
+		UtenteBean utente = (UtenteBean) sessione.getAttribute("utente");
+		
+		if(utente == null) {
+			request.setAttribute("errorMessage", "Devi essere loggato per poter visualizzare il tuo profilo.");
+			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+			return;
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
-		rd.forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/profilo.jsp").forward(request, response);
 	}
 
 	/**

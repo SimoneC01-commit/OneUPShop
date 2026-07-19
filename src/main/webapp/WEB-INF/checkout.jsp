@@ -77,7 +77,7 @@
                 <c:forEach var="prodotto" items="${sessionScope.carrello.lista}">
                     <div class="prodotto-item">
                         <span>${prodotto.titolo}</span>
-                        <strong>${prodotto.prezzo} &euro;</strong>
+                        <strong>${prodotto.prezzoAttuale} &euro;</strong>
                     </div>
                 </c:forEach>
             </div>

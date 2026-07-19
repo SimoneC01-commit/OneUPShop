@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.catalogo.CatalogoDAO;
-import model.catalogo.ProdottoBean;
+import model.prodotto.ProdottoBean;
+import model.prodotto.ProdottoDAO;
 
 /**
  * Servlet implementation class Catalogo
@@ -59,7 +59,7 @@ public class Catalogo extends HttpServlet {
 		
 		List<ProdottoBean> lista = null;
 		
-		CatalogoDAO cDAO = new CatalogoDAO();
+		ProdottoDAO cDAO = new ProdottoDAO();
 		
 		try{
 			nProd = cDAO.doCountByFilters(minYear, maxYear, tipo, minPrice, maxPrice, stato);
@@ -70,7 +70,7 @@ public class Catalogo extends HttpServlet {
 				totPag = 1;
 			}
 			
-			lista = cDAO.doRetriveByPages(minYear, maxYear, tipo, minPrice, maxPrice, stato, pagCorrente, elemForPage);
+			lista = cDAO.doRetriveAllByPageNumber(minYear, maxYear, tipo, minPrice, maxPrice, stato, pagCorrente, elemForPage);
 			
 			request.setAttribute("paginaCorrente", pagCorrente);
 			request.setAttribute("numeroProdotti", nProd);

@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Test Dettagli Prodotto - ${prodotto.titolo}</title>
+    <title>Dettagli Prodotto - ${prodotto.titolo}</title>
     <style>
         body { font-family: sans-serif; margin: 30px; line-height: 1.6; }
         .product-container { border: 1px solid #ccc; padding: 20px; max-width: 600px; border-radius: 8px; }
@@ -15,7 +15,7 @@
 </head>
 <body>
 
-    <h2>Pagina di Test: Dettagli Prodotto</h2>
+    <h2>Dettagli Prodotto</h2>
 
     <c:choose>
         <c:when test="${not empty prodotto}">
@@ -27,13 +27,11 @@
                 <p><strong>Stato:</strong> ${prodotto.stato}</p>
                 
                 <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="post" style="margin-top: 20px;">
-    
-				    <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
-				    
-				    <button type="submit" class="btn-aggiungi-rapido">
-				        🛒 Inserisci nel Carrello
-				    </button>
-				</form>
+                    <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
+                    <button type="submit" class="btn-aggiungi-rapido">
+                        🛒 Inserisci nel Carrello
+                    </button>
+                </form>
                 
                 <c:if test="${not empty prodotto.noteDifetti}">
                     <p class="error"><strong>Note Difetti:</strong> ${prodotto.noteDifetti}</p>
@@ -42,29 +40,31 @@
                 <p><strong>Descrizione:</strong> ${prodotto.descrizione}</p>
                 <h3>Prezzo: € ${prodotto.prezzoAttuale}</h3>
 
-                <div class="dynamic-details">
-                    <h3>Specifiche del Componente (${prodotto.tipo})</h3>
-                    
-                    <c:choose>
-                        <c:when test="${prodotto.tipo == 'Gioco'}">
-                            <p><strong>Sviluppatore:</strong> ${prodotto.sviluppatore}</p>
-                        </c:when>
+                <c:if test="${not empty tipo}">
+                    <div class="dynamic-details">
+                        <h3>Specifiche del Componente (${prodotto.tipo})</h3>
                         
-                        <c:when test="${prodotto.tipo == 'Cabinato'}">
-                            <p><strong>Sistema Arcade:</strong> ${prodotto.tipoSistemaArcade}</p>
-                            <p><strong>Dimensioni:</strong> ${prodotto.dimensioniCm}</p>
-                        </c:when>
-                        
-                        <c:when test="${prodotto.tipo == 'Console'}">
-                            <p><strong>Modello Specifico:</strong> ${prodotto.modelloSpecifico}</p>
-                        </c:when>
-                        
-                        <c:when test="${prodotto.tipo == 'Gadget'}">
-                            <p><strong>Tipo Gadget:</strong> ${prodotto.tipoGadget}</p>
-                            <p><strong>Materiale:</strong> ${prodotto.tipoMateriale}</p>
-                        </c:when>
-                    </c:choose>
-                </div>
+                        <c:choose>
+                            <c:when test="${prodotto.tipo == 'Gioco'}">
+                                <p><strong>Sviluppatore:</strong> ${tipo.sviluppatore}</p>
+                            </c:when>
+                            
+                            <c:when test="${prodotto.tipo == 'Cabinato'}">
+                                <p><strong>Sistema Arcade:</strong> ${tipo.tipoSistemaArcade}</p>
+                                <p><strong>Dimensioni:</strong> ${tipo.dimensioniCm}</p>
+                            </c:when>
+                            
+                            <c:when test="${prodotto.tipo == 'Console'}">
+                                <p><strong>Modello Specifico:</strong> ${tipo.modelloSpecifico}</p>
+                            </c:when>
+                            
+                            <c:when test="${prodotto.tipo == 'Gadget'}">
+                                <p><strong>Tipo Gadget:</strong> ${tipo.tipoGadget}</p>
+                                <p><strong>Materiale:</strong> ${tipo.tipoMateriale}</p>
+                            </c:when>
+                        </c:choose>
+                    </div>
+                </c:if>
             </div>
         </c:when>
         <c:otherwise>

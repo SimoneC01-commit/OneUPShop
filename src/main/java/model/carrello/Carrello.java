@@ -1,21 +1,24 @@
 package model.carrello;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import model.prodotto.ProdottoBean;
+
 public class Carrello {
-	private ArrayList<ProdottoCarrelloBean> lista;
+	private ArrayList<ProdottoBean> lista;
 
 	public Carrello() {
-		lista = new ArrayList<ProdottoCarrelloBean>();
+		lista = new ArrayList<ProdottoBean>();
 	}
 	
-	public ArrayList<ProdottoCarrelloBean> getLista(){
+	public ArrayList<ProdottoBean> getLista(){
 		return lista;
 	}
 	
-	public void aggiungiProdotto(ProdottoCarrelloBean prodotto) {
-	    for (ProdottoCarrelloBean p : lista) {
-	        if (p.getId() == prodotto.getId()) {
+	public void aggiungiProdotto(ProdottoBean prodotto) {
+	    for (ProdottoBean p : lista) {
+	        if (p.getIdProdotto() == prodotto.getIdProdotto()) {
 	            return; 
 	        }
 	    }
@@ -23,16 +26,16 @@ public class Carrello {
 	}
 	
 	public void rimuoviProdotto(int idProdotto) {
-        lista.removeIf(p -> p.getId() == idProdotto);
+        lista.removeIf(p -> p.getIdProdotto() == idProdotto);
     }
 	
 	public void svuota() {
         lista.clear();
     }
 	
-	public float getTotale() {
+	public BigDecimal getTotale() {
 	    return lista.stream()
-	                .map(p -> p.getPrezzo())
-	                .reduce(0.0f, Float::sum);
+	                .map(p -> p.getPrezzoAttuale())
+	                .reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 }

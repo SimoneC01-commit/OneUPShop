@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="model.admin.elencoProdotti.ProdottoBean" %>
+<%@ page import="model.prodotto.ProdottoBean" %>
 <%@ page import="java.util.Base64" %>
 
 <!DOCTYPE html>

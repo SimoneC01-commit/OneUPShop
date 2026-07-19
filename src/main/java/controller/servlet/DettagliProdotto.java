@@ -10,8 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dettagliProdotto.DettagliProdottoBean;
-import model.dettagliProdotto.DettagliProdottoDAO;
+import model.cabinato.CabinatoBean;
+import model.cabinato.CabinatoDAO;
+import model.console.ConsoleBean;
+import model.console.ConsoleDAO;
+import model.gadget.GadgetBean;
+import model.gadget.GadgetDAO;
+import model.gioco.GiocoBean;
+import model.gioco.GiocoDAO;
+import model.prodotto.ProdottoBean;
+import model.prodotto.ProdottoDAO;
 
 /**
  * Servlet implementation class DettagliProdotto
@@ -44,14 +52,41 @@ public class DettagliProdotto extends HttpServlet {
 			
 			int idProdotto = Integer.parseInt(idProdottoStr);
 			
-			DettagliProdottoBean bean = new DettagliProdottoDAO().doRetrieveByKey(idProdotto);
+			ProdottoBean prodotto = new ProdottoDAO().doRetrieveByKey(idProdotto);
 			
-			if(bean == null) {
+			if(prodotto == null) {
 				response.sendError(404, "Il prodotto non esiste...");
 				return;
 			}
 			
-			request.setAttribute("prodotto", bean);
+			if(prodotto.getTipo().equals("Cabinato")) {
+				CabinatoBean cabinato = new CabinatoDAO().doRetrieveByKey(prodotto.getIdProdotto());
+				
+				request.setAttribute("tipo", cabinato);
+			} else {
+				if(prodotto.getTipo().equals("Console")) {
+					ConsoleBean console = new ConsoleDAO().doRetrieveByKey(prodotto.getIdProdotto());
+					
+					request.setAttribute("tipo", console);
+				} else {
+					if(prodotto.getTipo().equals("Gadget")) {
+						GadgetBean gadget = new GadgetDAO().doRetrieveByKey(prodotto.getIdProdotto());
+						
+						request.setAttribute("tipo", gadget);
+					} else {
+						if(prodotto.getTipo().equals("Gioco")) {
+							GiocoBean gioco = new GiocoDAO().doRetrieveByKey(prodotto.getIdProdotto());
+							
+							request.setAttribute("tipo", gioco);
+						} else {
+							response.sendError(404, "Il prodotto non ha tipo...");
+							return;
+						}
+					}
+				}
+			}
+			
+			request.setAttribute("prodotto", prodotto);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/dettagliProdotto.jsp");
 			rd.forward(request, response);

@@ -141,7 +141,7 @@
 
     <div class="info-box">
         <strong>Data Ordine:</strong> <fmt:formatDate value="${ordine.dataOrdine}" pattern="dd/MM/yyyy - HH:mm" /><br>
-        <strong>Indirizzo di Spedizione:</strong> ${ordine.indirizzoSpedizioneStorico}<br>
+        <strong>Indirizzo di Spedizione:</strong> ${ordine.indirizzoSpedizione}<br>
         <strong>Telefono:</strong> ${ordine.telefono}<br>
         <strong>Metodo di Pagamento:</strong> ${ordine.metodoPagamento}
     </div>
@@ -162,13 +162,13 @@
                 <%-- Costruiamo l'URL per i dettagli del prodotto --%>
                 <c:url var="prodottoUrl" value="/DettagliProdotto">
                     <%-- Puoi cambiare 'idProdotto' con il nome esatto che si aspetta la tua Servlet --%>
-                    <c:param name="idProdotto" value="${dettaglio.prodotto.ID}" />
+                    <c:param name="idProdotto" value="${dettaglio.prodotto.idProdotto}" />
                 </c:url>
                 
                 <%-- Rendiamo la riga cliccabile con Javascript e aggiungiamo la manina (cursor: pointer) --%>
                 <tr onclick="window.location='${prodottoUrl}';" style="cursor: pointer;" title="Clicca per vedere i dettagli del prodotto">
                     <td>
-                        <img src="${pageContext.request.contextPath}/ImmagineServlet?id=${dettaglio.prodotto.ID}" 
+                        <img src="${pageContext.request.contextPath}/ImmagineServlet?id=${dettaglio.prodotto.idProdotto}" 
                              alt="${dettaglio.prodotto.titolo}" class="img-prodotto" 
                              onerror="this.src='https://via.placeholder.com/60?text=No+Img';">
                     </td>

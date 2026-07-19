@@ -1,4 +1,4 @@
-package controller.servlet.carrello;
+package controller.servlet.admin.gestioneProdotti;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,21 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.carrello.Carrello;
 import model.prodotto.ProdottoBean;
 import model.prodotto.ProdottoDAO;
+import model.utente.UtenteBean;
 
 /**
- * Servlet implementation class AggiungiAlCarrello
+ * Servlet implementation class CancellaProdotto
  */
-@WebServlet("/AggiungiAlCarrello")
-public class AggiungiAlCarrello extends HttpServlet {
+@WebServlet("/CancellaProdotto")
+public class CancellaProdotto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AggiungiAlCarrello() {
+    public CancellaProdotto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +34,7 @@ public class AggiungiAlCarrello extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -42,39 +42,40 @@ public class AggiungiAlCarrello extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String idProdottoStr = request.getParameter("idProdotto");
+		HttpSession sessione = request.getSession();
+
+		UtenteBean utente = (UtenteBean) sessione.getAttribute("utente");
 		
-		if(idProdottoStr == null || idProdottoStr.isEmpty()) {
+		if(utente == null || !"Admin".equals(utente.getRuolo())) {
+			request.setAttribute("errorMessage", "Non hai i diritti di accesso a questa pagina.");
+			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+			return;
+		}
+		
+		String idProdottoStr = request.getParameter("id");
+		
+		if(idProdottoStr == null || idProdottoStr.trim().isEmpty()) {
 			response.sendError(404, "Campo ID mancante");
 			return;
 		}
 		
-		try {
+		try {	
+			int idProdotto = Integer.parseInt(idProdottoStr);
 			
-			Integer idProdotto = Integer.parseInt(idProdottoStr);
+			ProdottoBean prodotto = new ProdottoDAO().doRetrieveByKey(idProdotto);
 			
-			ProdottoBean prodotto = new ProdottoDAO().doRetrieveByKeyAndAvailable(idProdotto);
-			
-			if(prodotto != null) {
-				HttpSession sessione = request.getSession();
-				
-				Carrello carrello = (Carrello) sessione.getAttribute("carrello");
-				
-				if (carrello == null) {
-	                carrello = new Carrello();
-	                sessione.setAttribute("carrello", carrello);
-	            }
-				
-				carrello.aggiungiProdotto(prodotto);
-				
-				response.sendRedirect(request.getContextPath() + "/Catalogo");
-			}
-			else {
+			if(prodotto == null) {
 				response.sendError(404, "Prodotto non trovato");
-	            return;
+				return;
 			}
 			
-		} catch(NumberFormatException e) {
+			ProdottoDAO epDAO = new ProdottoDAO();
+			
+			epDAO.doDelete(idProdotto);
+			
+			response.sendRedirect(request.getContextPath() + "/ElencoProdotti");
+		}
+		catch(NumberFormatException e) {
 			e.printStackTrace();
 			
 			response.sendError(404, "ID prodotto non valido");

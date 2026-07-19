@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.Base64" %>
-<%@ page import="model.carrello.ProdottoCarrelloBean" %>
+<%@ page import="model.prodotto.ProdottoBean" %>
 
 <!DOCTYPE html>
 <html>
@@ -51,10 +51,10 @@
                     
                     <div class="prodotto-info">
                         <% 
-                            ProdottoCarrelloBean prod = (ProdottoCarrelloBean) pageContext.getAttribute("prodotto");
+                            ProdottoBean prod = (ProdottoBean) pageContext.getAttribute("prodotto");
                             String base64Image = "";
-                            if (prod != null && prod.getFoto() != null) {
-                                base64Image = Base64.getEncoder().encodeToString(prod.getFoto());
+                            if (prod != null && prod.getFotoBlob() != null) {
+                                base64Image = Base64.getEncoder().encodeToString(prod.getFotoBlob());
                             }
                             pageContext.setAttribute("base64Image", base64Image);
                         %>
@@ -62,12 +62,12 @@
                         
                         <div>
                             <h4 style="margin: 0 0 5px 0;">${prodotto.titolo}</h4>
-                            <span style="color: #27ae60; font-weight: bold;">${prodotto.prezzo} &euro;</span>
+                            <span style="color: #27ae60; font-weight: bold;">${prodotto.prezzoAttuale} &euro;</span>
                         </div>
                     </div>
                     
                     <form action="${pageContext.request.contextPath}/RimuoviDalCarrello" method="post">
-                        <input type="hidden" name="idProdotto" value="${prodotto.id}">
+                        <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
                         <button type="submit" class="btn-rimuovi">Rimuovi</button>
                     </form>
                     

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.utility.PasswordEncrypter;
-import model.autentificazione.UtenteBean;
-import model.autentificazione.UtenteDAO;
+import model.utente.UtenteBean;
+import model.utente.UtenteDAO;
 
 /**
  * Servlet implementation class Registrazione
