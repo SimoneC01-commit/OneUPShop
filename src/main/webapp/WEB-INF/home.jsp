@@ -14,17 +14,14 @@
   <jsp:include page="common/header.jsp" />
 
    
-        <section class="hero-banner">
-        	<div class="banner-overlay">
-            	<div class="banner-content">
-                	<h1>Presentazione Sito Retrogaming</h1>
-                	</div>
-                </div>
+        <section class="banner"> 
+	        <div class="banner-container"> <img src="${pageContext.request.contextPath}/resources/img/banner2.png" alt="Banner" class="banner-img"> 
+	        </div>
         </section>
         
  <main class="container">
         <section class="product-section">
-            <h2>New Products</h2>
+            <h2>Nuovi Prodotti</h2>
             <div class="product-grid">
                 <c:forEach var="prodotto" items="${prodottiHomeNuovi}">
                     <article class="product-card">
@@ -49,7 +46,7 @@
         </section>
 
         <section class="product-section">
-            <h2>Recommended Products</h2>
+            <h2>Prodotti Consigliati</h2>
             <div class="product-grid">
                 <c:forEach var="prodotto" items="${prodottiHomeConsigliati}">
                     <article class="product-card">
@@ -74,7 +71,6 @@
         </section>
     </main>
 
-   <%-- <jsp:include page="footer.jsp" /> --%>
-
+    <jsp:include page="common/footer.jsp" />
 </body>
 </html>

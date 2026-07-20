@@ -1,26 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/footer/styleF.css">
+
 <footer class="main-footer">
-            <div class="footer-info">
-                <div class="footer-logo">LOGO</div>
-                <p>info@oneupshop.com</p>
-                <p>+00 123 456 7891</p>
+    <div class="footer-content">
+        
+        <!-- BLOCCO SINISTRA: Logo e Info -->
+        <div class="footer-left">
+            <a href="${pageContext.request.contextPath}/Home">
+                <img src="${pageContext.request.contextPath}/resources/img/logoW.png" alt="Logo 1-UP Shop" class="footer-logo">
+            </a>
+            <div class="footer-contact">
+                <p>info@1upshop.com</p>
+                <p>+39 123 456 7890</p>
             </div>
-            
+        </div>
+
+        <!-- BLOCCO DESTRA: Link e Copyright -->
+        <div class="footer-right">
             <nav class="footer-links">
-                <a href="#">Account</a>
+                <a href="${pageContext.request.contextPath}/Login">Account</a>
                 <a href="#">Wishlist</a>
-                <a href="#">Carrello</a>
+                <a href="${pageContext.request.contextPath}/DettagliCarrello">Carrello</a>
                 <a href="#">Support</a>
             </nav>
-        
-        <div class="footer-bottom">
-            <div class="social-icons">
-                </div>
-            <p class="copyright">1UpShop &copy; 2026. All rights reserved.</p>
+            <p class="footer-copyright">© 2026 1-UP Shop. All rights reserved.</p>
         </div>
-    </footer>
-
-</body>
-</html>
+        
+    </div>
+</footer>

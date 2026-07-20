@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+/* =========================================
+   FOOTER DESKTOP (Stile Arcade Scuro)
+   ========================================= */
+.main-footer {
+    background-color: #2b2b2b; /* Grigio scuro */
+    color: #f1f1f1;
+    padding: 3rem 5%;
+    font-family: 'Roboto', sans-serif;
+    border-top: 0.25rem solid #cc0000; /* Linea rossa retro in cima */
+    margin-top: 4rem; /* Spazio per separarlo dal contenuto della pagina */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Spinge un blocco a sinistra e uno a destra */
+    align-items: flex-start;
+    max-width: 75rem; /* Circa 1200px, centra il footer su schermi enormi */
+    margin: 0 auto;
+}
+
+/* --- Lato Sinistro --- */
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-logo {
+    height: 4rem; /* Stessa altezza del logo nell'header */
+    width: auto;
+}
+
+.footer-contact p {
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+    color: #bbbbbb; /* Grigio chiaro per non accecare */
+}
+
+/* --- Lato Destro --- */
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Allinea i testi a destra */
+    gap: 1.5rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease-in-out;
+}
+
+/* Hover sui link del footer: torniamo al rosso! */
+.footer-links a:hover {
+    color: #cc0000;
+}
+
+.footer-copyright {
+    font-size: 0.8rem;
+    color: #777777;
+    margin: 0;
+}
+
+/* =========================================
+   RESPONSIVE MOBILE FOOTER (Sotto i 48rem)
+   ========================================= */
+@media (max-width: 48rem) {
+    .footer-content {
+        flex-direction: column; /* Mette i due blocchi uno sotto l'altro */
+        align-items: center;    /* Centra tutto orizzontalmente */
+        text-align: center;
+        gap: 2.5rem; /* Aumenta lo spazio tra logo e link */
+    }
+
+    .footer-right {
+        align-items: center; /* Centra anche il testo di destra */
+    }
+
+    .footer-links {
+        flex-wrap: wrap; /* Se lo schermo è piccolissimo, manda a capo i link in automatico */
+        justify-content: center;
+        gap: 1.2rem;
+    }
+}
