@@ -234,5 +234,30 @@ public class WishlistDAO implements DAOInterface<WishlistBean, WishlistKey> {
 			
 		return lista;
 	}
+	
+	public void doDeleteAllForUser(String email) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		String query = "DELETE FROM wishlist WHERE Email_Utente = ?";
+		
+		try {
+    		conn = ConnectionPool.getConnection();
+    		ps = conn.prepareStatement(query);
+    		
+    		ps.setString(1, email);
+    		ps.executeUpdate();
+    		
+		} catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (ps != null) {
+            	ps.close();
+            }
+            if (conn != null) {
+                ConnectionPool.releaseConnection(conn);
+            }
+        }
+	}
 
 }

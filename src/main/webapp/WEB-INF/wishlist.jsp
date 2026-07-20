@@ -107,11 +107,11 @@
                     <td>#<%= item.getProdotto().getIdProdotto() %></td>
                     <td><%= item.getDataInserimento() %></td>
                     <td>
-                        <a href="<%= request.getContextPath() %>/DettaglioProdotto?id=<%= item.getProdotto().getIdProdotto() %>" class="btn-view">
+                        <a href="<%= request.getContextPath() %>/DettagliProdotto?id=<%= item.getProdotto().getIdProdotto() %>" class="btn-view">
                             Vedi Prodotto
                         </a>
                         
-                        <form action="<%= request.getContextPath() %>/RimuoviDaWishlist" method="POST" style="display:inline;" onsubmit="return confirm('Rimuovere il prodotto dalla wishlist?');">
+                        <form action="<%= request.getContextPath() %>/RimuoviDallaWishlist" method="POST" style="display:inline;" onsubmit="return confirm('Rimuovere il prodotto dalla wishlist?');">
                             <input type="hidden" name="idProdotto" value="<%= item.getProdotto().getIdProdotto() %>">
                             <button type="submit" class="btn-remove">Rimuovi</button>
                         </form>
@@ -132,6 +132,10 @@
             </tbody>
         </table>
     </div>
+    
+    <form action="<%= request.getContextPath() %>/SvuotaWishlist" method="POST" onsubmit="return confirm('Svuotare wishlist?');">
+		<button type="submit" class="btn-remove">Svuota Wishlist</button>
+	</form>
 
 </body>
 </html>

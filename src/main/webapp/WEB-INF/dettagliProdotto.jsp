@@ -11,6 +11,13 @@
         .dynamic-details { background-color: #f9f9f9; padding: 15px; border-left: 4px solid #007BFF; margin-top: 15px; }
         .error { color: red; font-weight: bold; }
         .badge { background: #333; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.9em; }
+        
+        /* Stili per i bottoni dell'azione */
+        .btn-container { display: flex; gap: 10px; margin-top: 20px; }
+        .btn-aggiungi-rapido { background-color: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
+        .btn-wishlist { background-color: #dc3545; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
+        .btn-aggiungi-rapido:hover { background-color: #218838; }
+        .btn-wishlist:hover { background-color: #c82333; }
     </style>
 </head>
 <body>
@@ -26,12 +33,24 @@
                 <p><strong>Anno di Rilascio:</strong> ${prodotto.annoRilascio}</p>
                 <p><strong>Stato:</strong> ${prodotto.stato}</p>
                 
-                <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="post" style="margin-top: 20px;">
-                    <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
-                    <button type="submit" class="btn-aggiungi-rapido">
-                        🛒 Inserisci nel Carrello
-                    </button>
-                </form>
+                <!-- Contenitore flessibile per i bottoni delle azioni -->
+                <div class="btn-container">
+                    <!-- Form Carrello -->
+                    <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="post">
+                        <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
+                        <button type="submit" class="btn-aggiungi-rapido">
+                            🛒 Inserisci nel Carrello
+                        </button>
+                    </form>
+                    
+                    <!-- Form Wishlist -->
+                    <form action="${pageContext.request.contextPath}/AggiungiAllaWishlist" method="post">
+                        <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
+                        <button type="submit" class="btn-wishlist">
+                            ❤️ Aggiungi alla Wishlist
+                        </button>
+                    </form>
+                </div>
                 
                 <c:if test="${not empty prodotto.noteDifetti}">
                     <p class="error"><strong>Note Difetti:</strong> ${prodotto.noteDifetti}</p>
