@@ -1,6 +1,7 @@
 package controller.servlet;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
@@ -66,7 +67,7 @@ public class Registrazione extends HttpServlet {
 				return;
 			}
 			
-			String passwordCifrata = PasswordEncrypter.toHash(passwordUtente, email);
+			String passwordCifrata = PasswordEncrypter.toHash(passwordUtente);
 			
 			UtenteBean utente = new UtenteBean();
 			
@@ -74,6 +75,8 @@ public class Registrazione extends HttpServlet {
 			utente.setCognome(cognome);
 			utente.setEmail(email);
 			utente.setPassword(passwordCifrata);
+			utente.setRuolo("Cliente");
+			utente.setSaldoWallet(new BigDecimal(0));
 			
 			dao.doSave(utente);
 			

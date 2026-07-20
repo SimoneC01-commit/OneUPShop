@@ -27,7 +27,8 @@ import model.utente.UtenteBean;
 		"/SvuotaWishlist",
 		"/Wishlist",
 		"/Checkout",
-		"/Profilo"
+		"/Profilo",
+		"/ModificaProfilo"
 })
 public class Autenticazione extends HttpFilter implements Filter {
        

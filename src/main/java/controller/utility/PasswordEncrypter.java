@@ -5,12 +5,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class PasswordEncrypter {
-	public static String toHash(String password, String email) throws NoSuchAlgorithmException {
+	public static String toHash(String password) throws NoSuchAlgorithmException {
 		String hashString = null;
 		
 		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-512");
-			String passwordDaCifrare = password + email;
+			String passwordDaCifrare = password;
 			byte[] hash = digest.digest(passwordDaCifrare.getBytes(StandardCharsets.UTF_8));
 			
 			StringBuilder sb = new StringBuilder();

@@ -66,7 +66,7 @@ public class Login extends HttpServlet {
 				return;
 			}
 			
-			String passwordCifrata = PasswordEncrypter.toHash(passwordUtente, email);
+			String passwordCifrata = PasswordEncrypter.toHash(passwordUtente);
 			
 			if(utente.getPassword().equals(passwordCifrata)) {
 				

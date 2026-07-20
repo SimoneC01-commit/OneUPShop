@@ -9,10 +9,12 @@
     <title>Profilo Utente</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; }
-        .profilo-card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; max-width: 400px; }
+        .profilo-card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; max-width: 400px; margin-bottom: 20px; }
         .admin-panel { margin-top: 20px; padding: 15px; background-color: #f8d7da; border-radius: 8px; }
         .btn { padding: 10px 15px; margin-right: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; }
         .btn:hover { background-color: #0056b3; }
+        .btn-secondary { background-color: #6c757d; }
+        .btn-secondary:hover { background-color: #5a6268; }
     </style>
 </head>
 <body>
@@ -27,9 +29,14 @@
         <p><strong>Saldo Wallet:</strong> € ${utente.saldoWallet}</p>
     </div>
 
+    <!-- Pulsanti di azione per l'utente loggato -->
+    <div class="user-actions">
+        <a href="${pageContext.request.contextPath}/ModificaProfilo" class="btn btn-secondary">✏️ Modifica Profilo</a>
+    </div>
+
     <!-- Controllo in puro Java (Scriptlet) invece di JSTL -->
     <%
-        // Recuperiamo l'oggetto dalla request
+        // Recuperiamo l'oggetto dalla sessione
         UtenteBean utenteLoggato = (UtenteBean) session.getAttribute("utente");
         
         // Controlliamo che esista e che il ruolo sia Admin
