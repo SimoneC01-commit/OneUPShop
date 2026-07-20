@@ -107,6 +107,8 @@
             <div class="error-message">
                 ${errorMessage}
             </div>
+            
+            <c:remove var="errorMessage" scope="session" />
         </c:if>
 
         <form action="${pageContext.request.contextPath}/Login" method="POST">

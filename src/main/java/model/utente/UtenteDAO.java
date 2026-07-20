@@ -16,7 +16,7 @@ public class UtenteDAO implements DAOInterface<UtenteBean, String> {
 	public void doSave(UtenteBean entry) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
-		String query = "INSERT INTO utente (Nome, Cognome, Email, Password, Ruolo, Saldo_Wallet) VALUES (?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO utente (Nome, Cognome, Email, Password) VALUES (?, ?, ?, ?)";
 		
 		try {
 			conn = ConnectionPool.getConnection();
@@ -26,8 +26,6 @@ public class UtenteDAO implements DAOInterface<UtenteBean, String> {
 			ps.setString(2, entry.getCognome());
 			ps.setString(3, entry.getEmail());
 			ps.setString(4, entry.getPassword());
-			ps.setString(5, entry.getRuolo());
-			ps.setBigDecimal(6, entry.getSaldoWallet());
 
 			ps.executeUpdate();
             

@@ -8,11 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.prodotto.ProdottoBean;
 import model.prodotto.ProdottoDAO;
-import model.utente.UtenteBean;
 
 /**
  * Servlet implementation class CancellaProdotto
@@ -42,15 +40,6 @@ public class CancellaProdotto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession sessione = request.getSession();
-
-		UtenteBean utente = (UtenteBean) sessione.getAttribute("utente");
-		
-		if(utente == null || !"Admin".equals(utente.getRuolo())) {
-			request.setAttribute("errorMessage", "Non hai i diritti di accesso a questa pagina.");
-			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-			return;
-		}
 		
 		String idProdottoStr = request.getParameter("id");
 		

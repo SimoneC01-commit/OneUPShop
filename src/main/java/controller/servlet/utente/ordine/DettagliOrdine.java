@@ -41,12 +41,6 @@ public class DettagliOrdine extends HttpServlet {
 		HttpSession sessione = request.getSession();
 	    UtenteBean utente = (UtenteBean) sessione.getAttribute("utente");
 	    
-	    if(utente == null) {
-			request.setAttribute("errorMessage", "Devi essere loggato per poter visualizzare i tuoi ordini.");
-			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-			return;
-		}
-	    
 		String idOrdineStr = request.getParameter("idOrdine");
 		
 		if(idOrdineStr == null || idOrdineStr.trim().isEmpty()) {

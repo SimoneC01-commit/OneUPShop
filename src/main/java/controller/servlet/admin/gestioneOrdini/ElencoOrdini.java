@@ -9,11 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.ordine.OrdineBean;
 import model.ordine.OrdineDAO;
-import model.utente.UtenteBean;
 
 /**
  * Servlet implementation class ElencoOrdini
@@ -35,16 +33,6 @@ public class ElencoOrdini extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		HttpSession sessione = request.getSession();
-
-		UtenteBean utente = (UtenteBean) sessione.getAttribute("utente");
-		
-		if(utente == null || !"Admin".equals(utente.getRuolo())) {
-			request.setAttribute("errorMessage", "Non hai i diritti di accesso a questa pagina.");
-			request.getRequestDispatcher("/Home").forward(request, response);
-			return;
-		}
 		
 		try {
 			List<OrdineBean> ordini = new OrdineDAO().doRetrieveAll();

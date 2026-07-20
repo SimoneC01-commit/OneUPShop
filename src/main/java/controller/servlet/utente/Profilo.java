@@ -6,9 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import model.utente.UtenteBean;
 
 /**
  * Servlet implementation class Profilo
@@ -30,16 +27,6 @@ public class Profilo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession sessione = request.getSession();
-
-		UtenteBean utente = (UtenteBean) sessione.getAttribute("utente");
-		
-		if(utente == null) {
-			request.setAttribute("errorMessage", "Devi essere loggato per poter visualizzare il tuo profilo.");
-			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-			return;
-		}
-		
 		request.getRequestDispatcher("/WEB-INF/profilo.jsp").forward(request, response);
 	}
 

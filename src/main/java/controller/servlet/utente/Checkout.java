@@ -52,12 +52,6 @@ public class Checkout extends HttpServlet {
 		
 		UtenteBean utente = (UtenteBean) sessione.getAttribute("utente");
 		
-		if(utente == null) {
-			request.setAttribute("errorMessage", "Devi essere loggato per poter eseguire un acquisto.");
-			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-			return;
-		}
-		
 		Carrello carrello = (Carrello) sessione.getAttribute("carrello");
 		
 		if(carrello == null || carrello.getLista().isEmpty()) {

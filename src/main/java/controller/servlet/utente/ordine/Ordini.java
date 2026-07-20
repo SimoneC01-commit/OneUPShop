@@ -39,12 +39,6 @@ public class Ordini extends HttpServlet {
 
 		UtenteBean utente = (UtenteBean) sessione.getAttribute("utente");
 		
-		if(utente == null) {
-			request.setAttribute("errorMessage", "Devi essere loggato per poter visualizzare i tuoi ordini.");
-			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-			return;
-		}
-		
 		try {
 			List<OrdineBean> ordini = new OrdineDAO().doRetrieveAllForUser(utente.getEmail());
 			

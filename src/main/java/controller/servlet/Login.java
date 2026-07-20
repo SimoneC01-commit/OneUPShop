@@ -92,11 +92,11 @@ public class Login extends HttpServlet {
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Errore durante il login. Riprova.");
+			request.setAttribute("errorMessage", "Errore nel database durante il login. Riprova.");
 			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Errore durante il login. Riprova.");
+			request.setAttribute("errorMessage", "Errore controllo password durante il login. Riprova.");
 			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 		}
 
