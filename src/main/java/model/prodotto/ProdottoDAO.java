@@ -567,4 +567,180 @@ public class ProdottoDAO implements DAOInterface<ProdottoBean, Integer> {
 			
 		return bean;
 	}
+	
+	public List<ProdottoBean> doRetriveAllByPageNumberAndAzienda(String azienda, Integer minYear, Integer maxYear, String tipo, Float minPrice, Float maxPrice, String stato, int pagCorrente, int elemForPage) throws SQLException{
+
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		List<ProdottoBean> lista = new ArrayList<ProdottoBean>();
+		
+		int offset = (pagCorrente - 1) * elemForPage;
+
+		StringBuilder query = new StringBuilder("SELECT ID_Prodotto, Titolo, Descrizione, Anno_Rilascio, Foto_BLOB, Azienda, Tipo, Prezzo_Acquisto, Prezzo_Attuale, Data_Aggiunta, Stato, Note_Difetti, Disponibile, IVA FROM Prodotto WHERE Disponibile = 1 AND Azienda LIKE ?");
+		
+		ArrayList<Object> parametri = new ArrayList<Object>();
+		
+		if (minYear != null) {
+		    query.append(" AND Anno_Rilascio >= ?");
+		    parametri.add(minYear);
+		}
+		
+		if (maxYear != null) {
+		    query.append(" AND Anno_Rilascio <= ?");
+		    parametri.add(maxYear);
+		}
+		
+	    if (tipo != null && (tipo.equals("Cabinato") || tipo.equals("Console") || tipo.equals("Gadget") || tipo.equals("Gioco"))) {
+	        query.append(" AND Tipo = ?");
+	        parametri.add(tipo);
+	    }
+	    
+	    if (minPrice != null) {
+	        query.append(" AND Prezzo_Attuale >= ?");
+	        parametri.add(minPrice);
+	    }
+	    
+	    if(maxPrice != null) {    
+	        query.append(" AND Prezzo_Attuale <= ?");
+	        parametri.add(maxPrice);
+	    }
+	    
+	    if (stato != null && (stato.equals("Nuovo") || stato.equals("Usato"))) {
+	        query.append(" AND Stato = ?");
+	        parametri.add(stato);
+	    }
+	    
+	    query.append(" LIMIT ? OFFSET ?");
+	    parametri.add(elemForPage);
+	    parametri.add(offset);
+		
+	    try {
+	    	conn = ConnectionPool.getConnection();
+	    	ps = conn.prepareStatement(query.toString());
+
+	    	ps.setString(1, "%"+azienda+"%");
+	    	
+	    	for(int i = 0; i < parametri.size(); i++) {
+	    		ps.setObject(i+2, parametri.get(i));
+	    	}
+	    	
+	    	rs = ps.executeQuery();
+	    	
+	    	while(rs.next()) {
+	    		ProdottoBean bean = new ProdottoBean();
+				
+				bean.setIdProdotto(rs.getInt("ID_Prodotto"));
+				bean.setTitolo(rs.getString("Titolo"));
+				bean.setDescrizione(rs.getString("Descrizione"));
+				bean.setAnnoRilascio(rs.getInt("Anno_Rilascio"));
+				bean.setFotoBlob(rs.getBytes("Foto_BLOB"));
+				bean.setAzienda(rs.getString("Azienda"));
+				bean.setTipo(rs.getString("Tipo"));
+				bean.setPrezzoAcquisto(rs.getBigDecimal("Prezzo_Acquisto"));
+				bean.setPrezzoAttuale(rs.getBigDecimal("Prezzo_Attuale"));
+				bean.setDataAggiunta(rs.getTimestamp("Data_Aggiunta"));
+				bean.setStato(rs.getString("Stato"));
+				bean.setNoteDifetti(rs.getString("Note_Difetti"));
+				bean.setDisponibile(rs.getBoolean("Disponibile"));
+				bean.setIva(rs.getInt("IVA"));
+				
+				lista.add(bean);
+	    	}
+	    }
+	    catch(SQLException e) {
+	    	e.printStackTrace();
+	    	throw e;
+	    }
+	    finally {
+	    	if(rs != null) {
+	    		rs.close();
+	    	}
+	    	if(ps != null) {
+	    		ps.close();
+	    	}
+	    	if(conn != null) {
+	    		ConnectionPool.releaseConnection(conn);
+	    	}
+	    }
+		
+		return lista;
+	}
+	
+	public int doCountByFiltersAndAzienda(String azienda, Integer minYear, Integer maxYear, String tipo, Float minPrice, Float maxPrice, String stato) throws SQLException {
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		
+		StringBuilder query = new StringBuilder("SELECT COUNT(*) FROM Prodotto WHERE Disponibile = 1 AND Azienda LIKE ?");
+		ArrayList<Object> parametri = new ArrayList<Object>();
+
+		if (minYear != null) {
+		    query.append(" AND Anno_Rilascio >= ?");
+		    parametri.add(minYear);
+		}
+		
+		if (maxYear != null) {
+		    query.append(" AND Anno_Rilascio <= ?");
+		    parametri.add(maxYear);
+		}
+		
+	    if (tipo != null && (tipo.equals("Cabinato") || tipo.equals("Console") || tipo.equals("Gadget") || tipo.equals("Gioco"))) {
+	        query.append(" AND Tipo = ?");
+	        parametri.add(tipo);
+	    }
+	    
+	    if (minPrice != null) {
+	        query.append(" AND Prezzo_Attuale >= ?");
+	        parametri.add(minPrice);
+	    }
+	    
+	    if(maxPrice != null) {    
+	        query.append(" AND Prezzo_Attuale <= ?");
+	        parametri.add(maxPrice);
+	    }
+	    
+	    if (stato != null && (stato.equals("Nuovo") || stato.equals("Usato"))) {
+	        query.append(" AND Stato = ?");
+	        parametri.add(stato);
+	    }
+	    
+	    try {
+	    	conn = ConnectionPool.getConnection();
+	    	ps = conn.prepareStatement(query.toString());
+	    	
+	    	ps.setString(1, "%"+azienda+"%");
+	    	
+	    	for(int i = 0; i < parametri.size(); i++) {
+	    		ps.setObject(i+2, parametri.get(i));
+	    	}
+	    	
+	    	rs = ps.executeQuery();
+	    	
+	    	rs.next();
+	    	
+	    	count = rs.getInt(1);
+	    }
+	    catch(SQLException e) {
+	    	e.printStackTrace();
+	    	throw e;
+	    }
+	    finally {
+	    	if(rs != null) {
+	    		rs.close();
+	    	}
+	    	if(ps != null) {
+	    		ps.close();
+	    	}
+	    	if(conn != null) {
+	    		ConnectionPool.releaseConnection(conn);
+	    	}
+	    }
+		
+		return count;
+	}
 }
