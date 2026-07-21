@@ -62,11 +62,4 @@ body {
         grid-template-columns: 1fr; /* Passa a 1 colonn*/
     }
     
-    .banner-placeholder {
-        height: 200px;
-    }
-    
-    .banner-placeholder h1 {
-        font-size: 1.8rem;
-    }
 }
