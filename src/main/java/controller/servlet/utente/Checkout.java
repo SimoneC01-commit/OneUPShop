@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import controller.utility.HtmlDecoder;
 import model.utente.UtenteBean;
 import model.carrello.Carrello;
 import model.dettaglioOrdine.DettaglioOrdineBean;
@@ -85,9 +86,9 @@ public class Checkout extends HttpServlet {
 		ordine.setDataOrdine(new Timestamp(System.currentTimeMillis()));
 		ordine.setStatoOrdine("In elaborazione");
 		ordine.setTotaleOrdine(carrello.getTotale());
-		ordine.setIndirizzoSpedizione(indirizzo);
-		ordine.setTelefono(telefono.trim());
-		ordine.setMetodoPagamento(metodoPagamento.trim());
+		ordine.setIndirizzoSpedizione(HtmlDecoder.encodeHtmlEntities(indirizzo));
+		ordine.setTelefono(HtmlDecoder.encodeHtmlEntities(telefono.trim()));
+		ordine.setMetodoPagamento(HtmlDecoder.encodeHtmlEntities(metodoPagamento.trim()));
 		
 		try {
 			OrdineDAO oDAO = new OrdineDAO();

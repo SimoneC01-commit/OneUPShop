@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import controller.utility.HtmlDecoder;
 import model.cabinato.CabinatoBean;
 import model.cabinato.CabinatoDAO;
 import model.console.ConsoleBean;
@@ -101,25 +102,24 @@ public class AggiungiProdotto extends HttpServlet {
 	    
 	    try {
 	    	
-		    prodotto.setTitolo(request.getParameter("titolo"));
-	        prodotto.setDescrizione(request.getParameter("descrizione"));
+		    prodotto.setTitolo(HtmlDecoder.encodeHtmlEntities(request.getParameter("titolo")));
+	        prodotto.setDescrizione(HtmlDecoder.encodeHtmlEntities(request.getParameter("descrizione")));
 	        prodotto.setAnnoRilascio(Integer.parseInt(request.getParameter("annoRilascio")));
-	        prodotto.setAzienda(request.getParameter("azienda"));
-	        prodotto.setTipo(tipo);
+	        prodotto.setAzienda(HtmlDecoder.encodeHtmlEntities(request.getParameter("azienda")));
+	        prodotto.setTipo(HtmlDecoder.encodeHtmlEntities(tipo));
 	        prodotto.setDataAggiunta(new Timestamp(System.currentTimeMillis()));
 	        prodotto.setDisponibile(true);
-	        
-	        int iva = Integer.parseInt(request.getParameter("iva"));
-	        prodotto.setIva(iva);
 	
 	        String stato = request.getParameter("stato");
-	        prodotto.setStato(stato);
+	        prodotto.setStato(HtmlDecoder.encodeHtmlEntities(stato));
 	        
 	        if ("Nuovo".equalsIgnoreCase(stato)) {
 	            prodotto.setNoteDifetti(null);
 	        } else {
-	            prodotto.setNoteDifetti(request.getParameter("noteDifetti"));
+	            prodotto.setNoteDifetti(HtmlDecoder.encodeHtmlEntities(request.getParameter("noteDifetti")));
 	        }
+	        
+	        // GESTIONE PREZZO ATTUALE (DIPENDE SE INSERIAMO UN PREZZO ACQUISTO O NO)
 	        
 	        BigDecimal prezzoAcquisto = new BigDecimal(request.getParameter("prezzoAcquisto"));
 	        BigDecimal prezzoAttualeBase;
@@ -134,6 +134,8 @@ public class AggiungiProdotto extends HttpServlet {
 	            
 	        }
 	        
+	        int iva = Integer.parseInt(request.getParameter("iva"));
+	        
 	        BigDecimal percentualeIva = new BigDecimal(iva).divide(new BigDecimal("100"), 4, RoundingMode.HALF_UP);
 	        BigDecimal moltiplicatoreIva = BigDecimal.ONE.add(percentualeIva);
 	        
@@ -143,6 +145,7 @@ public class AggiungiProdotto extends HttpServlet {
 	        
 	        prezzoConIva= parteIntera.add(new BigDecimal("0.99"));
 	        
+	        prodotto.setIva(iva);
 	        prodotto.setPrezzoAttuale(prezzoConIva);
 	
 	        Part filePart = request.getPart("foto");

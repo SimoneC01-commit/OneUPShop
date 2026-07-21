@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controller.utility.HtmlDecoder;
 import controller.utility.PasswordEncrypter;
 import model.utente.UtenteBean;
 import model.utente.UtenteDAO;
@@ -64,8 +65,8 @@ public class ModificaProfilo extends HttpServlet {
 			
 			String hashNuovaPassword = PasswordEncrypter.toHash(nuovaPassword);
 			
-			utenteModificato.setNome(nuovoNome);
-			utenteModificato.setCognome(nuovoCognome);
+			utenteModificato.setNome(HtmlDecoder.encodeHtmlEntities(nuovoNome));
+			utenteModificato.setCognome(HtmlDecoder.encodeHtmlEntities(nuovoCognome));
 			utenteModificato.setEmail(utente.getEmail());
 			utenteModificato.setPassword(hashNuovaPassword);
 			utenteModificato.setSaldoWallet(utente.getSaldoWallet());

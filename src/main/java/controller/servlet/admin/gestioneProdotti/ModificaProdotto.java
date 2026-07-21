@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import controller.utility.HtmlDecoder;
 import model.prodotto.ProdottoBean;
 import model.prodotto.ProdottoDAO;
 
@@ -112,14 +113,14 @@ public class ModificaProdotto extends HttpServlet {
 
 			prodottoModificato.setIdProdotto(idProdotto);
 
-			prodottoModificato.setTitolo(nuovoTitolo);
-			prodottoModificato.setDescrizione(nuovaDescrizione);
+			prodottoModificato.setTitolo(HtmlDecoder.encodeHtmlEntities(nuovoTitolo));
+			prodottoModificato.setDescrizione(HtmlDecoder.encodeHtmlEntities(nuovaDescrizione));
 			prodottoModificato.setAnnoRilascio((nuovoAnnoRilascioStr != null && !nuovoAnnoRilascioStr.trim().isEmpty()) ? Integer.parseInt(nuovoAnnoRilascioStr) : prodottoEsistente.getAnnoRilascio());
-			prodottoModificato.setAzienda(nuovaAzienda);
+			prodottoModificato.setAzienda(HtmlDecoder.encodeHtmlEntities(nuovaAzienda));
 			prodottoModificato.setPrezzoAcquisto((nuovoPrezzoAcquistoStr != null && !nuovoPrezzoAcquistoStr.trim().isEmpty()) ? new BigDecimal(nuovoPrezzoAcquistoStr) : prodottoEsistente.getPrezzoAcquisto());
 			prodottoModificato.setPrezzoAttuale(new BigDecimal(nuovoPrezzoAttualeStr));
-			prodottoModificato.setStato(nuovoStato);
-			prodottoModificato.setNoteDifetti(nuoveNoteDifetti);
+			prodottoModificato.setStato(HtmlDecoder.encodeHtmlEntities(nuovoStato));
+			prodottoModificato.setNoteDifetti(HtmlDecoder.encodeHtmlEntities(nuoveNoteDifetti));
 			prodottoModificato.setIva((nuovaIvaStr != null && !nuovaIvaStr.trim().isEmpty()) ? Integer.parseInt(nuovaIvaStr) : prodottoEsistente.getIva());
 
 			prodottoModificato.setTipo(prodottoEsistente.getTipo());
