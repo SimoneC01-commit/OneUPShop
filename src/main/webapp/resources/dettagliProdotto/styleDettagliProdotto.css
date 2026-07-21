@@ -1,6 +1,9 @@
 @charset "UTF-8";
+@import url("../generalStyle.css");
 
-@charset "UTF-8";
+/* =========================================
+  			STILE DETTAGLI PRODOTTO
+   ========================================= */
 
 /* Container principale */
 .product-page {
@@ -152,10 +155,11 @@
 }
 
 .btn-cart, .btn-wishlist {
+	font-family: "Pixelify Sans", sans-serif;
+	text-transform: uppercase;
     flex: 1;
     padding: 1rem;
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.2s;
     text-transform: uppercase;
@@ -189,110 +193,8 @@
 }
 
 /* =========================================
-   PRODOTTI CONSIGLIATI (BOTTOM SECTION)
+   PRODOTTI CONSIGLIATI (IMPORTATO)
    ========================================= */
-.product-section {
-	margin-top: 20px;
-    margin-bottom: 60px;
-}
-
-.product-section h2 {
-    font-size: 2.2rem;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-   /* border-bottom: 3px solid #222;  Linea divisoria stile wireframe */
-    padding-bottom: 10px;
-}
-
-/* Griglia per le card (Metodo classico e pulito) */
-.product-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 colonne di uguale larghezza */
-    gap: 20px;
-}
-
-/* --- CARD PRODOTTO --- */
-.product-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 450px;
-}
-
-.product-card:hover {
-    transform: translateY(-0.5rem);
-    box-shadow: 0 0.5rem 1.25rem rgba(0,0,0,0.12);
-}
-
-.img-placeholder {
-    width: 100%;              /* Riempie tutta la larghezza della card, eliminando gli spazi ai lati */
-    aspect-ratio: 1 / 1;      /* Costringe l'altezza a essere identica alla larghezza: crea un quadrato perfetto! */
-    object-fit: cover;        /* Taglia gli eccessi dell'immagine (sopra/sotto o ai lati) per farla entrare nel quadrato senza deformarla */
-    object-position: center;  /* Mantiene il centro dell'immagine visibile */
-    display: block;
-    background-color: #eaeaea;
-}
-
-.card-details {
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Permette alla card di allungarsi occupando lo spazio */
-}
-
-.card-details form {
-    margin-top: auto;
-    width: 100%;
-}
-
-.category {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 5px;
-}
-
-.title a{
-	font-family:'Roboto', sans-serif; 
-    font-size: auto;
-    margin-bottom: 10px;
-    color: black; /* Prende il colore originale del testo (nero) */
-    text-decoration: none; 
-    transition: color 0.2s ease; /* Rende il cambio di colore fluido */
-}
-
-.title a:hover{
-	color: #cc0000;
-	text-decoration: underline;
-}
-
-.price {
-	font-family:'Roboto', sans-serif; 
-    font-size: 1.1rem;
-    color: #C0C0C0;
-    font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 15px;
-}
-
-/* --- BOTTONE --- */
-.bottone {
-    background-color: #cc0000; /* Rosso acceso stile arcade */
-    color: #fff;
-    border: none;
-    padding: 12px;
-    font-family: inherit; /* Eredita il font */
-    font-size: 1.2rem;
-    cursor: pointer;
-    text-transform: uppercase;
-   	width: 100%;
-    transition: background-color 0.2s;
-}
-
-.bottone:hover {
-    background-color: #ff0000; /* Rosso più chiaro al passaggio del mouse */
-}
 
 
 /* =========================================

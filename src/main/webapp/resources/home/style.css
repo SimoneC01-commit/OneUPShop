@@ -1,6 +1,5 @@
 @charset "UTF-8";
-
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url("../generalStyle.css");
 
 /*======================================
 			STILE HOME
@@ -63,88 +62,8 @@ body {
     gap: 20px;
 }
 
-/* --- CARD PRODOTTO --- */
-.product-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 450px;
-}
+/* --- CARD PRODOTTO  IMPORTATO DALLO STILE GENERALE--- */
 
-.product-card:hover {
-    transform: translateY(-0.5rem);
-    box-shadow: 0 0.5rem 1.25rem rgba(0,0,0,0.12);
-}
-
-.img-placeholder {
-    width: 100%;              /* Riempie tutta la larghezza della card, eliminando gli spazi ai lati */
-    aspect-ratio: 1 / 1;      /* Costringe l'altezza a essere identica alla larghezza: crea un quadrato perfetto! */
-    object-fit: cover;        /* Taglia gli eccessi dell'immagine (sopra/sotto o ai lati) per farla entrare nel quadrato senza deformarla */
-    object-position: center;  /* Mantiene il centro dell'immagine visibile */
-    display: block;
-    background-color: #eaeaea;
-}
-
-.card-details {
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Permette alla card di allungarsi occupando lo spazio */
-}
-
-.card-details form {
-    margin-top: auto;
-    width: 100%;
-}
-
-.category {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 5px;
-}
-
-.title a{
-	font-family:'Roboto', sans-serif; 
-    font-size: auto;
-    margin-bottom: 10px;
-    color: black; /* Prende il colore originale del testo (nero) */
-    text-decoration: none; 
-    transition: color 0.2s ease; /* Rende il cambio di colore fluido */
-}
-
-.title a:hover{
-	color: #cc0000;
-	text-decoration: underline;
-}
-
-.price {
-	font-family:'Roboto', sans-serif; 
-    font-size: 1.1rem;
-    color: #C0C0C0;
-    font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 15px;
-}
-
-/* --- BOTTONE --- */
-.bottone {
-    background-color: #cc0000; /* Rosso acceso stile arcade */
-    color: #fff;
-    border: none;
-    padding: 12px;
-    font-family: inherit; /* Eredita il font */
-    font-size: 1.2rem;
-    cursor: pointer;
-    text-transform: uppercase;
-   	width: 100%;
-    transition: background-color 0.2s;
-}
-
-.bottone:hover {
-    background-color: #ff0000; /* Rosso più chiaro al passaggio del mouse */
-}
 
 /* --- RESPONSIVE DESIGN --- */
 

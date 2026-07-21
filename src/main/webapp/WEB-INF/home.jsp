@@ -53,6 +53,7 @@
                     <article class="product-card">
                         
                         <div class="img-placeholder">
+                        <img class="img-placeholder" src="${pageContext.request.contextPath}/GetPicture?idProdotto=${prodotto.idProdotto}" alt="${prodotto.titolo}">
                             </div>
                         
                         <div class="card-details">

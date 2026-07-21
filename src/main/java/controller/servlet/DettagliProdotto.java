@@ -87,7 +87,7 @@ public class DettagliProdotto extends HttpServlet {
 				}
 			}
 			
-			List<ProdottoBean> consigliati = new ProdottoDAO().doRetrieveAllSuggested().subList(0, 3);
+			List<ProdottoBean> consigliati = new ProdottoDAO().doRetrieveAllSuggested().subList(0, 4);
 			
 			request.setAttribute("prodotto", prodotto);
 			request.setAttribute("consigliati", consigliati);

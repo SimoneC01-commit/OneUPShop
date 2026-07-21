@@ -101,7 +101,7 @@
  <section class="product-section">
             <h2>Prodotti Consigliati</h2>
             <div class="product-grid">
-                <c:forEach var="prodotto" items="${prodottiConsigliati}">
+                <c:forEach var="prodotto" items="${consigliati}">
                     <article class="product-card">
                         
                         <div class="img-placeholder">
