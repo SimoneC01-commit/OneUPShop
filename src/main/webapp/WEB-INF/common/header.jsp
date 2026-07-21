@@ -23,7 +23,7 @@
 
         <!-- Barra di ricerca (Nascosta su Mobile, va nel cassetto) -->
         <div class="search-container hide-on-mobile">
-            <form action="${pageContext.request.contextPath}/Ricerca" method="GET" class="search-form">
+            <form action="${pageContext.request.contextPath}/RicercaProdotto?=" method="GET" class="search-form">
                 <span class="search-icon"> <img src="${pageContext.request.contextPath}/resources/img/search.png" alt="Search" class="search-img"></span>
                 <input type="text" name="q" placeholder="Search for..." class="search-input">
             </form>

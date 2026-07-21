@@ -743,4 +743,60 @@ public class ProdottoDAO implements DAOInterface<ProdottoBean, Integer> {
 		
 		return count;
 	}
+	
+	public List<ProdottoBean> doRetrieveAllByTitolo(String titolo) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<ProdottoBean> lista = null;
+		String query = "SELECT ID_Prodotto, Titolo, Descrizione, Anno_Rilascio, Foto_BLOB, Azienda, Tipo, Prezzo_Acquisto, Prezzo_Attuale, Data_Aggiunta, Stato, Note_Difetti, Disponibile, IVA FROM prodotto WHERE Titolo LIKE ? ORDER BY Titolo";
+		
+		try {
+			conn = ConnectionPool.getConnection();
+			ps = conn.prepareStatement(query);
+
+			ps.setString(1, titolo + "%");
+			
+			rs = ps.executeQuery();
+			
+			lista = new ArrayList<ProdottoBean>();
+			
+			while(rs.next()) {
+				ProdottoBean bean = new ProdottoBean();
+				
+				bean.setIdProdotto(rs.getInt("ID_Prodotto"));
+				bean.setTitolo(rs.getString("Titolo"));
+				bean.setDescrizione(rs.getString("Descrizione"));
+				bean.setAnnoRilascio(rs.getInt("Anno_Rilascio"));
+				bean.setFotoBlob(rs.getBytes("Foto_BLOB"));
+				bean.setAzienda(rs.getString("Azienda"));
+				bean.setTipo(rs.getString("Tipo"));
+				bean.setPrezzoAcquisto(rs.getBigDecimal("Prezzo_Acquisto"));
+				bean.setPrezzoAttuale(rs.getBigDecimal("Prezzo_Attuale"));
+				bean.setDataAggiunta(rs.getTimestamp("Data_Aggiunta"));
+				bean.setStato(rs.getString("Stato"));
+				bean.setNoteDifetti(rs.getString("Note_Difetti"));
+				bean.setDisponibile(rs.getBoolean("Disponibile"));
+				bean.setIva(rs.getInt("IVA"));
+				
+				lista.add(bean);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+			
+			throw e;
+		} finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(ps != null) {
+				ps.close();
+			}
+			if(conn != null) {
+				ConnectionPool.releaseConnection(conn);
+			}
+		}
+			
+		return lista;
+	}
 }
