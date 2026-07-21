@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import controller.utility.HtmlDecoder;
 import controller.utility.PasswordEncrypter;
 import model.carrello.Carrello;
 import model.utente.UtenteBean;
@@ -58,7 +59,7 @@ public class Login extends HttpServlet {
 		UtenteDAO uDAO = new UtenteDAO();
 
 		try {
-			UtenteBean utente = uDAO.doRetrieveByKey(email);
+			UtenteBean utente = uDAO.doRetrieveByKey(HtmlDecoder.encodeHtmlEntities(email));
 			
 			if(utente == null) {
 				request.setAttribute("errorMessage", "Non è registrato nessun account con questa email.");

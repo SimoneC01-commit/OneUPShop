@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controller.utility.HtmlDecoder;
 import controller.utility.PasswordEncrypter;
 import model.utente.UtenteBean;
 import model.utente.UtenteDAO;
@@ -71,9 +72,9 @@ public class Registrazione extends HttpServlet {
 			
 			UtenteBean utente = new UtenteBean();
 			
-			utente.setNome(nome);
-			utente.setCognome(cognome);
-			utente.setEmail(email);
+			utente.setNome(HtmlDecoder.encodeHtmlEntities(nome));
+			utente.setCognome(HtmlDecoder.encodeHtmlEntities(cognome));
+			utente.setEmail(HtmlDecoder.encodeHtmlEntities(email));
 			utente.setPassword(passwordCifrata);
 			utente.setRuolo("Cliente");
 			utente.setSaldoWallet(new BigDecimal(0));

@@ -2,6 +2,7 @@ package controller.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -86,7 +87,10 @@ public class DettagliProdotto extends HttpServlet {
 				}
 			}
 			
+			List<ProdottoBean> consigliati = new ProdottoDAO().doRetrieveAllSuggested().subList(0, 3);
+			
 			request.setAttribute("prodotto", prodotto);
+			request.setAttribute("consigliati", consigliati);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/dettagliProdotto.jsp");
 			rd.forward(request, response);
