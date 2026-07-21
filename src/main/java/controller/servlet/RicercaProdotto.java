@@ -48,7 +48,7 @@ public class RicercaProdotto extends HttpServlet {
 			}
 			
 			if(lista.size() == 1) {
-				response.sendRedirect("/DettagliProdotto?idProdotto=" + lista.get(0).getIdProdotto());
+				response.sendRedirect(request.getContextPath() + "/DettagliProdotto?idProdotto=" + lista.get(0).getIdProdotto());
 				return;
 			}
 			
