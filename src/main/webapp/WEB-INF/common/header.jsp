@@ -32,7 +32,7 @@
         <!-- Icone-->
         <div class="header-icons">
         
-            <a href="${pageContext.request.contextPath}/Login" class="icon-link hide-on-mobile"> 
+            <a href="${pageContext.request.contextPath}/Profilo" class="icon-link hide-on-mobile"> 
             <img src="${pageContext.request.contextPath}/resources/img/profilo.png" alt="Profilo" class="icon-img">
             </a>
             
@@ -50,10 +50,10 @@
     <div class="header-bottom hide-on-mobile">
         <nav class="company-links">
             <ul>
-                <li><a href="#">Nintendo - </a></li>
-                <li><a href="#">Sony -</a></li>
-                <li><a href="#">Microsoft -</a></li>
-                <li><a href="#">Cabinati -</a></li>
+                <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Nintendo">Nintendo - </a></li>
+                <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Sony">Sony -</a></li>
+                <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Microsoft">Microsoft -</a></li>
+                <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Nintendo">Cabinati -</a></li>
             </ul>
         </nav>
         <div class="support-link">
