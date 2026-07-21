@@ -23,7 +23,7 @@
         <section class="product-section">
             <h2>Nuovi Prodotti</h2>
             <div class="product-grid">
-                <c:forEach var="prodotto" items="${prodottiHomeNuovi}">
+                <c:forEach var="prodotto" items="${prodottiNuovi}">
                     <article class="product-card">
                         
                         <div class="img-placeholder">
@@ -31,12 +31,12 @@
                         
                         <div class="card-details">
                             <span class="category">${prodotto.tipo}</span>
-                            <h3 class="title"><a href="${pageContext.request.contextPath}/DettagliProdotto?idProdotto=${prodotto.id}">
+                            <h3 class="title"><a href="${pageContext.request.contextPath}/DettagliProdotto?idProdotto=${prodotto.idProdotto}">
                             	${prodotto.titolo} </a></h3>
-                            <p class="price"><b>€ ${prodotto.prezzo} EUR </b></p> 
+                            <p class="price"><b>€ ${prodotto.prezzoAttuale} EUR </b></p> 
                             
                             <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="POST">
-                                <input type="hidden" name="idProdotto" value="${prodotto.id}">
+                                <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
                                 <button type="submit" class="bottone">Aggiungi al carrello</button>
                             </form>
                         </div>
@@ -48,7 +48,7 @@
         <section class="product-section">
             <h2>Prodotti Consigliati</h2>
             <div class="product-grid">
-                <c:forEach var="prodotto" items="${prodottiHomeConsigliati}">
+                <c:forEach var="prodotto" items="${prodottiConsigliati}">
                     <article class="product-card">
                         
                         <div class="img-placeholder">
@@ -56,12 +56,12 @@
                         
                         <div class="card-details">
                             <span class="category">${prodotto.tipo}</span>
-	                           <h3 class="title"><a href="${pageContext.request.contextPath}/DettagliProdotto?idProdotto=${prodotto.id}">
+	                           <h3 class="title"><a href="${pageContext.request.contextPath}/DettagliProdotto?idProdotto=${prodotto.idProdotto}">
                             	${prodotto.titolo} </a></h3>
-                            <p class="price"><b>€ ${prodotto.prezzo} EUR </b></p> 
+                            <p class="price"><b>€ ${prodotto.prezzoAttuale} EUR </b></p> 
                             
                             <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="POST">
-                                <input type="hidden" name="idProdotto" value="${prodotto.id}">
+                                <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
                                 <button type="submit" class="bottone">Aggiungi al carrello</button>
                             </form>
                         </div>
