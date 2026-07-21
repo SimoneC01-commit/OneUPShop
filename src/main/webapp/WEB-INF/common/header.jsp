@@ -50,15 +50,14 @@
     <div class="header-bottom hide-on-mobile">
         <nav class="company-links">
             <ul>
-                <li><a href="#">Nintendo - </a></li>
-                <li><a href="#">Sega - </a></li>
-                <li><a href="#">Sony -</a></li>
-                <li><a href="#">Microsoft -</a></li>
-                <li><a href="#">Cabinati -</a></li>
+	           <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Nintendo">Nintendo - </a></li>
+		       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Sony">Sony -</a></li>
+		       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Microsoft">Microsoft -</a></li>
+		       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Nintendo">Cabinati -</a></li>
             </ul>
         </nav>
         <div class="support-link">
-            <a href="#">Support</a>
+            <a href="#">Contatti</a>
         </div>
     </div>
         
@@ -84,7 +83,7 @@
         </ul>
 
         <div class="sidebar-support">
-            <a href="#">Support</a>
+            <a href="#">Contatti</a>
         </div>
     </nav>
         
