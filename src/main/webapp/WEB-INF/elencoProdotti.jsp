@@ -19,13 +19,20 @@
         .btn-add { padding: 10px 15px; background-color: #28a745; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; }
         .btn-add:hover { background-color: #218838; }
         
+        /* NUOVO STILE: Pulsante Modifica */
+        .btn-edit { padding: 6px 12px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em; font-weight: bold; display: inline-block; }
+        .btn-edit:hover { background-color: #0056b3; }
+
         /* Stile pulsante Cancella attivo */
         .btn-delete { padding: 6px 12px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; font-weight: bold; }
         .btn-delete:hover { background-color: #c82333; }
         
-        /* NUOVO STILE: Pulsante Cancella disabilitato (prodotto non disponibile) */
+        /* Pulsante Cancella disabilitato (prodotto non disponibile) */
         .btn-delete:disabled { background-color: #6c757d; color: #e9ecef; cursor: not-allowed; opacity: 0.65; }
         
+        /* Contenitore per affiancare i bottoni delle azioni */
+        .action-group { display: flex; gap: 6px; align-items: center; }
+
         table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
         th { background-color: #343a40; color: white; }
@@ -77,7 +84,7 @@
                     <th>Prezzo</th>
                     <th>Disponibile</th>
                     <th>IVA</th>
-                    <th></th> 
+                    <th>Azioni</th> 
                 </tr>
             </thead>
             <tbody>
@@ -118,17 +125,24 @@
                         </td>
                         <td><%= p.getIva() %>%</td>
                         <td>
-                            <!-- Form per eliminare il prodotto tramite POST -->
-                            <form action="<%= request.getContextPath() %>/CancellaProdotto" method="POST" 
-                                  onsubmit="return confirm('Sei sicuro di voler eliminare il prodotto: <%= p.getTitolo().replace("'", "\\'") %>?');" 
-                                  style="margin:0;">
-                                
-                                <!-- Passiamo l'ID del prodotto come parametro nascosto -->
-                                <input type="hidden" name="id" value="<%= p.getIdProdotto() %>" />
-                                
-                                <!-- Aggiunto controllo inline per disabilitare il bottone se non disponibile -->
-                                <button type="submit" class="btn-delete" <%= !p.isDisponibile() ? "disabled" : "" %>>Cancella</button>
-                            </form>
+                            <div class="action-group">
+                                <!-- Pulsante Modifica (richiama ModificaProdotto in GET passando l'idProdotto) -->
+                                <a href="<%= request.getContextPath() %>/ModificaProdotto?idProdotto=<%= p.getIdProdotto() %>" class="btn-edit">
+                                    Modifica
+                                </a>
+
+                                <!-- Form per eliminare il prodotto tramite POST -->
+                                <form action="<%= request.getContextPath() %>/CancellaProdotto" method="POST" 
+                                      onsubmit="return confirm('Sei sicuro di voler eliminare il prodotto: <%= p.getTitolo().replace("'", "\\'") %>?');" 
+                                      style="margin:0;">
+                                    
+                                    <!-- Passiamo l'ID del prodotto come parametro nascosto -->
+                                    <input type="hidden" name="id" value="<%= p.getIdProdotto() %>" />
+                                    
+                                    <!-- Controllo inline per disabilitare il bottone se non disponibile -->
+                                    <button type="submit" class="btn-delete" <%= !p.isDisponibile() ? "disabled" : "" %>>Cancella</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 <%
