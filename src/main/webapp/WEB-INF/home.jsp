@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OneUp Shop - Home</title>
+    <title>1-Up Shop - Home</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/style.css">
 </head>
 <body>

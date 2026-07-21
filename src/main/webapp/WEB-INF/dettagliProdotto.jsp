@@ -13,6 +13,15 @@
     request.setAttribute("base64Image", base64Image);
 %>
 
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1-Up Shop - Prodotto</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/style.css">
+</head>
+
 <jsp:include page="common/header.jsp" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dettagliProdotto/styleDettagliProdotto.css">
 
