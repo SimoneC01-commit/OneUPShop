@@ -79,12 +79,12 @@ body {
 }
 
 .img-placeholder {
-    background-color: #eaeaea; /* Mantiene lo sfondo grigio se la foto non carica o è trasparente */
-    height: 250px;             /* Altezza fissa che avevi già deciso */
-    width: 100%;               /* Larghezza al 100% della card */
-    object-fit: cover;         /* riempie lo spazio tagliando gli eccessi, senza deformare i pixel */
-    object-position: center;   /* Mantiene il centro della foto visibile */
+    width: 100%;              /* Riempie tutta la larghezza della card, eliminando gli spazi ai lati */
+    aspect-ratio: 1 / 1;      /* Costringe l'altezza a essere identica alla larghezza: crea un quadrato perfetto! */
+    object-fit: cover;        /* Taglia gli eccessi dell'immagine (sopra/sotto o ai lati) per farla entrare nel quadrato senza deformarla */
+    object-position: center;  /* Mantiene il centro dell'immagine visibile */
     display: block;
+    background-color: #eaeaea;
 }
 
 .card-details {
@@ -158,7 +158,7 @@ body {
 /* Smartphone (Schermi piccoli) */
 @media (max-width: 600px) {
     .product-grid {
-        grid-template-columns: 1fr 1fr; /* Passa a 2 colonn*/
+        grid-template-columns: 1fr; /* Passa a 1 colonn*/
     }
     
     .banner-placeholder {
