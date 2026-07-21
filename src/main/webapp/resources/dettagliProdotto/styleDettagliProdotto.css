@@ -1,0 +1,263 @@
+@charset "UTF-8";
+
+@charset "UTF-8";
+
+/* Container principale */
+.product-page {
+    max-width: 75rem; 
+    margin: 3rem auto;
+    padding: 0 2rem;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+.product-top {
+    display: flex;
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+/* =========================================
+   GALLERIA IMMAGINI
+   ========================================= */
+
+.main-image-container {
+    flex-grow: 1;
+    background-color: #f5f5f5;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Evita di tagliare foto di proporzioni diverse */
+}
+
+/* =========================================
+   INFORMAZIONI PRODOTTO
+   ========================================= */
+.product-info {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    font-size: 2.2rem;
+    margin: 0 0 0.2rem 0;
+}
+
+/* Stili per Azienda e Anno */
+.product-meta {
+    font-size: 1rem;
+    color: #666;
+    margin: 0 0 1.5rem 0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.product-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #111;
+    margin: 0 0 1.5rem 0;
+}
+
+/* Badge Stato Oggetto */
+.product-condition {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-left: 0.25rem solid #111;
+}
+
+.condition-badge {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 0.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.condition-notes {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.product-desc {
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+/* =========================================
+   SELETTORE QUANTITÀ E BOTTONI
+   ========================================= */
+.quantity-selector label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.qty-controls {
+    display: flex;
+    border: 1px solid #ccc;
+    width: fit-content;
+    margin-bottom: 2rem;
+}
+
+.qty-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.qty-controls input {
+    width: 3rem;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-cart, .btn-wishlist {
+    flex: 1;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+
+.btn-cart {
+    background-color: #111;
+    color: #fff;
+    border: 1px solid #111;
+}
+
+.btn-cart:hover {
+    background-color: #cc0000; 
+    border-color: #cc0000;
+}
+
+.btn-cart.disabled {
+    background-color: #ccc;
+    border-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-wishlist {
+    background-color: transparent;
+    color: #111;
+    border: 1px solid #111;
+}
+
+.btn-wishlist:hover {
+    background-color: #f1f1f1;
+}
+
+/* =========================================
+   PRODOTTI CONSIGLIATI (BOTTOM SECTION)
+   ========================================= */
+.section-divider {
+    border: 0;
+    border-top: 1px solid #eaeaea;
+    margin: 4rem 0;
+}
+
+.recommended-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.recommended-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 2rem;
+}
+
+.rec-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.rec-img-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #e5e5e5;
+    margin-bottom: 1rem;
+}
+
+.rec-cat {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0 0 0.3rem 0;
+}
+
+.rec-name {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: bold;
+}
+
+.rec-price {
+    font-size: 1.2rem;
+    color: #cc0000;
+    margin: 0;
+}
+
+/* =========================================
+   RESPONSIVE MOBILE (Sotto i 48rem)
+   ========================================= */
+@media (max-width: 48rem) {
+    .product-top {
+        flex-direction: column; 
+        gap: 2rem;
+    }
+
+    .product-gallery {
+        flex-direction: column-reverse; 
+    }
+
+    .thumbnail-list {
+        flex-direction: row;
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto; /* Scorrimento orizzontale se ci sono tante foto */
+    }
+
+    .thumb-img {
+        width: 20%; 
+        min-width: 4rem;
+    }
+
+    .action-buttons {
+        flex-direction: column; 
+    }
+
+    .recommended-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 1rem;
+    }
+}

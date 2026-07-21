@@ -36,7 +36,7 @@
             <img src="${pageContext.request.contextPath}/resources/img/profilo.png" alt="Profilo" class="icon-img">
             </a>
             
-            <a href="#" class="icon-link">
+            <a href="${pageContext.request.contextPath}/Wishlist" class="icon-link">
                 <img src="${pageContext.request.contextPath}/resources/img/heart.jpg" alt="Whishlist" class="icon-img">
             </a>
             
@@ -51,13 +51,14 @@
         <nav class="company-links">
             <ul>
                 <li><a href="#">Nintendo - </a></li>
+                <li><a href="#">Sega - </a></li>
                 <li><a href="#">Sony -</a></li>
                 <li><a href="#">Microsoft -</a></li>
                 <li><a href="#">Cabinati -</a></li>
             </ul>
         </nav>
         <div class="support-link">
-            <a href="#">Support</a>
+            <a href="#">Contatti</a>
         </div>
     </div>
         
@@ -83,7 +84,7 @@
         </ul>
 
         <div class="sidebar-support">
-            <a href="#">Support</a>
+            <a href="#">Contatti</a>
         </div>
     </nav>
         

@@ -20,9 +20,9 @@
         <div class="footer-right">
             <nav class="footer-links">
                 <a href="${pageContext.request.contextPath}/Login">Account</a>
-                <a href="#">Wishlist</a>
+                <a href="${pageContext.request.contextPath}/Wishlist">Wishlist</a>
                 <a href="${pageContext.request.contextPath}/DettagliCarrello">Carrello</a>
-                <a href="#">Support</a>
+                <a href="#">Contatti</a>
             </nav>
             <p class="footer-copyright">© 2026 1-UP Shop. All rights reserved.</p>
         </div>

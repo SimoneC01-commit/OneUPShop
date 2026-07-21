@@ -1,11 +1,16 @@
 @charset "UTF-8";
 
 /* =========================================
-   HEADER DESKTOP (Minimal & Fluido)
+   HEADER DESKTOP
    ========================================= */
+body, html { 
+    margin: 0;
+    padding: 0;
+}
+
 .main-header {
     background-color: #ffffff;
-    border-bottom: 0.15rem solid #eaeaea; 
+    border-bottom: 0.15rem solid  #cc0000; 
     padding: 0.5rem 2%; 
     width: 100%;
     box-sizing: border-box;
