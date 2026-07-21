@@ -7,21 +7,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OneUp Shop - Home</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/style.css">
 </head>
 <body>
 
-   <%-- <jsp:include page="header.jsp" /> --%>
+  <jsp:include page="common/header.jsp" />
 
-    <main class="container">
-        <section class="hero-banner">
-            <div class="banner-placeholder">
-                	<h1>Presentazione Sito Retrogaming</h1>
-                </div>
+   
+        <section class="banner"> 
+	        <div class="banner-container"> <img src="${pageContext.request.contextPath}/resources/img/banner2.png" alt="Banner" class="banner-img"> 
+	        </div>
         </section>
-
+        
+ <main class="container">
         <section class="product-section">
-            <h2>New Products</h2>
+            <h2>Nuovi Prodotti</h2>
             <div class="product-grid">
                 <c:forEach var="prodotto" items="${prodottiHomeNuovi}">
                     <article class="product-card">
@@ -31,12 +31,13 @@
                         
                         <div class="card-details">
                             <span class="category">${prodotto.tipo}</span>
-                            <h3 class="title">${prodotto.titolo}</h3>
-                            <p class="price">$$ ${prodotto.prezzo}</p> 
+                            <h3 class="title"><a href="${pageContext.request.contextPath}/DettagliProdotto?idProdotto=${prodotto.id}">
+                            	${prodotto.titolo} </a></h3>
+                            <p class="price"><b>€ ${prodotto.prezzo} EUR </b></p> 
                             
-                            <form action="${pageContext.request.contextPath}/AddToCart" method="POST">
+                            <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="POST">
                                 <input type="hidden" name="idProdotto" value="${prodotto.id}">
-                                <button type="submit" class="btn-black">Aggiungi al carrello</button>
+                                <button type="submit" class="bottone">Aggiungi al carrello</button>
                             </form>
                         </div>
                     </article>
@@ -45,7 +46,7 @@
         </section>
 
         <section class="product-section">
-            <h2>Recommended Products</h2>
+            <h2>Prodotti Consigliati</h2>
             <div class="product-grid">
                 <c:forEach var="prodotto" items="${prodottiHomeConsigliati}">
                     <article class="product-card">
@@ -55,12 +56,13 @@
                         
                         <div class="card-details">
                             <span class="category">${prodotto.tipo}</span>
-                            <h3 class="title">${prodotto.titolo}</h3>
-                            <p class="price">$$ ${prodotto.prezzo}</p> 
+	                           <h3 class="title"><a href="${pageContext.request.contextPath}/DettagliProdotto?idProdotto=${prodotto.id}">
+                            	${prodotto.titolo} </a></h3>
+                            <p class="price"><b>€ ${prodotto.prezzo} EUR </b></p> 
                             
-                            <form action="${pageContext.request.contextPath}/AddToCart" method="POST">
+                            <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="POST">
                                 <input type="hidden" name="idProdotto" value="${prodotto.id}">
-                                <button type="submit" class="btn-black">Aggiungi al carrello</button>
+                                <button type="submit" class="bottone">Aggiungi al carrello</button>
                             </form>
                         </div>
                     </article>
@@ -69,7 +71,6 @@
         </section>
     </main>
 
-   <%-- <jsp:include page="footer.jsp" /> --%>
-
+    <jsp:include page="common/footer.jsp" />
 </body>
 </html>

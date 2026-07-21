@@ -1,0 +1,258 @@
+@charset "UTF-8";
+
+/* =========================================
+   HEADER DESKTOP (Minimal & Fluido)
+   ========================================= */
+.main-header {
+    background-color: #ffffff;
+    border-bottom: 0.15rem solid #eaeaea; 
+    padding: 0.5rem 2%; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Regole per mostrare/nascondere */
+.hide-on-desktop {
+    display: none !important;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 5.5rem; 
+    width: auto;
+}
+
+.search-container {
+    flex-grow: 1;
+    max-width: 40rem; 
+    margin: 0 2rem;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    background-color: #f1f3f4;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+}
+
+.search-img {
+    height: 1.2rem;
+    width: auto;
+    opacity: 0.6;
+}
+
+.search-input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    margin-left: 0.5rem;
+}
+
+.header-icons {
+    display: flex;
+    gap: 1.5rem; 
+    align-items: center;
+}
+
+.icon-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.icon-img {
+    height: 2.2rem; 
+    width: auto;
+}
+
+.icon-img-cart {
+    height: 1.5rem; 
+    width: auto;
+}
+
+.icon-link:hover{
+	transform: scale(1.1); /* Ingrandisce l'elemento del 10%. (Avevamo usato 1.05 per il 5%, scegli tu quanto renderlo evidente!) */
+}
+
+.header-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.company-links ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.company-links a {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease-in-out;
+}
+
+.company-links a:hover {
+    color: #cc0000; /* Rosso Arcade */
+}
+
+.support-link {
+    position: absolute;
+    right: 0;
+}
+
+.support-link a {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Di default il cassetto laterale non esiste su Desktop */
+.mobile-sidebar {
+    display: none;
+}
+
+/* =========================================
+   RESPONSIVE MOBILE (Sotto i 768px / 48rem)
+   ========================================= */
+@media (max-width: 48rem) {
+    
+    .hide-on-mobile { display: none !important; }
+    .hide-on-desktop { display: flex !important; }
+
+    .header-top {
+        position: relative; /* Per centrare il logo */
+    }
+
+    .mobile-left-group {
+        gap: 1rem;
+    }
+
+    .hamburger-btn {
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        padding: 0;
+        color: #333;
+    }
+
+    /* LOGO CENTRALE */
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        padding-top: 0.5rem
+    }
+
+    .logo-img { 
+    	height: 3.5rem 
+    }
+
+    /* MENU LATERALE CASSETTO */
+    .mobile-sidebar {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: -100%; /* Nascosto a sinistra */
+        width: 18rem; /* Circa 280px */
+        height: 100vh;
+        background-color: #ffffff;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        padding: 2rem 1.5rem;
+        transition: left 0.3s ease; /* Animazione di entrata */
+        z-index: 1000;
+        gap: 1.5rem;
+        overflow-y: auto;
+    }
+
+    /* Questa classe viene aggiunta dal JavaScript per aprire il menu */
+    .mobile-sidebar.open {
+        left: 0;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .sidebar-logo {
+        text-align: center;
+        margin-bottom: 0.5rem; /* Aggiunge un po' di respiro tra il logo e la barra di ricerca sotto */
+    }
+    
+    .logo-img-menu {
+    	height: 5rem; /* Usa i rem per essere fluido e coerente col resto */
+        width: auto;
+        max-width: 100%; /* Protezione extra: impedisce al logo di allargarsi oltre il cassetto su telefoni piccolissimi */		
+    }
+
+    .sidebar-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar-links li {
+        border-bottom: 1px solid #eee;
+    }
+
+    .sidebar-links a {
+        display: block;
+        padding: 1rem 0;
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .sidebar-support {
+        margin-top: 1.5rem;
+        background-color: #e0e0e0;
+        padding: 1rem;
+        text-align: left;
+    }
+
+    .sidebar-support a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+    }
+}
