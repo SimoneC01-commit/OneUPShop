@@ -42,25 +42,7 @@ body {
     object-fit: cover; /* Se il contenitore dovesse restringersi troppo, taglia i bordi invece di deformare i pixel */
 }
 
-/* --- SEZIONE PRODOTTI --- */
-.product-section {
-    margin-bottom: 60px;
-}
 
-.product-section h2 {
-    font-size: 2.2rem;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    border-bottom: 3px solid #222; /* Linea divisoria stile wireframe */
-    padding-bottom: 10px;
-}
-
-/* Griglia per le card (Metodo classico e pulito) */
-.product-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 colonne di uguale larghezza */
-    gap: 20px;
-}
 
 /* --- CARD PRODOTTO  IMPORTATO DALLO STILE GENERALE--- */
 

@@ -121,3 +121,22 @@
 .bottone:hover {
     background-color: #ff0000; /* Rosso più chiaro al passaggio del mouse */
 }
+
+
+/* Tablet (Schermi medi) */
+@media (max-width: 900px) {
+    .product-grid {
+        grid-template-columns: 1fr 1fr; /* Passa a 2 colonne */
+    }
+}
+
+/* Smartphone (Schermi piccoli) */
+@media (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* Passa a 1 colonn*/
+    }
+}
+
+
+
+
