@@ -78,8 +78,12 @@ public class ModificaProfilo extends HttpServlet {
 			request.getSession().setAttribute("utente", utenteModificato);
 			
 			response.sendRedirect(request.getContextPath() + "/Profilo");
-		}
-		catch(SQLException | NoSuchAlgorithmException e) {
+		} catch(SQLException e) {
+			e.printStackTrace();
+			request.setAttribute("errorMessage", "Errore durante la modifica. Riprova.");
+			request.getRequestDispatcher("/WEB-INF/modificaProfilo.jsp").forward(request, response);
+			
+		} catch(NoSuchAlgorithmException e) { 
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Errore durante la modifica. Riprova.");
 			request.getRequestDispatcher("/WEB-INF/modificaProfilo.jsp").forward(request, response);
