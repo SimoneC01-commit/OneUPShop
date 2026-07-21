@@ -23,7 +23,7 @@
 
         <!-- Barra di ricerca (Nascosta su Mobile, va nel cassetto) -->
         <div class="search-container hide-on-mobile">
-            <form action="${pageContext.request.contextPath}/Ricerca" method="GET" class="search-form">
+            <form action="${pageContext.request.contextPath}/RicercaProdotto" method="GET" class="search-form">
                 <span class="search-icon"> <img src="${pageContext.request.contextPath}/resources/img/search.png" alt="Search" class="search-img"></span>
                 <input type="text" name="q" placeholder="Search for..." class="search-input">
             </form>
@@ -36,7 +36,7 @@
             <img src="${pageContext.request.contextPath}/resources/img/profilo.png" alt="Profilo" class="icon-img">
             </a>
             
-            <a href="#" class="icon-link">
+            <a href="${pageContext.request.contextPath}/Wishlist" class="icon-link">
                 <img src="${pageContext.request.contextPath}/resources/img/heart.jpg" alt="Whishlist" class="icon-img">
             </a>
             
@@ -70,17 +70,17 @@
         <div class="sidebar-logo"> <img src="${pageContext.request.contextPath}/resources/img/logo.png" alt="Logo Retrogaming" class="logo-img-menu"> </div>
         
         <div class="sidebar-search">
-            <form action="${pageContext.request.contextPath}/Ricerca" method="GET" class="search-form">
+            <form action="${pageContext.request.contextPath}/RicercaProdotto" method="GET" class="search-form">
                 <span class="search-icon"><img src="${pageContext.request.contextPath}/resources/img/search.png" alt="Search" class="search-img"></span>
                 <input type="text" name="q" placeholder="Search for..." class="search-input">
             </form>
         </div>
 
         <ul class="sidebar-links">
-            <li><a href="#">Azienda 1</a></li>
-            <li><a href="#">Azienda 2</a></li>
-            <li><a href="#">Azienda 3</a></li>
-            <li><a href="#">Azienda 4</a></li>
+	       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Nintendo">Nintendo - </a></li>
+	       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Sony">Sony -</a></li>
+	       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Microsoft">Microsoft -</a></li>
+	       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Nintendo">Cabinati -</a></li>
         </ul>
 
         <div class="sidebar-support">
