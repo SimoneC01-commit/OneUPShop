@@ -54,7 +54,7 @@
    ========================================= */
 .product-info {
    display: grid;
-    /* Mappa delle righe: Titolo, Meta, Prezzo, Badge, Descrizione (1fr), Form */
+    /* Mappa delle righe: Titolo, Meta, Prezzo, Badge, Descrizione (1fr), bottoni */
     grid-template-rows: auto auto auto auto 1fr auto; 
     gap: 1rem;
     min-width: 0; /* FONDAMENTALE: impedisce l'espansione orizzontale se il testo è lungo */
@@ -111,8 +111,6 @@
 	line-height: 1.6;
     font-size: 1rem;
     margin: 0; 
-    
-    /* Box di testo contenuto e scorrevole */
     height: 100%;
     max-height: 12rem;       /* Regola l'altezza massima desiderata */
     overflow-y: auto;        /* Genera la scrollbar solo quando il testo eccede */
@@ -129,6 +127,8 @@
 }
 
 .action-buttons {
+	margin: 0; 
+    align-self: end;
     display: flex;
     gap: 1rem;
 }
