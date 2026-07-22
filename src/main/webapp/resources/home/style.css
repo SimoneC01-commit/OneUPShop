@@ -50,14 +50,14 @@ body {
 /* --- RESPONSIVE DESIGN --- */
 
 /* Tablet (Schermi medi) */
-@media (max-width: 900px) {
+@media screen and (max-width: 900px) {
     .product-grid {
         grid-template-columns: 1fr 1fr; /* Passa a 2 colonne */
     }
 }
 
 /* Smartphone (Schermi piccoli) */
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .product-grid {
         grid-template-columns: 1fr; /* Passa a 1 colonn*/
     }

@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Profilo Utente</title>
+    
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; }
         .profilo-card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; max-width: 400px; margin-bottom: 20px; }
@@ -17,6 +18,8 @@
         .btn-secondary:hover { background-color: #5a6268; }
     </style>
 </head>
+
+<jsp:include page="common/header.jsp" />
 <body>
 
     <h1>Il tuo Profilo</h1>
