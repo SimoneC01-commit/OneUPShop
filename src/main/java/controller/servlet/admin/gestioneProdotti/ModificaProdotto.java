@@ -77,6 +77,8 @@ public class ModificaProdotto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		String idProdottoStr = request.getParameter("idProdotto");
 		String nuovoTitolo = request.getParameter("nuovoTitolo");
 		String nuovaDescrizione = request.getParameter("nuovaDescrizione");
@@ -93,9 +95,14 @@ public class ModificaProdotto extends HttpServlet {
 			nuovoPrezzoAttualeStr == null || nuovoPrezzoAttualeStr.trim().isEmpty()) {
 
 			request.setAttribute("errorMessage", "Errore compilazione form. Compila tutti i campi obbligatori.");
-			
 			request.getRequestDispatcher("/WEB-INF/modificaProdotto.jsp").forward(request, response);
 			return;
+		}
+		
+		if ("Usato".equals(nuovoStato) && (nuoveNoteDifetti == null || nuoveNoteDifetti.trim().isEmpty())) {
+		    request.setAttribute("errorMessage", "Per i prodotti usati è obbligatorio specificare le note/difetti.");
+		    request.getRequestDispatcher("/WEB-INF/modificaProdotto.jsp").forward(request, response);
+		    return;
 		}
 
 		try {
@@ -120,7 +127,7 @@ public class ModificaProdotto extends HttpServlet {
 			prodottoModificato.setPrezzoAcquisto((nuovoPrezzoAcquistoStr != null && !nuovoPrezzoAcquistoStr.trim().isEmpty()) ? new BigDecimal(nuovoPrezzoAcquistoStr) : prodottoEsistente.getPrezzoAcquisto());
 			prodottoModificato.setPrezzoAttuale(new BigDecimal(nuovoPrezzoAttualeStr));
 			prodottoModificato.setStato(HtmlDecoder.encodeHtmlEntities(nuovoStato));
-			prodottoModificato.setNoteDifetti(HtmlDecoder.encodeHtmlEntities(nuoveNoteDifetti));
+			prodottoModificato.setNoteDifetti("Usato".equals(nuovoStato) ? HtmlDecoder.encodeHtmlEntities(nuoveNoteDifetti) : null);
 			prodottoModificato.setIva((nuovaIvaStr != null && !nuovaIvaStr.trim().isEmpty()) ? Integer.parseInt(nuovaIvaStr) : prodottoEsistente.getIva());
 
 			prodottoModificato.setTipo(prodottoEsistente.getTipo());
