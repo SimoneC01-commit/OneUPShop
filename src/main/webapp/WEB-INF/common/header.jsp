@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/header/style.css">
+<script src="${pageContext.request.contextPath}/resources/header/scriptHeader.js"></script>
 
 <header class="main-header">
         
@@ -25,7 +26,8 @@
         <div class="search-container hide-on-mobile">
             <form action="${pageContext.request.contextPath}/RicercaProdotto" method="GET" class="search-form">
                 <span class="search-icon"> <img src="${pageContext.request.contextPath}/resources/img/search.png" alt="Search" class="search-img"></span>
-                <input type="text" name="q" placeholder="Search for..." class="search-input">
+                <input type="search" id="searchbar" name="q" placeholder="Cerca..." class="search-input" onkeyup="suggerimenti()" data-context-path="${pageContext.request.contextPath}">
+                <div id="box-suggerimenti"></div>
             </form>
         </div>
 
@@ -87,10 +89,4 @@
         </div>
     </nav>
         
-    <!-- NUOVO: JavaScript per far aprire/chiudere il menu laterale -->
-    <script>
-        function toggleMenu() {
-            document.getElementById("mobileSidebar").classList.toggle("open");
-        }
-    </script>
 </header>

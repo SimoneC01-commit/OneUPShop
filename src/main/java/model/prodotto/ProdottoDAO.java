@@ -755,7 +755,7 @@ public class ProdottoDAO implements DAOInterface<ProdottoBean, Integer> {
 			conn = ConnectionPool.getConnection();
 			ps = conn.prepareStatement(query);
 
-			ps.setString(1, titolo + "%");
+			ps.setString(1, "%" + titolo + "%");
 			
 			rs = ps.executeQuery();
 			

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import model.prodotto.ProdottoBean;
 import model.prodotto.ProdottoDAO;
 
@@ -41,6 +43,20 @@ public class RicercaProdotto extends HttpServlet {
 		
 		try {
 			lista = rDAO.doRetrieveAllByTitolo(q);
+			
+			String ajax = request.getParameter("ajax");
+			
+			if(ajax != null) {
+				
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				
+				String risposta = new Gson().toJson(lista);
+				
+				response.getWriter().write(risposta);
+				
+				return;
+			}
 			
 			if(lista.size() == 0) {
 				response.sendError(404, "Prodotto non trovato");

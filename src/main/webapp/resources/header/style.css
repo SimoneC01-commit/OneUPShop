@@ -53,6 +53,7 @@ body, html {
     background-color: #f1f3f4;
     border-radius: 0.3rem;
     padding: 0.5rem 1rem;
+    position: relative;
 }
 
 .search-img {
@@ -70,6 +71,50 @@ body, html {
     outline: none;
     margin-left: 0.5rem;
 }
+
+
+	#box-suggerimenti {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    max-height: 250px;
+    overflow-y: auto;
+	}
+	
+	.suggerimento-item {
+	    display: block;
+	    padding: 10px 15px;
+	    color: #333;
+	    text-decoration: none;
+	    font-size: 14px;
+	    border-bottom: 1px solid #f0f0f0;
+	    transition: background-color 0.2s ease;
+	}
+	
+	.suggerimento-item:last-child {
+    border-bottom: none;
+	}
+	
+	.suggerimento-item:hover {
+    background-color: #f5f5f5;
+    color: #007bff;
+	}
+	
+	.suggerimento-item.empty {
+    color: #888;
+    font-style: italic;
+    cursor: default;
+	}
+	
+	
+	
 
 .header-icons {
     display: flex;
