@@ -5,11 +5,13 @@ function toggleMenu() {
     }
 }
 
-function suggerimenti() {
-	const query = document.getElementById("searchbar").value;
+async function suggerimenti() {
+	const searchbar = document.getElementById("searchbar");
 	const box = document.getElementById("box-suggerimenti");
 	
-	if(query.length <= 2) {
+	const query = searchbar.value.trim();
+	
+	if(query.length < 2) {
         box.innerHTML = "";
         box.style.display = "none";
         return;
@@ -22,47 +24,45 @@ function suggerimenti() {
 
 	const contextPath = searchbar.dataset.contextPath || '';
 	
-	const xhr = new XMLHttpRequest();
+	const url = `${contextPath}/RicercaProdotto?${params}`;
 	
-	xhr.open("GET", `${contextPath}/RicercaProdotto?${params}`, true);
-	
-	xhr.onreadystatechange = function() {
-		if(xhr.readyState === 4 && xhr.status === 200){
-			
-			const prodotti = JSON.parse(xhr.responseText);
-			
-			console.log(prodotti);
-
-			box.innerHTML = "";
-			
-			if(prodotti.length === 0){
-				const empty = document.createElement("div");
-                empty.className = "suggerimento-item empty";
-                empty.textContent = "Nessun risultato trovato";
-                box.appendChild(empty);
-                box.style.display = "block";
-                return;
-			}
-			
-			const maxSugg = Math.min(prodotti.length, 5);
-			
-			for(let i = 0; i < maxSugg; i++){
-				const p = prodotti[i];
-				
-				const a = document.createElement("a");
-				a.className = "suggerimento-item";
-				a.href = `${contextPath}/DettagliProdotto?idProdotto=${p.idProdotto}`;
-				
-				a.textContent = p.titolo;
-				
-				box.appendChild(a);
-			}
-			
+	try{
+		const r = await fetch(url);
+		
+		if(!r.ok)
+			throw new Error(r.status);
+		
+		const prodotti = await r.json();
+		
+		box.innerHTML = "";
+		
+		if(prodotti.length === 0){
+			const empty = document.createElement("div");
+			empty.className = "suggerimento-item empty";
+			empty.textContent = "Nessun risultato trovato";
+			box.appendChild(empty);
 			box.style.display = "block";
+			return;
 		}
+		
+		const maxSugg = Math.min(prodotti.length, 5);
+		
+		for(let i = 0; i < maxSugg; i++){
+			const p = prodotti[i];
+			
+			const a = document.createElement("a");
+			a.className = "suggerimento-item";
+			a.textContent = p.titolo;
+			a.href = `${contextPath}/DettagliProdotto?idProdotto=${p.idProdotto}`;
+			
+			box.appendChild(a);
+		}
+		
+		box.style.display = "block";
 	}
-	
-	xhr.send();
+	catch(err){
+		console.log(err);
+	}
 }
 
 document.addEventListener("DOMContentLoaded", function() {

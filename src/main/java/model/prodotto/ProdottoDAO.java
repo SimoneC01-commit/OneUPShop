@@ -255,7 +255,7 @@ public class ProdottoDAO implements DAOInterface<ProdottoBean, Integer> {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<ProdottoBean> lista = null;
-		String query = "SELECT ID_Prodotto, Titolo, Descrizione, Anno_Rilascio, Foto_BLOB, Azienda, Tipo, Prezzo_Acquisto, Prezzo_Attuale, Data_Aggiunta, Stato, Note_Difetti, Disponibile, IVA FROM prodotto ORDER BY Data_Aggiunta DESC";
+		String query = "SELECT ID_Prodotto, Titolo, Descrizione, Anno_Rilascio, Foto_BLOB, Azienda, Tipo, Prezzo_Acquisto, Prezzo_Attuale, Data_Aggiunta, Stato, Note_Difetti, Disponibile, IVA FROM prodotto WHERE Disponibile = 1 ORDER BY Data_Aggiunta DESC";
 		
 		try {
 			conn = ConnectionPool.getConnection();
@@ -309,7 +309,7 @@ public class ProdottoDAO implements DAOInterface<ProdottoBean, Integer> {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<ProdottoBean> lista = null;
-		String query = "SELECT ID_Prodotto, Titolo, Descrizione, Anno_Rilascio, Foto_BLOB, Azienda, Tipo, Prezzo_Acquisto, Prezzo_Attuale, Data_Aggiunta, Stato, Note_Difetti, Disponibile, IVA FROM prodotto ORDER BY RAND()";
+		String query = "SELECT ID_Prodotto, Titolo, Descrizione, Anno_Rilascio, Foto_BLOB, Azienda, Tipo, Prezzo_Acquisto, Prezzo_Attuale, Data_Aggiunta, Stato, Note_Difetti, Disponibile, IVA FROM prodotto WHERE Disponibile = 1 ORDER BY RAND()";
 		
 		try {
 			conn = ConnectionPool.getConnection();

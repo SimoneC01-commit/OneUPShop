@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import model.carrello.Carrello;
 import model.prodotto.ProdottoBean;
 import model.prodotto.ProdottoDAO;
@@ -67,7 +69,15 @@ public class AggiungiAlCarrello extends HttpServlet {
 				
 				carrello.aggiungiProdotto(prodotto);
 				
-				response.sendRedirect(request.getContextPath() + "/Catalogo");
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				
+				String risposta = new Gson().toJson("Prodotto aggiunto al carrello!");
+				
+				response.getWriter().write(risposta);
+				
+				return;
+			
 			}
 			else {
 				response.sendError(404, "Prodotto non trovato");

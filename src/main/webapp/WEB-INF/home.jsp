@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1-Up Shop - Home</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/style.css">
+    <script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
 </head>
 <body>
 
@@ -36,10 +37,7 @@
                             	${prodotto.titolo} </a></h3>
                             <p class="price"><b>€ ${prodotto.prezzoAttuale} EUR </b></p> 
                             
-                            <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="POST">
-                                <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
-                                <button type="submit" class="bottone">Aggiungi al carrello</button>
-                            </form>
+						    <button type="button" class="bottone" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
                         </div>
                     </article>
                 </c:forEach>
@@ -62,10 +60,7 @@
                             	${prodotto.titolo} </a></h3>
                             <p class="price"><b>€ ${prodotto.prezzoAttuale} EUR </b></p> 
                             
-                            <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="POST">
-                                <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
-                                <button type="submit" class="bottone">Aggiungi al carrello</button>
-                            </form>
+                            <button type="button" class="bottone" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
                         </div>
                     </article>
                 </c:forEach>

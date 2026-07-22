@@ -134,7 +134,7 @@
                                     <a href="DettagliProdotto?idProdotto=${p.idProdotto}" class="btn-link">Vedi Dettagli</a>
                                 </div>
                                 <div>
-                                    <a href="AggiungiAlCarrello?idProdotto=${p.idProdotto}" class="btn-link">Aggiungi al carrello</a>
+                                    <button type="button" class="bottone" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
                                 </div>
                             </div>
                         </c:forEach>
