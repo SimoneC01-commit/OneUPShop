@@ -81,7 +81,7 @@
     margin-bottom: 5px;
 }
 
-.title a{
+.title a {
 	font-family:'Roboto', sans-serif; 
     font-size: auto;
     margin-bottom: 10px;
@@ -100,8 +100,8 @@
     font-size: 1.1rem;
     color: #C0C0C0;
     font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 15px;
+    margin-top: 3px;
+    margin-bottom: 20px;
 }
 
 /* --- BOTTONE --- */

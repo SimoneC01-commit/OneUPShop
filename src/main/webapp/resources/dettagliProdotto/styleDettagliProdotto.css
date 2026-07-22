@@ -18,8 +18,8 @@
     display: flex;
     gap: 4rem;
     margin-bottom: 4rem;
-    align-items: stretch; 
-    }
+    align-items: flex-start; /*permette di mantenere le proporzioni imposte dalle altre classi*/
+}
 
 /* =========================================
    GALLERIA IMMAGINI
@@ -91,7 +91,7 @@
 
 .condition-badge {
     display: inline-block;
-    background-color: #333;
+    background-color: #ff8000;
     color: #fff;
     padding: 0.3rem 0.8rem;
     font-size: 0.85rem;
@@ -114,8 +114,9 @@
 }
 
 /* =========================================
-   BOTTONI
+   SELETTORE QUANTITÀ E BOTTONI
    ========================================= */
+
 
 .action-buttons {
     display: flex;
@@ -157,16 +158,14 @@
 }
 
 .btn-wishlist:hover {
-	border: 1px solid #FF2155 ;
+	border: 1px solid #ff4872 ;
     background-color: #FF2155;
 }
 
 /* =========================================
    PRODOTTI CONSIGLIATI (IMPORTATO)
    ========================================= */
-.title{
-	
-}
+
 
 /* =========================================
    RESPONSIVE MOBILE (Sotto i 48rem)
