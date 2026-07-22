@@ -98,7 +98,7 @@
 .price {
 	font-family:'Roboto', sans-serif; 
     font-size: 1.1rem;
-    color: #C0C0C0;
+    color: rgb(167, 167, 167);
     font-weight: bold;
     margin-top: 3px;
     margin-bottom: 20px;
@@ -124,14 +124,14 @@
 
 
 /* Tablet (Schermi medi) */
-@media (max-width: 900px) {
+@media screen and (max-width: 900px) {
     .product-grid {
         grid-template-columns: 1fr 1fr; /* Passa a 2 colonne */
     }
 }
 
 /* Smartphone (Schermi piccoli) */
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .product-grid {
         grid-template-columns: 1fr; /* Passa a 1 colonn*/
     }

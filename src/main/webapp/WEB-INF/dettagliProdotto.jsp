@@ -63,9 +63,10 @@
                     <p class="condition-notes"><strong>Note:</strong> ${prodotto.noteDifetti}</p>
                 </c:if>
             </div>
-
-            <p class="product-desc">${prodotto.descrizione}</p>
-
+			<div class="product-desc">
+            <p class="desc">${prodotto.descrizione}</p>
+			</div>
+			
             <!-- Form Acquisto -->
             <form action="${pageContext.request.contextPath}/AggiungiCarrello" method="POST" class="purchase-form">
                 <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">

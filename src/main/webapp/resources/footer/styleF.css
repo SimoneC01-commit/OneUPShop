@@ -80,8 +80,10 @@ body, html {
 /* =========================================
    RESPONSIVE MOBILE FOOTER (Sotto i 48rem)
    ========================================= */
-@media (max-width: 48rem) {
+@media screen and (max-width: 48rem) {
+	
     .footer-content {
+    	margin:0;
         flex-direction: column; /* Mette i due blocchi uno sotto l'altro */
         align-items: center;    /* Centra tutto orizzontalmente */
         text-align: center;

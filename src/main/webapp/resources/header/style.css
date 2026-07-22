@@ -139,7 +139,7 @@ body, html {
 }
 
 .icon-link:hover{
-	transform: scale(1.1); /* Ingrandisce l'elemento del 10%. (Avevamo usato 1.05 per il 5%, scegli tu quanto renderlo evidente!) */
+	transform: scale(1.1); /* Ingrandisce l'elemento del 10% */
 }
 
 .header-bottom {
@@ -195,7 +195,7 @@ body, html {
 /* =========================================
    RESPONSIVE MOBILE (Sotto i 768px / 48rem)
    ========================================= */
-@media (max-width: 48rem) {
+@media screen and (max-width: 48rem) {
     
     .hide-on-mobile { display: none !important; }
     .hide-on-desktop { display: flex !important; }
@@ -247,7 +247,7 @@ body, html {
         overflow-y: auto;
     }
 
-    /* Questa classe viene aggiunta dal JavaScript per aprire il menu */
+    /* classe aggiunta dal JavaScript per aprire il menu */
     .mobile-sidebar.open {
         left: 0;
     }
