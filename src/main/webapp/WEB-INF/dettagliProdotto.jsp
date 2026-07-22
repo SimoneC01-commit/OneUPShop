@@ -75,7 +75,7 @@
                 <div class="action-buttons">
                     <c:choose>
                         <c:when test="${prodotto.disponibile}">
-                            <button type="submit" class="btn-cart">Aggiungi al carrello</button>
+                            <button type="button" class="bottone" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
                         </c:when>
                         <c:otherwise>
                             <button type="button" class="btn-cart disabled" disabled>Esaurito</button>
@@ -106,10 +106,7 @@
                             	${prodotto.titolo} </a></h3>
                             <p class="price"><b>€ ${prodotto.prezzoAttuale} EUR </b></p> 
                             
-                            <form action="${pageContext.request.contextPath}/AggiungiAlCarrello" method="POST">
-                                <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
-                                <button type="submit" class="bottone">Aggiungi al carrello</button>
-                            </form>
+							<button type="button" class="bottone" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
                         </div>
                     </article>
                 </c:forEach>
