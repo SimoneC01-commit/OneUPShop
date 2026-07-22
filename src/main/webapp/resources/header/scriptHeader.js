@@ -5,11 +5,12 @@ function toggleMenu() {
     }
 }
 
-function suggerimenti() {
+async function suggerimenti() {
+	const searchbar = document.getElementById("searchbar");
 	const query = document.getElementById("searchbar").value;
 	const box = document.getElementById("box-suggerimenti");
 	
-	if(query.length <= 2) {
+	if(query.length < 2) {
         box.innerHTML = "";
         box.style.display = "none";
         return;
@@ -22,15 +23,59 @@ function suggerimenti() {
 
 	const contextPath = searchbar.dataset.contextPath || '';
 	
-	const xhr = new XMLHttpRequest();
+	const url = `${contextPath}/RicercaProdotto?${params}`;
 	
-	xhr.open("GET", `${contextPath}/RicercaProdotto?${params}`, true);
+	try{
+		const r = await fetch(url);
+		
+		if(!r.ok)
+			throw new Error(r.status);
+		
+		const prodotti = await r.json();
+		
+		console.log(prodotti);
+		
+		box.innerHTML = "";
+		
+		if(prodotti.length === 0){
+			const empty = document.createElement("div");
+			empty.className = "suggerimento-item empty";
+			empty.textContent = "Nessun risultato trovato";
+			box.appendChild(empty);
+			box.style.display = "block";
+			return;
+		}
+		
+		const maxSugg = Math.min(prodotti.length, 5);
+		
+		for(let i = 0; i < maxSugg; i++){
+			const p = prodotti[i];
+			
+			const a = document.createElement("a");
+			a.className = "suggerimento-item";
+			a.textContent = p.titolo;
+			a.href = `${contextPath}/DettagliProdotto?idProdotto=${p.idProdotto}`;
+			
+			box.appendChild(a);
+		}
+		
+		box.style.display = "block";
+	}
+	catch(err){
+		console.log(err);
+	}
+}
 	
-	xhr.onreadystatechange = function() {
-		if(xhr.readyState === 4 && xhr.status === 200){
+	/*
+	fetch(`${contextPath}/RicercaProdotto?${params}`)
+		.then(r => {
+			if(!r.ok){
+				throw new Error(r.status);
+			}
 			
-			const prodotti = JSON.parse(xhr.responseText);
-			
+			return r.json()
+		})
+		.then(prodotti => {
 			console.log(prodotti);
 
 			box.innerHTML = "";
@@ -59,11 +104,9 @@ function suggerimenti() {
 			}
 			
 			box.style.display = "block";
-		}
-	}
-	
-	xhr.send();
-}
+		})
+		.catch(error => console.log(error));
+		*/
 
 document.addEventListener("DOMContentLoaded", function() {
     const searchbar = document.getElementById("searchbar");
