@@ -11,7 +11,7 @@ public class ProdottoBean implements Serializable {
     private String titolo;
     private String descrizione;
     private int annoRilascio;
-    private byte[] fotoBlob;
+    private transient byte[] fotoBlob;
     private String azienda;
     private String tipo;
     private BigDecimal prezzoAcquisto;

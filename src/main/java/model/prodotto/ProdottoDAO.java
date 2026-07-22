@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -188,7 +189,20 @@ public class ProdottoDAO implements DAOInterface<ProdottoBean, Integer> {
 			ps.setBigDecimal(8, entry.getPrezzoAttuale());
 			ps.setTimestamp(9, entry.getDataAggiunta());
 			ps.setString(10, entry.getStato());
-			ps.setString(11, entry.getNoteDifetti());
+			
+			if("Usato".equals(entry.getStato())) {
+				String note = entry.getNoteDifetti();
+
+				if (note == null || note.trim().isEmpty()) {
+			        ps.setString(11, "Nessun difetto segnalato"); 
+			    } else {
+			        ps.setString(11, note);
+			    }
+			}
+			else {
+				ps.setNull(11, Types.VARCHAR);
+			}
+			
 			ps.setBoolean(12, entry.isDisponibile());
 			ps.setInt(13, entry.getIva());
 			ps.setInt(14, entry.getIdProdotto());
@@ -755,7 +769,7 @@ public class ProdottoDAO implements DAOInterface<ProdottoBean, Integer> {
 			conn = ConnectionPool.getConnection();
 			ps = conn.prepareStatement(query);
 
-			ps.setString(1, titolo + "%");
+			ps.setString(1, "%" + titolo + "%");
 			
 			rs = ps.executeQuery();
 			
