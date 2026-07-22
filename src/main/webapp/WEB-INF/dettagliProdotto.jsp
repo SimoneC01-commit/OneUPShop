@@ -75,7 +75,7 @@
                 <div class="action-buttons">
                     <c:choose>
                         <c:when test="${prodotto.disponibile}">
-                            <button type="button" class="bottone" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
+                            <button type="button" class="btn-cart" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
                         </c:when>
                         <c:otherwise>
                             <button type="button" class="btn-cart disabled" disabled>Esaurito</button>
@@ -115,4 +115,3 @@
 </main>
 
 <jsp:include page="common/footer.jsp" />
-<script src="${pageContext.request.contextPath}/resources/js/dettaglio.js"></script>

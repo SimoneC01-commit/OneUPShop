@@ -60,8 +60,9 @@
                             	${prodotto.titolo} </a></h3>
                             <p class="price"><b>€ ${prodotto.prezzoAttuale} EUR </b></p> 
                             
-                            <button type="button" class="bottone" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
-                        </div>
+							<button type="button" class="bottone" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
+                       
+                       	</div>
                     </article>
                 </c:forEach>
             </div>

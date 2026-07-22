@@ -69,11 +69,6 @@
     flex-grow: 1; /* Permette alla card di allungarsi occupando lo spazio */
 }
 
-.card-details form {
-    margin-top: auto;
-    width: 100%;
-}
-
 .category {
     font-size: 1.1rem;
     font-family:"Pixelify Sans", sans-serif;
@@ -116,6 +111,7 @@
     text-transform: uppercase;
    	width: 100%;
     transition: background-color 0.2s;
+    margin-top:auto;
 }
 
 .bottone:hover {
