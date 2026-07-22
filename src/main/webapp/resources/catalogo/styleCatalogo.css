@@ -1,0 +1,202 @@
+@charset "UTF-8";
+@import url("../generalStyle.css");
+
+
+/* =========================================
+   IMPORT FONT & RESET BASE
+   ========================================= */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    text-align: center;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin: 2rem 0;
+    color: #111;
+}
+
+/* =========================================
+   LAYOUT PRINCIPALE (CSS GRID)
+   ========================================= */
+.container {
+    width: 95rem; /*inserito per non far plasmare le card*/
+    margin: 0 auto;
+    padding: 0 2rem;
+    
+    /* Layout a due colonne (Sidebar + Catalogo) */
+    display: grid;
+    grid-template-columns: 280px 1fr; 
+    gap: 3rem;
+    align-items: start; 
+    margin-bottom: 4rem;
+}
+
+/* =========================================
+   SIDEBAR FILTRI
+   ========================================= */
+.filters {
+    background-color: #f1f1f1;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    position: sticky;
+    top: 2rem; /* Fa sì che i filtri scorrano con la pagina fino a un certo punto */
+}
+
+.filters h3 {
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.form-group select, 
+.form-group input {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    background-color: #fff;
+}
+
+.btn-submit {
+    background-color: #111;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    width: 100%;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background-color 0.2s;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+}
+
+.btn-submit:hover {
+    background-color: #cc0000;
+}
+
+/* =========================================
+   AREA CATALOGO E STATISTICHE
+   ========================================= */
+.catalog {
+    display: flex;
+    flex-direction: column;
+}
+
+.stats {
+    text-align: right;
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.error-msg {
+    background-color: #ffe6e6;
+    color: #cc0000;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #cc0000;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+/* =========================================
+   GRIGLIA PRODOTTI (3 COLONNE)
+   ========================================= */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Forza 3 colonne */
+    gap: 20px;
+}
+
+/* --- CARD PRODOTTO IMPORTATO --- */
+
+
+/* =========================================
+   PAGINAZIONE
+   ========================================= */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 4rem;
+}
+
+.page-btn {
+    padding: 0.6rem 1.2rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #111;
+    text-decoration: none;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+}
+
+.page-btn:hover, .page-btn.active {
+    background-color: #cc0000;
+    color: #fff;
+    border-color: #cc0000;
+}
+
+/* =========================================
+   RESPONSIVE (MEDIA QUERIES)
+   ========================================= */
+
+/* Tablet (Sotto i 1024px) */
+@media screen and (max-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr; /* Collassa la struttura principale in una singola colonna */
+    }
+    
+    .filters {
+        position: static; /* Disabilita lo sticky su mobile */
+        margin-bottom: 2rem;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* Passa a 2 colonne per i prodotti */
+    }
+}
+
+/* Smartphone (Sotto i 600px) */
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr; /* Passa a 1 colonna singola */
+    }
+}
