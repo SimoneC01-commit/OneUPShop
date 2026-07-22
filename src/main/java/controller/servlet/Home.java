@@ -35,9 +35,9 @@ public class Home extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			List<ProdottoBean> prodNuovi = new ProdottoDAO().doRetrieveAllNew().subList(0, 9);
+			List<ProdottoBean> prodNuovi = new ProdottoDAO().doRetrieveAllNew(8);
 			
-			List<ProdottoBean> prodConsigliati = new ProdottoDAO().doRetrieveAllSuggested().subList(0, 9);
+			List<ProdottoBean> prodConsigliati = new ProdottoDAO().doRetrieveAllSuggested(8);
 			
 			request.setAttribute("prodottiNuovi", prodNuovi);
 			

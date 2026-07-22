@@ -250,7 +250,7 @@ public class ProdottoDAO implements DAOInterface<ProdottoBean, Integer> {
         }
 	}
 	
-	public List<ProdottoBean> doRetrieveAllNew() throws SQLException {
+	public List<ProdottoBean> doRetrieveAllNew(int amount) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -300,11 +300,11 @@ public class ProdottoDAO implements DAOInterface<ProdottoBean, Integer> {
 				ConnectionPool.releaseConnection(conn);
 			}
 		}
-			
-		return lista;
+		
+		return lista.subList(0, amount);
 	}
 
-	public List<ProdottoBean> doRetrieveAllSuggested() throws SQLException {
+	public List<ProdottoBean> doRetrieveAllSuggested(int amount) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -354,8 +354,8 @@ public class ProdottoDAO implements DAOInterface<ProdottoBean, Integer> {
 				ConnectionPool.releaseConnection(conn);
 			}
 		}
-			
-		return lista;
+		
+		return lista.subList(0, amount);
 	}
 	
 	public List<ProdottoBean> doRetriveAllByPageNumber(Integer minYear, Integer maxYear, String tipo, Float minPrice, Float maxPrice, String stato, int pagCorrente, int elemForPage) throws SQLException{
