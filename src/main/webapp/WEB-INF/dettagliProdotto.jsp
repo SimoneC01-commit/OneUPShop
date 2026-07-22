@@ -19,11 +19,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1-Up Shop - Prodotto</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dettagliProdotto/styleDettagliProdotto.css">
 </head>
 
 <jsp:include page="common/header.jsp" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dettagliProdotto/styleDettagliProdotto.css">
 
 <main class="product-page">
     
@@ -51,7 +50,7 @@
             
             <!-- Metadata: Azienda e Anno di Rilascio sotto il titolo -->
             <p class="product-meta">
-                <span class="meta-brand">${prodotto.azienda}</span> • <span class="meta-year">${prodotto.annoRilascio}</span>
+                <span class="meta-brand">${prodotto.azienda}</span> - <span class="meta-year">${prodotto.annoRilascio}</span>
             </p>
 
             <p class="product-price">€ ${prodotto.prezzoAttuale}</p>
@@ -69,15 +68,7 @@
             <!-- Form Acquisto -->
             <form action="${pageContext.request.contextPath}/AggiungiCarrello" method="POST" class="purchase-form">
                 <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
-                
-                <div class="quantity-selector">
-                    <label>Quantità</label>
-                    <div class="qty-controls">
-                        <button type="button" class="qty-btn" onclick="modificaQuantita(-1)">−</button>
-                        <input type="number" id="qtyInput" name="quantita" value="1" min="1" readonly>
-                        <button type="button" class="qty-btn" onclick="modificaQuantita(1)">+</button>
-                    </div>
-                </div>
+
 
                 <div class="action-buttons">
                     <c:choose>
@@ -88,7 +79,7 @@
                             <button type="button" class="btn-cart disabled" disabled>Esaurito</button>
                         </c:otherwise>
                     </c:choose>
-                    <button type="button" class="btn-wishlist">Aggiungi alla Wishlist</button>
+                  		<button type="submit" formaction="${pageContext.request.contextPath}/AggiungiAllaWishlist" class="btn-wishlist">Aggiungi alla Wishlist</button>
                 </div>
             </form>
         </div>

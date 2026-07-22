@@ -18,8 +18,8 @@
     display: flex;
     gap: 4rem;
     margin-bottom: 4rem;
-    align-items: flex-start; /*permette di mantenere le proporzioni imposte dalle altre classi*/
-}
+    align-items: stretch; 
+    }
 
 /* =========================================
    GALLERIA IMMAGINI
@@ -114,40 +114,8 @@
 }
 
 /* =========================================
-   SELETTORE QUANTITÀ E BOTTONI
+   BOTTONI
    ========================================= */
-.quantity-selector label {
-    display: block;
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 0.5rem;
-}
-
-.qty-controls {
-    display: flex;
-    border: 1px solid #ccc;
-    width: fit-content;
-    margin-bottom: 2rem;
-}
-
-.qty-btn {
-    background: none;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: #333;
-}
-
-.qty-controls input {
-    width: 3rem;
-    text-align: center;
-    border: none;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    font-size: 1rem;
-    font-weight: bold;
-}
 
 .action-buttons {
     display: flex;
@@ -189,13 +157,16 @@
 }
 
 .btn-wishlist:hover {
-    background-color: #A6E9F9;
+	border: 1px solid #FF2155 ;
+    background-color: #FF2155;
 }
 
 /* =========================================
    PRODOTTI CONSIGLIATI (IMPORTATO)
    ========================================= */
-
+.title{
+	
+}
 
 /* =========================================
    RESPONSIVE MOBILE (Sotto i 48rem)
