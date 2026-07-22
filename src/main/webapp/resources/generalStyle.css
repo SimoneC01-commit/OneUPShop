@@ -118,6 +118,13 @@
     background-color: #ff0000; /* Rosso più chiaro al passaggio del mouse */
 }
 
+.btn-aggiunto {
+    background-color: #28a745 !important; /* Verde successo */
+    color: white !important;
+    border-color: #28a745 !important;
+    transition: all 0.2s ease-in-out;
+}
+
 
 /* Tablet (Schermi medi) */
 @media screen and (max-width: 900px) {

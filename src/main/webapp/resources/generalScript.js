@@ -1,4 +1,10 @@
 async function aggiungiAlCarrello(buttonElement){
+	
+	if(buttonElement.disabled === true)
+		return;
+	
+	buttonElement.disabled = true;
+	
 	const idProdotto = buttonElement.dataset.idProdotto;
 	
 	const contextPath = buttonElement.dataset.contextPath || '';
@@ -9,7 +15,7 @@ async function aggiungiAlCarrello(buttonElement){
 	const url = `${contextPath}/AggiungiAlCarrello`;
 	
 	try{
-		const r = await fetch(`${contextPath}/AggiungiAlCarrello`, {
+		const r = await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -23,9 +29,22 @@ async function aggiungiAlCarrello(buttonElement){
 		
 		const data = await r.json();
 		
-		console.log(data);
-		
-	} 
+		if(data){
+			const testoOG = buttonElement.innerHTML;
+			
+			buttonElement.innerHTML = "Aggiunto al carrello!";
+			buttonElement.classList.add("btn-aggiunto");
+			
+			setTimeout(() => {
+				buttonElement.innerHTML = testoOG;
+				buttonElement.classList.remove("btn-aggiunto");
+				buttonElement.disabled = false;
+			}, 1500);
+		}
+		else{
+			buttonElement.disabled = false;
+		}
+	}
 	catch(err){
 		console.log(err);
 	}
