@@ -19,7 +19,7 @@ body {
 h1 {
     text-align: center;
     font-family: "Pixelify Sans", sans-serif;
-    font-size: 3rem;
+    font-size: 5rem;
     text-transform: uppercase;
     margin: 2rem 0;
     color: #111;
@@ -36,7 +36,8 @@ h1 {
     display: grid;
     grid-template-columns: 20% 1fr; 
     gap: 3rem;
-    align-items: start; 
+    justify-content:center;
+    align-items: flex-start; 
     margin-bottom: 4rem;
 }
 
@@ -75,6 +76,7 @@ h1 {
     color: #333;
 }
 
+
 .form-group select, 
 .form-group input {
     padding: 0.8rem;
@@ -83,8 +85,21 @@ h1 {
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     background-color: #fff;
+    width: 100%;  /* Costringe il campo a non superare il suo contenitore */
+    min-width: 0; /* Annulla la larghezza minima di default del browser */
 }
 
+.filter-row {
+    display: flex;
+    gap: 10px; 
+    width: 100%;
+}
+
+.filter-row input {
+    flex: 1; /* Costringe entrambi gli input a occupare esattamente il 50% dello spazio disponibile */
+    min-width: 0; /* Previene bug  su schermi piccolissimi */
+    width: 100%;
+}
 .btn-submit {
     background-color: #111;
     color: #fff;
@@ -170,7 +185,7 @@ h1 {
    ========================================= */
 
 /* Tablet (Sotto i 900px) */
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 800px) {
     .container {
         grid-template-columns: 1fr; 
     }
