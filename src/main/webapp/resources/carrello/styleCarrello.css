@@ -30,7 +30,6 @@
 .coin-img{
 	width: 110px; 
     height: auto; 
-    image-rendering: pixelated;
 }
 
 
@@ -165,7 +164,7 @@
 }
 
 /* =========================================
-   SEZIONE DESTRA: SOMMARIO ORDINE (<aside>)
+   SOMMARIO
    ========================================= */
 .cart-summary-section {
     flex: 0 0 350px; /*X */
@@ -249,7 +248,7 @@
     }
 }
 
-/* Smartphone: Riadatta i singoli prodotti per non uscire dallo schermo */
+
 @media screen and (max-width: 500px) {
     .prodotto-item {
         flex-direction: column;
