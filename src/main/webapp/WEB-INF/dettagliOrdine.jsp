@@ -169,8 +169,7 @@
                 <tr onclick="window.location='${prodottoUrl}';" style="cursor: pointer;" title="Clicca per vedere i dettagli del prodotto">
                     <td>
                         <img src="${pageContext.request.contextPath}/ImmagineServlet?id=${dettaglio.prodotto.idProdotto}" 
-                             alt="${dettaglio.prodotto.titolo}" class="img-prodotto" 
-                             onerror="this.src='https://via.placeholder.com/60?text=No+Img';">
+                             alt="${dettaglio.prodotto.titolo}" class="img-prodotto">
                     </td>
                     <td><strong>${dettaglio.prodotto.titolo}</strong></td>
                     <td>${dettaglio.prodotto.tipo}</td>

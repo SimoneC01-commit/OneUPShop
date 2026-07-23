@@ -145,8 +145,7 @@
                         <!-- Recupero immagine tramite la Servlet GetPicture -->
                         <img src="${pageContext.request.contextPath}/GetPicture?idProdotto=${p.idProdotto}" 
                              alt="${p.titolo}" 
-                             class="card-img" 
-                             onerror="this.src='https://via.placeholder.com/250x180?text=No+Foto';" />
+                             class="card-img"/>
                         
                         <div class="card-body">
                             <div>
