@@ -8,45 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Pannello Admin - Elenco Prodotti</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f8f9fa; }
-        .header-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .btn-group { display: flex; gap: 10px; }
-        .btn-back { padding: 10px 15px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 4px; }
-        .btn-back:hover { background-color: #5a6268; }
-        
-        /* Stile pulsante Aggiungi Prodotto */
-        .btn-add { padding: 10px 15px; background-color: #28a745; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; }
-        .btn-add:hover { background-color: #218838; }
-        
-        /* NUOVO STILE: Pulsante Modifica */
-        .btn-edit { padding: 6px 12px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em; font-weight: bold; display: inline-block; }
-        .btn-edit:hover { background-color: #0056b3; }
-
-        /* Stile pulsante Cancella attivo */
-        .btn-delete { padding: 6px 12px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; font-weight: bold; }
-        .btn-delete:hover { background-color: #c82333; }
-        
-        /* Pulsante Cancella disabilitato (prodotto non disponibile) */
-        .btn-delete:disabled { background-color: #6c757d; color: #e9ecef; cursor: not-allowed; opacity: 0.65; }
-        
-        /* Contenitore per affiancare i bottoni delle azioni */
-        .action-group { display: flex; gap: 6px; align-items: center; }
-
-        table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background-color: #343a40; color: white; }
-        tr:hover { background-color: #f1f3f5; }
-        
-        .img-preview { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd; }
-        .no-img { font-size: 0.85em; color: #888; font-style: italic; }
-        
-        .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; display: inline-block; }
-        .badge-nuovo { background-color: #28a745; color: white; }
-        .badge-usato { background-color: #ffc107; color: #212529; }
-        .badge-disp { background-color: #17a2b8; color: white; }
-        .badge-not-disp { background-color: #dc3545; color: white; }
-    </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/elencoProdotti/styleElencoProdotti.css">
+    <script src="${pageContext.request.contextPath}/resources/elencoProdotti/scriptElencoProdotti.js" defer></script>
 </head>
 <body>
 
@@ -96,7 +59,7 @@
                             base64Image = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(p.getFotoBlob());
                         }
                 %>
-                    <tr>
+                    <tr id="prodotto-<%= p.getIdProdotto() %>">
                         <td><%= p.getIdProdotto() %></td>
                         <td>
                             <% if (!base64Image.isEmpty()) { %>
@@ -131,17 +94,8 @@
                                     Modifica
                                 </a>
 
-                                <!-- Form per eliminare il prodotto tramite POST -->
-                                <form action="<%= request.getContextPath() %>/CancellaProdotto" method="POST" 
-                                      onsubmit="return confirm('Sei sicuro di voler eliminare il prodotto: <%= p.getTitolo().replace("'", "\\'") %>?');" 
-                                      style="margin:0;">
-                                    
-                                    <!-- Passiamo l'ID del prodotto come parametro nascosto -->
-                                    <input type="hidden" name="id" value="<%= p.getIdProdotto() %>" />
-                                    
-                                    <!-- Controllo inline per disabilitare il bottone se non disponibile -->
-                                    <button type="submit" class="btn-delete" <%= !p.isDisponibile() ? "disabled" : "" %>>Cancella</button>
-                                </form>
+                                <button type="button" id="btn-delete" class="btn-delete" onclick="confermaEliminazione(<%= p.getIdProdotto() %>)" 
+                                	<%= !p.isDisponibile() ? "disabled" : "" %> data-id-prodotto="${p.idProdotto}">Cancella</button>
                             </div>
                         </td>
                     </tr>
@@ -153,6 +107,12 @@
     <%
         }
     %>
+    
+    <dialog id="dlg-cancellazione">
+    	<p>Sicuro di voler cancellare questo prodotto?</p>
+    	<button class="btn-annulla" onclick="annulla()">Annulla</button>
+    	<button class="btn-conferma" onclick="elimina(this)" data-context-path="${pageContext.request.contextPath}">Conferma</button>
+    </dialog>
 
 </body>
 </html>

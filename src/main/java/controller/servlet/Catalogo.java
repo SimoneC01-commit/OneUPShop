@@ -51,7 +51,7 @@ public class Catalogo extends HttpServlet {
 		
 		Integer pagCorrente = (pagCorrenteStr != null && !pagCorrenteStr.isEmpty()) ? Integer.parseInt(pagCorrenteStr) : 1;
 		
-		int elemForPage = 9;
+		int elemForPage = 8;
 		
 		int nProd = 0;
 
