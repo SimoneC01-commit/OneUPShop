@@ -2,177 +2,92 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Dettaglio Ordine #${ordine.idOrdine} - OneUpShop</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .header-ordine {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-        .header-ordine h1 {
-            color: #2c3e50;
-            margin: 0;
-        }
-        .info-box {
-            background: #f9f9f9;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #2c3e50;
-            color: white;
-            font-weight: bold;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        .totale-box {
-            text-align: right;
-            font-size: 20px;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 2px solid #2c3e50;
-        }
-        .btn-back {
-            display: inline-block;
-            background: #7f8c8d;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 4px;
-            margin-top: 20px;
-            transition: background 0.3s;
-        }
-        .btn-back:hover {
-            background: #95a5a6;
-        }
-        .btn-delete {
-            display: inline-block;
-            background: #d63031; /* Rosso */
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .btn-delete:hover {
-            background: #c0392b; /* Rosso scuro al passaggio del mouse */
-        }
-        .badge {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .badge-elaborazione { background-color: #ffeaa7; color: #d63031; }
-        .badge-spedito { background-color: #74b9ff; color: #0984e3; }
-        .badge-consegnato { background-color: #55efc4; color: #00b894; }
-        .badge-annullato { background-color: #ff7675; color: #d63031; }
-        
-        .img-prodotto {
-            width: 60px;
-            height: auto;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-    </style>
+    <title>Ordine #${ordine.idOrdine} - OneUpShop</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dettagliOrdine/styleDettagliOrdine.css">
 </head>
 <body>
 
 <div class="container">
     
-    <div class="header-ordine">
-        <h1>Ordine #${ordine.idOrdine}</h1>
-        <div>
-            <c:choose>
-                <c:when test="${ordine.statoOrdine == 'In elaborazione'}">
-                    <span class="badge badge-elaborazione">In elaborazione</span>
-                </c:when>
-                <c:when test="${ordine.statoOrdine == 'Spedito'}">
-                    <span class="badge badge-spedito">Spedito</span>
-                </c:when>
-                <c:when test="${ordine.statoOrdine == 'Consegnato'}">
-                    <span class="badge badge-consegnato">Consegnato</span>
-                </c:when>
-                <c:otherwise>
-                    <span class="badge badge-annullato">${ordine.statoOrdine}</span>
-                </c:otherwise>
-            </c:choose>
+    <!-- INTESTAZIONE AZIENDALE E FATTURA -->
+    <div class="header-fattura">
+        <div class="dati-azienda">
+            <h2>OneUpShop S.r.l.</h2>
+            <p>Via Shop 123, 20121 Atlantide (UMI)<br>
+            P.IVA / C.F.: +39 123 456 7890<br>
+            Email: info@1upshop.com</p>
+        </div>
+        <div class="dati-ricevuta">
+            <h1>ORDINE N° #${ordine.idOrdine}</h1>
+            <p><strong>Data:</strong> <fmt:formatDate value="${ordine.dataOrdine}" pattern="dd/MM/yyyy HH:mm" /></p>
         </div>
     </div>
 
+    <hr class="separatore">
+
+    <!-- INFORMAZIONI CLIENTE E SPEDIZIONE -->
     <div class="info-box">
-        <strong>Data Ordine:</strong> <fmt:formatDate value="${ordine.dataOrdine}" pattern="dd/MM/yyyy - HH:mm" /><br>
-        <strong>Indirizzo di Spedizione:</strong> ${ordine.indirizzoSpedizione}<br>
-        <strong>Telefono:</strong> ${ordine.telefono}<br>
-        <strong>Metodo di Pagamento:</strong> ${ordine.metodoPagamento}
+        <div class="info-cliente">
+            <h3>Dati Cliente & Spedizione</h3>
+            <p><strong>Email Account:</strong> ${ordine.emailUtente}</p>
+            <p><strong>Indirizzo:</strong> ${ordine.indirizzoSpedizione}</p>
+            <p><strong>Telefono:</strong> ${ordine.telefono}</p>
+        </div>
+        <div class="info-pagamento">
+            <h3>Dettagli Ordine</h3>
+            <p><strong>Metodo di Pagamento:</strong> ${ordine.metodoPagamento}</p>
+            <p class="hide-on-print">
+                <strong>Stato Ordine:</strong> 
+                <c:choose>
+                    <c:when test="${ordine.statoOrdine == 'In elaborazione'}">
+                        <span class="badge badge-elaborazione">In elaborazione</span>
+                    </c:when>
+                    <c:when test="${ordine.statoOrdine == 'Spedito'}">
+                        <span class="badge badge-spedito">Spedito</span>
+                    </c:when>
+                    <c:when test="${ordine.statoOrdine == 'Consegnato'}">
+                        <span class="badge badge-consegnato">Consegnato</span>
+                    </c:when>
+                    <c:otherwise>
+                        <span class="badge badge-annullato">${ordine.statoOrdine}</span>
+                    </c:otherwise>
+                </c:choose>
+            </p>
+        </div>
     </div>
 
-    <h2>Prodotti Acquistati</h2>
-    <table>
+    <!-- TABELLA PRODOTTI -->
+    <h2>Prodotti in Fattura</h2>
+    <table class="tabella-prodotti">
         <thead>
             <tr>
-                <th>Immagine</th>
+                <th class="hide-on-print">Anteprima</th>
                 <th>Prodotto</th>
                 <th>Tipo</th>
+                <th>IVA</th>
                 <th>Prezzo (Storico)</th>
             </tr>
         </thead>
         <tbody>
             <c:forEach var="dettaglio" items="${dettagliOrdine}">
-                
-                <%-- Costruiamo l'URL per i dettagli del prodotto --%>
                 <c:url var="prodottoUrl" value="/DettagliProdotto">
-                    <%-- Puoi cambiare 'idProdotto' con il nome esatto che si aspetta la tua Servlet --%>
                     <c:param name="idProdotto" value="${dettaglio.prodotto.idProdotto}" />
                 </c:url>
                 
-                <%-- Rendiamo la riga cliccabile con Javascript e aggiungiamo la manina (cursor: pointer) --%>
-                <tr onclick="window.location='${prodottoUrl}';" style="cursor: pointer;" title="Clicca per vedere i dettagli del prodotto">
-                    <td>
+                <tr onclick="window.location='${prodottoUrl}';" class="riga-prodotto">
+                    <!-- Immagine nascondibile in stampa -->
+                    <td class="hide-on-print">
                         <img src="${pageContext.request.contextPath}/ImmagineServlet?id=${dettaglio.prodotto.idProdotto}" 
                              alt="${dettaglio.prodotto.titolo}" class="img-prodotto">
                     </td>
                     <td><strong>${dettaglio.prodotto.titolo}</strong></td>
                     <td>${dettaglio.prodotto.tipo}</td>
+                    <!-- IVA Storica recuperata dal DettaglioOrdineBean -->
+                    <td>${dettaglio.ivaStorico}%</td>
+                    <!-- Prezzo Storico recuperato dal DettaglioOrdineBean -->
                     <td>
                         <fmt:formatNumber value="${dettaglio.prezzoVenditaStorico}" type="currency" currencySymbol="€"/>
                     </td>
@@ -181,28 +96,34 @@
         </tbody>
     </table>
 
-	<div class="totale-box">
-	        <strong>Totale Ordine: </strong> 
-	        <span style="color: #27ae60;">
-	            <fmt:formatNumber value="${ordine.totaleOrdine}" type="currency" currencySymbol="€"/>
-	        </span>
-	    </div>
-	
-	    <div style="margin-top: 30px; display: flex; justify-content: space-between; align-items: center;">
-	        
-	        <a href="${pageContext.request.contextPath}/Ordini" class="btn-back" style="margin-top: 0;">← Torna ai Miei Ordini</a>
-	        
-	        <form action="${pageContext.request.contextPath}/CancellazioneOrdine" method="post" 
-	              onsubmit="return confirm('Sei sicuro di voler annullare definitivamente questo ordine?');">
-	            
-	            <input type="hidden" name="idOrdine" value="${ordine.idOrdine}">
-	            
-	            <button type="submit" class="btn-delete">Annulla Ordine</button>
-	        </form>
-	        
-	    </div>
-	
-	</div>
+    <!-- BOX TOTALE -->
+    <div class="totale-box">
+        <strong>Totale Complessivo (IVA Incl.): </strong> 
+        <span class="prezzo-totale">
+            <fmt:formatNumber value="${ordine.totaleOrdine}" type="currency" currencySymbol="€"/>
+        </span>
+    </div>
+
+    <!-- BARRA DELLE AZIONI (Completamente nascosta durante la stampa) -->
+    <div class="actions-bar hide-on-print">
+        <a href="${pageContext.request.contextPath}/Ordini" class="btn-back">← Torna ai Miei Ordini</a>
+        
+        <div class="btn-group-right">
+            <!-- Tasto Stampa -->
+            <button type="button" onclick="window.print()" class="btn-stampa">🖨️ Stampa Fattura (PDF)</button>
+
+            <!-- Tasto Annulla (mostrato solo se In elaborazione) -->
+            <c:if test="${ordine.statoOrdine == 'In elaborazione'}">
+                <form action="${pageContext.request.contextPath}/CancellazioneOrdine" method="post" 
+                      onsubmit="return confirm('Sei sicuro di voler annullare definitivamente questo ordine?');">
+                    <input type="hidden" name="idOrdine" value="${ordine.idOrdine}">
+                    <button type="submit" class="btn-delete">Annulla Ordine</button>
+                </form>
+            </c:if>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>
