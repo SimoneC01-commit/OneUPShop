@@ -5,46 +5,20 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalogo Prodotti</title>
-    <style>
-        body { font-family: sans-serif; margin: 30px; background-color: #f8f9fa; color: #333; }
-        .container { display: flex; gap: 30px; align-items: flex-start; }
-        
-        /* Stili Filtri */
-        .filters { background: white; padding: 20px; border-radius: 8px; border: 1px solid #ddd; width: 250px; }
-        .filters h3 { margin-top: 0; color: #0056b3; }
-        .form-group { margin-bottom: 15px; display: flex; flex-direction: column; gap: 5px; }
-        .form-group label { font-size: 0.9em; font-weight: bold; }
-        .form-group input, .form-group select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
-        .btn-submit { background: #0056b3; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; font-weight: bold; width: 100%; }
-        .btn-submit:hover { background: #004494; }
-        
-        /* Stili Griglia Prodotti */
-        .catalog { flex-grow: 1; }
-        .error-msg { color: red; font-weight: bold; padding: 10px; background: #fdd; border-radius: 4px; margin-bottom: 20px; }
-        .stats { margin-bottom: 15px; font-size: 0.9em; color: #666; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd; display: flex; flex-direction: column; justify-content: space-between; }
-        .img-box { height: 150px; background: #eee; display: flex; align-items: center; justify-content: center; border-radius: 4px; overflow: hidden; margin-bottom: 10px; }
-        .img-box img { max-width: 100%; max-height: 100%; object-fit: cover; }
-        .card h4 { margin: 0 0 10px 0; font-size: 1.1em; }
-        .price { color: #28a745; font-weight: bold; font-size: 1.2em; margin-bottom: 15px; }
-        .btn-link { background: #333; color: white; text-align: center; padding: 8px; text-decoration: none; border-radius: 4px; font-size: 0.9em; }
-        .btn-link:hover { background: #555; }
-        
-        /* Stili Paginazione */
-        .pagination { display: flex; justify-content: center; gap: 5px; margin-top: 30px; }
-        .page-btn { padding: 8px 12px; border: 1px solid #ddd; background: white; color: #0056b3; text-decoration: none; border-radius: 4px; }
-        .page-btn.active { background: #0056b3; color: white; border-color: #0056b3; pointer-events: none; }
-        .page-btn:hover:not(.active) { background: #e9ecef; }
-    </style>
+     <script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/catalogo/styleCatalogo.css">
 </head>
 <body>
 
+<jsp:include page="common/header.jsp" />
+
     <h1>Catalogo</h1>
 
-    <div class="container">
-        
+    <main class="container">
+    
+       <aside>  <!-- FILTRI -->
         <form action="Catalogo" method="GET" class="filters">
             <h3>Filtra per:</h3>
             
@@ -93,7 +67,8 @@
                 <a href="Catalogo" style="color: #666; font-size: 0.9em; text-decoration: none;">Reset</a>
             </div>
         </form>
-
+      </aside>
+	
         <div class="catalog">
             
             <c:if test="${not empty errorMessage}">
@@ -108,37 +83,47 @@
                         (Pagina ${paginaCorrente} di ${totalePagine})
                     </div>
 
-                    <div class="grid">
-                        <c:forEach var="p" items="${listaProdotti}">
-                            <div class="card">
-                                <div>
-                                    <div class="img-box">
-                                        <c:choose>
-                                            <c:when test="${not empty p.fotoBlob}">
-                                                <%
-                                                    model.prodotto.ProdottoBean pb = (model.prodotto.ProdottoBean) pageContext.getAttribute("p");
-                                                    String b64 = Base64.getEncoder().encodeToString(pb.getFotoBlob());
-                                                %>
-                                                <img src="data:image/jpeg;base64,<%= b64 %>" alt="${p.titolo}">
-                                            </c:when>
-                                            <c:otherwise>
-                                                <span style="color: #999;">No Foto</span>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </div>
-                                    <h4>${p.titolo}</h4>
-                                </div>
-                                
-                                <div>
-                                    <div class="price">€ ${p.prezzoAttuale}</div>
-                                    <a href="DettagliProdotto?idProdotto=${p.idProdotto}" class="btn-link">Vedi Dettagli</a>
-                                </div>
-                                <div>
-                                    <button type="button" class="bottone" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
-                                </div>
-                            </div>
-                        </c:forEach>
-                    </div>
+			 <!-- CARD -->
+			  <div class="product-grid">
+			    <c:forEach var="p" items="${listaProdotti}">
+			        <article class="product-card">
+			            
+			            <!-- IMMAGINE -->
+			            <c:choose>
+			                <c:when test="${not empty p.fotoBlob}">
+			                    <%
+			                        model.prodotto.ProdottoBean pb = (model.prodotto.ProdottoBean) pageContext.getAttribute("p");
+			                        String b64 = Base64.getEncoder().encodeToString(pb.getFotoBlob());
+			                    %>
+			                    <img src="data:image/jpeg;base64,<%= b64 %>" class="img-placeholder" alt="${p.titolo}">
+			                </c:when>
+			                <c:otherwise>
+			                    <!-- Fallback se non c'è la foto: img-placeholder per mantenere il layout quadrato -->
+			                    <div class="img-placeholder" style="display: flex; align-items: center; justify-content: center; color: #999;">
+			                        Nessuna Foto
+			                    </div>
+			                </c:otherwise>
+			            </c:choose>
+			
+			          
+			            <div class="card-details">
+			              
+			                <span class="category">${p.tipo}</span>
+			                <h3 class="title">
+			                    <a href="DettagliProdotto?idProdotto=${p.idProdotto}">${p.titolo}</a>
+			                </h3>
+			                
+			                <p class="price">€ ${p.prezzoAttuale} EUR</p>
+			                
+			                
+			                <button type="button" class="bottone" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${p.idProdotto}" data-context-path="${pageContext.request.contextPath}">
+			                    Aggiungi al carrello
+			                </button>
+			            </div>
+			            
+			        </article>
+			    </c:forEach>
+			</div>
 
                     <c:if test="${totalePagine > 1}">
                         <div class="pagination">
@@ -158,7 +143,8 @@
             </c:choose>
             
         </div>
-    </div>
-
+    </main>
+	
+	<jsp:include page="common/footer.jsp" />
 </body>
 </html>

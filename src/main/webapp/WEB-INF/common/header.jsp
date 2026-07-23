@@ -51,11 +51,11 @@
     <!-- RIGA INFERIORE (Nascosta su Mobile, le aziende vanno nel cassetto) -->
     <div class="header-bottom hide-on-mobile">
         <nav class="company-links">
-            <ul>
+            <ul>  
+               <li><a href="${pageContext.request.contextPath}/Catalogo">Catalogo -</a></li>
 	           <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Nintendo">Nintendo - </a></li>
 		       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Sony">Sony -</a></li>
 		       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Microsoft">Microsoft -</a></li>
-		       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Nintendo">Cabinati -</a></li>
             </ul>
         </nav>
         <div class="support-link">

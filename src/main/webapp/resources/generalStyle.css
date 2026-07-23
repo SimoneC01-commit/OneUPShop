@@ -5,6 +5,7 @@
    ========================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); 
 
 /*.pixelify-sans-<uniquifier> {
   font-family: "Pixelify Sans", sans-serif;
@@ -76,10 +77,15 @@
     margin-bottom: 5px;
 }
 
+.title {
+	margin: 0 0 10px 0;
+}
+
 .title a {
 	font-family:'Roboto', sans-serif; 
-    font-size: auto;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    /*margin-bottom: 10px;*/
     color: black; /* Prende il colore originale del testo (nero) */
     text-decoration: none; 
     transition: color 0.2s ease; /* Rende il cambio di colore fluido */

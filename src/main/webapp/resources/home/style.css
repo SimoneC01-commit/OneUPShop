@@ -6,7 +6,7 @@
 ======================================*/
 
 
-/* Reset di base (Classico per evitare spazi indesiderati) */
+/* Reset di base */
 * {
    
     margin: 0;
@@ -16,7 +16,7 @@
 body {
     /* Applichiamo il font pixel a tutto il sito */
     font-family: 'Pixelify Sans', sans-serif;
-    font-size: 1.3rem; /* Leggermente più grande perché i font pixel rendono meno */
+    font-size: 1.3rem; 
     background-color: #f8f9fa;
     color: #222;
 }
@@ -30,15 +30,15 @@ body {
 /* --- BANNER --- */
 .banner-container {
     width: 100%;
-    /* margin-top: 1rem; (Opzionale: se vuoi staccarlo un po' dall'header) */
+    /* margin-top: 1rem; */
     overflow: hidden; /* Evita che l'immagine "sbordi" in situazioni strane */
     margin-bottom: 1rem;
 }
 
 .banner-img {
     width: 100%;      /* Occupa sempre tutto lo schermo in larghezza */
-    height: auto;     /* FONDAMENTALE: calcola l'altezza in automatico senza schiacciare l'immagine */
-    display: block;   /* Rimuove un fastidioso spazietto bianco che i browser mettono sotto le immagini */
+    height: auto;     /* calcola l'altezza in automatico senza schiacciare l'immagine */
+    display: block;   
     object-fit: cover; /* Se il contenitore dovesse restringersi troppo, taglia i bordi invece di deformare i pixel */
 }
 
