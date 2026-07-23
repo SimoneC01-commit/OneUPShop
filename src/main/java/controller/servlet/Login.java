@@ -3,6 +3,7 @@ package controller.servlet;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import controller.utility.HtmlDecoder;
 import controller.utility.PasswordEncrypter;
 import model.carrello.Carrello;
+import model.prodotto.ProdottoBean;
 import model.utente.UtenteBean;
 import model.utente.UtenteDAO;
 
@@ -71,14 +73,26 @@ public class Login extends HttpServlet {
 			
 			if(utente.getPassword().equals(passwordCifrata)) {
 				
+				HttpSession vecchiaSessione = request.getSession();
+				
+				Carrello vecchioCarrello = (Carrello) vecchiaSessione.getAttribute("carrello");
+				
+
+				Carrello carrello = new Carrello();
+
+				List<ProdottoBean> lista = vecchioCarrello.getLista();
+				
+				for(ProdottoBean prodotto : lista) {
+					carrello.aggiungiProdotto(prodotto);
+				}
+				
 				HttpSession sessione = request.getSession(false);
 				if (sessione != null) {
 					sessione.invalidate();
 				}
 				
-				Carrello carrello = new Carrello();
-				
 				sessione = request.getSession(true);
+				sessione.setMaxInactiveInterval(60*30);
 				sessione.setAttribute("utente", utente);
 				sessione.setAttribute("carrello", carrello);
 				
