@@ -19,7 +19,7 @@
         <!-- BLOCCO DESTRA: Link e Copyright -->
         <div class="footer-right">
             <nav class="footer-links">
-                <a href="${pageContext.request.contextPath}/Login">Account</a>
+                <a href="${pageContext.request.contextPath}/Profilo">Account</a>
                 <a href="${pageContext.request.contextPath}/Wishlist">Wishlist</a>
                 <a href="${pageContext.request.contextPath}/DettagliCarrello">Carrello</a>
                 <a href="#">Contatti</a>

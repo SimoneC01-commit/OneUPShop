@@ -21,13 +21,16 @@
     <section class="header-utente">
         <c:choose>
             <c:when test="${not empty sessionScope.utente}">
-               <div class=titolo-carrello> 
-               <h2>Benvenuto nel tuo carrello, ${sessionScope.utente.nome}!</h2> 
-                <img src="${pageContext.request.contextPath}/resources/img/coin.gif" alt="coin" class="coin-img">
+               <!-- Corretto l'inserimento delle virgolette nella classe -->
+               <div class="titolo-carrello"> 
+                   <h2>Benvenuto nel tuo carrello, ${sessionScope.utente.nome}!</h2> 
+                   <img src="${pageContext.request.contextPath}/resources/img/coin.gif" alt="coin" class="coin-img">
                </div>
             </c:when>
             <c:otherwise>
-                <h2>Stai navigando come Ospite. <a href="Login" style="color: #3498db;">Accedi</a> per salvare i tuoi acquisti!</h2>
+            	<div class="title-notlogin">
+                    <h2>Stai navigando come Ospite. <a href="Login" style="color: #3498db;">Accedi</a> per salvare i tuoi acquisti!</h2>
+                </div>
             </c:otherwise>
         </c:choose>
     </section>
@@ -50,7 +53,7 @@
                         <p>Non sei pronto all'acquisto? <a href="Catalogo">Continua lo shopping</a></p>
                     </div>
                     
-                      <!-- Lista prodotti -->
+                    <!-- Lista prodotti -->
                     <div class="items-list">
                         <c:forEach var="prodotto" items="${sessionScope.carrello.lista}">
                             
@@ -86,24 +89,26 @@
                 <!-- Sommario Carrello -->
                 <aside class="cart-summary-section">
                     <h3>Sommario Ordine</h3>
-                    
+                   
                     <div class="summary-details">
-                        <div class="summary-row">
-                            <span>Subtotale</span>
-                            <span>${sessionScope.carrello.totale} &euro;</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Spedizione</span>
-                            <span>Gratis</span>
-                        </div>
+                        
+                        <!-- Stampa una riga per ogni prodotto nel carrello -->
+                        <c:forEach var="item" items="${sessionScope.carrello.lista}">
+                            <div class="summary-row" style="font-size: 0.95rem; color: #555;">
+                                <!-- Nome del prodotto tagliato se troppo lungo -->
+                                <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70%;">${item.titolo}</span>
+                                <span>${item.prezzoAttuale} &euro;</span>
+                            </div>
+                        </c:forEach>
+                        <!-- FINE CICLO -->
                         
                         <hr class="summary-divider">
                         
                         <div class="summary-row totale">
                             <span>Totale</span>
                             <span>${sessionScope.carrello.totale} &euro;</span>
-                        </div>
-                    </div>
+                        </div>   
+                    </div> 
                     
                     <form action="${pageContext.request.contextPath}/Checkout" method="get">
                         <button type="submit" class="btn-checkout">Procedi al checkout</button>
@@ -116,7 +121,7 @@
 
 </main>
 
-<jsp:include page="common/footer.jsp" />
+<jsp:include page="common/footer.jsp"/>
 
 </body>
 </html>
