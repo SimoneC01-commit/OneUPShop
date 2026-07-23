@@ -19,7 +19,7 @@ body {
 h1 {
     text-align: center;
     font-family: "Pixelify Sans", sans-serif;
-    font-size: 5rem;
+    font-size: 3.5rem;
     text-transform: uppercase;
     margin: 2rem 0;
     color: #111;
@@ -151,7 +151,10 @@ h1 {
    ========================================= */
 
 /* --- CARD PRODOTTO IMPORTATO --- */
-
+.product-grid {
+    grid-template-columns: repeat(auto-fit, 280px);
+    justify-content: center;
+}
 
 /* =========================================
    PAGINAZIONE
@@ -185,7 +188,7 @@ h1 {
    ========================================= */
 
 /* Tablet (Sotto i 900px) */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px) {
     .container {
         grid-template-columns: 1fr; 
     }
@@ -233,13 +236,17 @@ h1 {
         padding: 0 1rem;
     }
     
+    .h1{
+    	font-size:2.5rem;
+    }
+    
     .filters {
         grid-template-columns: repeat(2, 1fr); /* Passa a 2 colonne affiancate */
-        padding: 1rem; /* Padding molto stretto per far entrare tutto senza sbordare! */
+        padding: 1rem; 
         gap: 10px; /* Spazio ridotto tra le caselle */
     }
     
-    /* Rimpiccioliamo leggermente i testi e i campi per adattarli allo schermo */
+    
     .form-group label {
         font-size: 0.85rem; 
     }
@@ -250,7 +257,7 @@ h1 {
         font-size: 0.9rem;
     }
     
-    /* Facciamo in modo che il bottone e il reset occupino sempre TUTTA la larghezza in basso */
+    
     .btn-submit {
         grid-column: 1 / -1; 
         height: 45px;

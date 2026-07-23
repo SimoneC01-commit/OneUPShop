@@ -18,59 +18,58 @@
     	 
     <main class="container">
         <!-- SIDEBAR FILTRI -->
-        <aside class="filters">
-            <h3>Filtra per:</h3>
-            <form action="${pageContext.request.contextPath}/CatalogoAzienda" method="get">
-                <!-- Mantiene il parametro azienda obbligatorio -->
-                <input type="hidden" name="azienda" value="${param.azienda}">
-                
-                <!-- Filtro Tipo -->
-                <div class="form-group">
-                    <label for="tipo">Categoria</label>
-                    <select id="tipo" name="tipo">
-                        <option value="">Tutti i tipi</option>
-                        <option value="Console" ${param.tipo == 'Console' ? 'selected' : ''}>Console</option>
-                        <option value="Gioco" ${param.tipo == 'Gioco' ? 'selected' : ''}>Gioco</option>
-                        <option value="Cabinato" ${param.tipo == 'Cabinato' ? 'selected' : ''}>Cabinato</option>
-                        <option value="Gadget" ${param.tipo == 'Gadget' ? 'selected' : ''}>Gadget</option>
-                    </select>
-                </div>
+        <aside> 
+    <form action="${pageContext.request.contextPath}/CatalogoAzienda" method="get" class="filters">
+        
+        <h3>Filtra per:</h3>
+        <input type="hidden" name="azienda" value="${param.azienda}">
+        <!-- Filtro Tipo -->
+        <div class="form-group">
+            <label for="tipo">Categoria</label>
+            <select id="tipo" name="tipo">
+                <option value="">Tutti i tipi</option>
+                <option value="Console" ${param.tipo == 'Console' ? 'selected' : ''}>Console</option>
+                <option value="Gioco" ${param.tipo == 'Gioco' ? 'selected' : ''}>Gioco</option>
+                <option value="Cabinato" ${param.tipo == 'Cabinato' ? 'selected' : ''}>Cabinato</option>
+                <option value="Gadget" ${param.tipo == 'Gadget' ? 'selected' : ''}>Gadget</option>
+            </select>
+        </div>
 
-                <!-- Filtro Stato -->
-                <div class="form-group">
-                    <label for="stato">Stato</label>
-                    <select id="stato" name="stato">
-                        <option value="">Nessuna Opzione</option>
-                        <option value="Nuovo" ${param.stato == 'Nuovo' ? 'selected' : ''}>Nuovo</option>
-                        <option value="Usato" ${param.stato == 'Usato' ? 'selected' : ''}>Usato</option>
-                    </select>
-                </div>
+        <!-- Filtro Stato -->
+        <div class="form-group">
+            <label for="stato">Stato</label>
+            <select id="stato" name="stato">
+                <option value="">Nessuna Opzione</option>
+                <option value="Nuovo" ${param.stato == 'Nuovo' ? 'selected' : ''}>Nuovo</option>
+                <option value="Usato" ${param.stato == 'Usato' ? 'selected' : ''}>Usato</option>
+            </select>
+        </div>
 
-                <!-- Filtro Prezzo -->
-                <div class="form-group">
-                    <label>Prezzo (€)</label>
-                    <div class="filter-row">
-                        <input type="number" step="0.01" name="minPrice" placeholder="Min" value="${param.minPrice}">
-                        <input type="number" step="0.01" name="maxPrice" placeholder="Max" value="${param.maxPrice}">
-                    </div>
-                </div>
+        <!-- Filtro Prezzo -->
+        <div class="form-group">
+            <label>Prezzo (€)</label>
+            <div class="filter-row">
+                <input type="number" step="0.01" name="minPrice" placeholder="Min" value="${param.minPrice}">
+                <input type="number" step="0.01" name="maxPrice" placeholder="Max" value="${param.maxPrice}">
+            </div>
+        </div>
 
-                <!-- Filtro Anno -->
-                <div class="form-group">
-                    <label>Anno di Rilascio</label>
-                    <div class="filter-row">
-                        <input type="number" name="minYear" placeholder="Da" value="${param.minYear}">
-                        <input type="number" name="maxYear" placeholder="A" value="${param.maxYear}">
-                    </div>
-                </div>
+        <!-- Filtro Anno -->
+        <div class="form-group">
+            <label>Anno di Rilascio</label>
+            <div class="filter-row">
+                <input type="number" name="minYear" placeholder="Da" value="${param.minYear}">
+                <input type="number" name="maxYear" placeholder="A" value="${param.maxYear}">
+            </div>
+        </div>
 
-                <button type="submit" class="btn-submit">Applica Filtri</button>
-                <div style="text-align: center; margin-top: 10px;">
-                <a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=${param.azienda}"
-                style="color: #666; font-size: 0.9em; text-decoration: underline;">Reset </a>
-            	</div>
-            </form>
-        </aside>
+        <button type="submit" class="btn-submit">Applica Filtri</button>
+        <div class="reset-container" style="text-align: center; margin-top: 10px;">
+            <a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=${param.azienda}"
+               style="color: #666; font-size: 0.9em; text-decoration: underline;">Reset </a>
+        </div>
+    </form>
+</aside>
 
         <!-- AREA PRODOTTI -->
         <article class="catalog">

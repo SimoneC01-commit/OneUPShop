@@ -78,10 +78,10 @@
         </div>
 
         <ul class="sidebar-links">
-	       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Nintendo">Nintendo - </a></li>
-	       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Sony">Sony -</a></li>
-	       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Microsoft">Microsoft -</a></li>
-	       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Nintendo">Cabinati -</a></li>
+	        <li><a href="${pageContext.request.contextPath}/Catalogo">Catalogo -</a></li>
+	           <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Nintendo">Nintendo - </a></li>
+		       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Sony">Sony -</a></li>
+		       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Microsoft">Microsoft -</a></li>
         </ul>
 
         <div class="sidebar-support">
