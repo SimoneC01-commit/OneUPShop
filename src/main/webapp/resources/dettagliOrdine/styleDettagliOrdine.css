@@ -1,0 +1,287 @@
+@charset "UTF-8";
+
+/* ==========================================
+   1. STILI GENERALI (Visualizzazione a schermo)
+   ========================================== */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* --- INTESTAZIONE FATTURA AZIENDALE --- */
+.header-fattura {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.dati-azienda h2 {
+    color: #2c3e50;
+    margin: 0 0 5px 0;
+}
+
+.dati-azienda p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.dati-ricevuta {
+    text-align: right;
+}
+
+.dati-ricevuta h1 {
+    color: #2c3e50;
+    margin: 0 0 5px 0;
+    font-size: 24px;
+}
+
+.dati-ricevuta p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.separatore {
+    border: none;
+    border-top: 2px solid #3498db;
+    margin: 20px 0;
+}
+
+/* --- BOX INFORMAZIONI CLIENTE/ORDINE --- */
+.info-box {
+    display: flex;
+    justify-content: space-between;
+    background: #f9f9f9;
+    padding: 18px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.info-cliente, .info-pagamento {
+    flex: 1;
+}
+
+.info-box h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #2c3e50;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 5px;
+}
+
+.info-box p {
+    margin: 4px 0;
+}
+
+/* --- TABELLA PRODOTTI --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #2c3e50;
+    color: white;
+    font-weight: bold;
+}
+
+tr.riga-prodotto:hover {
+    background-color: #f1f1f1;
+}
+
+.img-prodotto {
+    width: 60px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* --- BOX TOTALE --- */
+.totale-box {
+    text-align: right;
+    font-size: 20px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid #2c3e50;
+}
+
+.prezzo-totale {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* --- BADGES STATO ORDINE --- */
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+}
+.badge-elaborazione { background-color: #ffeaa7; color: #d63031; }
+.badge-spedito { background-color: #74b9ff; color: #0984e3; }
+.badge-consegnato { background-color: #55efc4; color: #00b894; }
+.badge-annullato { background-color: #ff7675; color: #d63031; }
+
+/* --- BARRA DELLE AZIONI E PULSANTI --- */
+.actions-bar {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-group-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-back {
+    display: inline-block;
+    background: #7f8c8d;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.btn-back:hover {
+    background: #95a5a6;
+}
+
+.btn-stampa {
+    display: inline-block;
+    background: #3498db; /* Blu */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-stampa:hover {
+    background: #2980b9;
+}
+
+.btn-delete {
+    display: inline-block;
+    background: #d63031; /* Rosso */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-delete:hover {
+    background: #c0392b;
+}
+
+
+/* ==========================================
+   2. MEDIA QUERY PER LA STAMPA / PDF (@media print)
+   ========================================== */
+@media print {
+    /* Formattazione pagina A4 con margini di stampa standard */
+    @page {
+        size: A4;
+        margin: 15mm;
+    }
+
+    /* 1. NASCONDE tutti gli elementi non utili alla stampa */
+    .hide-on-print,
+    .btn-back,
+    .btn-stampa,
+    .btn-delete,
+    .actions-bar,
+    form {
+        display: none !important;
+    }
+
+    /* 2. RESET DEL FOGLIO (Sfondo bianco puro e testo nero) */
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11pt;
+        padding: 0;
+        margin: 0;
+    }
+
+    .container {
+        box-shadow: none !important;
+        border: none !important;
+        width: 100% !important;
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .info-box {
+        background: #ffffff !important;
+        border: 1px solid #cccccc !important;
+    }
+
+    /* 3. TABELLA STAMPABILE */
+    table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+    }
+
+    th {
+        background-color: #f2f2f2 !important; /* Grigio chiaro per risparmiare inchiostro */
+        color: #000000 !important;
+        border: 1px solid #ccc !important;
+    }
+
+    td {
+        border: 1px solid #ccc !important;
+    }
+
+    tr.riga-prodotto {
+        cursor: default !important;
+    }
+
+    tr.riga-prodotto:hover {
+        background-color: transparent !important;
+    }
+
+    /* Evita che le righe vengano spezzate tra due pagine diverse */
+    tr {
+        page-break-inside: avoid;
+    }
+}
