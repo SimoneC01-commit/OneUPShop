@@ -41,7 +41,15 @@ public class Checkout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/Carrello").forward(request, response);
+		HttpSession sessione = request.getSession();
+	    Carrello carrello = (Carrello) sessione.getAttribute("carrello");
+	    
+	    if (carrello == null || carrello.getLista().isEmpty()) {
+	        response.sendRedirect(request.getContextPath() + "/DettagliCarrello");
+	        return;
+	    }
+	    
+	    request.getRequestDispatcher("/WEB-INF/checkout.jsp").forward(request, response);
 	}
 
 	/**
@@ -67,13 +75,18 @@ public class Checkout extends HttpServlet {
 		String telefono = request.getParameter("telefono");
 		String metodoPagamento = request.getParameter("metodoPagamento");
 		
-		if(via == null || via.trim().isEmpty() 
-		        || cap == null || cap.trim().isEmpty() 
-		        || citta == null || citta.trim().isEmpty()
-		        || telefono == null || telefono.trim().isEmpty()
-		        || metodoPagamento == null || metodoPagamento.trim().isEmpty()) {
+		String viaRegex = "^[a-zA-ZàèéìòùÀÈÉÌÒÙ'’.\\s-]+,\\s*\\d+(?:\\/[a-zA-Z0-9]+)?$";
+		String capRegex = "^\\d{5}$";
+		String cittaRegex = "^[a-zA-ZàèéìòùÀÈÉÌÒÙ'’\\s-]{2,50}$";
+		String telRegex = "^\\+39\\s\\d{3}\\s?\\d{3}\\s?\\d{4}$";
+		
+		if(via == null || !via.matches(viaRegex) || (via.length() < 5 || via.length() > 100)|| 
+				cap == null || !cap.matches(capRegex) || 
+				citta == null || !citta.matches(cittaRegex) ||
+				telefono == null || !telefono.matches(telRegex) || 
+				!"Pagamento Alla Consegna".equals(metodoPagamento)) {
 		    
-		    request.setAttribute("errorMessage", "Errore compilazione form. Tutti i campi sono obbligatori.");
+		    request.setAttribute("errorMessage", "Errore compilazione form.");
 		    request.getRequestDispatcher("/WEB-INF/checkout.jsp").forward(request, response);
 		    return;
 		}

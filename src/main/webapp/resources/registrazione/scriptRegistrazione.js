@@ -1,28 +1,46 @@
 function checkName(inputtxt){
-	var nameRegex = /^[A-Z][a-z]*(?: [A-Z][a-z]*)*$/;
-	if(inputtxt.value.match(nameRegex)){
+	const val = inputtxt.value.trim();
+	if (val.length < 2 || val.length > 100) {
+		addError(inputtxt, "Il nome deve contenere tra 2 e 100 caratteri.");
+		return false;
+	}
+
+	const nameRegex = /^[A-Z][a-z]*(?: [A-Z][a-z]*)*$/;
+	if(nameRegex.test(val)){
 		removeError(inputtxt);
 		return true;
 	}
 
-	addError(inputtxt, "Il nome deve contentere solo lettere ed iniziare con una lettera MAIUSCOLA");
+	addError(inputtxt, "Il nome deve contentere solo lettere ed iniziare con una lettera MAIUSCOLA.");
 	return false;
 }
 
 function checkSurname(inputtxt){
-	var nameRegex = /^[A-Z][a-z]*(?: [A-Z][a-z]*)*$/;
-	if(inputtxt.value.match(nameRegex)){
+	const val = inputtxt.value.trim();
+	if (val.length < 2 || val.length > 100) {
+		addError(inputtxt, "Il cognome deve contenere tra 2 e 100 caratteri.");
+		return false;
+	}
+
+	const surnameRegex = /^[A-Z][a-z]*(?: [A-Z][a-z]*)*$/;
+	if(surnameRegex.test(val)){
 		removeError(inputtxt);
 		return true;
 	}
 
-	addError(inputtxt, "Il cognome può contentere solo numeri e lettere");
+	addError(inputtxt, "Il nome deve contentere solo lettere ed iniziare con una lettera MAIUSCOLA.");
 	return false;
 }
 
 function checkEmail(inputtxt){
-	var emailRegex = /^[a-zA-Z0-9]+([.-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([.-][a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$/;
-	if(inputtxt.value.match(emailRegex)){
+	const val = inputtxt.value.trim();
+	if (val.length > 100) {
+		addError(inputtxt, "L'email non può superare i 100 caratteri.");
+		return false;
+	}
+
+	const emailRegex = /^[a-zA-Z0-9]+([.-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([.-][a-zA-Z0-9]+)*\.[a-zA-Z]{2,10}$/;
+	if(emailRegex.test(val)){
 		removeError(inputtxt);
 		return true;
 	}
@@ -32,7 +50,7 @@ function checkEmail(inputtxt){
 }
 
 function checkPassword(inputtxt){
-	var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+	const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,100}$/;
 	if(inputtxt.value.match(passwordRegex)){
 		removeError(inputtxt);
 		return true;
@@ -53,29 +71,29 @@ function checkConfermaPassword(pass, passRipetuta){
 }
 
 async function validate(obj){
-	var valid = true;
+	let valid = true;
 	
-	var name = document.getElementById("nome");
+	const name = document.getElementById("nome");
 	if(!checkName(name)){
 		valid = false;
 	}
 	
-	var surname = document.getElementById("cognome");
+	const surname = document.getElementById("cognome");
 	if(!checkSurname(surname)){
 		valid = false;
 	}
 	
-	var email = document.getElementById("email");
+	const email = document.getElementById("email");
 	if(!checkEmail(email)){
 		valid = false;
 	}
 	
-	var password = document.getElementById("password");
+	const password = document.getElementById("password");
 	if(!checkPassword(password)){
 		valid = false;
 	}
 	
-	var confermaPassword = document.getElementById("confermaPassword");
+	const confermaPassword = document.getElementById("confermaPassword");
 	if(!checkConfermaPassword(password, confermaPassword)){
 		valid = false;
 	}

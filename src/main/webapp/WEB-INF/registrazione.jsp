@@ -23,31 +23,31 @@
             
             <div class="form-group">
                 <label for="nome">Nome</label>
-                <input type="text" id="nome" name="nome" required 
-                	oninput="checkName(this)" placeholder="Mario">
+                <input type="text" id="nome" name="nome" required max="100"
+                	oninput="checkName(this)" placeholder="es. Mario">
             </div>
 
             <div class="form-group">
                 <label for="cognome">Cognome</label>
-                <input type="text" id="cognome" name="cognome" required 
-                	oninput="checkSurname(this)" placeholder="Rossi">
+                <input type="text" id="cognome" name="cognome" required max="100"
+                	oninput="checkSurname(this)" placeholder="es. Rossi">
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required 
-                	oninput="checkEmail(this)" placeholder="emai.prova@dominio.prova.it">
+                <input type="email" id="email" name="email" required max="100"
+                	oninput="checkEmail(this)" placeholder="es. emai.prova@dominio.prova.it">
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required min="6" 
+                <input type="password" id="password" name="password" required min="8" max="100" 
                 	oninput="checkPassword(this); checkConfermaPassword(this, document.getElementById('confermaPassword'))">
             </div>
             
             <div class="form-group">
                 <label for="confermaPassword">Conferma Password</label>
-                <input type="password" id="confermaPassword" name="confermaPassword" required min="6" 
+                <input type="password" id="confermaPassword" name="confermaPassword" required 
                 	oninput="checkConfermaPassword(document.getElementById('password'), this)">
             </div>
 

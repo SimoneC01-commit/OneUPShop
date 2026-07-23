@@ -77,13 +77,14 @@ public class Login extends HttpServlet {
 				
 				Carrello vecchioCarrello = (Carrello) vecchiaSessione.getAttribute("carrello");
 				
-
 				Carrello carrello = new Carrello();
 
-				List<ProdottoBean> lista = vecchioCarrello.getLista();
-				
-				for(ProdottoBean prodotto : lista) {
-					carrello.aggiungiProdotto(prodotto);
+				if(vecchioCarrello != null) {
+					List<ProdottoBean> lista = vecchioCarrello.getLista();
+					
+					for(ProdottoBean prodotto : lista) {
+						carrello.aggiungiProdotto(prodotto);
+					}
 				}
 				
 				HttpSession sessione = request.getSession(false);

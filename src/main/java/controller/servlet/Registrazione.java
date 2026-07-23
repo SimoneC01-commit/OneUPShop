@@ -79,6 +79,8 @@ public class Registrazione extends HttpServlet {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				response.setStatus(500);
+				return;
 			}
 		}
 		
@@ -87,15 +89,18 @@ public class Registrazione extends HttpServlet {
 		String cognome = request.getParameter("cognome");
 		String passwordUtente = request.getParameter("password");
 		
-		if (nome == null || nome.isEmpty() || 
-				cognome == null || cognome.isEmpty() || 
-				email == null || email.isEmpty() || 
-				passwordUtente == null || passwordUtente.isEmpty() &&
-				ajax != null) {
+		String nameRegex = "^[A-Z][a-z]*(?: [A-Z][a-z]*)*$";
+		String emailRegex = "^[a-zA-Z0-9]+([.-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([.-][a-zA-Z0-9]+)*\\.[a-zA-Z]{2,10}$";
+		String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,100}$";
+		
+		if (nome == null || !nome.matches(nameRegex) || (nome.length() < 2 || nome.length() > 100) ||
+				cognome == null || !cognome.matches(nameRegex) || (cognome.length() < 2 || cognome.length() > 100) ||
+				email == null || !email.matches(emailRegex) || (email.length() > 100) ||
+				passwordUtente == null || !passwordUtente.matches(passwordRegex)) {
 				
-				request.setAttribute("errorMessage", "Errore compilazione form.");
-				request.getRequestDispatcher("/WEB-INF/registrazione.jsp").forward(request, response);
-				return;
+			request.setAttribute("errorMessage", "Errore compilazione form.");
+			request.getRequestDispatcher("/WEB-INF/registrazione.jsp").forward(request, response);
+			return;
 		}
 		
 		try {

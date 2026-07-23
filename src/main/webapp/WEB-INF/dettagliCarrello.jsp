@@ -78,11 +78,11 @@
                 Totale Ordine: ${sessionScope.carrello.totale} &euro;
             </div>
             
-            <form action="${pageContext.request.contextPath}/Checkout" method="post">
+            <form action="${pageContext.request.contextPath}/Checkout" method="get">
                 <button type="submit" class="btn-checkout">Procedi all'Acquisto</button>
             </form>
             
-            <form action="${pageContext.request.contextPath}/PulisciCarrello" method="post">
+            <form action="${pageContext.request.contextPath}/PulisciCarrello" method="get">
                 <button type="submit" class="btn-rimuovi">Pulisci Carrello</button>
             </form>
             
