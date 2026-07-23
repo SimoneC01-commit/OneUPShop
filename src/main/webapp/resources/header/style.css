@@ -37,7 +37,7 @@ body, html {
 }
 
 .logo-img {
-    height: 6rem; 
+    height: 7.5rem; 
     width: auto;
 }
 
@@ -264,7 +264,7 @@ body, html {
 
     .sidebar-logo {
         text-align: center;
-        margin-bottom: 0.5rem; /* Aggiunge un po' di respiro tra il logo e la barra di ricerca sotto */
+        margin-bottom: 0.5rem; /* Aggiunge spazio tra il logo e la barra di ricerca sotto */
     }
     
     .logo-img-menu {

@@ -5,7 +5,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalogo Prodotti</title>
+     <script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/catalogo/styleCatalogo.css">
 </head>
 <body>
@@ -142,6 +144,7 @@
             
         </div>
     </main>
-
+	
+	<jsp:include page="common/footer.jsp" />
 </body>
 </html>

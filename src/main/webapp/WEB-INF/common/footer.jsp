@@ -25,6 +25,7 @@
                 <a href="#">Contatti</a>
             </nav>
             <p class="footer-copyright">© 2026 1-UP Shop. All rights reserved.</p>
+            <img src="${pageContext.request.contextPath}/resources/img/star.gif" alt="Star" class="footer-gif">
         </div>
         
     </div>

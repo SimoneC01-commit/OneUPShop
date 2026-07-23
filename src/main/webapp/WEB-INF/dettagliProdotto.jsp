@@ -20,6 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1-Up Shop - Prodotto</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/style.css">
+    <script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
 </head>
 
 <jsp:include page="common/header.jsp" />

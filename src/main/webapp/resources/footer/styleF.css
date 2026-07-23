@@ -14,15 +14,15 @@ body, html {
     color: #f1f1f1;
     padding: 3rem 5%;
     font-family: 'Roboto', sans-serif;
-    border-top: 0.25rem solid #cc0000; /* Linea rossa retro in cima */
-    margin-top: 4rem; /* Spazio per separarlo dal contenuto della pagina */
+    border-top: 0.25rem solid #cc0000; /* Linea rossa*/
+    margin-top: 4rem; 
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between; /* Spinge un blocco a sinistra e uno a destra */
     align-items: flex-start;
-    max-width: 75rem; /* Circa 1200px, centra il footer su schermi enormi */
+    max-width: 95%; 
     margin: 0 auto;
 }
 
@@ -34,7 +34,7 @@ body, html {
 }
 
 .footer-logo {
-    height: 4rem; /* Stessa altezza del logo nell'header */
+    height: 6rem; /* Stessa altezza del logo nell'header */
     width: auto;
 }
 
@@ -66,7 +66,6 @@ body, html {
     transition: color 0.2s ease-in-out;
 }
 
-/* Hover sui link del footer: torniamo al rosso! */
 .footer-links a:hover {
     color: #cc0000;
 }
@@ -77,6 +76,13 @@ body, html {
     margin: 0;
 }
 
+/* --- GIF nel Footer --- */
+.footer-gif {
+    max-width: 70px; 
+    height: auto;   
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
 /* =========================================
    RESPONSIVE MOBILE FOOTER (Sotto i 48rem)
    ========================================= */
@@ -91,7 +97,7 @@ body, html {
     }
 
     .footer-right {
-        align-items: center; /* Centra anche il testo di destra */
+        align-items: center;
     }
 
     .footer-links {
