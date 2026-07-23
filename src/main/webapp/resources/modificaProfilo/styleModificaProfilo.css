@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.error{
+	color: red;
+}
+
+input:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.checkbox-label {
+    font-weight: bold;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 5px;
+}
+
+body { font-family: sans-serif; margin: 30px; line-height: 1.6; }
+.form-container { border: 1px solid #ccc; padding: 20px; max-width: 400px; border-radius: 8px; background-color: #f9f9f9; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+.form-group input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+.btn-submit { background-color: #007BFF; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%; font-size: 1em; }
+.btn-submit:hover { background-color: #0056b3; }
+.error-box { color: red; font-weight: bold; background-color: #f8d7da; padding: 10px; border-radius: 4px; margin-bottom: 15px; border: 1px solid #f5c6cb; }

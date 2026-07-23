@@ -47,14 +47,8 @@ public class ModificaProfilo extends HttpServlet {
 		String nuovoCognome = request.getParameter("nuovoCognome");
 		String nuovaPassword = request.getParameter("nuovaPassword");
 		
-		if(nuovoNome == null || nuovoNome.trim().isEmpty() ||
-				nuovoCognome == null || nuovoCognome.trim().isEmpty() ||
-				nuovaPassword == null || nuovaPassword.trim().isEmpty()) {
-			
-			request.setAttribute("errorMessage", "Errore compilazione form.");
-			request.getRequestDispatcher("/WEB-INF/modificaProfilo.jsp").forward(request, response);
-			return;
-		}
+		String nameRegex = "^[A-Z][a-z]*(?: [A-Z][a-z]*)*$";
+		String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,100}$";
 		
 		UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
 		
@@ -63,22 +57,65 @@ public class ModificaProfilo extends HttpServlet {
 			
 			UtenteBean utenteModificato = new UtenteBean();
 			
-			String hashNuovaPassword = PasswordEncrypter.toHash(nuovaPassword);
+			boolean valid = true;
 			
-			utenteModificato.setNome(HtmlDecoder.encodeHtmlEntities(nuovoNome));
-			utenteModificato.setCognome(HtmlDecoder.encodeHtmlEntities(nuovoCognome));
-			utenteModificato.setEmail(utente.getEmail());
-			utenteModificato.setPassword(hashNuovaPassword);
-			utenteModificato.setSaldoWallet(utente.getSaldoWallet());
-			utenteModificato.setRuolo(utente.getRuolo());
+			if(nuovoNome == null || nuovoNome.trim().isEmpty()) {
+				utenteModificato.setNome(HtmlDecoder.encodeHtmlEntities(utente.getNome()));
+			}
+			else {
+				if(nuovoNome.matches(nameRegex)) {
+					utenteModificato.setNome(HtmlDecoder.encodeHtmlEntities(nuovoNome));
+				}
+				else {
+					valid = false;
+				}
+			}
 			
-			uDAO.doUpdate(utenteModificato);
+			if(nuovoCognome == null || nuovoCognome.trim().isEmpty()) {
+				utenteModificato.setCognome(HtmlDecoder.encodeHtmlEntities(utente.getCognome()));
+			}
+			else {
+				if(nuovoCognome.matches(nameRegex)) {
+					utenteModificato.setCognome(HtmlDecoder.encodeHtmlEntities(nuovoCognome));
+				}
+				else {
+					valid = false;
+				}
+			}
 			
-			utente = uDAO.doRetrieveByKey(utente.getEmail());
+			if(nuovaPassword == null || nuovaPassword.trim().isEmpty()) {
+				utenteModificato.setPassword(utente.getPassword());
+			}
+			else {
+				if(nuovaPassword.matches(passwordRegex)) {
+					String hashNuovaPassword = PasswordEncrypter.toHash(nuovaPassword);
+					
+					utenteModificato.setPassword(hashNuovaPassword);
+				}
+				else {
+					valid = false;
+				}
+			}
+			
+			if(valid) {
 
-			request.getSession().setAttribute("utente", utenteModificato);
+				utenteModificato.setEmail(utente.getEmail());
+				utenteModificato.setSaldoWallet(utente.getSaldoWallet());
+				utenteModificato.setRuolo(utente.getRuolo());
+				
+				uDAO.doUpdate(utenteModificato);
+				
+				utente = uDAO.doRetrieveByKey(utenteModificato.getEmail());
+
+				request.getSession().setAttribute("utente", utente);
+				
+				response.sendRedirect(request.getContextPath() + "/Profilo");
+			}
+			else {
+				request.setAttribute("errorMessage", "Errore compilazione form.");
+				request.getRequestDispatcher("/WEB-INF/modificaProfilo.jsp").forward(request, response);
+			}
 			
-			response.sendRedirect(request.getContextPath() + "/Profilo");
 		} catch(SQLException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Errore durante la modifica. Riprova.");
