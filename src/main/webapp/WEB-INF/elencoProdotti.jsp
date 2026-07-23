@@ -59,7 +59,7 @@
                             base64Image = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(p.getFotoBlob());
                         }
                 %>
-                    <tr>
+                    <tr id="prodotto-<%= p.getIdProdotto() %>">
                         <td><%= p.getIdProdotto() %></td>
                         <td>
                             <% if (!base64Image.isEmpty()) { %>
@@ -93,20 +93,9 @@
                                 <a href="<%= request.getContextPath() %>/ModificaProdotto?idProdotto=<%= p.getIdProdotto() %>" class="btn-edit">
                                     Modifica
                                 </a>
-                                
-                                <dialog id="modalConferma">
-								   <h3>Conferma eliminazione</h3>
-								   <p>Sei sicuro di voler eliminare questo prodotto? L'azione non è reversibile.</p>
-								   <div class="modal-actions">
-								       <button type="button" id="btnAnnulla" onclick="annulla()">Annulla</button>
-								       <button type="button" id="btnConferma" class="btn-danger" 
-								       		onclick="elimina()" data-context-path="${pageContext.request.getContextPath() }"
-								       		data-id-prodotto="${prodotto.idProdotto}">Elimina</button>
-								    </div>
-								</dialog>
-								
-                                <button type="button" class="btn-delete" 
-                                	onclick="confermaEliminazione()" <%= !p.isDisponibile() ? "disabled" : "" %>>Elimina</button>
+
+                                <button type="button" id="btn-delete" class="btn-delete" onclick="confermaEliminazione(<%= p.getIdProdotto() %>)" 
+                                	<%= !p.isDisponibile() ? "disabled" : "" %> data-id-prodotto="${p.idProdotto}">Cancella</button>
                             </div>
                         </td>
                     </tr>
@@ -118,6 +107,12 @@
     <%
         }
     %>
+    
+    <dialog id="dlg-cancellazione">
+    	<p>Sicuro di voler cancellare questo prodotto?</p>
+    	<button class="btn-annulla" onclick="annulla()">Annulla</button>
+    	<button class="btn-conferma" onclick="elimina(this)" data-context-path="${pageContext.request.contextPath}">Conferma</button>
+    </dialog>
 
 </body>
 </html>
