@@ -7,7 +7,7 @@ async function aggiungiAlCarrello(buttonElement){
 	
 	const idProdotto = buttonElement.dataset.idProdotto;
 	
-	const contextPath = buttonElement.dataset.contextPath || '';
+	const contextPath = buttonElement.dataset.contextPath || "";
 
 	const params = new URLSearchParams();
     params.append("idProdotto", idProdotto);

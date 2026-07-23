@@ -5,83 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrazione - RetroGaming</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .register-container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .error-message {
-            background-color: #ffdddd;
-            color: #d8000c;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            text-align: center;
-            font-weight: bold;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #666;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box; /* Previene sbordamenti */
-        }
-        .btn-submit {
-            width: 100%;
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .btn-submit:hover {
-            background-color: #0056b3;
-        }
-        .login-link {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 0.9em;
-        }
-        .login-link a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .login-link a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/registrazione/styleRegistrazione.css">
+    <script src="${pageContext.request.contextPath}/resources/registrazione/scriptRegistrazione.js"></script>
 </head>
 <body>
 
@@ -94,26 +19,36 @@
             </div>
         </c:if>
 
-        <form action="${pageContext.request.contextPath}/Registrazione" method="POST">
+        <form action="${pageContext.request.contextPath}/Registrazione" method="POST" onsubmit="event.preventDefault(); validate(this)" data-context-path="${pageContext.request.contextPath}">
             
             <div class="form-group">
                 <label for="nome">Nome</label>
-                <input type="text" id="nome" name="nome" required>
+                <input type="text" id="nome" name="nome" required 
+                	oninput="checkName(this)" placeholder="Mario">
             </div>
 
             <div class="form-group">
                 <label for="cognome">Cognome</label>
-                <input type="text" id="cognome" name="cognome" required>
+                <input type="text" id="cognome" name="cognome" required 
+                	oninput="checkSurname(this)" placeholder="Rossi">
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" required 
+                	oninput="checkEmail(this)" placeholder="emai.prova@dominio.prova.it">
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required min="6">
+                <input type="password" id="password" name="password" required min="6" 
+                	oninput="checkPassword(this); checkConfermaPassword(this, document.getElementById('confermaPassword'))">
+            </div>
+            
+            <div class="form-group">
+                <label for="confermaPassword">Conferma Password</label>
+                <input type="password" id="confermaPassword" name="confermaPassword" required min="6" 
+                	oninput="checkConfermaPassword(document.getElementById('password'), this)">
             </div>
 
             <button type="submit" class="btn-submit">Registrati</button>
