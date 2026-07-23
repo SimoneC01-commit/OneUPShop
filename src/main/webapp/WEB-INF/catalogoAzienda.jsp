@@ -93,8 +93,7 @@
                                 <!-- Immagine caricata via Servlet GetPicture -->
                                 <img src="${pageContext.request.contextPath}/GetPicture?idProdotto=${p.idProdotto}" 
                                      alt="${p.titolo}" 
-                                     class="img-placeholder" 
-                                     onerror="this.src='https://via.placeholder.com/240x180?text=No+Foto';" />
+                                     class="img-placeholder"/>
                                 
                                   <div class="card-details">
 			              
