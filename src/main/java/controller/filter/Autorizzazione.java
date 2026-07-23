@@ -23,7 +23,8 @@ import model.utente.UtenteBean;
 		"/ElencoOrdini",
 		"/AggiungiProdotto",
 		"/CancellaProdotto",
-		"/ElencoProdotti"
+		"/ElencoProdotti",
+		"/ModificaProdotto"
 })
 public class Autorizzazione extends HttpFilter implements Filter {
        

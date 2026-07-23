@@ -1,4 +1,4 @@
-package controller.servlet.utente;
+package controller.servlet.utente.profilo;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
