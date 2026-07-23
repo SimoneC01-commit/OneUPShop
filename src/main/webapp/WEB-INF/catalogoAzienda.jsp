@@ -115,7 +115,7 @@
                      <c:if test="${totalePagine > 1}">
                         <div class="pagination">
                             <c:forEach var="i" begin="1" end="${totalePagine}">
-                                <a href="Catalogo?pagCorrente=${i}&tipo=${param.tipo}&stato=${param.stato}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&minYear=${param.minYear}&maxYear=${param.maxYear}" 
+                                <a href="CatalogoAzienda?azienda=${param.azienda}&pagCorrente=${i}&tipo=${param.tipo}&stato=${param.stato}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&minYear=${param.minYear}&maxYear=${param.maxYear}" 
                                    class="page-btn ${paginaCorrente == i ? 'active' : ''}">
                                     ${i}
                                 </a>
