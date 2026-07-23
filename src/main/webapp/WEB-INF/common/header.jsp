@@ -63,7 +63,7 @@
         </div>
     </div>
         
-    <!-- NUOVO: MENU LATERALE MOBILE (Cassetto nascosto) -->
+    <!-- MENU LATERALE MOBILE (Cassetto nascosto) -->
     <nav class="mobile-sidebar" id="mobileSidebar">
         <!-- Tasto per chiudere -->
         <button class="close-btn" onclick="toggleMenu()">✕</button>

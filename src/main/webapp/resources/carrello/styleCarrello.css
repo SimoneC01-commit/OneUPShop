@@ -1,0 +1,268 @@
+@charset "UTF-8";
+@import url("../generalStyle.css");
+
+/* =========================================
+   STRUTTURA PRINCIPALE
+   ========================================= */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.header-utente {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #eaeaea;
+    
+}
+
+.titolo-carrello {
+	display: flex;
+    flex-direction: row;
+    align-items: center; 
+    gap: 9px; 
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 1.5rem;
+}
+
+.coin-img{
+	width: 110px; 
+    height: auto; 
+    image-rendering: pixelated;
+}
+
+
+.carrello-vuoto {
+    text-align: center; 
+    padding: 4rem 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.empty-cart-img{
+	width: 110px;
+    height: auto; 
+    image-rendering: pixelated;
+}
+
+.carrello-vuoto p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 1.5rem;   
+}
+
+.carrello-vuoto a {
+    color: #000; 
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.carrello-vuoto a:hover {
+    
+    color: #0000ff; 
+    text-decoration: underline;     
+}
+
+
+
+.cart-layout {
+    display: flex;
+    gap: 40px;
+    /* align-items: flex-start NON TOGLIERE.  */
+    align-items: flex-start; 
+}
+
+/* =========================================
+   SEZIONE SINISTRA: LISTA PRODOTTI
+   ========================================= */
+.cart-items-section {
+    flex: 1; /* Occupo tutto lo spazio libero a sinistra */
+    min-width: 0; 
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem; 
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+.cart-header a {
+    color: #d30000; 
+    text-decoration: underline;
+    font-weight: bold;
+   
+}
+
+/* --- Singolo Prodotto  --- */
+.prodotto-item {
+    display: flex;
+    gap: 20px;
+    align-items: center; /* Centra verticalmente immagine e testo */
+    margin-bottom: 1.5rem;
+}
+
+.prodotto-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover; /* Taglia l'immagine se necessario*/
+    border: 2px solid #eaeaea;
+    background-color: #f4f4f4; /* Effetto placeholder grigio in caricamento */
+}
+
+.prodotto-details {
+    flex: 1; /* Spinge il pulsante "Rimuovi" verso il margine destro */
+}
+
+.prodotto-details h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.prezzo {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #000;
+}
+
+/* --- Bottoni e Azioni della lista --- */
+.link-rimuovi {
+    background: none;
+    border: none;
+    color: #666;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family:"Pixelify Sans", sans-serif;
+    font-size: 0.9rem;
+    padding: 0;
+}
+
+.link-rimuovi:hover {
+    color: #d30000;
+}
+
+.item-divider {
+    border: 0;
+    border-top: 1px solid #eaeaea;
+    margin: 1.5rem 0;
+}
+
+.btn-pulisci {
+    background-color: transparent;
+    border: 2px solid #ccc;
+    padding: 0.8rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-family:"Pixelify Sans", sans-serif;
+    transition: background-color 0.2s;
+}
+
+.btn-pulisci:hover {
+    background-color: #f0f0f0;
+}
+
+/* =========================================
+   SEZIONE DESTRA: SOMMARIO ORDINE (<aside>)
+   ========================================= */
+.cart-summary-section {
+    flex: 0 0 350px; /*X */
+    background-color: #f9f9f9; 
+    padding: 2rem;
+    border: 2px solid #e4e4e4;
+    border-radius: 15px;
+    position: sticky; /* il pannello rimane su */
+    top: 20px; 
+    font-family: "Roboto", sans-serif;
+}
+
+.cart-summary-section h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.summary-divider {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1.5rem 0;
+}
+
+.summary-row.totale {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #000; /* Stacco visivo forte per il totale */
+}
+
+/* --- Bottone di Checkout  --- */
+.btn-checkout {
+    width: 100%;
+    background-color: #111;
+    color: #fff;
+    border:none;
+    border-radius: 15px;
+    padding: 1.2rem;
+    font-family:"Pixelify Sans", sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-checkout:hover {
+    background-color: #f2d00d; 
+}
+
+/* =========================================
+   RESPONSIVE DESIGN 
+   ========================================= */
+
+@media screen and (max-width: 900px) {
+    .cart-layout {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .cart-summary-section {
+        flex: 1 1 100%;
+        width: 100%;
+        position: static; /* Disabilita lo scorrimento stiky su mobile */
+        box-sizing: border-box;
+        border-radius: 15px;
+    }
+    
+    .cart-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+/* Smartphone: Riadatta i singoli prodotti per non uscire dallo schermo */
+@media screen and (max-width: 500px) {
+    .prodotto-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .prodotto-img {
+        width: 100%; /* L'immagine prende tutto lo spazio in larghezza*/
+        height: auto;
+        aspect-ratio: 1 / 1; /* mantene le proporzioni quadrate */
+    }
+    
+    .prodotto-actions {
+        align-self: flex-end; /* Sposta il testo "Rimuovi" in basso a destra */
+        margin-top: -10px;
+    }
+}

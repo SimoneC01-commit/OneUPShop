@@ -7,89 +7,116 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Il tuo Carrello</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 30px; background-color: #f4f4f4; }
-        .container { max-width: 800px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        .header-utente { background-color: #2c3e50; color: white; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
-        .prodotto-item { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; padding: 15px 0; }
-        .prodotto-info { display: flex; align-items: center; gap: 20px; }
-        .prodotto-img { width: 80px; height: 80px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; }
-        .btn-rimuovi { background-color: #e74c3c; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; }
-        .btn-rimuovi:hover { background-color: #c0392b; }
-        .totale-box { text-align: right; margin-top: 20px; font-size: 1.2em; font-weight: bold; }
-        .carrello-vuoto { text-align: center; color: #7f8c8d; padding: 40px 0; }
-        .btn-checkout { background-color: #2ecc71; color: white; border: none; padding: 12px 20px; font-size: 1em; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 20px; }
-    </style>
+   	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/carrello/styleCarrello.css">
 </head>
 <body>
 
-<div class="container">
+<jsp:include page="common/header.jsp" />
 
-    <div class="header-utente">
+<!-- MAIN -->
+<main class="container">
+
+    <section class="header-utente">
         <c:choose>
             <c:when test="${not empty sessionScope.utente}">
-                <h2>Benvenuto nel tuo carrello, ${sessionScope.utente.nome}!</h2>
+               <div class=titolo-carrello> 
+               <h2>Benvenuto nel tuo carrello, ${sessionScope.utente.nome}!</h2> 
+                <img src="${pageContext.request.contextPath}/resources/img/coin.gif" alt="coin" class="coin-img">
+               </div>
             </c:when>
             <c:otherwise>
                 <h2>Stai navigando come Ospite. <a href="Login" style="color: #3498db;">Accedi</a> per salvare i tuoi acquisti!</h2>
             </c:otherwise>
         </c:choose>
-    </div>
+    </section>
 
     <c:choose>
         <c:when test="${empty sessionScope.carrello || empty sessionScope.carrello.lista}">
             <div class="carrello-vuoto">
+            	<img src="${pageContext.request.contextPath}/resources/img/sonicPensa.gif" alt="Sonic sta aspettando i tuoi prodotti" class="empty-cart-img">
                 <p>Il tuo carrello è attualmente vuoto.</p>
                 <a href="Catalogo">Torna allo shopping</a>
             </div>
         </c:when>
         
         <c:otherwise>
-            <c:forEach var="prodotto" items="${sessionScope.carrello.lista}">
-                <div class="prodotto-item">
+            
+            <div class="cart-layout">
+                <section class="cart-items-section">
+                    <div class="cart-header">
+                        <h2>Il tuo carrello</h2>
+                        <p>Non sei pronto all'acquisto? <a href="Catalogo">Continua lo shopping</a></p>
+                    </div>
                     
-                    <div class="prodotto-info">
-                        <% 
-                            ProdottoBean prod = (ProdottoBean) pageContext.getAttribute("prodotto");
-                            String base64Image = "";
-                            if (prod != null && prod.getFotoBlob() != null) {
-                                base64Image = Base64.getEncoder().encodeToString(prod.getFotoBlob());
-                            }
-                            pageContext.setAttribute("base64Image", base64Image);
-                        %>
-                        <img src="data:image/jpeg;base64,${base64Image}" alt="${prodotto.titolo}" class="prodotto-img" />
+                      <!-- Lista prodotti -->
+                    <div class="items-list">
+                        <c:forEach var="prodotto" items="${sessionScope.carrello.lista}">
+                            
+                            <!-- Prodotto -->
+                            <article class="prodotto-item">
+                                <img src="${pageContext.request.contextPath}/GetPicture?idProdotto=${prodotto.idProdotto}" 
+                                     alt="${prodotto.titolo}" class="prodotto-img" />
+                                
+                                <div class="prodotto-details">
+                                    <h4>${prodotto.titolo}</h4>
+                                    <span class="prezzo">${prodotto.prezzoAttuale} &euro;</span>
+                                </div>
+                                
+                                <div class="prodotto-actions">
+                                    <form action="${pageContext.request.contextPath}/RimuoviDalCarrello" method="post">
+                                        <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
+                                        <button type="submit" class="link-rimuovi">Rimuovi</button>
+                                    </form>
+                                </div>
+                            </article>
+                            <hr class="item-divider">
+                            
+                        </c:forEach>
+                    </div>
+                    
+                    <div class="cart-footer">
+                        <form action="${pageContext.request.contextPath}/PulisciCarrello" method="get">
+                            <button type="submit" class="btn-pulisci">Pulisci Carrello</button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Sommario Carrello -->
+                <aside class="cart-summary-section">
+                    <h3>Sommario Ordine</h3>
+                    
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span>Subtotale</span>
+                            <span>${sessionScope.carrello.totale} &euro;</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Spedizione</span>
+                            <span>Gratis</span>
+                        </div>
                         
-                        <div>
-                            <h4 style="margin: 0 0 5px 0;">${prodotto.titolo}</h4>
-                            <span style="color: #27ae60; font-weight: bold;">${prodotto.prezzoAttuale} &euro;</span>
+                        <hr class="summary-divider">
+                        
+                        <div class="summary-row totale">
+                            <span>Totale</span>
+                            <span>${sessionScope.carrello.totale} &euro;</span>
                         </div>
                     </div>
                     
-                    <form action="${pageContext.request.contextPath}/RimuoviDalCarrello" method="post">
-                        <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
-                        <button type="submit" class="btn-rimuovi">Rimuovi</button>
+                    <form action="${pageContext.request.contextPath}/Checkout" method="get">
+                        <button type="submit" class="btn-checkout">Procedi al checkout</button>
                     </form>
-                    
-                </div>
-            </c:forEach>
-
-            <div class="totale-box">
-                Totale Ordine: ${sessionScope.carrello.totale} &euro;
+                </aside>
+                
             </div>
-            
-            <form action="${pageContext.request.contextPath}/Checkout" method="get">
-                <button type="submit" class="btn-checkout">Procedi all'Acquisto</button>
-            </form>
-            
-            <form action="${pageContext.request.contextPath}/PulisciCarrello" method="get">
-                <button type="submit" class="btn-rimuovi">Pulisci Carrello</button>
-            </form>
-            
         </c:otherwise>
     </c:choose>
 
-</div>
+</main>
+
+<jsp:include page="common/footer.jsp" />
 
 </body>
 </html>
