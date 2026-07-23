@@ -23,9 +23,9 @@
             <h3>Filtra per:</h3>
             
             <div class="form-group">
-                <label>Tipo</label>
+                <label>Categoria</label>
                 <select name="tipo">
-                    <option value="">Tutti</option>
+                    <option value="">Tutti i tipi</option>
                     <option value="Gioco" ${param.tipo == 'Gioco' ? 'selected' : ''}>Gioco</option>
                     <option value="Cabinato" ${param.tipo == 'Cabinato' ? 'selected' : ''}>Cabinato</option>
                     <option value="Console" ${param.tipo == 'Console' ? 'selected' : ''}>Console</option>
@@ -36,40 +36,40 @@
             <div class="form-group">
                 <label>Stato</label>
                 <select name="stato">
-                    <option value="">Tutti</option>
+                    <option value="">Nessuna Opzione</option>
                     <option value="Nuovo" ${param.stato == 'Nuovo' ? 'selected' : ''}>Nuovo</option>
                     <option value="Usato" ${param.stato == 'Usato' ? 'selected' : ''}>Usato</option>
                 </select>
             </div>
-
+			
+			 <!-- Filtro Anno -->
             <div class="form-group">
-                <label>Prezzo Min (€)</label>
-                <input type="number" step="0.01" name="minPrice" value="${param.minPrice}">
-            </div>
-
-            <div class="form-group">
-                <label>Prezzo Max (€)</label>
-                <input type="number" step="0.01" name="maxPrice" value="${param.maxPrice}">
-            </div>
-
-            <div class="form-group">
-                <label>Anno Min</label>
-                <input type="number" name="minYear" value="${param.minYear}">
-            </div>
-
-            <div class="form-group">
-                <label>Anno Max</label>
-                <input type="number" name="maxYear" value="${param.maxYear}">
-            </div>
+                    <label>Prezzo (€)</label>
+                    <div class="filter-row">
+                        <input type="number" step="0.01" name="minPrice" placeholder="Min" value="${param.minPrice}">
+                        <input type="number" step="0.01" name="maxPrice" placeholder="Max" value="${param.maxPrice}">
+                    </div>
+                </div>
+                
+             <!-- Filtro Anno -->
+                <div class="form-group">
+                    <label>Anno di Rilascio</label>
+                    <div class="filter-row">
+                        <input type="number" name="minYear" placeholder="Da" value="${param.minYear}">
+                        <input type="number" name="maxYear" placeholder="A" value="${param.maxYear}">
+                    </div>
+                </div>
 
             <button type="submit" class="btn-submit">Applica Filtri</button>
             <div style="text-align: center; margin-top: 10px;">
-                <a href="Catalogo" style="color: #666; font-size: 0.9em; text-decoration: none;">Reset</a>
+                <a href="Catalogo" style="color: #666; font-size: 0.9em; text-decoration: underline;">Reset</a>
             </div>
         </form>
       </aside>
 	
-        <div class="catalog">
+	
+	<!-- CATALOGO -->
+        <article class="catalog">
             
             <c:if test="${not empty errorMessage}">
                 <div class="error-msg">${errorMessage}</div>
@@ -86,7 +86,7 @@
 			 <!-- CARD -->
 			  <div class="product-grid">
 			    <c:forEach var="p" items="${listaProdotti}">
-			        <article class="product-card">
+			        <div class="product-card">
 			            
 			            <!-- IMMAGINE -->
 			            <c:choose>
@@ -121,7 +121,7 @@
 			                </button>
 			            </div>
 			            
-			        </article>
+			        </div>
 			    </c:forEach>
 			</div>
 
@@ -142,7 +142,7 @@
                 </c:otherwise>
             </c:choose>
             
-        </div>
+        </article>
     </main>
 	
 	<jsp:include page="common/footer.jsp" />
