@@ -58,11 +58,6 @@ public class RicercaProdotto extends HttpServlet {
 				return;
 			}
 			
-			if(lista.size() == 0) {
-				response.sendError(404, "Prodotto non trovato");
-				return;
-			}
-			
 			if(lista.size() == 1) {
 				response.sendRedirect(request.getContextPath() + "/DettagliProdotto?idProdotto=" + lista.get(0).getIdProdotto());
 				return;
