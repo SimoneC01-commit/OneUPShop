@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalogo Prodotti</title>
     <script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/catalogo/scriptCatalogo.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/catalogo/styleCatalogo.css">
 </head>
 <body>
@@ -19,7 +20,7 @@
     <main class="container">
     
        <aside>  <!-- FILTRI -->
-        <form action="Catalogo" method="GET" class="filters">
+        <form action="Catalogo" method="GET" class="filters" onsubmit="puliziaFiltri(event, this)">
             <h3>Filtra per:</h3>
             
             <div class="form-group">
@@ -87,24 +88,8 @@
 			  <div class="product-grid">
 			    <c:forEach var="p" items="${listaProdotti}">
 			        <div class="product-card">
-			            
-			            <!-- IMMAGINE -->
-			            <c:choose>
-			                <c:when test="${not empty p.fotoBlob}">
-			                    <%
-			                        model.prodotto.ProdottoBean pb = (model.prodotto.ProdottoBean) pageContext.getAttribute("p");
-			                        String b64 = Base64.getEncoder().encodeToString(pb.getFotoBlob());
-			                    %>
-			                    <img src="data:image/jpeg;base64,<%= b64 %>" class="img-placeholder" alt="${p.titolo}">
-			                </c:when>
-			                <c:otherwise>
-			                    <!-- Fallback se non c'è la foto: img-placeholder per mantenere il layout quadrato -->
-			                    <div class="img-placeholder" style="display: flex; align-items: center; justify-content: center; color: #999;">
-			                        Nessuna Foto
-			                    </div>
-			                </c:otherwise>
-			            </c:choose>
-			
+
+	                    <img src="${pageContext.request.contextPath}/GetPicture?idProdotto=${p.idProdotto}" class="img-placeholder" alt="${p.titolo}">
 			          
 			            <div class="card-details">
 			              
