@@ -1,0 +1,123 @@
+@charset "UTF-8";
+@import url("../generalStyle.css");
+
+/* =========================================
+   LAYOUT PAGINA DI ERRORE
+   ========================================= */
+
+h1 {
+    text-align: center;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    margin-top: 2rem 0;
+    color: #111;
+}
+
+.error-container {
+    max-width: 95rem;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* Mantiene lo Sticky Footer in fondo */
+}
+
+.error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+/* Card / Box dell'Errore */
+.error-card {
+    background-color: #ffe6e6;
+    color: #cc0000;
+    border: 1px solid #cc0000;
+    width: 100%;
+    max-width: 600px;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.error-card h2 {
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    color: #cc0000;
+}
+
+.error-card p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #333;
+    margin: 1.5rem 0;
+}
+
+/* Contenitore Pulsanti */
+.error-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+/* Stile Pulsanti */
+.btn-error {
+    display: inline-block;
+    background-color: #111;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+    text-align: center;
+}
+
+.btn-error:hover {
+    background-color: #0000ff;
+}
+
+.btn-error.btn-secondary {
+    background-color: #555;
+}
+
+.btn-error.btn-secondary:hover {
+    background-color: #333;
+}
+
+/* =========================================
+   RESPONSIVE (Smartphone)
+   ========================================= */
+@media screen and (max-width: 600px) {
+    .error-card {
+        padding: 1.5rem;
+    }
+
+    .error-card h2 {
+        font-size: 1.6rem;
+    }
+
+    .error-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-error {
+        width: 100%;
+    }
+}
