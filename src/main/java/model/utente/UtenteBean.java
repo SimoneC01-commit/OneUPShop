@@ -1,7 +1,6 @@
 package model.utente;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 public class UtenteBean implements Serializable {
     private static final long serialVersionUID = 1L;

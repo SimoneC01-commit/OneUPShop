@@ -31,7 +31,7 @@
     <!-- INFORMAZIONI CLIENTE E SPEDIZIONE -->
     <div class="info-box">
         <div class="info-cliente">
-            <h3>Dati Cliente & Spedizione</h3>
+            <h3>Dati Cliente &amp; Spedizione</h3>
             <p><strong>Email Account:</strong> ${ordine.emailUtente}</p>
             <p><strong>Indirizzo:</strong> ${ordine.indirizzoSpedizione}</p>
             <p><strong>Telefono:</strong> ${ordine.telefono}</p>
