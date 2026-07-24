@@ -3,6 +3,7 @@ package controller.servlet.admin.gestioneProdotti;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -120,13 +121,12 @@ public class ModificaProdotto extends HttpServlet {
 		String nuovaIvaStr = request.getParameter("nuovaIva");
 		
 		if (idProdottoStr == null || idProdottoStr.trim().isEmpty() ||
-			nuovoTitolo == null || nuovoTitolo.trim().isEmpty() ||
-			nuovoPrezzoAttualeStr == null || nuovoPrezzoAttualeStr.trim().isEmpty()) {
+	        nuovoTitolo == null || nuovoTitolo.trim().isEmpty()) {
 
-			request.setAttribute("errorMessage", "Errore compilazione form. Compila tutti i campi obbligatori.");
-			request.getRequestDispatcher("/WEB-INF/modificaProdotto.jsp").forward(request, response);
-			return;
-		}
+	        request.setAttribute("errorMessage", "Errore compilazione form. Compila tutti i campi obbligatori.");
+	        request.getRequestDispatcher("/WEB-INF/modificaProdotto.jsp").forward(request, response);
+	        return;
+	    }
 		
 		if ("Usato".equals(nuovoStato) && (nuoveNoteDifetti == null || nuoveNoteDifetti.trim().isEmpty())) {
 		    request.setAttribute("errorMessage", "Per i prodotti usati è obbligatorio specificare le note/difetti.");
@@ -137,7 +137,6 @@ public class ModificaProdotto extends HttpServlet {
 		try {
 			int idProdotto = Integer.parseInt(idProdottoStr);
 			ProdottoDAO pDAO = new ProdottoDAO();
-			
 			ProdottoBean prodottoEsistente = pDAO.doRetrieveByKey(idProdotto);
 
 			if (prodottoEsistente == null) {
@@ -150,15 +149,43 @@ public class ModificaProdotto extends HttpServlet {
 			prodottoModificato.setIdProdotto(idProdotto);
 
 			prodottoModificato.setTitolo(HtmlDecoder.encodeHtmlEntities(nuovoTitolo));
-			prodottoModificato.setDescrizione(HtmlDecoder.encodeHtmlEntities(nuovaDescrizione));
-			prodottoModificato.setAnnoRilascio((nuovoAnnoRilascioStr != null && !nuovoAnnoRilascioStr.trim().isEmpty()) ? Integer.parseInt(nuovoAnnoRilascioStr) : prodottoEsistente.getAnnoRilascio());
-			prodottoModificato.setAzienda(HtmlDecoder.encodeHtmlEntities(nuovaAzienda));
-			prodottoModificato.setPrezzoAcquisto((nuovoPrezzoAcquistoStr != null && !nuovoPrezzoAcquistoStr.trim().isEmpty()) ? new BigDecimal(nuovoPrezzoAcquistoStr) : prodottoEsistente.getPrezzoAcquisto());
-			prodottoModificato.setPrezzoAttuale(new BigDecimal(nuovoPrezzoAttualeStr));
-			prodottoModificato.setStato(HtmlDecoder.encodeHtmlEntities(nuovoStato));
-			prodottoModificato.setNoteDifetti("Usato".equals(nuovoStato) ? HtmlDecoder.encodeHtmlEntities(nuoveNoteDifetti) : null);
-			prodottoModificato.setIva((nuovaIvaStr != null && !nuovaIvaStr.trim().isEmpty()) ? Integer.parseInt(nuovaIvaStr) : prodottoEsistente.getIva());
+	        prodottoModificato.setDescrizione(HtmlDecoder.encodeHtmlEntities(nuovaDescrizione));
+	        prodottoModificato.setAnnoRilascio((nuovoAnnoRilascioStr != null && !nuovoAnnoRilascioStr.trim().isEmpty()) ? Integer.parseInt(nuovoAnnoRilascioStr) : prodottoEsistente.getAnnoRilascio());
+	        prodottoModificato.setAzienda(HtmlDecoder.encodeHtmlEntities(nuovaAzienda));
+	        prodottoModificato.setStato(HtmlDecoder.encodeHtmlEntities(nuovoStato));
+	        prodottoModificato.setNoteDifetti("Usato".equalsIgnoreCase(nuovoStato) ? HtmlDecoder.encodeHtmlEntities(nuoveNoteDifetti) : null);
+	        
+	        BigDecimal prezzoAttualeBase;
+	        
+	        
+	        if (nuovoPrezzoAcquistoStr != null && !nuovoPrezzoAcquistoStr.trim().isEmpty()) {
+	            BigDecimal prezzoAcquisto = new BigDecimal(nuovoPrezzoAcquistoStr.trim());
+	            prodottoModificato.setPrezzoAcquisto(prezzoAcquisto);
+	            
+	            prezzoAttualeBase = prezzoAcquisto.multiply(new BigDecimal("1.5"));
+	            
+	        } else {
+	            prodottoModificato.setPrezzoAcquisto(null);
 
+	            if (nuovoPrezzoAttualeStr != null && !nuovoPrezzoAttualeStr.trim().isEmpty()) {
+	                prezzoAttualeBase = new BigDecimal(nuovoPrezzoAttualeStr.trim());
+	            } else {
+	                throw new IllegalArgumentException("Se non inserisci il prezzo d'acquisto, devi inserire un prezzo attuale.");
+	            }
+	        }
+	        
+	        int iva = (nuovaIvaStr != null && !nuovaIvaStr.trim().isEmpty()) ? Integer.parseInt(nuovaIvaStr) : prodottoEsistente.getIva();
+
+	        BigDecimal percentualeIva = new BigDecimal(iva).divide(new BigDecimal("100"), 4, RoundingMode.HALF_UP);
+	        BigDecimal moltiplicatoreIva = BigDecimal.ONE.add(percentualeIva);
+	        
+	        BigDecimal prezzoConIva = prezzoAttualeBase.multiply(moltiplicatoreIva).setScale(2, RoundingMode.HALF_UP);
+	        BigDecimal parteIntera = prezzoConIva.setScale(0, RoundingMode.DOWN);
+	        prezzoConIva = parteIntera.add(new BigDecimal("0.99"));
+	        
+	        prodottoModificato.setIva(iva);
+	        prodottoModificato.setPrezzoAttuale(prezzoConIva);
+			
 			prodottoModificato.setTipo(prodottoEsistente.getTipo());
 			prodottoModificato.setDataAggiunta(prodottoEsistente.getDataAggiunta());
 			prodottoModificato.setDisponibile(prodottoEsistente.isDisponibile());

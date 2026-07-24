@@ -119,35 +119,40 @@ public class AggiungiProdotto extends HttpServlet {
 	            prodotto.setNoteDifetti(HtmlDecoder.encodeHtmlEntities(request.getParameter("noteDifetti")));
 	        }
 	        
-	        // GESTIONE PREZZO ATTUALE (DIPENDE SE INSERIAMO UN PREZZO ACQUISTO O NO)
-	        
-	        BigDecimal prezzoAcquisto = new BigDecimal(request.getParameter("prezzoAcquisto"));
-	        BigDecimal prezzoAttualeBase;
-	
-	        if (prezzoAcquisto.compareTo(new BigDecimal("-1")) == 0) {
-	            prodotto.setPrezzoAcquisto(null);
-	            prezzoAttualeBase = new BigDecimal(request.getParameter("prezzoAttuale"));
-	            
-	        } else {
-	            prodotto.setPrezzoAcquisto(prezzoAcquisto);
-	            prezzoAttualeBase = prezzoAcquisto.multiply(new BigDecimal("1.5"));
-	            
-	        }
-	        
-	        int iva = Integer.parseInt(request.getParameter("iva"));
-	        
-	        BigDecimal percentualeIva = new BigDecimal(iva).divide(new BigDecimal("100"), 4, RoundingMode.HALF_UP);
-	        BigDecimal moltiplicatoreIva = BigDecimal.ONE.add(percentualeIva);
-	        
-	        BigDecimal prezzoConIva = prezzoAttualeBase.multiply(moltiplicatoreIva).setScale(2, RoundingMode.HALF_UP);
-	        
-	        BigDecimal parteIntera = prezzoConIva.setScale(0, RoundingMode.DOWN);
-	        
-	        prezzoConIva= parteIntera.add(new BigDecimal("0.99"));
-	        
-	        prodotto.setIva(iva);
-	        prodotto.setPrezzoAttuale(prezzoConIva);
-	
+	        String prezzoAcquistoStr = request.getParameter("prezzoAcquisto");
+            String prezzoAttualeStr = request.getParameter("prezzoAttuale");
+            String ivaStr = request.getParameter("iva");
+
+            BigDecimal prezzoAttualeBase;
+            
+            if (prezzoAcquistoStr != null && !prezzoAcquistoStr.trim().isEmpty()) {
+                BigDecimal prezzoAcquisto = new BigDecimal(prezzoAcquistoStr.trim());
+                prodotto.setPrezzoAcquisto(prezzoAcquisto);
+                
+                prezzoAttualeBase = prezzoAcquisto.multiply(new BigDecimal("1.5"));
+                
+            } else {
+                prodotto.setPrezzoAcquisto(null);
+                
+                if (prezzoAttualeStr != null && !prezzoAttualeStr.trim().isEmpty()) {
+                    prezzoAttualeBase = new BigDecimal(prezzoAttualeStr.trim());
+                } else {
+                    throw new IllegalArgumentException("Se non inserisci il prezzo d'acquisto, devi specificare un prezzo attuale.");
+                }
+            }
+            
+            int iva = (ivaStr != null && !ivaStr.trim().isEmpty()) ? Integer.parseInt(ivaStr.trim()) : 22;
+            
+            BigDecimal percentualeIva = new BigDecimal(iva).divide(new BigDecimal("100"), 4, RoundingMode.HALF_UP);
+            BigDecimal moltiplicatoreIva = BigDecimal.ONE.add(percentualeIva);
+            
+            BigDecimal prezzoConIva = prezzoAttualeBase.multiply(moltiplicatoreIva).setScale(2, RoundingMode.HALF_UP);
+            BigDecimal parteIntera = prezzoConIva.setScale(0, RoundingMode.DOWN);
+            prezzoConIva = parteIntera.add(new BigDecimal("0.99"));
+            
+            prodotto.setIva(iva);
+            prodotto.setPrezzoAttuale(prezzoConIva);
+            
 	        Part filePart = request.getPart("foto");
 	        if (filePart != null && filePart.getSize() > 0) {
 	            try (InputStream inputStream = filePart.getInputStream()) {
