@@ -100,7 +100,6 @@ public class ModificaProfilo extends HttpServlet {
 			if(valid) {
 
 				utenteModificato.setEmail(utente.getEmail());
-				utenteModificato.setSaldoWallet(utente.getSaldoWallet());
 				utenteModificato.setRuolo(utente.getRuolo());
 				
 				uDAO.doUpdate(utenteModificato);

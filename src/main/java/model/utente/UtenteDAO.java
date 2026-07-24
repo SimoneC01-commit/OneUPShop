@@ -48,7 +48,7 @@ public class UtenteDAO implements DAOInterface<UtenteBean, String> {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		UtenteBean bean = null;
-		String query = "SELECT Nome, Cognome, Email, Password, Ruolo, Saldo_Wallet FROM utente WHERE Email = ?";
+		String query = "SELECT Nome, Cognome, Email, Password, Ruolo FROM utente WHERE Email = ?";
 		
 		try {
 			conn = ConnectionPool.getConnection();
@@ -66,7 +66,6 @@ public class UtenteDAO implements DAOInterface<UtenteBean, String> {
 				bean.setEmail(rs.getString("Email"));
 				bean.setPassword(rs.getString("Password"));
 				bean.setRuolo(rs.getString("Ruolo"));
-				bean.setSaldoWallet(rs.getBigDecimal("Saldo_Wallet"));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -92,7 +91,7 @@ public class UtenteDAO implements DAOInterface<UtenteBean, String> {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<UtenteBean> lista = null;
-		String query = "SELECT Nome, Cognome, Email, Password, Ruolo, Saldo_Wallet FROM utente";
+		String query = "SELECT Nome, Cognome, Email, Password, Ruolo FROM utente";
 		
 		try {
 			conn = ConnectionPool.getConnection();
@@ -110,7 +109,6 @@ public class UtenteDAO implements DAOInterface<UtenteBean, String> {
 				bean.setEmail(rs.getString("Email"));
 				bean.setPassword(rs.getString("Password"));
 				bean.setRuolo(rs.getString("Ruolo"));
-				bean.setSaldoWallet(rs.getBigDecimal("Saldo_Wallet"));
 				
 				lista.add(bean);
 			}
@@ -136,7 +134,7 @@ public class UtenteDAO implements DAOInterface<UtenteBean, String> {
 	public void doUpdate(UtenteBean entry) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
-		String query = "UPDATE utente SET Nome = ?, Cognome = ?, Password = ?, Ruolo = ?, Saldo_Wallet = ? WHERE Email = ?";
+		String query = "UPDATE utente SET Nome = ?, Cognome = ?, Password = ?, Ruolo = ? WHERE Email = ?";
 		
 		try {
 			conn = ConnectionPool.getConnection();
@@ -146,8 +144,7 @@ public class UtenteDAO implements DAOInterface<UtenteBean, String> {
 			ps.setString(2, entry.getCognome());
 			ps.setString(3, entry.getPassword());
 			ps.setString(4, entry.getRuolo());
-			ps.setBigDecimal(5, entry.getSaldoWallet());
-			ps.setString(6, entry.getEmail());
+			ps.setString(5, entry.getEmail());
 			
 			ps.executeUpdate();
 			

@@ -29,7 +29,6 @@
         <p><strong>Nome:</strong> ${utente.nome}</p>
         <p><strong>Cognome:</strong> ${utente.cognome}</p>
         <p><strong>Email:</strong> ${utente.email}</p>
-        <p><strong>Saldo Wallet:</strong> € ${utente.saldoWallet}</p>
     </div>
 
     <!-- Pulsanti di azione per l'utente loggato -->

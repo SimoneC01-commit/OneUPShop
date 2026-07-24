@@ -11,7 +11,6 @@ public class UtenteBean implements Serializable {
     private String email;
     private String password;
     private String ruolo;
-    private BigDecimal saldoWallet;
 
     public String getNome() {
         return nome;
@@ -51,13 +50,5 @@ public class UtenteBean implements Serializable {
 
     public void setRuolo(String ruolo) {
         this.ruolo = ruolo;
-    }
-
-    public BigDecimal getSaldoWallet() {
-        return saldoWallet;
-    }
-
-    public void setSaldoWallet(BigDecimal saldoWallet) {
-        this.saldoWallet = saldoWallet;
     }
 }

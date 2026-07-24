@@ -123,7 +123,6 @@ public class Registrazione extends HttpServlet {
 			utente.setEmail(HtmlDecoder.encodeHtmlEntities(email));
 			utente.setPassword(passwordCifrata);
 			utente.setRuolo("Cliente");
-			utente.setSaldoWallet(new BigDecimal(0));
 			
 			dao.doSave(utente);
 			
