@@ -1,0 +1,256 @@
+@charset "UTF-8";
+@import url("../generalStyle.css");
+
+/* =========================================
+   STRUTTURA PRINCIPALE
+   ========================================= */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Roboto', sans-serif; 
+    color: #333;
+}
+
+.wishlist-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #eaeaea;
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+}
+
+.wishlist-header h1 {
+    font-family: 'Pixelify Sans', sans-serif; 
+    font-size: 2.5rem;
+    margin: 0;
+    color: #111;
+}
+
+.heart-gif{
+	width: 70px; 
+    height: auto; 
+}
+
+.error-message {
+    background-color: #ffcccc;
+    color: #cc0000;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* =========================================
+    WISHLIST VUOTA
+   ========================================= */
+.wishlist-vuota {
+    text-align: center;
+    padding: 5rem 1rem;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+}
+
+.wishlist-vuota p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.wishlist-vuota a {
+    color: #d30000;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.wishlist-vuota a:hover {
+    color: #000;
+}
+
+/* =========================================
+    WISHLIST PIENA 
+   ========================================= */
+.wishlist-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; 
+}
+
+
+.wishlist-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: space-between;
+    gap: 20px;
+    padding: 1rem 0;
+}
+
+/* Immagine */
+.item-image img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain; 
+    background-color: #f4f4f4; /* frame grigio scuro */
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* Dettagli (Centro) */
+.item-details {
+    flex: 1; /* Prende tutto lo spazio centrale disponibile */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.item-details h3 {
+    font-family: 'Pixelify Sans', sans-serif; 
+    font-size: 1.6rem;
+    margin: 0;
+    color: #000;
+}
+
+.azienda-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.95rem;
+    color: #777;
+    margin: 0;
+}
+
+.prezzo-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000;
+    margin-top: 5px;
+}
+
+/* Bottoni a destra */
+.item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    gap: 12px;
+    min-width: 200px;
+}
+
+/* Reset del form per non creare spazi vuoti */
+.form-action {
+    margin: 0;
+    padding: 0;
+}
+
+.btn-add-cart {
+    background-color: #111; 
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add-cart:hover {
+    background-color: #444;
+}
+
+.link-rimuovi {
+    background: none;
+    border: none;
+    color: #555;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+}
+
+.link-rimuovi:hover {
+    color: #cc0000; /* Rosso Bottone */
+}
+
+/* Linea separatrice  */
+.item-divider {
+    border: none;
+    border-top: 1px solid #eaeaea;
+    margin: 0;
+}
+
+/* =========================================
+   FONDO WISHLIST 
+   ========================================= */
+.wishlist-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1rem;
+}
+
+.btn-svuota {
+    background-color: #fff;
+    color: #d30000;
+    border: 2px solid #d30000;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-svuota:hover {
+    background-color: #d30000;
+    color: #fff;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN 
+   ========================================= */
+@media (max-width: 768px) {
+   
+    .wishlist-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center; 
+        gap: 15px;
+    }
+
+   
+    .item-image img {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    .item-details {
+        width: 100%;
+        align-items: center;
+    }
+
+    /* Le azioni si affiancano invece di incollonarsi a destra */
+    .item-actions {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+    }
+    
+    .btn-add-cart {
+        max-width: 300px; 
+    }
+
+    .wishlist-footer {
+        justify-content: center;
+    }
+}

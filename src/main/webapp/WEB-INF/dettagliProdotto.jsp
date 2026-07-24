@@ -81,8 +81,9 @@
                         <c:otherwise>
                             <button type="button" class="btn-cart disabled" disabled>Esaurito</button>
                         </c:otherwise>
-                    </c:choose>
-                    <button type="button" class="btn-wishlist">Aggiungi alla Wishlist</button>
+                    </c:choose>  <!--  MOMENTANEO DA CAMBIARE -->
+                    	 <button type="button" class="btn-wishlist" onclick="window.location.href='${pageContext.request.contextPath}/AggiungiAllaWishlist?idProdotto=${prodotto.idProdotto}'">
+                    	  Aggiungi alla Wishlist </button>
                 </div>
             </form>
         </div>

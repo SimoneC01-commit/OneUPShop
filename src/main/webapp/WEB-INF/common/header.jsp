@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/header/style.css">
-<script src="${pageContext.request.contextPath}/resources/header/scriptHeader.js"></script>
+<script src="${pageContext.request.contextPath}/resources/header/scriptHeader.js" defer></script>
 
 <header class="main-header">
         
@@ -63,7 +63,7 @@
         </div>
     </div>
         
-    <!-- NUOVO: MENU LATERALE MOBILE (Cassetto nascosto) -->
+    <!-- MENU LATERALE MOBILE (Cassetto nascosto) -->
     <nav class="mobile-sidebar" id="mobileSidebar">
         <!-- Tasto per chiudere -->
         <button class="close-btn" onclick="toggleMenu()">✕</button>
