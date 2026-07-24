@@ -82,7 +82,7 @@ public class AggiungiAlCarrello extends HttpServlet {
 				
 				if(carrello.contiene(idProdotto)) {
 					risposta.put("esito", false);
-					risposta.put("messaggio", "Prodotto già presente!");
+					risposta.put("messaggio", "Già presente!");
 				}
 				else {
 					carrello.aggiungiProdotto(prodotto);
