@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La tua Wishlist</title>
+    <script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wishlist/styleWishlist.css">
 </head>
 <body>
@@ -64,7 +65,7 @@
                             <!-- 3. Azioni (Destra) -->
                             <div class="item-actions">
                                 <!-- Bottone Aggiungi al carrello -->
-                                <button type="button" class="btn-add-cart" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
+                                <button type="button" class="btn-add-cart" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${item.prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
                                 
                                 <!-- Bottone Rimuovi --> 
                             	  <form action="${pageContext.request.contextPath}/RimuoviDallaWishlist" method="post">

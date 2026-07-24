@@ -3,16 +3,6 @@
 <%@ page import="java.util.Base64" %>
 <%@ page import="model.prodotto.ProdottoBean" %>
 
-<%
-    // Conversione dell'immagine da byte[] a Base64 per la visualizzazione inline
-    ProdottoBean p = (ProdottoBean) request.getAttribute("prodotto");
-    String base64Image = "";
-    if(p != null && p.getFotoBlob() != null) {
-        base64Image = Base64.getEncoder().encodeToString(p.getFotoBlob());
-    }
-    request.setAttribute("base64Image", base64Image);
-%>
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -21,6 +11,7 @@
     <title>1-Up Shop - Prodotto</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/style.css">
     <script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/dettagliProdotto/scriptDettagliProdotto.js"></script>
 </head>
 
 <jsp:include page="common/header.jsp" />
@@ -35,14 +26,7 @@
         <!-- Sinistra: Immagine Singola -->
         <div class="product-gallery">
             <div class="main-image-container">
-                <c:choose>
-                    <c:when test="${not empty base64Image}">
-                        <img src="data:image/jpeg;base64,${base64Image}" id="mainImage" class="main-img" alt="${prodotto.titolo}">
-                    </c:when>
-                    <c:otherwise>
-                        <img src="${pageContext.request.contextPath}/resources/img/placeholder.jpg" id="mainImage" class="main-img" alt="Nessuna immagine">
-                    </c:otherwise>
-                </c:choose>
+				<img src="${pageContext.request.contextPath}/GetPicture?idProdotto=${prodotto.idProdotto}" id="mainImage" class="main-img" alt="${prodotto.titolo}">
             </div>
         </div>
         
@@ -76,14 +60,15 @@
                 <div class="action-buttons">
                     <c:choose>
                         <c:when test="${prodotto.disponibile}">
-                            <button type="button" class="btn-cart" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
+                            <button type="button" class="btn-cart" onclick="aggiungiAlCarrello(this)" 
+                            	data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
                         </c:when>
                         <c:otherwise>
                             <button type="button" class="btn-cart disabled" disabled>Esaurito</button>
                         </c:otherwise>
                     </c:choose>  <!--  MOMENTANEO DA CAMBIARE -->
-                    	 <button type="button" class="btn-wishlist" onclick="window.location.href='${pageContext.request.contextPath}/AggiungiAllaWishlist?idProdotto=${prodotto.idProdotto}'">
-                    	  Aggiungi alla Wishlist </button>
+                    	 <button type="button" class="btn-wishlist" onclick="aggiungiAllaWishlist(this)" 
+                    	 	data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi alla Wishlist </button>
                 </div>
             </form>
         </div>
@@ -100,7 +85,8 @@
                     <article class="product-card">
                         
                         <div class="img-placeholder">
-                            </div>
+                        	<img class="img-placeholder" src="${pageContext.request.contextPath}/GetPicture?idProdotto=${prodotto.idProdotto}" alt="${prodotto.titolo}">
+						</div>
                         
                         <div class="card-details">
                             <span class="category">${prodotto.tipo}</span>
@@ -108,7 +94,8 @@
                             	${prodotto.titolo} </a></h3>
                             <p class="price"><b>€ ${prodotto.prezzoAttuale} EUR </b></p> 
                             
-							<button type="button" class="bottone" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
+							<button type="button" class="bottone" onclick="aggiungiAlCarrello(this)" 
+								data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
                         </div>
                     </article>
                 </c:forEach>

@@ -209,3 +209,17 @@
         gap: 1rem;
     }
 }
+
+.btn-aggiuntoW{
+	background-color: #0000ff !important; 
+    color: white !important;
+    border-color: #0000ff !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-errorW{
+	background-color: #cc0000 !important; 
+    color: white !important;
+    border-color: #cc0000 !important;
+    transition: all 0.2s ease-in-out;
+}

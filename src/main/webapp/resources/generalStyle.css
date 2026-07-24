@@ -146,6 +146,9 @@
     }
 }
 
-
-
-
+.btn-error{
+	background-color: #cc0000 !important;
+    color: white !important;
+    border-color: #cc0000 !important;
+    transition: all 0.2s ease-in-out;
+}

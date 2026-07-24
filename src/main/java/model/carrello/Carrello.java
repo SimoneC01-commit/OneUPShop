@@ -1,6 +1,7 @@
 package model.carrello;
 
 import java.math.BigDecimal;
+import java.nio.file.DirectoryStream.Filter;
 import java.util.ArrayList;
 
 import model.prodotto.ProdottoBean;
@@ -46,5 +47,11 @@ public class Carrello {
 	    return lista.stream()
 	                .map(p -> p.getPrezzoAttuale())
 	                .reduce(BigDecimal.ZERO, BigDecimal::add);
+	}
+	
+	public boolean contiene(int idProdotto) {
+		return lista.stream()
+					.map(p -> p.getIdProdotto())
+					.anyMatch(p -> p == idProdotto);
 	}
 }

@@ -1,4 +1,4 @@
-async function aggiungiAlCarrello(buttonElement){
+async function aggiungiAllaWishlist(buttonElement){
 	
 	if(buttonElement.disabled === true)
 		return;
@@ -12,7 +12,7 @@ async function aggiungiAlCarrello(buttonElement){
 	const params = new URLSearchParams();
     params.append("idProdotto", idProdotto);
 	
-	const url = `${contextPath}/AggiungiAlCarrello`;
+	const url = `${contextPath}/AggiungiAllaWishlist`;
 	
 	try{
 		const r = await fetch(url, {
@@ -33,23 +33,23 @@ async function aggiungiAlCarrello(buttonElement){
 			const testoOG = buttonElement.innerHTML;
 			
 			buttonElement.innerHTML = data.messaggio;
-			buttonElement.classList.add("btn-aggiunto");
+			buttonElement.classList.add("btn-aggiuntoW");
 			
 			setTimeout(() => {
 				buttonElement.innerHTML = testoOG;
-				buttonElement.classList.remove("btn-aggiunto");
+				buttonElement.classList.remove("btn-aggiuntoW");
 				buttonElement.disabled = false;
 			}, 1500);
 		}
 		else{
 			const testoOG = buttonElement.innerHTML;
-						
+			
 			buttonElement.innerHTML = data.messaggio;
-			buttonElement.classList.add("btn-error");
+			buttonElement.classList.add("btn-errorW");
 			
 			setTimeout(() => {
 				buttonElement.innerHTML = testoOG;
-				buttonElement.classList.remove("btn-error");
+				buttonElement.classList.remove("btn-errorW");
 				buttonElement.disabled = false;
 			}, 1500);
 		}
