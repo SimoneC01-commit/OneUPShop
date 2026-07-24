@@ -37,7 +37,11 @@ public class CatalogoAzienda extends HttpServlet {
 		String azienda = request.getParameter("azienda");
 		
 		if(azienda == null || azienda.trim().isEmpty() ||
-				!(azienda.toLowerCase().equals("nintendo") || azienda.toLowerCase().equals("sony") || azienda.toLowerCase().equals("microsoft"))) {
+				!(
+						azienda.toLowerCase().equals("nintendo") || 
+						azienda.toLowerCase().equals("sony") || 
+						azienda.toLowerCase().equals("microsoft") || 
+						azienda.toLowerCase().equals("sega"))) {
 
 			response.sendRedirect(request.getContextPath() + "/Home");
 			return;

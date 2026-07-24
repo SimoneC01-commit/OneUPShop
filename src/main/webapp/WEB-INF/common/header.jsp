@@ -56,6 +56,7 @@
 	           <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Nintendo">Nintendo - </a></li>
 		       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Sony">Sony -</a></li>
 		       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Microsoft">Microsoft -</a></li>
+		       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Sega">Sega -</a></li>
             </ul>
         </nav>
         <div class="support-link">
