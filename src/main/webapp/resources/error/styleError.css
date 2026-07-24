@@ -118,6 +118,7 @@ h1 {
     }
 
     .btn-error {
-        width: 100%;
+        width: 50%;
+        align-self: center;
     }
 }
