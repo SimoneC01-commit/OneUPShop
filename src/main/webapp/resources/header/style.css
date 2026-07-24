@@ -238,6 +238,8 @@ body, html {
         left: -100%; /* Nascosto a sinistra */
         width: 18rem; /* Circa 280px */
         height: 100vh;
+        font-family: 'Pixelify Sans', sans-serif;
+        font-size:1.5rem;
         background-color: #ffffff;
         box-shadow: 2px 0 10px rgba(0,0,0,0.1);
         padding: 2rem 1.5rem;

@@ -249,7 +249,12 @@
 }
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
+	
+    .coin-img {
+    	display:none;
+    }
+    
     .prodotto-item {
         flex-direction: column;
         align-items: flex-start;
