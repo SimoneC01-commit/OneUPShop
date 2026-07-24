@@ -14,6 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import controller.utility.HtmlDecoder;
+import model.cabinato.CabinatoBean;
+import model.cabinato.CabinatoDAO;
+import model.console.ConsoleBean;
+import model.console.ConsoleDAO;
+import model.gadget.GadgetBean;
+import model.gadget.GadgetDAO;
+import model.gioco.GiocoBean;
+import model.gioco.GiocoDAO;
 import model.prodotto.ProdottoBean;
 import model.prodotto.ProdottoDAO;
 
@@ -22,9 +30,9 @@ import model.prodotto.ProdottoDAO;
  */
 @WebServlet("/ModificaProdotto")
 @MultipartConfig(
-	    fileSizeThreshold = 1024 * 1024,      // 1 MB
-	    maxFileSize = 1024 * 1024 * 10,       // 10 MB
-	    maxRequestSize = 1024 * 1024 * 15     // 15 MB
+	    fileSizeThreshold = 1024 * 1024 * 2,  // 2MB
+	    maxFileSize = 1024 * 1024 * 10,       // 10MB
+	    maxRequestSize = 1024 * 1024 * 50     // 50MB
 	)
 public class ModificaProdotto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -57,6 +65,27 @@ public class ModificaProdotto extends HttpServlet {
 			if (prodotto == null) {
 				response.sendRedirect(request.getContextPath() + "/ElencoProdotti");
 				return;
+			}
+			
+			if("Cabinato".equals(prodotto.getTipo())) {
+				CabinatoDAO caDAO = new CabinatoDAO();
+				CabinatoBean cabinato = caDAO.doRetrieveByKey(prodotto.getIdProdotto());
+				request.setAttribute("cabinato", cabinato);
+				
+			} else if("Console".equals(prodotto.getTipo())) {
+				ConsoleDAO coDAO = new ConsoleDAO();
+				ConsoleBean console = coDAO.doRetrieveByKey(prodotto.getIdProdotto());
+				request.setAttribute("console", console);
+				
+			} else if("Gadget".equals(prodotto.getTipo())) {
+				GadgetDAO gaDAO = new GadgetDAO();
+				GadgetBean gadget = gaDAO.doRetrieveByKey(prodotto.getIdProdotto());
+				request.setAttribute("gadget", gadget);
+				
+			} else if("Gioco".equals(prodotto.getTipo())) {
+				GiocoDAO giDAO = new GiocoDAO();
+				GiocoBean gioco = giDAO.doRetrieveByKey(prodotto.getIdProdotto());
+				request.setAttribute("gioco", gioco);
 			}
 
 			request.setAttribute("prodotto", prodotto);
@@ -149,6 +178,59 @@ public class ModificaProdotto extends HttpServlet {
 			
 			pDAO.doUpdate(prodottoModificato);
 
+			if("Cabinato".equals(prodottoModificato.getTipo())) {
+				CabinatoDAO caDAO = new CabinatoDAO();
+				CabinatoBean cabinatoEsistente = caDAO.doRetrieveByKey(idProdotto);
+				CabinatoBean cabinatoModificato = new CabinatoBean();
+				
+				String nuovoTipoSistemaArcade = request.getParameter("nuovoTipoSistemaArcade");
+				String nuoveDimensioniCm = request.getParameter("nuoveDimensioniCm");
+				
+				cabinatoModificato.setIdProdotto(idProdotto);
+				cabinatoModificato.setTipoSistemaArcade(nuovoTipoSistemaArcade != null && !nuovoTipoSistemaArcade.trim().isEmpty() ? HtmlDecoder.encodeHtmlEntities(nuovoTipoSistemaArcade) : cabinatoEsistente.getTipoSistemaArcade());
+				cabinatoModificato.setDimensioniCm(nuoveDimensioniCm != null && !nuoveDimensioniCm.trim().isEmpty() ? HtmlDecoder.encodeHtmlEntities(nuoveDimensioniCm) : cabinatoEsistente.getDimensioniCm());
+				
+				caDAO.doUpdate(cabinatoModificato);
+				
+			} else if("Console".equals(prodottoModificato.getTipo())) {
+				ConsoleDAO coDAO = new ConsoleDAO();
+				ConsoleBean consoleEsistente = coDAO.doRetrieveByKey(idProdotto);
+				ConsoleBean consoleModificato = new ConsoleBean();
+				
+				String nuovoModelloSpecifico = request.getParameter("nuovoModelloSpecifico");
+				
+				consoleModificato.setIdProdotto(idProdotto);
+				consoleModificato.setModelloSpecifico(nuovoModelloSpecifico != null && !nuovoModelloSpecifico.trim().isEmpty() ? nuovoModelloSpecifico : consoleEsistente.getModelloSpecifico());
+				
+				coDAO.doUpdate(consoleModificato);
+				
+			} else if("Gadget".equals(prodottoModificato.getTipo())) {
+				GadgetDAO gaDAO = new GadgetDAO();
+				GadgetBean gadgetEsistente = gaDAO.doRetrieveByKey(idProdotto);
+				GadgetBean gadgetModificato = new GadgetBean();
+				
+				String nuovoTipoMateriale = request.getParameter("nuovoTipoMateriale");
+				String nuovoTipoGadget = request.getParameter("nuovoTipoGadget");
+				
+				gadgetModificato.setIdProdotto(idProdotto);
+				gadgetModificato.setTipoMateriale(nuovoTipoMateriale != null && !nuovoTipoMateriale.trim().isEmpty() ? nuovoTipoMateriale : gadgetEsistente.getTipoMateriale());
+				gadgetModificato.setTipoGadget(nuovoTipoGadget != null && !nuovoTipoGadget.trim().isEmpty() ? nuovoTipoGadget : gadgetEsistente.getTipoGadget());
+				
+				gaDAO.doUpdate(gadgetModificato);
+				
+			} else if("Gioco".equals(prodottoModificato.getTipo())) {
+				GiocoDAO giDAO = new GiocoDAO();
+				GiocoBean giocoEsistente = giDAO.doRetrieveByKey(idProdotto);
+				GiocoBean giocoModificato = new GiocoBean();
+				
+				String nuovoSviluppatore = request.getParameter("nuovoSviluppatore");
+				
+				giocoModificato.setIdProdotto(idProdotto);
+				giocoModificato.setSviluppatore(nuovoSviluppatore != null && !nuovoSviluppatore.trim().isEmpty() ? nuovoSviluppatore : giocoEsistente.getSviluppatore());
+				
+				giDAO.doUpdate(giocoModificato);
+			}
+			
 			response.sendRedirect(request.getContextPath() + "/ElencoProdotti");
 
 		} catch (NumberFormatException e) {

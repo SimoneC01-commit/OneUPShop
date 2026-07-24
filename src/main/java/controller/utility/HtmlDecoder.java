@@ -9,7 +9,6 @@ public class HtmlDecoder {
 					.replace("<", "&lt")
 					.replace(">", "&gt")
 					.replace("\"", "&quot")
-					.replace("'", "&#39")
-					.replace(" ", "&nbsp");
+					.replace("'", "&#39");
 	}
 }

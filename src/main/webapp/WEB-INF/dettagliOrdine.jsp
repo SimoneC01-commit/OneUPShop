@@ -80,7 +80,7 @@
                 <tr onclick="window.location='${prodottoUrl}';" class="riga-prodotto">
                     <!-- Immagine nascondibile in stampa -->
                     <td class="hide-on-print">
-                        <img src="${pageContext.request.contextPath}/ImmagineServlet?id=${dettaglio.prodotto.idProdotto}" 
+                        <img src="${pageContext.request.contextPath}/GetPicture?idProdotto=${dettaglio.prodotto.idProdotto}" 
                              alt="${dettaglio.prodotto.titolo}" class="img-prodotto">
                     </td>
                     <td><strong>${dettaglio.prodotto.titolo}</strong></td>
