@@ -51,11 +51,11 @@
                 <div class="password-block">
                     <label for="nuovaPassword">Nuova Password:</label>
                     <input type="password" id="nuovaPassword" name="nuovaPassword" 
-                           minlength="8" maxlength="100" oninput="checkPassword(this)" disabled>
+                           min="8" maxlength="100" oninput="checkPassword(this)" disabled>
 
                     <label for="confermaNuovaPassword">Conferma Nuova Password:</label>
                     <input type="password" id="confermaNuovaPassword" name="confermaNuovaPassword" 
-                           minlength="8" maxlength="100" oninput="checkConfermaPassword(document.getElementById('nuovaPassword'), this)" disabled>
+                           min="8" maxlength="100" oninput="checkConfermaPassword(document.getElementById('nuovaPassword'), this)" disabled>
                 </div>
             </div>
 
