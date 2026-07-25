@@ -114,7 +114,7 @@
 
             <!-- Tasto Annulla (mostrato solo se In elaborazione) -->
             <c:if test="${ordine.statoOrdine == 'In elaborazione'}">
-                <form action="${pageContext.request.contextPath}/CancellazioneOrdine" method="post" 
+                <form action="${pageContext.request.contextPath}/CancellazioneOrdine?idOrdine=${ordine.idOrdine}" method="post" 
                       onsubmit="return confirm('Sei sicuro di voler annullare definitivamente questo ordine?');">
                     <input type="hidden" name="idOrdine" value="${ordine.idOrdine}">
                     <button type="submit" class="btn-delete">Annulla Ordine</button>

@@ -41,9 +41,10 @@ public class CatalogoAzienda extends HttpServlet {
 						azienda.toLowerCase().equals("nintendo") || 
 						azienda.toLowerCase().equals("sony") || 
 						azienda.toLowerCase().equals("microsoft") || 
-						azienda.toLowerCase().equals("sega"))) {
+						azienda.toLowerCase().equals("sega"))
+				) {
 
-			response.sendRedirect(request.getContextPath() + "/Home");
+			response.sendRedirect(request.getContextPath() + "/Catalogo");
 			return;
 		}
 
@@ -92,7 +93,7 @@ public class CatalogoAzienda extends HttpServlet {
 		catch(SQLException e){
 			e.printStackTrace();
 			
-			response.sendRedirect(request.getContextPath() + "/Home");
+			response.sendRedirect(request.getContextPath() + "/Catalogo");
 			return;
 		}
 		
