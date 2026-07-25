@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo Prodotti</title>
-    <script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/catalogo/scriptCatalogo.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/catalogo/styleCatalogo.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Catalogo Prodotti</title>
+	<script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/catalogo/scriptCatalogo.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/catalogo/styleCatalogo.css">
 </head>
 <body>
 

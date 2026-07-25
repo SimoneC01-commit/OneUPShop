@@ -3,16 +3,8 @@
 /* =========================================
    FONT UTILIZZATI
    ========================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); 
-
-/*.pixelify-sans-<uniquifier> {
-  font-family: "Pixelify Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-}*/
 
 html {
     height: 100%;
@@ -22,21 +14,16 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     background-color: #f9f9f9;
-    
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-main, .container {
-    flex: 1;
 }
 
 /* =========================================
    CARD PRODOTTO STYLE
    ========================================= */
 .product-section {
-	margin-top: 20px;
+    margin-top: 20px;
     margin-bottom: 60px;
 }
 
@@ -45,15 +32,16 @@ main, .container {
     font-size: 2.2rem;
     margin-bottom: 25px;
     text-transform: uppercase;
-    border-bottom: 3px solid #222; /* Linea divisoria stile wireframe */
+    border-bottom: 3px solid #222;
     padding-bottom: 10px;
 }
 
-/* Griglia per le card (Metodo classico e pulito) */
+/* Griglia per le card */
 .product-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 colonne di uguale larghezza */
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    width: 100%;
 }
 
 /* --- CARD PRODOTTO --- */
@@ -64,6 +52,9 @@ main, .container {
     flex-direction: column;
     height: 100%;
     min-height: 450px;
+    width: 100%;
+    min-width: 0; /* ESSENZIALE: permette alla card di restringersi dentro la griglia */
+    box-sizing: border-box;
 }
 
 .product-card:hover {
@@ -72,10 +63,10 @@ main, .container {
 }
 
 .img-placeholder {
-    width: 100%;              /* Riempie tutta la larghezza della card, eliminando gli spazi ai lati */
-    aspect-ratio: 1 / 1;      /* Costringe l'altezza a essere identica alla larghezza: crea un quadrato perfetto! */
-    object-fit: cover;        /* Taglia gli eccessi dell'immagine (sopra/sotto o ai lati) per farla entrare nel quadrato senza deformarla */
-    object-position: center;  /* Mantiene il centro dell'immagine visibile */
+    width: 100%;              
+    aspect-ratio: 1 / 1;      
+    object-fit: cover;        
+    object-position: center;  
     display: block;
     background-color: #eaeaea;
 }
@@ -84,37 +75,41 @@ main, .container {
     padding: 15px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Permette alla card di allungarsi occupando lo spazio */
+    flex-grow: 1;
+    min-width: 0; /* Impedisce al contenuto interno di forzare la larghezza */
 }
 
 .category {
     font-size: 1.1rem;
-    font-family:"Pixelify Sans", sans-serif;
+    font-family: "Pixelify Sans", sans-serif;
     color: #666;
     margin-bottom: 5px;
 }
 
 .title {
-	margin: 0 0 10px 0;
+    margin: 0 0 10px 0;
+    overflow-wrap: break-word; /* Mantiene il testo nei limiti della card */
+    word-break: break-word;
 }
 
 .title a {
-	font-family:'Roboto', sans-serif; 
-    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif; 
+    font-size: 1.35rem; /* Leggermente ridotto per adattarsi meglio ai titoli lunghi */
     font-weight: bold;
-    /*margin-bottom: 10px;*/
-    color: black; /* Prende il colore originale del testo (nero) */
+    color: black;
     text-decoration: none; 
-    transition: color 0.2s ease; /* Rende il cambio di colore fluido */
+    transition: color 0.2s ease;
+    display: inline-block;
+    width: 100%;
 }
 
-.title a:hover{
-	color: #cc0000;
-	text-decoration: underline;
+.title a:hover {
+    color: #cc0000;
+    text-decoration: underline;
 }
 
 .price {
-	font-family:'Roboto', sans-serif; 
+    font-family: 'Roboto', sans-serif; 
     font-size: 1.1rem;
     color: rgb(167, 167, 167);
     font-weight: bold;
@@ -124,48 +119,55 @@ main, .container {
 
 /* --- BOTTONE --- */
 .bottone {
-    background-color: #cc0000; /* Rosso acceso stile arcade */
+    background-color: #cc0000;
     color: #fff;
     border: none;
     padding: 12px;
-    font-family:"Pixelify Sans", sans-serif; /* Eredita il font */
+    font-family: "Pixelify Sans", sans-serif;
     font-size: 1.2rem;
     cursor: pointer;
     text-transform: uppercase;
-   	width: 100%;
+    width: 100%;
     transition: background-color 0.2s;
-    margin-top:auto;
+    margin-top: auto;
 }
 
 .bottone:hover {
-    background-color: #ff0000; /* Rosso più chiaro al passaggio del mouse */
+    background-color: #ff0000;
 }
 
 .btn-aggiunto {
-    background-color: #28a745 !important; /* Verde successo */
+    background-color: #28a745 !important;
     color: white !important;
     border-color: #28a745 !important;
     transition: all 0.2s ease-in-out;
 }
 
+.btn-error {
+    background-color: #cc0000 !important;
+    color: white !important;
+    border-color: #cc0000 !important;
+    transition: all 0.2s ease-in-out;
+}
+
+/* =========================================
+   MEDIA QUERIES PER LE CARD
+   ========================================= */
 
 /* Tablet (Schermi medi) */
 @media screen and (max-width: 900px) {
     .product-grid {
-        grid-template-columns: 1fr 1fr; /* Passa a 2 colonne */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 /* Smartphone (Schermi piccoli) */
 @media screen and (max-width: 600px) {
     .product-grid {
-        grid-template-columns: 1fr; /* Passa a 1 colonn*/
+        grid-template-columns: 1fr;
     }
-}
-
-.btn-error{
-	background-color: #cc0000 !important;
-    color: white !important;
-    border-color: #cc0000 !important;
-    transition: all 0.2s ease-in-out;
+    
+    .title a {
+        font-size: 1.2rem; /* Adatta il titolo su schermi molto piccoli */
+    }
 }
