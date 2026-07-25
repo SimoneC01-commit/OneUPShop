@@ -1,7 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="model.prodotto.ProdottoBean" %>
-<%@ page import="java.util.Base64" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- Aggiunta della libreria JSTL Core -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="it">
@@ -13,28 +12,23 @@
 </head>
 <body>
 
+    <jsp:include page="common/header.jsp" />
+
     <div class="header-container">
         <h1>Elenco Prodotti</h1>
         <div class="btn-group">
-            <!-- Tasto Aggiungi Prodotto -->
-            <a href="<%= request.getContextPath() %>/AggiungiProdotto" class="btn-add">+ Aggiungi Prodotto</a>
-            <!-- Tasto Torna al Profilo -->
-            <a href="<%= request.getContextPath() %>/Profilo" class="btn-back">Torna al Profilo</a>
+            <a href="${pageContext.request.contextPath}/AggiungiProdotto" class="btn-add">+ Aggiungi Prodotto</a>
+            <a href="${pageContext.request.contextPath}/Profilo" class="btn-back">Torna al Profilo</a>
         </div>
     </div>
-
-    <%
-        // Recuperiamo la lista dei prodotti passata dalla servlet
-        ArrayList<ProdottoBean> prodotti = (ArrayList<ProdottoBean>) request.getAttribute("prodotti");
-        
-        if (prodotti == null || prodotti.isEmpty()) {
-    %>
-        <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #ddd;">
-            <p>Nessun prodotto presente nel catalogo.</p>
-        </div>
-    <%
-        } else {
-    %>
+    
+    <c:if test="${not empty errorMessage}">
+        <div class="error">${errorMessage}</div>
+    </c:if>
+    
+    <div id="response" style="display: none;"></div>
+    
+    <div class="table-container">
         <table>
             <thead>
                 <tr>
@@ -51,71 +45,81 @@
                 </tr>
             </thead>
             <tbody>
-                <%
-                    for (ProdottoBean p : prodotti) {
-                        // Converte i byte del blob in una stringa Base64 per visualizzare l'immagine
-                        String base64Image = "";
-                        if (p.getFotoBlob() != null && p.getFotoBlob().length > 0) {
-                            base64Image = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(p.getFotoBlob());
-                        }
-                %>
-                    <tr id="prodotto-<%= p.getIdProdotto() %>">
-                        <td><%= p.getIdProdotto() %></td>
-                        <td>
-                            <% if (!base64Image.isEmpty()) { %>
-                                <img src="<%= base64Image %>" alt="Anteprima" class="img-preview" />
-                            <% } else { %>
-                                <span class="no-img">No foto</span>
-                            <% } %>
-                        </td>
-                        <td><strong><%= p.getTitolo() %></strong></td>
-                        <td><%= p.getAzienda() %></td>
-                        <td><%= p.getTipo() %></td>
-                        <td>
-                            <% if ("Nuovo".equals(p.getStato())) { %>
-                                <span class="badge badge-nuovo">Nuovo</span>
-                            <% } else { %>
-                                <span class="badge badge-usato" title="Difetti: <%= p.getNoteDifetti() != null ? p.getNoteDifetti() : "Nessuno" %>">Usato</span>
-                            <% } %>
-                        </td>
-                        <td>€ <%= p.getPrezzoAttuale() %></td>
-                        <td>
-                            <% if (p.isDisponibile()) { %>
-                                <span class="badge badge-disp">Sì</span>
-                            <% } else { %>
-                                <span class="badge badge-not-disp">No</span>
-                            <% } %>
-                        </td>
-                        <td><%= p.getIva() %>%</td>
-                        <td>
-                            <div class="action-group">
-                                <!-- Pulsante Modifica (richiama ModificaProdotto in GET passando l'idProdotto) -->
-                                <button type="button" class="btn-edit" onclick="modificaProdotto(<%= p.getIdProdotto() %>)" 
-                                	<%= !p.isDisponibile() ? "disabled" : "" %>>
-								    Modifica
-								</button>
+                <c:choose>
+                    <%-- Se ci sono prodotti --%>
+                    <c:when test="${not empty prodotti}">
+                        <c:forEach var="p" items="${prodotti}">
+                            <tr id="prodotto-${p.idProdotto}">
                                 
-                                <button type="button" id="btn-delete" class="btn-delete" onclick="confermaEliminazione(<%= p.getIdProdotto() %>)" 
-                                	<%= !p.isDisponibile() ? "disabled" : "" %>>
-                                	Cancella
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                <%
-                    }
-                %>
+                                <td>${p.idProdotto}</td>
+                                <td>
+                                	<img src="${pageContext.request.contextPath}/GetPicture?idProdotto=${p.idProdotto}" alt="${p.titolo}" class="img-preview" />
+                                </td>
+                                <td><strong>${p.titolo}</strong></td>
+                                <td>${p.azienda}</td>
+                                <td>${p.tipo}</td>
+                                
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${p.stato == 'Nuovo'}">
+                                            <span class="badge badge-nuovo">Nuovo</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="badge badge-usato" title="Difetti: ${not empty p.noteDifetti ? p.noteDifetti : 'Nessuno'}">Usato</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                
+                                <td>&euro; ${p.prezzoAttuale}</td>
+                                
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${p.disponibile}">
+                                            <span class="badge badge-disp">Sì</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="badge badge-not-disp">No</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                
+                                <td>${p.iva}%</td>
+                                
+                                <td>
+                                    <div class="action-group">
+                                        <button type="button" class="btn-edit" onclick="modificaProdotto(${p.idProdotto})" 
+                                            <c:if test="${!p.disponibile}">disabled</c:if>>
+                                            Modifica
+                                        </button>
+                                        
+                                        <button type="button" class="btn-delete" onclick="confermaEliminazione(${p.idProdotto})" 
+                                            <c:if test="${!p.disponibile}">disabled</c:if>>
+                                            Cancella
+                                        </button>
+                                    </div>
+                                </td>
+                                
+                            </tr>
+                        </c:forEach>
+                    </c:when>
+                    
+                    <c:otherwise>
+                        <tr>
+                            <td colspan="10" class="empty-catalog">Nessun prodotto presente nel catalogo.</td>
+                        </tr>
+                    </c:otherwise>
+                </c:choose>
             </tbody>
         </table>
-    <%
-        }
-    %>
+    </div>
     
     <dialog id="dlg-cancellazione">
-    	<p>Sicuro di voler cancellare questo prodotto?</p>
-    	<button class="btn-annulla" onclick="annulla()">Annulla</button>
-    	<button class="btn-conferma" onclick="elimina(this)" data-context-path="${pageContext.request.contextPath}">Conferma</button>
+        <p>Sicuro di voler cancellare questo prodotto?</p>
+        <button class="btn-annulla" onclick="annulla()">Annulla</button>
+        <button class="btn-conferma" onclick="elimina(this)" data-context-path="${pageContext.request.contextPath}">Conferma</button>
     </dialog>
+
+    <jsp:include page="common/footer.jsp" />
 
 </body>
 </html>

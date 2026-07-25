@@ -50,12 +50,8 @@ async function cambiaStato(select){
 		if(data.esito){
 			select.dataset.stato = data.nuovoStato;
 			select.value = data.nuovoStato;
-			const response = document.getElementById("response");
-			response.style.display = "block";
-			response.style.backgroundColor = "#d4edda";
-			response.style.border = "1px solid #c3e6cb";
-			response.style.color = "#155724";
-			response.innerHTML = data.messaggio;
+			
+			mostraPopup(data.messaggio, "#d4edda", "#155724", "#c3e6cb");
 			
 			const btnDelete = select.closest("tr").querySelector(".btn-delete");
 	        if(btnDelete) {
@@ -63,12 +59,8 @@ async function cambiaStato(select){
         }
 		else{
 			select.value = statoIniziale;
-			const response = document.getElementById("response");
-			response.style.display = "block";
-			response.style.backgroundColor = "#fde8e8";
-			response.style.border = "1px solid #f9b8b8"
-			response.style.color = "red";
-			response.innerHTML = data.messaggio;
+			            
+            mostraPopup(data.messaggio, "#fde8e8", "red", "#f9b8b8");
 			}
 		}
 	}
@@ -137,9 +129,11 @@ async function elimina(button){
 			}
 
 			annulla();
+			
+			mostraPopup(data.messaggio, "#d4edda", "#155724", "#c3e6cb");
 		}
 		else{
-			alert(data.messaggio);
+			mostraPopup(data.messaggio, "#fde8e8", "red", "#f9b8b8");
 		}
 	}
 	catch(err){
@@ -148,4 +142,19 @@ async function elimina(button){
 	}
 	
 	idOrdine = null;
+}
+
+function mostraPopup(messaggio, coloreSfondo, coloreTesto, coloreBordo) {
+    const response = document.getElementById("response");
+    
+    response.innerHTML = messaggio;
+    response.style.backgroundColor = coloreSfondo;
+    response.style.color = coloreTesto;
+	response.style.border = `1px solid ${coloreBordo}`;
+    
+    response.style.display = "block";
+    
+    setTimeout(() => {
+        response.style.display = "none";
+    }, 3000);
 }

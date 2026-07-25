@@ -53,9 +53,21 @@ async function elimina(obj){
 			}
 
 			annulla();
+			
+			const response = document.getElementById("response");
+			response.style.display = "block";
+			response.style.backgroundColor = "#d4edda";
+			response.style.border = "1px solid #c3e6cb";
+			response.style.color = "#155724";
+			response.innerHTML = data.messaggio;
 		}
 		else{
-			alert(data.messaggio || "Impossibile eliminare il prodotto.");
+			const response = document.getElementById("response");
+			response.style.display = "block";
+			response.style.backgroundColor = "#fde8e8";
+			response.style.border = "1px solid #f9b8b8"
+			response.style.color = "red";
+			response.innerHTML = data.messaggio;
 		}
 	}
 	catch(err){
