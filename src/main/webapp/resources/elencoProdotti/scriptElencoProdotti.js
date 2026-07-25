@@ -81,3 +81,32 @@ function modificaProdotto(id){
 	
 	window.location.href = `ModificaProdotto?idProdotto=${idProdotto}`;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    const searchInput = document.getElementById("adminFiltroTesto");
+    const righeProdotti = document.querySelectorAll(".riga-prodotto");
+
+    if (searchInput) {
+        
+        searchInput.addEventListener("input", function(e) {
+            
+            const termineRicerca = e.target.value.toLowerCase();
+
+            righeProdotti.forEach(riga => {
+                
+                const colonnaTitolo = riga.querySelector(".titolo-prodotto");
+                
+                if (colonnaTitolo) {
+                    const titolo = colonnaTitolo.textContent.toLowerCase();
+
+                    if (titolo.includes(termineRicerca)) {
+                        riga.style.display = "";
+                    } else {
+                        riga.style.display = "none";
+                    }
+                }
+            });
+        });
+    }
+});

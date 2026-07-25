@@ -35,7 +35,30 @@ body {
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    margin-bottom: 20px; 
+    margin: 0 10vw;
+}
+
+.admin-filter-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.admin-table-filter {
+    padding: 10px 15px;
+    border: 1px solid #cccccc !important; /* Il bordo che prima spariva! */
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 300px;
+    max-width: 100%;
+    background-color: #ffffff;
+    color: #333333;
+    transition: all 0.3s ease;
+}
+
+.admin-table-filter:focus {
+    outline: none;
+    border-color: #3498db !important; /* Colore al click */
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
 }
 
 /* =========================================
@@ -48,7 +71,7 @@ body {
 
 .btn-back { 
     padding: 10px 15px; 
-    background-color: #6c757d; 
+    background-color: #555; 
     color: white; 
     text-decoration: none; 
     border-radius: 4px; 
@@ -73,8 +96,10 @@ body {
    TABELLA E IMMAGINI
    ========================================= */
 .table-container {
-    width: 100%;
-    overflow-x: auto; /* Permette lo scorrimento laterale su schermi piccoli */
+    width: 90vw;
+    overflow-x: auto;
+    margin: 5vh 0;
+    padding: 0 5vw;
 }
 
 table { 
@@ -93,8 +118,12 @@ th, td {
 }
 
 th { 
-    background-color: #343a40; 
+    background-color: #1a1a1a; 
     color: white; 
+}
+
+table th:nth-child(10){
+	text-align: center;
 }
 
 tr:hover { 
@@ -234,4 +263,123 @@ dialog p {
 
 .btn-conferma:hover {
     background-color: #c82333;
+}
+
+@media screen and (max-width: 900px) {
+    .header-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .admin-filter-wrapper {
+        width: 100%;
+        margin-top: 3vh;
+    }
+
+    .admin-table-filter {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 2vh;
+    }
+    
+    .btn-group {
+		gap: 15px;
+		flex-direction: column;
+		margin-top: 2vh;
+	}
+	
+	table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    
+    thead {
+        display: none;
+    }
+    
+    tr.riga-prodotto {
+		width: 84vw;
+        display: grid;
+        grid-template-columns: 30vw 1fr;
+        gap: 8px 15px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+		padding: 1vh 3vw;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    tr.riga-prodotto td:nth-child(2) {
+    	align-self: center;
+        grid-column: 1;
+        grid-row: 1 / span 8; /* Scende per 8 righe, in modo che il testo si affianchi */
+        padding: 0;
+        border: none;
+    }
+    
+    .img-preview {
+        width: 100%;
+		height: 16vh;
+        object-fit: fill;
+        border-radius: 6px;
+    }
+    
+    tr.riga-prodotto td:nth-child(3) {
+        grid-column: 2;
+        padding: 0;
+        border: none;
+        font-size: 1.2rem;
+        color: #111;
+    }
+    
+    tr.riga-prodotto td:nth-child(1),
+    tr.riga-prodotto td:nth-child(4),
+    tr.riga-prodotto td:nth-child(5),
+    tr.riga-prodotto td:nth-child(6),
+    tr.riga-prodotto td:nth-child(7),
+    tr.riga-prodotto td:nth-child(8),
+    tr.riga-prodotto td:nth-child(9) {
+        grid-column: 2;
+        padding: 0;
+        border: none;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    tr.riga-prodotto td:nth-child(1)::before { content: "ID:"; font-weight: bold; color: #555; }
+    tr.riga-prodotto td:nth-child(4)::before { content: "Azienda:"; font-weight: bold; color: #555; }
+    tr.riga-prodotto td:nth-child(5)::before { content: "Tipo:"; font-weight: bold; color: #555; }
+    tr.riga-prodotto td:nth-child(6)::before { content: "Stato:"; font-weight: bold; color: #555; }
+    tr.riga-prodotto td:nth-child(7)::before { content: "Prezzo:"; font-weight: bold; color: #555; }
+    tr.riga-prodotto td:nth-child(8)::before { content: "Disponibile:"; font-weight: bold; color: #555; }
+    tr.riga-prodotto td:nth-child(9)::before { content: "IVA:"; font-weight: bold; color: #555; }
+    
+    tr.riga-prodotto td:nth-child(10) {
+        grid-column: 1 / -1; /* Prende tutta la larghezza da sinistra a destra */
+        padding: 15px 0 0 0;
+        border: none;
+        border-top: 1px solid #eee; /* Riga separatrice */
+        margin-top: 10px;
+    }
+    
+    .action-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .btn-edit, 
+    .btn-delete {
+        width: 100%;
+        padding: 12px;
+        font-size: 1.1rem;
+        text-align: center;
+        text-transform: uppercase;
+        border-radius: 4px;
+    }
+    
 }

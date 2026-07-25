@@ -17,6 +17,11 @@
 
     <div class="header-container">
         <h1>Elenco Prodotti</h1>
+        
+        <div class="admin-filter-wrapper">
+            <input type="text" id="adminFiltroTesto" class="admin-table-filter" placeholder="Cerca per titolo...">
+        </div>
+        
         <div class="btn-group">
             <a href="${pageContext.request.contextPath}/AggiungiProdotto" class="btn-add">+ Aggiungi Prodotto</a>
             <a href="${pageContext.request.contextPath}/Profilo" class="btn-back">Torna al Profilo</a>
@@ -50,13 +55,13 @@
                     <%-- Se ci sono prodotti --%>
                     <c:when test="${not empty prodotti}">
                         <c:forEach var="p" items="${prodotti}">
-                            <tr id="prodotto-${p.idProdotto}">
+                            <tr id="prodotto-${p.idProdotto}" class="riga-prodotto">
                                 
                                 <td>${p.idProdotto}</td>
                                 <td>
                                 	<img src="${pageContext.request.contextPath}/GetPicture?idProdotto=${p.idProdotto}" alt="${p.titolo}" class="img-preview" />
                                 </td>
-                                <td><strong>${p.titolo}</strong></td>
+                                <td class="titolo-prodotto"><strong>${p.titolo}</strong></td>
                                 <td>${p.azienda}</td>
                                 <td>${p.tipo}</td>
                                 
