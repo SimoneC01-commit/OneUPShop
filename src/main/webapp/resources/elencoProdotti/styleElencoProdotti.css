@@ -1,43 +1,237 @@
 @charset "UTF-8";
 
+/* =========================================
+   MESSAGGI E NOTIFICHE
+   ========================================= */
+.error {
+    color: red;
+    background-color: #fde8e8;
+    padding: 10px;
+    border: 1px solid #f9b8b8;
+    margin-bottom: 20px;
+    max-width: 800px;
+}
 
+#response {
+    display: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    max-width: 800px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
 
-body { font-family: Arial, sans-serif; margin: 40px; background-color: #f8f9fa; }
-.header-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.btn-group { display: flex; gap: 10px; }
-.btn-back { padding: 10px 15px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 4px; }
-.btn-back:hover { background-color: #5a6268; }
+/* =========================================
+   LAYOUT GENERALE
+   ========================================= */
+body { 
+    font-family: Arial, sans-serif; 
+    margin: 40px; 
+    background-color: #f8f9fa; 
+}
 
-/* Stile pulsante Aggiungi Prodotto */
-.btn-add { padding: 10px 15px; background-color: #28a745; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; }
-.btn-add:hover { background-color: #218838; }
+.header-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 20px; 
+}
 
-/* NUOVO STILE: Pulsante Modifica */
-.btn-edit { padding: 6px 12px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em; font-weight: bold; display: inline-block; }
-.btn-edit:hover { background-color: #0056b3; }
+/* =========================================
+   PULSANTI HEADER
+   ========================================= */
+.btn-group { 
+    display: flex; 
+    gap: 10px; 
+}
 
-.btn-edit:disabled { background-color: #6c757d; color: #e9ecef; cursor: not-allowed; opacity: 0.65; }
+.btn-back { 
+    padding: 10px 15px; 
+    background-color: #6c757d; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 4px; 
+}
+.btn-back:hover { 
+    background-color: #5a6268; 
+}
 
-/* Stile pulsante Cancella attivo */
-.btn-delete { padding: 6px 12px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; font-weight: bold; }
-.btn-delete:hover { background-color: #c82333; }
+.btn-add { 
+    padding: 10px 15px; 
+    background-color: #28a745; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 4px; 
+    font-weight: bold; 
+}
+.btn-add:hover { 
+    background-color: #218838; 
+}
 
-/* Pulsante Cancella disabilitato (prodotto non disponibile) */
-.btn-delete:disabled { background-color: #6c757d; color: #e9ecef; cursor: not-allowed; opacity: 0.65; }
+/* =========================================
+   TABELLA E IMMAGINI
+   ========================================= */
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Permette lo scorrimento laterale su schermi piccoli */
+}
 
-/* Contenitore per affiancare i bottoni delle azioni */
-.action-group { display: flex; gap: 6px; align-items: center; }
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    background: white; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+}
 
-table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
-th { background-color: #343a40; color: white; }
-tr:hover { background-color: #f1f3f5; }
+th, td { 
+    padding: 12px 15px; 
+    text-align: left; 
+    border-bottom: 1px solid #eee; 
+}
 
-.img-preview { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd; }
-.no-img { font-size: 0.85em; color: #888; font-style: italic; }
+th { 
+    background-color: #343a40; 
+    color: white; 
+}
 
-.badge { padding: 4px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; display: inline-block; }
+tr:hover { 
+    background-color: #f1f3f5; 
+}
+
+.empty-catalog {
+    text-align: center;
+    padding: 30px !important;
+    color: #666;
+    font-style: italic;
+    background-color: #fff;
+}
+
+.img-preview { 
+    width: 50px; 
+    height: 50px; 
+    object-fit: cover; 
+    border-radius: 4px; 
+    border: 1px solid #ddd; 
+}
+
+.no-img { 
+    font-size: 0.85em; 
+    color: #888; 
+    font-style: italic; 
+}
+
+/* =========================================
+   BADGE (Stati)
+   ========================================= */
+.badge { 
+    padding: 4px 8px; 
+    border-radius: 4px; 
+    font-size: 0.85em; 
+    font-weight: bold; 
+    display: inline-block; 
+}
 .badge-nuovo { background-color: #28a745; color: white; }
 .badge-usato { background-color: #ffc107; color: #212529; }
 .badge-disp { background-color: #17a2b8; color: white; }
 .badge-not-disp { background-color: #dc3545; color: white; }
+
+/* =========================================
+   AZIONI TABELLA (Modifica / Cancella)
+   ========================================= */
+.action-group { 
+    display: flex; 
+    gap: 6px; 
+    align-items: center; 
+}
+
+.btn-edit { 
+    padding: 6px 12px; 
+    background-color: #007bff; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 4px; 
+    font-size: 0.9em; 
+    font-weight: bold; 
+    display: inline-block; 
+    border: none;
+    cursor: pointer;
+}
+.btn-edit:hover:not(:disabled) { 
+    background-color: #0056b3; 
+}
+
+.btn-delete { 
+    padding: 6px 12px; 
+    background-color: #dc3545; 
+    color: white; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 0.9em; 
+    font-weight: bold; 
+}
+.btn-delete:hover:not(:disabled) { 
+    background-color: #c82333; 
+}
+
+.btn-edit:disabled, 
+.btn-delete:disabled { 
+    background-color: #6c757d; 
+    color: #e9ecef; 
+    cursor: not-allowed; 
+    opacity: 0.65; 
+}
+
+/* =========================================
+   FINESTRA DI DIALOGO (Popup Cancellazione)
+   ========================================= */
+dialog {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 20px 30px;
+    text-align: center;
+    background: white;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5); /* Sfondo scuro semi-trasparente */
+}
+
+dialog p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.btn-annulla {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.btn-annulla:hover {
+    background-color: #5a6268;
+}
+
+.btn-conferma {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-conferma:hover {
+    background-color: #c82333;
+}
