@@ -36,13 +36,12 @@
 	            
 	            <div class="form-group">
 	                <label for="email">Indirizzo Email</label>
-	                <input type="email" id="email" name="email" required placeholder="emai.prova@dominio.prova.it">
+	                <input type="email" id="email" name="email" required>
 	            </div>
 	
 	            <div class="form-group">
 	                <label for="password">Password</label>
 	                <input type="password" id="password" name="password" required>
-	                <small class="form-hint">Deve essere una combinazione di almeno 8 caratteri, tra lettere, numeri e simboli.</small>
 	            </div>
 	
 	            <button type="submit" class="btn-submit">Accedi</button>

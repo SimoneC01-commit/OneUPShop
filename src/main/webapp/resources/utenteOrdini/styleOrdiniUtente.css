@@ -7,8 +7,8 @@
    ========================================= */
 .container {
     width: 80%;
-    margin: 2.5rem auto;   
-    padding: 2rem;         
+    margin: 0 auto 2.5rem;
+    padding: 0 2rem 2rem;       
 }
 
 .container h1 {
@@ -19,6 +19,7 @@
     margin-bottom: 1.5rem; 
     padding-bottom: 1rem;  
     border-bottom: 0.2rem solid #cc0000; 
+    text-align: center;
 }
 
 .container-orders {

@@ -64,7 +64,7 @@
     </div>
 
     <br>
-    <a href="${pageContext.request.contextPath}/Home">Torna alla Home</a>
+    <a href="${pageContext.request.contextPath}/Profilo">← Torna al Profilo</a>
 
 </body>
 </html>

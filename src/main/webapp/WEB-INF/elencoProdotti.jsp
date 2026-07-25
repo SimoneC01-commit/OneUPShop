@@ -24,7 +24,7 @@
         
         <div class="btn-group">
             <a href="${pageContext.request.contextPath}/AggiungiProdotto" class="btn-add">+ Aggiungi Prodotto</a>
-            <a href="${pageContext.request.contextPath}/Profilo" class="btn-back">Torna al Profilo</a>
+            <a href="${pageContext.request.contextPath}/Profilo" class="btn-back">← Torna al Profilo</a>
         </div>
     </div>
     

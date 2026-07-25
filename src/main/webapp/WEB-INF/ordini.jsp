@@ -15,7 +15,13 @@
 
 <jsp:include page="common/header.jsp" />
 
+
+    
 <main class="container">
+
+<div class= "btn-back-home">
+    <a href="${pageContext.request.contextPath}/Profilo" class="btn-home">← Torna al Profilo</a>
+</div>
 	
     <h1>I Miei Ordini</h1>
     
@@ -95,6 +101,7 @@
     <div class= "btn-back-home">
     <a href="${pageContext.request.contextPath}/Home" class="btn-home">Continua lo Shopping</a>
     </div>
+    
 </main>
 
 <jsp:include page="common/footer.jsp" />
