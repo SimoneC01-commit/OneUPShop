@@ -31,7 +31,7 @@
 	    <div class="user-actions">
 	        <a href="${pageContext.request.contextPath}/ModificaProfilo" class="btn-modifica"> Modifica Profilo </a>
 	        <a href="${pageContext.request.contextPath}/Ordini" class="btn-orders"> I miei Ordini </a>
-	        <!--  <a href="${pageContext.request.contextPath}/#" class="btn-logout"> Logout </a>-->
+	        <a href="${pageContext.request.contextPath}/Logout" class="btn-logout"> Logout </a>
 	    </div>
 	
 	    <!-- Controlli con JSLT  -->

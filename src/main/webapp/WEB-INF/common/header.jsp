@@ -11,7 +11,7 @@
         <!-- Menu Hamburger e Profilo (Visibili SOLO su Mobile a sinistra) -->
         <div class="mobile-left-group hide-on-desktop">
             <button class="hamburger-btn" id="menuToggle" onclick="toggleMenu()">☰</button>
-            <a href="${pageContext.request.contextPath}/Login" class="icon-link">
+            <a href="${pageContext.request.contextPath}/Profilo" class="icon-link">
             <img src="${pageContext.request.contextPath}/resources/img/profilo.png" alt="Profilo" class="icon-img"></a>
         </div>
 
@@ -83,6 +83,7 @@
 	           <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Nintendo">Nintendo - </a></li>
 		       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Sony">Sony -</a></li>
 		       <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Microsoft">Microsoft -</a></li>
+		         <li><a href="${pageContext.request.contextPath}/CatalogoAzienda?azienda=Sega">Sega -</a></li>
         </ul>
 
         <div class="sidebar-support">
