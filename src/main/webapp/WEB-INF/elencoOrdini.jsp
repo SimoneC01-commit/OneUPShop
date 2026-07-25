@@ -6,6 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestione Ordini - Amministrazione</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/elencoOrdini/styleElencoOrdini.css">
     <script src="${pageContext.request.contextPath}/resources/elencoOrdini/scriptElencoOrdini.js" defer></script>

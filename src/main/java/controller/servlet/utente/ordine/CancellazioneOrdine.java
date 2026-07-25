@@ -49,7 +49,7 @@ public class CancellazioneOrdine extends HttpServlet {
 		String idOrdineStr = request.getParameter("idOrdine");
 		
 		if(idOrdineStr == null || idOrdineStr.trim().isEmpty()) {
-			response.sendError(404, "Campo ID mancante");
+			response.sendError(404, "Campo ID mancante.");
 			return;
 		}
 		
@@ -60,12 +60,17 @@ public class CancellazioneOrdine extends HttpServlet {
 			OrdineBean ordine = new OrdineDAO().doRetrieveByKey(idOrdine);
 			
 			if(ordine == null) {
-				response.sendError(404, "Ordine non trovato");
+				response.sendError(404, "Ordine non trovato.");
 				return;
 			}
 			
 			if(!ordine.getEmailUtente().equals(utente.getEmail())){
-				response.sendError(400, "Non sei autorizzato a cancellare questo ordine");
+				response.sendError(400, "Non sei autorizzato a cancellare questo ordine.");
+				return;
+			}
+			
+			if(!"In elaborazione".equals(ordine.getStatoOrdine())) {
+				response.sendError(400, "Non è più possibile cancellare questo ordine.");
 				return;
 			}
 			
@@ -78,7 +83,7 @@ public class CancellazioneOrdine extends HttpServlet {
 		catch(NumberFormatException e) {
 			e.printStackTrace();
 			
-			response.sendError(404, "ID prodotto non valido");
+			response.sendError(404, "ID prodotto non valido.");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

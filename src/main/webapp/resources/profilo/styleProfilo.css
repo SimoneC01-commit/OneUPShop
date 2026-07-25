@@ -169,6 +169,10 @@
    RESPONSIVE DESIGN 
    ========================================= */
 @media (max-width: 600px) {
+	.container-profile{
+		width: 80%;
+	}
+	
     .user-actions, 
     .admin-actions {
         flex-direction: column; 

@@ -12,8 +12,8 @@ body {
 }
 
 .container {
-    max-width: 1000px;
-    margin: 0 auto;
+    width: 80%;
+    margin: 2.5rem auto	;
     background: #fff;
     padding: 30px;
     border-radius: 8px;
@@ -58,7 +58,7 @@ body {
 
 .separatore {
     border: none;
-    border-top: 2px solid #3498db;
+    border-top: 0.2rem solid #cc0000;
     margin: 20px 0;
 }
 
@@ -95,7 +95,7 @@ body {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 th, td {
@@ -105,13 +105,18 @@ th, td {
 }
 
 th {
-    background-color: #2c3e50;
-    color: white;
-    font-weight: bold;
+    background-color: #222; /* Grigio molto scuro, riprende l'header scuro del wireframe */
+    color: #fff;
+    padding: 15px;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 1.05rem;	
 }
 
 tr.riga-prodotto:hover {
     background-color: #f1f1f1;
+    cursor: pointer;
 }
 
 .img-prodotto {
@@ -124,10 +129,10 @@ tr.riga-prodotto:hover {
 /* --- BOX TOTALE --- */
 .totale-box {
     text-align: right;
-    font-size: 20px;
+    font-size: 20px;	
     margin-top: 20px;
     padding-top: 15px;
-    border-top: 2px solid #2c3e50;
+    border-top: 2px solid #eaeaea;
 }
 
 .prezzo-totale {
@@ -165,7 +170,7 @@ tr.riga-prodotto:hover {
 
 .btn-back {
     display: inline-block;
-    background: #7f8c8d;
+    background: #555;
     color: white;
     padding: 10px 20px;
     text-decoration: none;
@@ -210,6 +215,13 @@ tr.riga-prodotto:hover {
 
 .btn-delete:hover {
     background: #c0392b;
+}
+
+.btn-delete:disabled { 
+    background-color: #6c757d; 
+    color: #e9ecef; 
+    cursor: not-allowed; 
+    opacity: 0.65; 
 }
 
 
@@ -283,5 +295,97 @@ tr.riga-prodotto:hover {
     /* Evita che le righe vengano spezzate tra due pagine diverse */
     tr {
         page-break-inside: avoid;
+    }
+}
+
+@media screen and (max-width: 900px) {
+	
+	.container{
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.header-fattura {
+		gap: 30px;
+	    flex-direction: column-reverse;
+	}
+	
+	.info-box {
+		flex-direction: column-reverse;
+		gap: 30px;
+	}
+	
+	table thead {
+        display: none;
+    }
+	
+	table, tbody, tr, td {
+        display: block;
+        width: 100%;
+    }
+    
+    h2{
+    	margin-bottom: 0;
+    }
+    
+	tr.riga-prodotto {
+        display: grid;
+        grid-template-columns: 7rem 1fr;
+        grid-template-rows: repeat(4, auto);
+        gap: 1% 2%;
+        align-content: start;
+        margin-bottom: 10%;
+    }
+	
+	tr.riga-prodotto td:nth-child(1) {
+	    grid-column: 1;
+	    grid-row: 1 / span 4;
+	    padding: 0;
+	    border: none;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	}
+	
+	.img-prodotto {
+        width: 100%; 
+        max-width: 6rem;
+    }
+    
+    tr.riga-prodotto td:nth-child(2) {
+        font-size: 1.2rem;
+    }
+    
+    tr.riga-prodotto td:nth-child(2),
+    tr.riga-prodotto td:nth-child(3),
+    tr.riga-prodotto td:nth-child(4),
+    tr.riga-prodotto td:nth-child(5) {
+        grid-column: 2;
+        padding: 1% 0;
+        border: none;
+        text-align: left;
+        font-size: 1.05rem;
+    }
+    
+    tr.riga-prodotto td:nth-child(3)::before { content: "Tipo: "; font-weight: 500; color: #777;}
+    tr.riga-prodotto td:nth-child(4)::before { content: "IVA: "; font-weight: 500; color: #777;}
+    tr.riga-prodotto td:nth-child(5)::before { content: "Prezzo: "; font-weight: 500; color: #777;}
+
+	.actions-bar {
+		justify-content: center;
+	}
+	
+	.btn-group-right {
+    display: flex;
+    gap: 15px;
+    align-items: stretch;
+    flex-direction: column-reverse;
+	}
+	
+	.btn-group-right form {
+        width: 100%;
+        display: flex; 
+        margin: 0;
+        flex-direction: column;
     }
 }

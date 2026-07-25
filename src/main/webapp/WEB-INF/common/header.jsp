@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/header/style.css">
 <script src="${pageContext.request.contextPath}/resources/header/scriptHeader.js" defer></script>
 
-<header class="main-header">
+<header class="main-header hide-on-print">
         
     <!-- RIGA SUPERIORE -->
     <div class="header-top">

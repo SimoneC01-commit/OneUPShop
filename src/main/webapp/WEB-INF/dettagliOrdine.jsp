@@ -4,14 +4,16 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Ordine #${ordine.idOrdine} - OneUpShop</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dettagliOrdine/styleDettagliOrdine.css">
 </head>
 <body>
+<jsp:include page="common/header.jsp" />
 
 <div class="container">
-    
+
     <!-- INTESTAZIONE AZIENDALE E FATTURA -->
     <div class="header-fattura">
         <div class="dati-azienda">
@@ -106,24 +108,26 @@
 
     <!-- BARRA DELLE AZIONI (Completamente nascosta durante la stampa) -->
     <div class="actions-bar hide-on-print">
-        <a href="${pageContext.request.contextPath}/Ordini" class="btn-back">← Torna ai Miei Ordini</a>
-        
         <div class="btn-group-right">
+        	 <a href="${pageContext.request.contextPath}/Ordini" class="btn-back">← Torna ai Miei Ordini</a>
+        
             <!-- Tasto Stampa -->
             <button type="button" onclick="window.print()" class="btn-stampa">🖨️ Stampa Fattura (PDF)</button>
 
             <!-- Tasto Annulla (mostrato solo se In elaborazione) -->
-            <c:if test="${ordine.statoOrdine == 'In elaborazione'}">
-                <form action="${pageContext.request.contextPath}/CancellazioneOrdine?idOrdine=${ordine.idOrdine}" method="post" 
-                      onsubmit="return confirm('Sei sicuro di voler annullare definitivamente questo ordine?');">
-                    <input type="hidden" name="idOrdine" value="${ordine.idOrdine}">
-                    <button type="submit" class="btn-delete">Annulla Ordine</button>
-                </form>
-            </c:if>
+            <form action="${pageContext.request.contextPath}/CancellazioneOrdine?idOrdine=${ordine.idOrdine}" method="post" 
+                  onsubmit="return confirm('Sei sicuro di voler annullare definitivamente questo ordine?');">
+                <input type="hidden" name="idOrdine" value="${ordine.idOrdine}">
+                <button type="submit" class="btn-delete" <c:if test="${ordine.statoOrdine != 'In elaborazione'}">disabled</c:if>>
+                	Annulla Ordine
+                </button>
+            </form>
         </div>
     </div>
 
 </div>
+
+<jsp:include page="common/footer.jsp" />
 
 </body>
 </html>

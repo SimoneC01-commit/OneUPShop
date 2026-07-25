@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/footer/styleF.css">
 
-<footer class="main-footer">
+<footer class="main-footer hide-on-print">
     <div class="footer-content">
         
         <!-- BLOCCO SINISTRA: Logo e Info -->
