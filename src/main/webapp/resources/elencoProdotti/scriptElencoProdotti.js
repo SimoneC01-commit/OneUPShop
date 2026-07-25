@@ -64,3 +64,9 @@ async function elimina(obj){
 		alert("Si è verificato un errore di rete durante la cancellazione.");
 	}
 }
+
+function modificaProdotto(id){
+	idProdotto = id;
+	
+	window.location.href = `ModificaProdotto?idProdotto=${idProdotto}`;
+}

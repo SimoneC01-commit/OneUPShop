@@ -16,6 +16,8 @@ body { font-family: Arial, sans-serif; margin: 40px; background-color: #f8f9fa; 
 .btn-edit { padding: 6px 12px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em; font-weight: bold; display: inline-block; }
 .btn-edit:hover { background-color: #0056b3; }
 
+.btn-edit:disabled { background-color: #6c757d; color: #e9ecef; cursor: not-allowed; opacity: 0.65; }
+
 /* Stile pulsante Cancella attivo */
 .btn-delete { padding: 6px 12px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; font-weight: bold; }
 .btn-delete:hover { background-color: #c82333; }

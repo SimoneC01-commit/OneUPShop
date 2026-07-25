@@ -90,12 +90,15 @@
                         <td>
                             <div class="action-group">
                                 <!-- Pulsante Modifica (richiama ModificaProdotto in GET passando l'idProdotto) -->
-                                <a href="<%= request.getContextPath() %>/ModificaProdotto?idProdotto=<%= p.getIdProdotto() %>" class="btn-edit">
-                                    Modifica
-                                </a>
-
+                                <button type="button" class="btn-edit" onclick="modificaProdotto(<%= p.getIdProdotto() %>)" 
+                                	<%= !p.isDisponibile() ? "disabled" : "" %>>
+								    Modifica
+								</button>
+                                
                                 <button type="button" id="btn-delete" class="btn-delete" onclick="confermaEliminazione(<%= p.getIdProdotto() %>)" 
-                                	<%= !p.isDisponibile() ? "disabled" : "" %> data-id-prodotto="${p.idProdotto}">Cancella</button>
+                                	<%= !p.isDisponibile() ? "disabled" : "" %>>
+                                	Cancella
+                                </button>
                             </div>
                         </td>
                     </tr>
