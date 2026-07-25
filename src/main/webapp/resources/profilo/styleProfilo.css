@@ -6,7 +6,7 @@
    ========================================= */
 
 .container-profile {
-    max-width: 800px;
+    width:90%;
     margin: 0 auto;
     padding: 2rem;
     font-family: 'Roboto', sans-serif;
@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: column;
     gap: 25px; 
-    min-height: 60vh; /* Assicura che il footer stia sempre in basso */
+    /*min-height: 60vh; /* Assicura che il footer stia sempre in basso */
 }
 
 
@@ -50,7 +50,7 @@
     font-weight: bold;
     color: #111;
     display: inline-block;
-    width: 90px; /* Allinea in verticale i due punti */
+    width: 90px; 
 }
 
 /* =========================================
@@ -79,10 +79,6 @@
     background-color: #0000bb;
 }
 
-.btn-modifica:active {
-    transform: scale(0.98);
-}
-
 
 .btn-orders {
     display: inline-block;
@@ -101,8 +97,23 @@
     background-color: #e10033;
 }
 
-.btn-orders:active {
-    transform: scale(0.98);
+.btn-logout {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #cc0000;
+    text-decoration: none;
+    padding: 12px 25px;
+    border: 2px solid #cc0000;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    text-align: center;
+}
+
+.btn-logout:hover {
+    background-color: #cc0000;
+    color: #ffff;
 }
 
 /* =========================================
@@ -114,7 +125,11 @@
     padding: 2rem;
     border-radius: 10px;
     margin-top: 1rem;
-    border: 4px dashed #444; /* Bordo stile "area riservata" */
+    border: 4px dashed #444; /* Bordo stile "area riservata" */ 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   
+    text-align: center;
 }
 
 .admin-panel h3 {
@@ -123,6 +138,7 @@
     margin-top: 0;
     margin-bottom: 1.5rem;
     color: #ffcc00; /* Giallo  */
+   
 }
 
 .admin-actions {
@@ -157,6 +173,11 @@
     .admin-actions {
         flex-direction: column; 
         gap: 10px;
+    }
+    
+    .admin-panel h3 {
+    	font-size: 1.5rem;
+    	overflow-wrap: break-word;
     }
 
     .btn-modifica,
