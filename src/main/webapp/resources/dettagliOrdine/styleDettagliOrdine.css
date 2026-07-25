@@ -330,7 +330,7 @@ tr.riga-prodotto:hover {
     
 	tr.riga-prodotto {
         display: grid;
-        grid-template-columns: 7rem 1fr;
+        grid-template-columns: 30vw 1fr;
         grid-template-rows: repeat(4, auto);
         gap: 1% 2%;
         align-content: start;
