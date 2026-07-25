@@ -1,96 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="model.ordine.OrdineBean" %>
+<!-- Aggiunta della libreria JSTL Core -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Gestione Ordini - Amministrazione</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f6f9;
-        }
-        h1 {
-            color: #333;
-        }
-        .error {
-            color: red;
-            background-color: #fde8e8;
-            padding: 10px;
-            border: 1px solid #f9b8b8;
-            margin-bottom: 20px;
-            max-width: 800px;
-        }
-        .table-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            max-width: 1200px;
-            overflow-x: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-        th, td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        th {
-            background-color: #343a40;
-            color: white;
-        }
-        tr:hover {
-            background-color: #f8f9fa;
-        }
-        .status {
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-        }
-        .status-elaborazione { background-color: #ffeeba; color: #856404; }
-        .status-spedito { background-color: #b8daff; color: #004085; }
-        .status-consegnato { background-color: #c3e6cb; color: #155724; }
-        .status-annullato { background-color: #f5c6cb; color: #721c24; }
-        
-        .btn-delete {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.2s;
-        }
-        .btn-delete:hover {
-            background-color: #bd2130;
-        }
-        .btn-delete:disabled {
-            background-color: #6c757d;
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-    </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/elencoOrdini/styleElencoOrdini.css">
+    <script src="${pageContext.request.contextPath}/resources/elencoOrdini/scriptElencoOrdini.js" defer></script>
 </head>
 <body>
+	<jsp:include page="common/header.jsp" />
 
     <h1>Elenco Ordini Ricevuti</h1>
 
-    <% 
-        String errorMessage = (String) request.getAttribute("errorMessage");
-        if (errorMessage != null) { 
-    %>
-        <div class="error"><%= errorMessage %></div>
-    <% 
-        } 
-    %>
+    <!-- Gestione Messaggio di Errore -->
+    <c:if test="${not empty errorMessage}">
+        <div class="error">${errorMessage}</div>
+    </c:if>
+    
+    <div id="response">
+    	
+    </div>
 
     <div class="table-container">
         <table>
@@ -106,50 +38,111 @@
                 </tr>
             </thead>
             <tbody>
-                <% 
-                    @SuppressWarnings("unchecked")
-                    ArrayList<OrdineBean> ordini = (ArrayList<OrdineBean>) request.getAttribute("ordini");
-                    if (ordini != null && !ordini.isEmpty()) {
-                        for (OrdineBean ordine : ordini) {
-                            String stato = ordine.getStatoOrdine();
-                            String statusClass = "";
+                <c:choose>
+                    <%-- Se la lista ordini NON è vuota, esegui il ciclo --%>
+                    <c:when test="${not empty ordini}">
+                        
+                        <c:forEach var="ordine" items="${ordini}">
                             
-                            if ("In elaborazione".equals(stato)) statusClass = "status-elaborazione";
-                            else if ("Spedito".equals(stato)) statusClass = "status-spedito";
-                            else if ("Consegnato".equals(stato)) statusClass = "status-consegnato";
-                            else if ("Annullato".equals(stato)) statusClass = "status-annullato";
-                %>
-                <tr>
-                    <td>#<%= ordine.getIdOrdine() %></td>
-                    <td><%= ordine.getEmailUtente() %></td>
-                    <td><%= ordine.getDataOrdine() %></td>
-                    <td><%= ordine.getMetodoPagamento() %></td>
-                    <td>&euro; <%= ordine.getTotaleOrdine() %></td>
-                    <td>
-                        <span class="status <%= statusClass %>"><%= stato %></span>
-                    </td>
-                    <td>
-                        <form action="<%= request.getContextPath() %>/CancellaOrdine" method="POST" style="margin:0;" onsubmit="return confirm('Sei sicuro di voler cancellare questo ordine?');">
-                            <input type="hidden" name="idOrdine" value="<%= ordine.getIdOrdine() %>">
-                            <button type="submit" class="btn-delete" <%= !"In elaborazione".equals(stato) ? "disabled" : "" %>>
-                                Cancella
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                <% 
-                        }
-                    } else { 
-                %>
-                <tr>
-                    <td colspan="7" style="text-align: center;">Nessun ordine presente nel sistema.</td>
-                </tr>
-                <% 
-                    } 
-                %>
+                            <!-- Riga Principale dell'Ordine -->
+                            <tr id="ordine-${ordine.idOrdine}" class="main-order-row" onclick="toggleDettagli(${ordine.idOrdine})">
+                                <td>#${ordine.idOrdine}</td>
+                                <td>${ordine.emailUtente}</td>
+                                <td>${ordine.dataOrdine}</td>
+                                <td>${ordine.metodoPagamento}</td>
+                                <td>&euro; ${ordine.totaleOrdine}</td>
+                                
+                                <!-- Menù a tendina per lo stato -->
+                                <td>
+                                    <select name="statoOrdine" class="select-stato" data-id-ordine="${ordine.idOrdine}" data-stato="${ordine.statoOrdine}" data-context-path="${pageContext.request.contextPath}"
+                                    	onchange="cambiaStato(this)" onclick="event.stopPropagation()">
+                                        <option value="In elaborazione" <c:if test="${ordine.statoOrdine == 'In elaborazione'}">selected</c:if>>In elaborazione</option>
+                                        <option value="Spedito" <c:if test="${ordine.statoOrdine == 'Spedito'}">selected</c:if>>Spedito</option>
+                                        <option value="Consegnato" <c:if test="${ordine.statoOrdine == 'Consegnato'}">selected</c:if>>Consegnato</option>
+                                    </select>
+                                </td>
+                                
+                                <!-- Pulsante Cancellazione -->
+                                <td>
+	                                <button type="button" id="btn-delete" class="btn-delete" onclick="confermaEliminazione(${ordine.idOrdine})"
+	                                	<c:if test="${ordine.statoOrdine != 'In elaborazione'}">disabled</c:if>>
+	                                    Cancella
+	                                </button>
+                                </td>
+                            </tr>
+
+                            <!-- Riga Nascosta: Dettagli Ordine -->
+                            <tr id="dettagli-${ordine.idOrdine}" class="dettagli-row" style="display: none;">
+                                <td colspan="7">
+                                    <div class="dettagli-container">
+                                        <h4>Dettagli Ordine #${ordine.idOrdine}</h4>
+                                        <p>
+                                            <strong>Indirizzo di spedizione:</strong> ${not empty ordine.indirizzoSpedizione ? ordine.indirizzoSpedizione : 'N/D'} <br>
+                                            <strong>Telefono:</strong> ${not empty ordine.telefono ? ordine.telefono : 'N/D'}
+                                        </p>
+                                        
+                                        <table class="inner-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Prodotto ID</th>
+                                                    <th>Nome</th>
+                                                    <th>Prezzo Storico</th>
+                                                    <th>IVA</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                <c:set var="hasDetails" value="false" />
+                                                
+                                                <!-- Ciclo sui Dettagli Ordine -->
+                                                <c:if test="${not empty dettagliOrdini}">
+                                                    <c:forEach var="dettaglio" items="${dettagliOrdini}">
+                                                        
+                                                        <c:if test="${dettaglio.idOrdine == ordine.idOrdine}">
+                                                            <tr>
+                                                                <td>${dettaglio.prodotto.idProdotto}</td>
+                                                                <td>${dettaglio.prodotto.titolo}</td>
+                                                                <td>&euro; ${dettaglio.prezzoVenditaStorico}</td>
+                                                                <td>${dettaglio.ivaStorico}%</td>
+                                                            </tr>
+                                                            <c:set var="hasDetails" value="true" />
+                                                        </c:if>
+                                                        
+                                                    </c:forEach>
+                                                </c:if>
+
+                                                <!-- Se non ci sono dettagli associati a questo ordine -->
+                                                <c:if test="${not hasDetails}">
+                                                    <tr>
+                                                        <td colspan="4">Nessun dettaglio trovato.</td>
+                                                    </tr>
+                                                </c:if>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </c:forEach>
+                        
+                    </c:when>
+                    <%-- ALTRIMENTI: Nessun ordine --%>
+                    <c:otherwise>
+                        <tr>
+                            <td colspan="7">Nessun ordine presente nel sistema.</td>
+                        </tr>
+                    </c:otherwise>
+                </c:choose>
             </tbody>
         </table>
     </div>
 
+    <dialog id="dlg-cancellazione">
+        <p>Sicuro di voler cancellare questo prodotto?</p>
+        <button class="btn-annulla" onclick="annulla()">Annulla</button>
+        <button class="btn-conferma" onclick="elimina(this)" data-context-path="${pageContext.request.contextPath}">Conferma</button>
+    </dialog>
+    <jsp:include page="common/footer.jsp" />
 </body>
 </html>

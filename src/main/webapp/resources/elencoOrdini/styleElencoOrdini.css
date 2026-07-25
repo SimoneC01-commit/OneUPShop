@@ -1,0 +1,235 @@
+@charset "UTF-8";
+
+/* =========================================
+   STILE GENERALE
+   ========================================= */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f6f9;
+}
+
+h1 {
+    color: #333;
+}
+
+.error {
+    color: red;
+    background-color: #fde8e8;
+    padding: 10px;
+    border: 1px solid #f9b8b8;
+    margin-bottom: 20px;
+    max-width: 800px;
+    
+}
+
+#response{
+	display: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    max-width: 800px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* =========================================
+   TABELLA PRINCIPALE ORDINI
+   ========================================= */
+.table-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 1200px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+    background-color: #343a40;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Effetto hover specifico per la riga cliccabile */
+.main-order-row {
+    transition: background-color 0.2s;
+}
+
+.main-order-row:hover {
+    background-color: #f1f3f5;
+}
+
+/* =========================================
+   MENU A TENDINA STATO (SELECT)
+   ========================================= */
+.select-stato {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.select-stato:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Mantengo le vecchie classi status se dovessero servirti altrove */
+.status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+}
+.status-elaborazione { background-color: #ffeeba; color: #856404; }
+.status-spedito { background-color: #b8daff; color: #004085; }
+.status-consegnato { background-color: #c3e6cb; color: #155724; }
+
+/* =========================================
+   BOTTONE CANCELLA
+   ========================================= */
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: #bd2130;
+}
+
+.btn-delete:disabled {
+    background-color: #6c757d;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   RIGA NASCOSTA (DETTAGLI ORDINE)
+   ========================================= */
+.dettagli-row td {
+    padding: 0; /* Rimuoviamo il padding dalla cella per darlo al container interno */
+    border-bottom: none;
+}
+
+.dettagli-container {
+    padding: 15px 20px;
+    background-color: #f1f1f1;
+    border-bottom: 2px solid #ddd;
+    box-shadow: inset 0px 4px 6px -6px rgba(0,0,0,0.1);
+}
+
+.dettagli-container h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.dettagli-container p {
+    margin: 5px 0 15px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #444;
+}
+
+/* =========================================
+   TABELLA INTERNA (PRODOTTI DELL'ORDINE)
+   ========================================= */
+.inner-table {
+    width: 100%;
+    margin-top: 10px;
+    background-color: #fff;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.inner-table th, .inner-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    text-align: center;
+}
+
+.inner-table th {
+    background-color: #e9ecef;
+    color: #495057;
+    font-weight: bold;
+    text-align: center;
+}
+
+.inner-table tr:hover {
+    background-color: #fafafa;
+}
+
+/* =========================================
+   FINESTRA DI DIALOGO (CANCELLAZIONE)
+   ========================================= */
+dialog {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    padding: 25px;
+    max-width: 400px;
+    text-align: center;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog p {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.btn-annulla {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.btn-conferma {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}

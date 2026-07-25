@@ -256,4 +256,32 @@ public class OrdineDAO implements DAOInterface<OrdineBean, Integer> {
 			
 		return lista;
 	}
+	
+	public void doUpdateStato(int idOrdine, String statoOrdine) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		String query = "UPDATE ordine SET Stato_Ordine = ? WHERE ID_Ordine = ?";
+		
+		try {
+			conn = ConnectionPool.getConnection();
+			ps = conn.prepareStatement(query);
+			
+			ps.setString(1, statoOrdine);
+			
+			ps.setInt(2, idOrdine);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (ps != null) {
+            	ps.close();
+            }
+            if (conn != null) {
+                ConnectionPool.releaseConnection(conn);
+            }
+        }
+	}
 }

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.dettaglioOrdine.DettaglioOrdineBean;
+import model.dettaglioOrdine.DettaglioOrdineDAO;
 import model.ordine.OrdineBean;
 import model.ordine.OrdineDAO;
 
@@ -36,8 +38,10 @@ public class ElencoOrdini extends HttpServlet {
 		
 		try {
 			List<OrdineBean> ordini = new OrdineDAO().doRetrieveAll();
+			List<DettaglioOrdineBean> dettagliOrdini = new DettaglioOrdineDAO().doRetrieveAll();
 			
 			request.setAttribute("ordini", ordini);
+			request.setAttribute("dettagliOrdini", dettagliOrdini);
 			
 			request.getRequestDispatcher("/WEB-INF/elencoOrdini.jsp").forward(request, response);
 		} catch (SQLException e) {

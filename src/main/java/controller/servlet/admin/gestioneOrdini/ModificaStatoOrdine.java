@@ -17,16 +17,16 @@ import model.ordine.OrdineBean;
 import model.ordine.OrdineDAO;
 
 /**
- * Servlet implementation class CancellaOrdine
+ * Servlet implementation class ModificaStatoOrdine
  */
-@WebServlet("/CancellaOrdine")
-public class CancellaOrdine extends HttpServlet {
+@WebServlet("/ModificaStatoOrdine")
+public class ModificaStatoOrdine extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CancellaOrdine() {
+    public ModificaStatoOrdine() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,7 +44,7 @@ public class CancellaOrdine extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 
@@ -52,41 +52,56 @@ public class CancellaOrdine extends HttpServlet {
 		
 		Gson gson = new Gson();
 		
+		String nuovoStatoOrdine = request.getParameter("statoOrdine");
 		String idOrdineStr = request.getParameter("idOrdine");
 		
-		if(idOrdineStr == null || idOrdineStr.trim().isEmpty()) {
+		if(nuovoStatoOrdine == null ||
+				(!nuovoStatoOrdine.equals("In elaborazione") &&
+				!nuovoStatoOrdine.equals("Spedito") &&
+				!nuovoStatoOrdine.equals("Consegnato"))) {
+			
 			risposta.put("esito", false);
-			risposta.put("messaggio", "ID ordine mancante.");
+			risposta.put("messaggio", "Nuovo stato ordine non valido.");
 			
 			response.getWriter().write(gson.toJson(risposta));
 			
 			return;
 		}
 		
-		try {	
+		if(idOrdineStr == null || idOrdineStr.trim().isEmpty()) {
+			
+			risposta.put("esito", false);
+			risposta.put("messaggio", "ID ordine errato.");
+			
+			response.getWriter().write(gson.toJson(risposta));
+			
+			return;
+		}
+		
+		try {
 			int idOrdine = Integer.parseInt(idOrdineStr);
 			
-			OrdineBean ordine = new OrdineDAO().doRetrieveByKey(idOrdine);
+			OrdineDAO oDAO = new OrdineDAO();
 			
-			if(ordine == null) {
-				risposta.put("esito", false);
-				risposta.put("messaggio", "L'ordine non esiste.");
-			}
-			else {
+			OrdineBean ordineEsistente = oDAO.doRetrieveByKey(idOrdine);
+			
+			if(ordineEsistente != null) {
 				
-				if("In elaborazione".equals(ordine.getStatoOrdine())) {
-					OrdineDAO eoDAO = new OrdineDAO();
-					
-					eoDAO.doDelete(idOrdine);
-					
+				if(nuovoStatoOrdine.equals(ordineEsistente.getStatoOrdine())) {
 					risposta.put("esito", true);
-					risposta.put("messaggio", "Ordine eliminato.");
+					risposta.put("messaggio", "L'ordine " + idOrdine + " si trova già in questo stato!");
 				}
 				else {
+					oDAO.doUpdateStato(idOrdine, nuovoStatoOrdine);
 					
-					risposta.put("esito", false);
-					risposta.put("messaggio", "L'ordine non può essere più cancellato.");
+					risposta.put("esito", true);
+					risposta.put("messaggio", "Stato ordine " + idOrdine + " modificato!");
+					risposta.put("nuovoStato", nuovoStatoOrdine);
 				}
+			}
+			else {
+				risposta.put("esito", false);
+				risposta.put("messaggio", "L'ordine non esiste!");
 			}
 		}
 		catch(NumberFormatException e) {
@@ -98,7 +113,7 @@ public class CancellaOrdine extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			risposta.put("esito", false);
-			risposta.put("messaggio", "Errore del database durante l'eliminazione.");
+			risposta.put("messaggio", "Errore del database durante la modifica.");
 		}
 		
 		response.getWriter().write(gson.toJson(risposta));

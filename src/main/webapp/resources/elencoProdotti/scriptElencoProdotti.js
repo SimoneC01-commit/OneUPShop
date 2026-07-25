@@ -18,7 +18,6 @@ function confermaEliminazione(id){
 	if(elem){
 		elem.showModal();
 	}
-	elem.showModal();
 }
 
 async function elimina(obj){
