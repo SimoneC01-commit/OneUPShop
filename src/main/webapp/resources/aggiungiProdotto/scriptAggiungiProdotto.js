@@ -364,17 +364,23 @@ function validate(obj) {
 // ==========================================
 
 function addError(obj, errore) {
-    removeError(obj);
+    
+    const errorSpan = document.getElementById("err-" + obj.id);
+    
+    if (errorSpan) {
+        errorSpan.textContent = errore;
+        errorSpan.style.display = "block";
+    }
 
-    const elem = document.createElement("div");
-    elem.textContent = errore;
-    elem.classList.add("error");
-    obj.after(elem);
+    obj.classList.add("input-error-style"); 
 }
 
 function removeError(obj) {
-    if (obj.nextElementSibling?.classList.contains("error")) {
-        const elem = obj.nextElementSibling;
-        elem.remove();
+    const errorSpan = document.getElementById("err-" + obj.id);
+    
+    if (errorSpan) {
+        errorSpan.textContent = "";
+        errorSpan.style.display = "none";
     }
+    obj.classList.remove("input-error-style");
 }
