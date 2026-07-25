@@ -1,0 +1,174 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+
+/* =========================================
+   			STYLE UTENTE ORDINI
+   ========================================= */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.15); /* Ombreggiatura  */
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+/* ========================================= 
+   TITOLO
+   ========================================= */
+.container h1 {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 2.8rem;
+    color: #111; /* Nero deciso invece del blu del wireframe */
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #cc0000; /* Linea divisoria stile retro */
+}
+
+/* =========================================
+   TABELLA ORDINI
+   ========================================= */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Rimuove gli spazi tra le celle */
+    margin-bottom: 30px;
+}
+
+/* Intestazione Tabella */
+th {
+    background-color: #222; /* Grigio molto scuro, riprende l'header scuro del wireframe */
+    color: #fff;
+    padding: 15px;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+/* Celle Tabella */
+td {
+    padding: 15px;
+    border-bottom: 1px solid #eaeaea; /* Bordo inferiore per separare le righe */
+    vertical-align: middle;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* Effetto Hover sulle righe  */
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Dettagli Spedizione */
+.Dettagli-storici {
+    line-height: 1.5;
+}
+
+.Dettagli-storici strong {
+    color: #111;
+}
+
+/* =========================================
+   BADGES (Etichette di stato colorate)
+   ========================================= */
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px; /* Bordo arrotondato "a pillola" come nel wireframe */
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Stile per "IN ELABORAZIONE" (Giallo/Rosso come da tua immagine) */
+.badge-elaborazione {
+    background-color: #ffeeba;
+    color: #cc0000; /*Rosso*/
+    border: 1px solid #ffdf7e;
+}
+
+.badge-spedito {
+    background-color: #cce5ff;
+    color: #004085; /*Blu*/
+    border: 1px solid #b8daff;
+}
+
+.badge-consegnato {
+    background-color: #d4edda;
+    color: #155724; /*Verde per consegnato*/
+    border: 1px solid #c3e6cb;
+}
+
+.badge-annullato {
+    background-color: #f8d7da;
+    color: #721c24; /*Rosso molto scuro per annullato*/
+    border: 1px solid #f5c6cb;
+}
+
+/* =========================================
+   BOTTONI 
+   ========================================= */
+.btn-back-home {
+    display: flex;
+    justify-content: flex-start; /* Allinea il bottone a sinistra  */
+    margin-top: 20px;
+}
+
+.btn-home {
+    background-color: #555; /* Grigio */
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-home:hover {
+    background-color: #0000ff; 
+}
+
+/* =========================================
+   CASO NESSUN ORDINE
+   ========================================= */
+.no-orders {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.no-orders h2 {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 2rem;
+    color: #111;
+}
+
+.no-orders p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (Smartphone e Tablet)
+   ========================================= */
+@media (max-width: 900px) {
+    /* Per evitare che la tabella si sformi o sbatta fuori dai margini su schermi piccoli */
+    .container {
+        padding: 15px;
+        overflow-x: auto; /* scroll orizzontale SOLO alla tabella se non ci entra */
+    }
+    
+    table {
+        min-width: 700px; /* Costringe la tabella a mantenere una larghezza leggibile */
+    }
+}
