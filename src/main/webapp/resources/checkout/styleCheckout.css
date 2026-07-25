@@ -1,20 +1,242 @@
 @charset "UTF-8";
+@import url("../generalStyle.css");
 
-.error{
-	color: red;
+/* =========================================
+  			STILE CHECKOUT
+   ========================================= */
+
+body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
 }
 
-body { font-family: Arial, sans-serif; margin: 30px; background-color: #f8f9fa; color: #333; }
-.checkout-container { max-width: 900px; margin: 0 auto; display: flex; gap: 30px; }
-.panel { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex: 1; }
-.summary-panel { max-width: 350px; }
-h2, h3 { margin-top: 0; color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; }
-.form-group { margin-bottom: 15px; }
-label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9em; }
-input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-input[type="text"]:focus { border-color: #3498db; outline: none; }
-.error-message { background-color: #f8d7da; color: #721c24; padding: 12px; border-radius: 4px; margin-bottom: 20px; font-weight: bold; border: 1px solid #f5c6cb; }
-.prodotto-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.95em; }
-.totale-box { font-size: 1.3em; font-weight: bold; color: #27ae60; text-align: right; margin-top: 20px; }
-.btn-paga { background-color: #27ae60; color: white; border: none; padding: 12px; width: 100%; font-size: 1.1em; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 20px; transition: background 0.2s; }
-.btn-paga:hover { background-color: #219653; }
+.checkout-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+.checkout-content {
+    display: flex;       
+    gap: 40px;           
+    align-items: flex-start; 
+}
+
+/* =========================================
+   TITOLO  CHECKOUT
+   ========================================= */
+.titolo-checkout {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    gap: 15px; 
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #eaeaea;
+    width: 100%;
+}
+
+.titolo-checkout h2 {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 2.8rem;
+    color: #111;
+    margin: 0;
+}
+
+.money-img {
+    width: 60px; 
+    height: auto; 
+}
+
+/* =========================================
+    FORM INDIRIZZO
+   ========================================= */
+.checkout-form-section {
+    flex: 1; /* Pende tutto lo spazio disponibile a sinistra */
+}
+
+.checkout-form-section h2 {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #111;
+}
+
+/* Messaggio di errore */
+.error-message {
+    background-color: #ffcccc;
+    color: #cc0000;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*Errori della JSP*/
+.error {
+	font-family:'Roboto', sans-serif;
+	color: #c41a1a;
+	font-size: 0.9rem
+}
+
+/* Stili form group */
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #111;
+
+}
+
+.form-group input, 
+.select-pagamento {
+    font-family: 'Roboto', sans-serif;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, 
+.select-pagamento:focus {
+    border-color: #111;
+    outline: none;
+}
+
+/* Riga  */
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.cap-group {
+    flex: 1; 
+}
+
+.citta-group {
+    flex: 2; /*  il doppio dello spazio rispetto a cap */
+}
+
+/* Bottone di Pagamento */
+.btn-paga {
+    background-color: #f0ce0d; /* giallo */
+    color: #111111;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-paga:hover {
+    background-color: #e9c707;
+}
+
+.btn-paga:active {
+    transform: scale(0.98); /* Effetto press click */
+}
+
+/* =========================================
+     RIEPILOGO ORDINE 
+   ========================================= */
+.checkout-summary-section {
+    flex: 0 0 350px; /* usati i pixel per no stretch*/
+    background-color: #f9f9f9; 
+    padding: 2rem;
+    border: 2px solid #eaeaea;
+    border-radius: 15px; 
+    position: sticky;
+    top: 20px; 
+}
+
+.checkout-summary-section h3 {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 0.5rem;
+}
+
+.prodotti-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Troncamento del titolo se è troppo lungo */
+.prodotto-titolo {
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    max-width: 70%;
+}
+
+.summary-divider {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 1.5rem 0;
+}
+
+.summary-row.totale {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #111111;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN 
+   ========================================= */
+@media (max-width: 900px) {
+    .checkout-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .titolo-checkout {
+        flex-wrap: wrap; 
+    }
+    
+    .checkout-content{
+	    flex-direction: column;
+	    gap: 30px;
+    }
+
+    .checkout-summary-section {
+        flex: auto; 
+        width: 100%;
+        position: static; 
+        box-sizing: border-box; /* Usato per non far uscire fuori dal padding */
+        order: -1; /* Sposta il sommario sopra al form */
+    }
+
+    .form-row {
+        flex-direction: column;  
+        gap: 0;
+    }
+}

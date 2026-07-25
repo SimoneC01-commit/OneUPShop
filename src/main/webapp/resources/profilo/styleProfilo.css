@@ -1,0 +1,168 @@
+@charset "UTF-8";
+@import url("../generalStyle.css");
+
+/* =========================================
+        STILE PROFILO
+   ========================================= */
+
+.container-profile {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; 
+    min-height: 60vh; /* Assicura che il footer stia sempre in basso */
+}
+
+
+.titolo-profilo {
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 1rem;
+}
+
+.titolo-profilo h1 {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 2.8rem;
+    color: #111;
+    margin: 0;
+}
+
+/* =========================================
+   CARD UTENTE 
+   ========================================= */
+.profilo-card {
+    background-color: #f9f9f9;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    padding: 2rem;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Leggera ombreggiatura */
+}
+
+.profilo-card p {
+    margin: 12px 0;
+}
+
+.profilo-card strong {
+    font-weight: bold;
+    color: #111;
+    display: inline-block;
+    width: 90px; /* Allinea in verticale i due punti */
+}
+
+/* =========================================
+   BOTTONI AZIONI UTENTE
+   ========================================= */
+.user-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.btn-modifica {
+    display: inline-block;
+    background-color: #0000ff;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    text-align: center;
+}
+
+.btn-modifica:hover {
+    background-color: #0000bb;
+}
+
+.btn-modifica:active {
+    transform: scale(0.98);
+}
+
+
+.btn-orders {
+    display: inline-block;
+    background-color: #FF2155;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    text-align: center;
+}
+
+.btn-orders:hover {
+    background-color: #e10033;
+}
+
+.btn-orders:active {
+    transform: scale(0.98);
+}
+
+/* =========================================
+   PANNELLO AMMINISTRATORE
+   ========================================= */
+.admin-panel {
+    background-color: #1a1a1a; 
+    color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    border: 4px dashed #444; /* Bordo stile "area riservata" */
+}
+
+.admin-panel h3 {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #ffcc00; /* Giallo  */
+}
+
+.admin-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-admin {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    border: 2px solid #555;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-admin:hover {
+    background-color: #ffcc00;
+    color: #111;
+    border-color: #ffcc00;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN 
+   ========================================= */
+@media (max-width: 600px) {
+    .user-actions, 
+    .admin-actions {
+        flex-direction: column; 
+        gap: 10px;
+    }
+
+    .btn-modifica,
+    .btn-orders,
+    .btn-admin {
+        width: 100%;
+        box-sizing: border-box; 
+    }
+}
