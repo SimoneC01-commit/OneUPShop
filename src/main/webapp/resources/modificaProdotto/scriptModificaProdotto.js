@@ -93,24 +93,6 @@ function checkIva(inputtxt) {
     return true;
 }
 
-function checkPrezzoAcquisto(inputtxt) {
-    if (!inputtxt) return true;
-    const valStr = inputtxt.value.trim();
-    
-    if (valStr === "") {
-        removeError(inputtxt);
-        return true;
-    }
-
-    const val = parseFloat(valStr);
-    if (isNaN(val) || val <= 0) {
-        addError(inputtxt, "Inserisci un prezzo di acquisto valido maggiore di 0.");
-        return false;
-    }
-    removeError(inputtxt);
-    return true;
-}
-
 function checkPrezzoAttuale(inputtxt) {
     if (!inputtxt) return true;
     const val = parseFloat(inputtxt.value);
@@ -251,9 +233,6 @@ function validate(obj) {
 
     const iva = document.getElementById("nuovaIva");
     if (iva && !checkIva(iva)) valid = false;
-
-    const prezzoAcquisto = document.getElementById("nuovoPrezzoAcquisto");
-    if (prezzoAcquisto && !checkPrezzoAcquisto(prezzoAcquisto)) valid = false;
 
     const prezzoAttuale = document.getElementById("nuovoPrezzoAttuale");
     if (prezzoAttuale && !checkPrezzoAttuale(prezzoAttuale)) valid = false;

@@ -69,6 +69,16 @@ public class ModificaProdotto extends HttpServlet {
 				return;
 			}
 			
+			BigDecimal prezzoIntero = prodotto.getPrezzoAttuale().subtract(new BigDecimal("0.99"));
+
+			BigDecimal percentualeIva = new BigDecimal(prodotto.getIva()).divide(new BigDecimal("100"), 4, RoundingMode.HALF_UP);
+
+			BigDecimal moltiplicatoreIva = BigDecimal.ONE.add(percentualeIva);
+			
+			BigDecimal prezzoSenzaIva = prezzoIntero.divide(moltiplicatoreIva, 2, RoundingMode.HALF_UP);
+			
+			prodotto.setPrezzoAttuale(prezzoSenzaIva);
+			
 			impostaAttributiSottotipo(request, prodotto);
 			request.setAttribute("prodotto", prodotto);
 			request.getRequestDispatcher("/WEB-INF/modificaProdotto.jsp").forward(request, response);
@@ -105,7 +115,6 @@ public class ModificaProdotto extends HttpServlet {
 			String nuovaDescrizione = request.getParameter("nuovaDescrizione");
 			String nuovoAnnoRilascioStr = request.getParameter("nuovoAnnoRilascio");
 			String nuovaAzienda = request.getParameter("nuovaAzienda");
-			String nuovoPrezzoAcquistoStr = request.getParameter("nuovoPrezzoAcquisto");
 			String nuovoPrezzoAttualeStr = request.getParameter("nuovoPrezzoAttuale");
 			String nuovoStato = request.getParameter("nuovoStato");
 			String nuoveNoteDifetti = request.getParameter("nuoveNoteDifetti");
@@ -181,11 +190,19 @@ public class ModificaProdotto extends HttpServlet {
 			}
 
 			if (errorMessage != null) {
-				request.setAttribute("errorMessage", errorMessage);
-				impostaAttributiSottotipo(request, prodottoEsistente);
-				request.setAttribute("prodotto", prodottoEsistente);
-				request.getRequestDispatcher("/WEB-INF/modificaProdotto.jsp").forward(request, response);
-				return;
+			    request.setAttribute("errorMessage", errorMessage);
+			    
+			    BigDecimal prezzoIntero = prodottoEsistente.getPrezzoAttuale().subtract(new BigDecimal("0.99"));
+			    BigDecimal percentualeIva = new BigDecimal(prodottoEsistente.getIva()).divide(new BigDecimal("100"), 4, RoundingMode.HALF_UP);
+			    BigDecimal moltiplicatoreIva = BigDecimal.ONE.add(percentualeIva);
+			    BigDecimal prezzoSenzaIva = prezzoIntero.divide(moltiplicatoreIva, 4, RoundingMode.HALF_UP).setScale(2, RoundingMode.HALF_UP);
+			    
+			    prodottoEsistente.setPrezzoAttuale(prezzoSenzaIva);
+			    
+			    impostaAttributiSottotipo(request, prodottoEsistente);
+			    request.setAttribute("prodotto", prodottoEsistente);
+			    request.getRequestDispatcher("/WEB-INF/modificaProdotto.jsp").forward(request, response);
+			    return;
 			}
 
 			ProdottoBean prodottoModificato = new ProdottoBean();
@@ -199,20 +216,12 @@ public class ModificaProdotto extends HttpServlet {
 	        
 	        BigDecimal prezzoAttualeBase;
 	        
-	        if (nuovoPrezzoAcquistoStr != null && !nuovoPrezzoAcquistoStr.trim().isEmpty()) {
-	            BigDecimal prezzoAcquisto = new BigDecimal(nuovoPrezzoAcquistoStr.trim());
-	            if(prezzoAcquisto.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("Prezzo acquisto non valido");
-	            prodottoModificato.setPrezzoAcquisto(prezzoAcquisto);
-	            prezzoAttualeBase = prezzoAcquisto.multiply(new BigDecimal("1.5"));
-	        } else {
-	            prodottoModificato.setPrezzoAcquisto(null);
-	            if (nuovoPrezzoAttualeStr != null && !nuovoPrezzoAttualeStr.trim().isEmpty()) {
-	                prezzoAttualeBase = new BigDecimal(nuovoPrezzoAttualeStr.trim());
-	                if(prezzoAttualeBase.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("Prezzo attuale non valido");
-	            } else {
-	                throw new IllegalArgumentException("Specificare un prezzo di acquisto o di vendita.");
-	            }
-	        }
+            if (nuovoPrezzoAttualeStr != null && !nuovoPrezzoAttualeStr.trim().isEmpty()) {
+                prezzoAttualeBase = new BigDecimal(nuovoPrezzoAttualeStr.trim());
+                if(prezzoAttualeBase.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("Prezzo attuale non valido");
+            } else {
+                throw new IllegalArgumentException("Specificare un prezzo di acquisto o di vendita.");
+            }
 	        
 	        int iva = (nuovaIvaStr != null && !nuovaIvaStr.trim().isEmpty()) ? Integer.parseInt(nuovaIvaStr) : prodottoEsistente.getIva();
 
@@ -226,6 +235,7 @@ public class ModificaProdotto extends HttpServlet {
 	        prodottoModificato.setIva(iva);
 	        prodottoModificato.setPrezzoAttuale(prezzoConIva);
 			
+	        prodottoModificato.setPrezzoAcquisto(prodottoEsistente.getPrezzoAcquisto());
 			prodottoModificato.setTipo(prodottoEsistente.getTipo());
 			prodottoModificato.setDataAggiunta(prodottoEsistente.getDataAggiunta());
 			prodottoModificato.setDisponibile(prodottoEsistente.isDisponibile());
@@ -252,60 +262,53 @@ public class ModificaProdotto extends HttpServlet {
 			pDAO.doUpdate(prodottoModificato);
 
 			if("Cabinato".equals(prodottoModificato.getTipo())) {
-				CabinatoDAO caDAO = new CabinatoDAO();
-				CabinatoBean cabinatoEsistente = caDAO.doRetrieveByKey(idProdotto);
-				CabinatoBean cabinatoModificato = new CabinatoBean();
-				String nuovoTipoSistemaArcade = request.getParameter("nuovoTipoSistemaArcade");
-				String nuoveDimensioniCm = request.getParameter("nuoveDimensioniCm");
-				
-				cabinatoModificato.setIdProdotto(idProdotto);
-				cabinatoModificato.setTipoSistemaArcade(nuovoTipoSistemaArcade != null && !nuovoTipoSistemaArcade.trim().isEmpty() ? HtmlDecoder.encodeHtmlEntities(nuovoTipoSistemaArcade) : cabinatoEsistente.getTipoSistemaArcade());
-				cabinatoModificato.setDimensioniCm(nuoveDimensioniCm != null && !nuoveDimensioniCm.trim().isEmpty() ? HtmlDecoder.encodeHtmlEntities(nuoveDimensioniCm) : cabinatoEsistente.getDimensioniCm());
-				caDAO.doUpdate(cabinatoModificato);
-				
+			    CabinatoDAO caDAO = new CabinatoDAO();
+			    CabinatoBean cabinatoModificato = new CabinatoBean();
+			    
+			    cabinatoModificato.setIdProdotto(idProdotto);
+			    cabinatoModificato.setTipoSistemaArcade(HtmlDecoder.encodeHtmlEntities(request.getParameter("nuovoTipoSistemaArcade")));
+			    cabinatoModificato.setDimensioniCm(HtmlDecoder.encodeHtmlEntities(request.getParameter("nuoveDimensioniCm")));
+			    caDAO.doUpdate(cabinatoModificato);
+			    
 			} else if("Console".equals(prodottoModificato.getTipo())) {
-				ConsoleDAO coDAO = new ConsoleDAO();
-				ConsoleBean consoleEsistente = coDAO.doRetrieveByKey(idProdotto);
-				ConsoleBean consoleModificato = new ConsoleBean();
-				String nuovoModelloSpecifico = request.getParameter("nuovoModelloSpecifico");
-				
-				consoleModificato.setIdProdotto(idProdotto);
-				consoleModificato.setModelloSpecifico(nuovoModelloSpecifico != null && !nuovoModelloSpecifico.trim().isEmpty() ? HtmlDecoder.encodeHtmlEntities(nuovoModelloSpecifico) : consoleEsistente.getModelloSpecifico());
-				coDAO.doUpdate(consoleModificato);
-				
+			    ConsoleDAO coDAO = new ConsoleDAO();
+			    ConsoleBean consoleModificato = new ConsoleBean();
+			    
+			    consoleModificato.setIdProdotto(idProdotto);
+			    consoleModificato.setModelloSpecifico(HtmlDecoder.encodeHtmlEntities(request.getParameter("nuovoModelloSpecifico")));
+			    coDAO.doUpdate(consoleModificato);
+			    
 			} else if("Gadget".equals(prodottoModificato.getTipo())) {
-				GadgetDAO gaDAO = new GadgetDAO();
-				GadgetBean gadgetEsistente = gaDAO.doRetrieveByKey(idProdotto);
-				GadgetBean gadgetModificato = new GadgetBean();
-				String nuovoTipoMateriale = request.getParameter("nuovoTipoMateriale");
-				String nuovoTipoGadget = request.getParameter("nuovoTipoGadget");
-				
-				gadgetModificato.setIdProdotto(idProdotto);
-				gadgetModificato.setTipoMateriale(nuovoTipoMateriale != null && !nuovoTipoMateriale.trim().isEmpty() ? HtmlDecoder.encodeHtmlEntities(nuovoTipoMateriale) : gadgetEsistente.getTipoMateriale());
-				gadgetModificato.setTipoGadget(nuovoTipoGadget != null && !nuovoTipoGadget.trim().isEmpty() ? HtmlDecoder.encodeHtmlEntities(nuovoTipoGadget) : gadgetEsistente.getTipoGadget());
-				gaDAO.doUpdate(gadgetModificato);
-				
+			    GadgetDAO gaDAO = new GadgetDAO();
+			    GadgetBean gadgetModificato = new GadgetBean();
+			    
+			    gadgetModificato.setIdProdotto(idProdotto);
+			    gadgetModificato.setTipoMateriale(HtmlDecoder.encodeHtmlEntities(request.getParameter("nuovoTipoMateriale")));
+			    gadgetModificato.setTipoGadget(HtmlDecoder.encodeHtmlEntities(request.getParameter("nuovoTipoGadget")));
+			    gaDAO.doUpdate(gadgetModificato);
+			    
 			} else if("Gioco".equals(prodottoModificato.getTipo())) {
-				GiocoDAO giDAO = new GiocoDAO();
-				GiocoBean giocoEsistente = giDAO.doRetrieveByKey(idProdotto);
-				GiocoBean giocoModificato = new GiocoBean();
-				String nuovoSviluppatore = request.getParameter("nuovoSviluppatore");
-				
-				giocoModificato.setIdProdotto(idProdotto);
-				giocoModificato.setSviluppatore(nuovoSviluppatore != null && !nuovoSviluppatore.trim().isEmpty() ? HtmlDecoder.encodeHtmlEntities(nuovoSviluppatore) : giocoEsistente.getSviluppatore());
-				giDAO.doUpdate(giocoModificato);
+			    GiocoDAO giDAO = new GiocoDAO();
+			    GiocoBean giocoModificato = new GiocoBean();
+			    
+			    giocoModificato.setIdProdotto(idProdotto);
+			    giocoModificato.setSviluppatore(HtmlDecoder.encodeHtmlEntities(request.getParameter("nuovoSviluppatore")));
+			    giDAO.doUpdate(giocoModificato);
 			}
 			
 			response.sendRedirect(request.getContextPath() + "/ElencoProdotti");
 
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			request.setAttribute("errorMessage", "Dati numerici non validi: " + e.getMessage());
-			request.getRequestDispatcher("/WEB-INF/modificaProdotto.jsp").forward(request, response);
+		    e.printStackTrace();
+		    request.setAttribute("errorMessage", "Errore nei dati inseriti: " + e.getMessage());
+		    doGet(request, response);
+		    return;
+		    
 		} catch (SQLException e) {
-			e.printStackTrace();
-			request.setAttribute("errorMessage", "Errore di connessione al database durante la modifica.");
-			request.getRequestDispatcher("/WEB-INF/modificaProdotto.jsp").forward(request, response);
+		    e.printStackTrace();
+		    request.setAttribute("errorMessage", "Errore di connessione al database. Riprova più tardi.");
+		    doGet(request, response);
+		    return;
 		}
 	}
 	

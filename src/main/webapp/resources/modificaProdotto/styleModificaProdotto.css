@@ -4,18 +4,170 @@
 	color: red;
 }
 
-body { font-family: sans-serif; margin: 30px; line-height: 1.6; background-color: #f4f6f9; }
-.form-container { border: 1px solid #ddd; padding: 25px; max-width: 650px; border-radius: 8px; background-color: #ffffff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: auto; }
-.form-group { margin-bottom: 15px; }
-.form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
-.form-group input, .form-group textarea, .form-group select { width: 100%; padding: 8px 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-size: 0.95em; }
-.form-group textarea { resize: vertical; min-height: 80px; }
-.form-row { display: flex; gap: 15px; }
-.form-row .form-group { flex: 1; }
-.readonly-info { background-color: #e9ecef; border: 1px solid #ced4da; padding: 12px; border-radius: 6px; margin-bottom: 20px; }
-.readonly-info p { margin: 5px 0; color: #495057; font-size: 0.9em; }
-.btn-submit { background-color: #28a745; color: white; border: none; padding: 12px 20px; border-radius: 4px; cursor: pointer; width: 100%; font-size: 1em; font-weight: bold; margin-top: 10px; }
-.btn-submit:hover { background-color: #218838; }
-.error-box { color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 12px; border-radius: 4px; margin-bottom: 20px; font-weight: bold; }
-.back-link { display: inline-block; margin-top: 15px; color: #007bff; text-decoration: none; }
-.back-link:hover { text-decoration: underline; }
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f6f9;
+    color: #333;
+    background-image: url('../img/admin-background.jpg'); 
+	padding: 2vh 15vw 2vh;
+}
+
+.header-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start;
+    flex-direction: column-reverse;
+    gap: 30px;
+    padding: 3vh 20vw;
+}
+
+.header-container h1{
+	align-self: center;
+	text-align: center;
+	color: white;
+	font-size: 2rem;
+}
+
+.btn-group { 
+    display: flex; 
+    gap: 10px; 
+}
+
+.btn-back { 
+    padding: 10px 15px; 
+    background-color: #555; 
+    border: 1px solid white;
+    color: white; 
+    text-decoration: none; 
+    border-radius: 4px; 
+}
+.btn-back:hover { 
+    background-color: #5a6268; 
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 0 auto 5vh;
+    background: #ffffff;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+.form-group textarea { 
+	resize: vertical; 
+	min-height: 80px; 
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.form-row {
+	display: flex; 
+	gap: 15px; 
+}
+
+.form-row .form-group { 
+	flex: 1; 
+}
+
+.readonly-info { 
+	background-color: #e9ecef; 
+	border: 1px solid #ced4da; 
+	padding: 12px; 
+	border-radius: 6px; 
+	margin-bottom: 20px; 
+}
+
+.readonly-info p { 
+	margin: 5px 0; 
+	color: #495057; 
+	font-size: 0.9em; 
+}
+
+.btn-submit {
+	background-color: #28a745; 
+	color: white; 
+	border: none; 
+	padding: 12px 20px; 
+	border-radius: 4px; 
+	cursor: pointer; 
+	width: 100%; 
+	font-size: 1em; 
+	font-weight: bold; 
+	margin-top: 10px; 
+}
+
+.btn-submit:hover { 
+	background-color: #218838; 
+}
+
+.error-box { 
+	color: #721c24; 
+	background-color: #f8d7da; 
+	border: 1px solid #f5c6cb; 
+	padding: 12px; 
+	border-radius: 4px; 
+	margin-bottom: 20px; 
+	font-weight: bold; 
+}
+
+.back-link { 
+	display: inline-block; 
+	margin-top: 15px; 
+	color: #007bff; 
+	text-decoration: none; 
+}
+
+.back-link:hover { 
+	text-decoration: underline; 
+}
+
+@media screen and (max-width: 600px) {
+	
+	.header-container{
+		padding: 3vh 5vw 0;
+	}
+	
+	.form-container{
+		margin: 1vh 4vw 5vh;
+		padding: 2em 1em;
+	}
+	
+	.form-row{
+		flex-direction: column;
+	}
+}

@@ -13,8 +13,17 @@
 </head>
 <body>
 
+	<jsp:include page="common/header.jsp" />
+
+	<div class="header-container">
+    	<h1>Modifica Prodotto</h1>
+    	
+    	<div class="btn-group">
+            <a href="${pageContext.request.contextPath}/ElencoProdotti" class="btn-back">← Torna all'Elenco</a>
+        </div>
+   	</div>
+
     <div class="form-container">
-        <h1>✏️ Modifica Prodotto</h1>
 
         <!-- Box Errore Server -->
         <c:if test="${not empty errorMessage}">
@@ -28,7 +37,6 @@
             <p><strong>ID Prodotto:</strong> ${prodotto.idProdotto}</p>
             <p><strong>Tipo Componente:</strong> ${prodotto.tipo}</p>
             <p><strong>Data Aggiunta:</strong> ${prodotto.dataAggiunta}</p>
-            <p><strong>Stato Disponibilità:</strong> ${prodotto.disponibile ? 'Sì (In Catalogo)' : 'No (Venduto)'}</p>
         </div>
 
         <form action="${pageContext.request.contextPath}/ModificaProdotto" method="POST" enctype="multipart/form-data"
@@ -94,14 +102,6 @@
 
             <!-- Prezzi e IVA -->
             <div class="form-row">
-                <div class="form-group">
-                    <label for="nuovoPrezzoAcquisto">Prezzo d'Acquisto (€)</label>
-                    <input type="number" step="0.01" id="nuovoPrezzoAcquisto" name="nuovoPrezzoAcquisto"
-                           value="${not empty param.nuovoPrezzoAcquisto ? param.nuovoPrezzoAcquisto : prodotto.prezzoAcquisto}"
-                           oninput="checkPrezzoAcquisto(this)">
-                    <span class="error-text" id="err-nuovoPrezzoAcquisto"></span>
-                </div>
-
                 <div class="form-group">
                     <label for="nuovoPrezzoAttuale">Prezzo di Vendita (€) *</label>
                     <input type="number" step="0.01" id="nuovoPrezzoAttuale" name="nuovoPrezzoAttuale" required
@@ -201,9 +201,8 @@
 
             <button type="submit" class="btn-submit">💾 Salva Modifiche</button>
         </form>
-
-        <a href="${pageContext.request.contextPath}/ElencoProdotti" class="back-link">← Annulla e Torna all'Elenco</a>
     </div>
 
+	<jsp:include page="common/footer.jsp" />
 </body>
 </html>
