@@ -15,7 +15,13 @@
 <body>
 	<jsp:include page="common/header.jsp" />
 
-    <h1>Elenco Ordini Ricevuti</h1>
+	<div class="header-container">
+    	<h1>Elenco Ordini Ricevuti</h1>
+    	
+    	<div class="btn-group">
+            <a href="${pageContext.request.contextPath}/Profilo" class="btn-back">← Torna al Profilo</a>
+        </div>
+    </div>
 
     <!-- Gestione Messaggio di Errore -->
     <c:if test="${not empty errorMessage}">
@@ -66,7 +72,7 @@
                                 
                                 <!-- Pulsante Cancellazione -->
                                 <td>
-	                                <button type="button" id="btn-delete" class="btn-delete" onclick="confermaEliminazione(${ordine.idOrdine})"
+	                                <button type="button" id="btn-delete" class="btn-delete" onclick="event.stopPropagation(); confermaEliminazione(${ordine.idOrdine})"
 	                                	<c:if test="${ordine.statoOrdine != 'In elaborazione'}">disabled</c:if>>
 	                                    Cancella
 	                                </button>
@@ -82,6 +88,8 @@
                                             <strong>Indirizzo di spedizione:</strong> ${not empty ordine.indirizzoSpedizione ? ordine.indirizzoSpedizione : 'N/D'} <br>
                                             <strong>Telefono:</strong> ${not empty ordine.telefono ? ordine.telefono : 'N/D'}
                                         </p>
+                                        
+                                        <span class="inner-table-header">Prodotti:</span>
                                         
                                         <table class="inner-table">
                                             <thead>
