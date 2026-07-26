@@ -87,7 +87,7 @@
         </ul>
 
         <div class="sidebar-support">
-            <a href="#">Contatti</a>
+            <a href="${pageContext.request.contextPath}/Contatti">Contatti</a>
         </div>
     </nav>
         

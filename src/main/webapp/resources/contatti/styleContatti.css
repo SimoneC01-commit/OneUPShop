@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+/* ===============================
+   		STYLE CONTATTI
+   =============================== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif; 
+    background-color: #ffffff; /* Sfondo bianco per questa pagina come da mockup */
+    color: #333333;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.contacts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===============================
+   TITOLI 
+   =============================== */
+.contacts-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contacts-header h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0;
+    color: #111;
+}
+
+.contacts-header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 0.5rem 0 0 0;
+    color: #000;
+}
+
+/* ===============================
+   SEZIONE GIF
+   =============================== */
+.contacts-media {
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.support-gif {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    background-color: #e5e7eb; /* Grigio chiaro come placeholder se la gif non carica subito */
+    /* border-radius: 1rem; <-- Togli i commenti se vuoi smussare gli angoli della GIF */
+}
+
+/* ===============================
+    INFO 
+   =============================== */
+.contacts-info {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Allunga le colonne per avere le linee rosse della stessa altezza */
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.info-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+/* Linee rosse  */
+.center-block {
+    border-left: 3px solid #cc0000;
+    border-right: 3px solid #cc0000;
+}
+
+/* Stile Icone */
+.info-icon {
+    width: 65px; 
+    height: auto; 
+    margin-bottom: 1.5rem;
+    object-fit: contain;
+}
+
+.info-block h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.info-block p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: #444;
+}
+
+.strong-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem !important;
+}
+
+/* ===============================
+   RESPONSIVE (Smartphone e Tablet)
+   =============================== */
+@media (max-width: 768px) {
+    .contacts-header h2 { font-size: 1.5rem; }
+    .contacts-header h1 { font-size: 2.2rem; }
+    
+    .contacts-info {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    
+    .center-block {
+        border-left: none;
+        border-right: none;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        border-top: 3px solid #cc0000;
+        border-bottom: 3px solid #cc0000;
+    }
+}
