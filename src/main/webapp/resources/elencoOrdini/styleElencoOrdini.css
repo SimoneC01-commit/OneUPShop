@@ -4,6 +4,7 @@
    STILE GENERALE
    ========================================= */
 body {
+	background-image: url('../img/admin-background.jpg'); 
     font-family: Arial, sans-serif;
     margin: 20px;
     background-color: #f4f6f9;
@@ -18,6 +19,8 @@ body {
 
 .header-container h1{
 	text-align: center;
+	color: white;
+	font-size: 2rem;
 }
 
 .error {
@@ -56,6 +59,7 @@ body {
 .btn-back { 
     padding: 10px 15px; 
     background-color: #555; 
+    border: 1px solid white;
     color: white; 
     text-decoration: none; 
     border-radius: 4px; 
@@ -91,7 +95,7 @@ th, td {
 }
 
 th {
-    background-color: #343a40;
+    background-color: #cc0000;
     color: white;
 }
 
@@ -175,7 +179,7 @@ tr:hover {
 }
 
 .dettagli-container {
-    padding: 15px 20px;
+    padding: 2vh 8vw;
     background-color: #f1f1f1;
     border-bottom: 2px solid #ddd;
     box-shadow: inset 0px 4px 6px -6px rgba(0,0,0,0.1);
@@ -268,7 +272,7 @@ dialog p {
     font-size: 14px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 600px) {
 	.header-container {
         flex-direction: column;
     }

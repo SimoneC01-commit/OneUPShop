@@ -1,7 +1,3 @@
-// ==========================================
-// 1. FUNZIONI DI VALIDAZIONE DEI CAMPI
-// ==========================================
-
 function checkTipo(inputtxt) {
     if (!inputtxt.value) {
         addError(inputtxt, "Seleziona un tipo di prodotto.");
@@ -148,8 +144,6 @@ function checkFoto(inputtxt) {
     return true;
 }
 
-// --- Controlli Sezioni Dinamiche ---
-
 function checkSviluppatore(inputtxt) {
     const val = inputtxt.value.trim();
     if (val.length < 2 || val.length > 100) {
@@ -210,11 +204,6 @@ function checkDimensioniCm(inputtxt) {
     removeError(inputtxt);
     return true;
 }
-
-
-// ==========================================
-// 2. FUNZIONI DI GESTIONE INTERFACCIA
-// ==========================================
 
 function gestisciTipo() {
     let tipo = document.getElementById("tipo").value;
@@ -280,11 +269,6 @@ function gestisciPrezzoCustom() {
     }
 }
 
-
-// ==========================================
-// 3. FUNZIONE PRINCIPALE DI VALIDAZIONE
-// ==========================================
-
 function validate(obj) {
     let valid = true;
 
@@ -330,8 +314,7 @@ function validate(obj) {
 
     const foto = document.getElementById("foto");
     if (!checkFoto(foto)) valid = false;
-
-    // Controlli condizionali sul tipo di prodotto
+	
     if (tipo.value === "Gioco") {
         const sviluppatore = document.getElementById("sviluppatore");
         if (!checkSviluppatore(sviluppatore)) valid = false;
@@ -351,17 +334,11 @@ function validate(obj) {
         const dimensioniCm = document.getElementById("dimensioniCm");
         if (!checkDimensioniCm(dimensioniCm)) valid = false;
     }
-
-    // Invio della form se tutti i campi sono validi
+	
     if (valid) {
         obj.submit();
     }
 }
-
-
-// ==========================================
-// 4. UTILITY GESTIONE ERRORI DOM
-// ==========================================
 
 function addError(obj, errore) {
     
