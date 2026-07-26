@@ -10,6 +10,7 @@
     <title>Gestione Ordini - Amministrazione</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/elencoOrdini/styleElencoOrdini.css">
     <script src="${pageContext.request.contextPath}/resources/elencoOrdini/scriptElencoOrdini.js" defer></script>
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
 	<jsp:include page="common/header.jsp" />

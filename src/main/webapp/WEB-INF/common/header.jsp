@@ -60,7 +60,7 @@
             </ul>
         </nav>
         <div class="support-link">
-            <a href="#">Contatti</a>
+            <a href="${pageContext.request.contextPath}/Contatti">Contatti</a>
         </div>
     </div>
         

@@ -8,6 +8,7 @@
     <title>Checkout Ordine</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/checkout/styleCheckout.css">
     <script src="${pageContext.request.contextPath}/resources/checkout/scriptCheckout.js"></script>
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 
 <body>

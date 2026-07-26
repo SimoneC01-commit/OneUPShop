@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/style.css">
     <script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
     <script src="${pageContext.request.contextPath}/resources/dettagliProdotto/scriptDettagliProdotto.js"></script>
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 
 <jsp:include page="common/header.jsp" />

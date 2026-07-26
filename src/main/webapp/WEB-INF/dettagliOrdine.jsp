@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <title>Ordine #${ordine.idOrdine} - OneUpShop</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dettagliOrdine/styleDettagliOrdine.css">
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
 <jsp:include page="common/header.jsp" />

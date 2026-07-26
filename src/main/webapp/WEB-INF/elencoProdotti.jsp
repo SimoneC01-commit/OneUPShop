@@ -10,6 +10,7 @@
     <title>Pannello Admin - Elenco Prodotti</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/elencoProdotti/styleElencoProdotti.css">
     <script src="${pageContext.request.contextPath}/resources/elencoProdotti/scriptElencoProdotti.js" defer></script>
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
 

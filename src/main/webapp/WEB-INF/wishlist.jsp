@@ -12,6 +12,7 @@
     <script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
     <script src="${pageContext.request.contextPath}/resources/wishlist/scriptWishlist.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wishlist/styleWishlist.css">
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
 

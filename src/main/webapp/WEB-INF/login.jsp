@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accedi - 1UPShop</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/login/styleLogin.css">
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 
 <body>

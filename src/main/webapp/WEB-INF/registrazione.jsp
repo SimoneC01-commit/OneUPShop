@@ -8,6 +8,7 @@
     <title>Registrazione - RetroGaming</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/registrazione/styleRegistrazione.css">
     <script src="${pageContext.request.contextPath}/resources/registrazione/scriptRegistrazione.js"></script>
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
 	

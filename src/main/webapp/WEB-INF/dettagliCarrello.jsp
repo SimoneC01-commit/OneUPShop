@@ -11,6 +11,7 @@
     <title>Il tuo Carrello</title>
    	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/carrello/styleCarrello.css">
     <script src="${pageContext.request.contextPath}/resources/carrello/scriptCarrello.js"></script>
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
 

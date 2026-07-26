@@ -9,6 +9,7 @@
     <title>1-Up Shop - Home</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/style.css">
     <script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
 

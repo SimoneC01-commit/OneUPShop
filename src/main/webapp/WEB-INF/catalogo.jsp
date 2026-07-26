@@ -10,6 +10,7 @@
 	<script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/catalogo/scriptCatalogo.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/catalogo/styleCatalogo.css">
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
 
