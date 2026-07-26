@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Il tuo Carrello</title>
    	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/carrello/styleCarrello.css">
+    <script src="${pageContext.request.contextPath}/resources/carrello/scriptCarrello.js"></script>
 </head>
 <body>
 
@@ -17,6 +18,10 @@
 
 <!-- MAIN -->
 <main class="container">
+
+	<div id="response">
+    	
+    </div>
 
     <section class="header-utente">
         <c:choose>
@@ -58,7 +63,7 @@
                         <c:forEach var="prodotto" items="${sessionScope.carrello.lista}">
                             
                             <!-- Prodotto -->
-                            <article class="prodotto-item">
+                            <article class="prodotto-item" id="prodotto-${prodotto.idProdotto}">
                                 <img src="${pageContext.request.contextPath}/GetPicture?idProdotto=${prodotto.idProdotto}" 
                                      alt="${prodotto.titolo}" class="prodotto-img" />
                                 
@@ -68,13 +73,11 @@
                                 </div>
                                 
                                 <div class="prodotto-actions">
-                                    <form action="${pageContext.request.contextPath}/RimuoviDalCarrello" method="post">
-                                        <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
-                                        <button type="submit" class="link-rimuovi">Rimuovi</button>
-                                    </form>
+                                    <button type="submit" class="link-rimuovi" onclick="rimuovi(this)" 
+                                    	data-id-prodotto="${prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Rimuovi</button>
                                 </div>
                             </article>
-                            <hr class="item-divider">
+                            <hr class="item-divider" id="divider-${prodotto.idProdotto}">
                             
                         </c:forEach>
                     </div>
@@ -94,7 +97,7 @@
                         
                         <!-- Stampa una riga per ogni prodotto nel carrello -->
                         <c:forEach var="item" items="${sessionScope.carrello.lista}">
-                            <div class="summary-row" style="font-size: 0.95rem; color: #555;">
+                            <div class="summary-row" id="summary-${item.idProdotto}" style="font-size: 0.95rem; color: #555;">
                                 <!-- Nome del prodotto tagliato se troppo lungo -->
                                 <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70%;">${item.titolo}</span>
                                 <span>${item.prezzoAttuale} &euro;</span>
@@ -106,7 +109,7 @@
                         
                         <div class="summary-row totale">
                             <span>Totale</span>
-                            <span>${sessionScope.carrello.totale} &euro;</span>
+                            <span id="cart-total-price">${sessionScope.carrello.totale} &euro;</span>
                         </div>   
                     </div> 
                     

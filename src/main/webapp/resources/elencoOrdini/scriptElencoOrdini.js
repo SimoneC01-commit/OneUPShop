@@ -133,7 +133,7 @@ async function elimina(button){
 			mostraPopup(data.messaggio, "#d4edda", "#155724", "#c3e6cb");
 		}
 		else{
-			mostraPopup(data.messaggio, "#fde8e8", "red", "#f9b8b8");
+			mostraPopup(data.messaggio, "#edd4d4", "#571515", "#e6c3c3");
 		}
 	}
 	catch(err){

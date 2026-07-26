@@ -32,7 +32,9 @@
         <div class="error">${errorMessage}</div>
     </c:if>
     
-    <div id="response" style="display: none;"></div>
+    <div id="response">
+    	
+    </div>
     
     <div class="table-container">
         <table>

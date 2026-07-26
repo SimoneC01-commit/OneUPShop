@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La tua Wishlist</title>
     <script src="${pageContext.request.contextPath}/resources/generalScript.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/wishlist/scriptWishlist.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wishlist/styleWishlist.css">
 </head>
 <body>
@@ -30,6 +31,10 @@
             <p>${errorMessage}</p>
         </div>
     </c:if>
+    
+    <div id="response">
+    	
+    </div>
 
    <section class="wishlist-content">
         <c:choose>
@@ -47,7 +52,7 @@
                 <div class="wishlist-items">
                     
                     <c:forEach var="item" items="${wishlist}">
-                        <article class="wishlist-item">
+                        <article class="wishlist-item" id="prodotto-${item.prodotto.idProdotto}">
                             
                             <!-- 1. Immagine (Sinistra) -->
                             <div class="item-image">
@@ -68,15 +73,12 @@
                                 <button type="button" class="btn-add-cart" onclick="aggiungiAlCarrello(this)" data-id-prodotto="${item.prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Aggiungi al carrello</button>
                                 
                                 <!-- Bottone Rimuovi --> 
-                            	  <form action="${pageContext.request.contextPath}/RimuoviDallaWishlist" method="post">
-                                        <input type="hidden" name="idProdotto" value="${item.prodotto.idProdotto}">
-                                        <button type="submit" class="link-rimuovi">Rimuovi</button>
-                                    </form>
+								<button type="submit" class="link-rimuovi" onclick="rimuovi(this)" data-id-prodotto="${item.prodotto.idProdotto}" data-context-path="${pageContext.request.contextPath}">Rimuovi</button>
                             </div>
                             
                         </article>
                         
-                        <hr class="item-divider">
+                        <hr class="item-divider" id="divider-${item.prodotto.idProdotto}">
                     </c:forEach>
                     
                 </div>

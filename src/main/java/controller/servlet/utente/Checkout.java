@@ -64,7 +64,7 @@ public class Checkout extends HttpServlet {
 		Carrello carrello = (Carrello) sessione.getAttribute("carrello");
 		
 		if(carrello == null || carrello.getLista().isEmpty()) {
-			request.setAttribute("errorMessage", "Devi avere del contenuto nel carrello");
+			request.setAttribute("errorMessage", "Devi avere del contenuto nel carrello.");
 			request.getRequestDispatcher("/DettagliCarrello").forward(request, response);
 			return;
 		}

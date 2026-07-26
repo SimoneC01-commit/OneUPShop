@@ -54,26 +54,31 @@ async function elimina(obj){
 
 			annulla();
 			
-			const response = document.getElementById("response");
-			response.style.display = "block";
-			response.style.backgroundColor = "#d4edda";
-			response.style.border = "1px solid #c3e6cb";
-			response.style.color = "#155724";
-			response.innerHTML = data.messaggio;
+			mostraPopup(data.messaggio, "#d4edda", "#155724", "#c3e6cb");
 		}
 		else{
-			const response = document.getElementById("response");
-			response.style.display = "block";
-			response.style.backgroundColor = "#fde8e8";
-			response.style.border = "1px solid #f9b8b8"
-			response.style.color = "red";
-			response.innerHTML = data.messaggio;
+			mostraPopup(data.messaggio, "#edd4d4", "#571515", "#e6c3c3");
 		}
 	}
 	catch(err){
 		console.log(err);
 		alert("Si è verificato un errore di rete durante la cancellazione.");
 	}
+}
+
+function mostraPopup(messaggio, coloreSfondo, coloreTesto, coloreBordo) {
+    const response = document.getElementById("response");
+    
+    response.innerHTML = messaggio;
+    response.style.backgroundColor = coloreSfondo;
+    response.style.color = coloreTesto;
+	response.style.border = `1px solid ${coloreBordo}`;
+    
+    response.style.display = "block";
+    
+    setTimeout(() => {
+        response.style.display = "none";
+    }, 3000);
 }
 
 function modificaProdotto(id){

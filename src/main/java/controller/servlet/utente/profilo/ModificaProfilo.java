@@ -50,7 +50,7 @@ public class ModificaProfilo extends HttpServlet {
 		String nameRegex = "^[A-Z][a-z]*(?: [A-Z][a-z]*)*$";
 		String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,100}$";
 		
-		UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
+		UtenteBean utenteEsistente = (UtenteBean) request.getSession().getAttribute("utente");
 		
 		try {
 			UtenteDAO uDAO = new UtenteDAO();
@@ -60,7 +60,7 @@ public class ModificaProfilo extends HttpServlet {
 			boolean valid = true;
 			
 			if(nuovoNome == null || nuovoNome.trim().isEmpty()) {
-				utenteModificato.setNome(HtmlDecoder.encodeHtmlEntities(utente.getNome()));
+				utenteModificato.setNome(HtmlDecoder.encodeHtmlEntities(utenteEsistente.getNome()));
 			}
 			else {
 				if(nuovoNome.matches(nameRegex)) {
@@ -72,7 +72,7 @@ public class ModificaProfilo extends HttpServlet {
 			}
 			
 			if(nuovoCognome == null || nuovoCognome.trim().isEmpty()) {
-				utenteModificato.setCognome(HtmlDecoder.encodeHtmlEntities(utente.getCognome()));
+				utenteModificato.setCognome(HtmlDecoder.encodeHtmlEntities(utenteEsistente.getCognome()));
 			}
 			else {
 				if(nuovoCognome.matches(nameRegex)) {
@@ -84,7 +84,7 @@ public class ModificaProfilo extends HttpServlet {
 			}
 			
 			if(nuovaPassword == null || nuovaPassword.trim().isEmpty()) {
-				utenteModificato.setPassword(utente.getPassword());
+				utenteModificato.setPassword(utenteEsistente.getPassword());
 			}
 			else {
 				if(nuovaPassword.matches(passwordRegex)) {
@@ -99,14 +99,14 @@ public class ModificaProfilo extends HttpServlet {
 			
 			if(valid) {
 
-				utenteModificato.setEmail(utente.getEmail());
-				utenteModificato.setRuolo(utente.getRuolo());
+				utenteModificato.setEmail(utenteEsistente.getEmail());
+				utenteModificato.setRuolo(utenteEsistente.getRuolo());
 				
 				uDAO.doUpdate(utenteModificato);
 				
-				utente = uDAO.doRetrieveByKey(utenteModificato.getEmail());
+				utenteEsistente = uDAO.doRetrieveByKey(utenteModificato.getEmail());
 
-				request.getSession().setAttribute("utente", utente);
+				request.getSession().setAttribute("utente", utenteEsistente);
 				
 				response.sendRedirect(request.getContextPath() + "/Profilo");
 			}

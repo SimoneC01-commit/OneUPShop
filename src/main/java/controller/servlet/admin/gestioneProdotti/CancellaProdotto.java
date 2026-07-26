@@ -80,10 +80,6 @@ public class CancellaProdotto extends HttpServlet {
 				risposta.put("esito", true);
 				risposta.put("messaggio", "Prodotto eliminato.");
 			}
-			
-			response.getWriter().write(gson.toJson(risposta));
-			
-			return;
 		}
 		catch(NumberFormatException e) {
 			e.printStackTrace();

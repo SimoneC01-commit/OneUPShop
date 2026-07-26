@@ -57,10 +57,12 @@ public class CancellazioneOrdine extends HttpServlet {
 			
 			int idOrdine = Integer.parseInt(idOrdineStr);
 			
-			OrdineBean ordine = new OrdineDAO().doRetrieveByKey(idOrdine);
+			OrdineDAO oDAO = new OrdineDAO();
+			
+			OrdineBean ordine = oDAO.doRetrieveByKey(idOrdine);
 			
 			if(ordine == null) {
-				response.sendError(404, "Ordine non trovato.");
+				response.sendError(404, "L'ordine non esiste.");
 				return;
 			}
 			
@@ -73,8 +75,6 @@ public class CancellazioneOrdine extends HttpServlet {
 				response.sendError(400, "Non è più possibile cancellare questo ordine.");
 				return;
 			}
-			
-			OrdineDAO oDAO = new OrdineDAO();
 			
 			oDAO.doDelete(idOrdine);
 			

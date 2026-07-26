@@ -26,21 +26,19 @@ h1 {
 #response {
     display: none;
     
-    /* Posizionamento "volante" (Popup) */
     position: fixed;
-    top: 20px; /* Distanza dal bordo superiore */
-    left: 50%; /* Lo sposta al 50% dello schermo */
-    transform: translateX(-50%); /* Lo centra perfettamente */
-    z-index: 9999; /* Assicura che sia sopra a qualsiasi altra cosa */
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
     
-    /* Stile visivo */
     padding: 15px 30px;
     min-width: 300px;
     max-width: 80%;
     border-radius: 8px;
     text-align: center;
     font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Ombreggiatura per effetto sollevato */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* =========================================
