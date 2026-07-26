@@ -142,6 +142,10 @@ body {
         flex-direction: column;
         gap: 3rem;
     }
+    
+    .support-gif{
+    	display:none;
+    }
 
     
     .center-block {
