@@ -42,6 +42,10 @@ body {
     margin: 0 10vw;
 }
 
+.header-container h1{
+	text-align: center;
+}
+
 .admin-filter-wrapper {
     display: flex;
     align-items: center;

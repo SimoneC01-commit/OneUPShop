@@ -1,7 +1,3 @@
-// ==========================================
-// 1. FUNZIONI DI VALIDAZIONE DEI CAMPI
-// ==========================================
-
 function checkTitolo(inputtxt) {
     if (!inputtxt) return true;
     const val = inputtxt.value.trim();
@@ -101,7 +97,6 @@ function checkPrezzoAcquisto(inputtxt) {
     if (!inputtxt) return true;
     const valStr = inputtxt.value.trim();
     
-    // In modifica il prezzo di acquisto può essere vuoto/null
     if (valStr === "") {
         removeError(inputtxt);
         return true;
@@ -129,7 +124,6 @@ function checkPrezzoAttuale(inputtxt) {
 
 function checkFoto(inputtxt) {
     if (!inputtxt) return true;
-    // In modifica la foto è opzionale: se non ne viene selezionata una nuova, è valido
     if (inputtxt.files && inputtxt.files[0]) {
         const file = inputtxt.files[0];
         const tipiConsentiti = ["image/jpeg", "image/png", "image/webp"];
@@ -145,8 +139,6 @@ function checkFoto(inputtxt) {
     removeError(inputtxt);
     return true;
 }
-
-// --- Controlli Sezioni Dinamiche ---
 
 function checkSviluppatore(inputtxt) {
     if (!inputtxt) return true;
@@ -215,11 +207,6 @@ function checkDimensioniCm(inputtxt) {
     return true;
 }
 
-
-// ==========================================
-// 2. FUNZIONI DI GESTIONE INTERFACCIA
-// ==========================================
-
 function gestisciStato() {
     const statoElem = document.getElementById("nuovoStato");
     const containerNote = document.getElementById("containerNoteDifetti");
@@ -236,11 +223,6 @@ function gestisciStato() {
         removeError(inputNote);
     }
 }
-
-
-// ==========================================
-// 3. FUNZIONE PRINCIPALE DI VALIDAZIONE
-// ==========================================
 
 function validate(obj) {
     let valid = true;
@@ -278,8 +260,7 @@ function validate(obj) {
 
     const foto = document.getElementById("nuovaFoto");
     if (foto && !checkFoto(foto)) valid = false;
-
-    // Controlli condizionali per sottotipo (eseguiti solo se l'elemento esiste nella pagina)
+	
     const sviluppatore = document.getElementById("nuovoSviluppatore");
     if (sviluppatore && !checkSviluppatore(sviluppatore)) valid = false;
 
@@ -297,17 +278,11 @@ function validate(obj) {
 
     const dimensioniCm = document.getElementById("nuoveDimensioniCm");
     if (dimensioniCm && !checkDimensioniCm(dimensioniCm)) valid = false;
-
-    // Invio del form se non vi sono errori
+	
     if (valid) {
         obj.submit();
     }
 }
-
-
-// ==========================================
-// 4. UTILITY GESTIONE ERRORI DOM E INIZIALIZZAZIONE
-// ==========================================
 
 function addError(obj, errore) {
     removeError(obj);
@@ -325,7 +300,6 @@ function removeError(obj) {
     }
 }
 
-// Inizializza l'interfaccia al caricamento della pagina
 document.addEventListener("DOMContentLoaded", function () {
     gestisciStato();
 });
