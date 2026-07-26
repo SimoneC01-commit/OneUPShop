@@ -8,14 +8,14 @@
     <!-- RIGA SUPERIORE -->
     <div class="header-top">
         
-        <!-- Menu Hamburger e Profilo (Visibili SOLO su Mobile a sinistra) -->
+        <!-- Menu Hamburger e Profilo -->
         <div class="mobile-left-group hide-on-desktop">
             <button class="hamburger-btn" id="menuToggle" onclick="toggleMenu()">☰</button>
             <a href="${pageContext.request.contextPath}/Profilo" class="icon-link">
             <img src="${pageContext.request.contextPath}/resources/img/profilo.png" alt="Profilo" class="icon-img"></a>
         </div>
 
-        <!-- Logo (Centrato su Mobile) -->
+        <!-- Logo  -->
         <div class="logo">
             <a href="${pageContext.request.contextPath}/Home" class="logo-link">
              <img src="${pageContext.request.contextPath}/resources/img/logo.png" alt="Logo Retrogaming" class="logo-img"> 
@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <!-- RIGA INFERIORE (Nascosta su Mobile, le aziende vanno nel cassetto) -->
+    <!-- RIGA INFERIORE -->
     <div class="header-bottom hide-on-mobile">
         <nav class="company-links">
             <ul>  

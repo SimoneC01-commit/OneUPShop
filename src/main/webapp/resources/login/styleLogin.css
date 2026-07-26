@@ -1,5 +1,7 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url("../header/styleMiniHeader.css");
+
 
 body {
     margin: 0;
@@ -14,6 +16,7 @@ dei contenitori rompendo il layout */
     box-sizing: border-box;
 }
 
+
 /* ===============================
    SFONDO
    =============================== */
@@ -24,9 +27,12 @@ dei contenitori rompendo il layout */
     background-repeat: no-repeat;
     min-height: 100vh; 
     display: flex;
+    flex-direction: column; 
+    gap: 1.5rem;
     justify-content: center; 
     align-items: center;  
     padding: 1.5rem; 
+
 }
 
 /* =========================================
@@ -34,18 +40,18 @@ dei contenitori rompendo il layout */
    ========================================= */
 .login-card {
     background-color: rgba(255, 255, 255, 0.85);
-    padding: 3rem 2.5rem; /* sopra/sotto 3rem, destra/sinistra 2.5rem */
+    padding: 2rem;
     border-radius: 1rem; 
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25); /* Ombreggiatura  */
     width: 100%; /* Dimensioni della card */
-    max-width: 25rem;
+    max-width: 22rem;
     /*border: 3px dashed #0000ff;*/
     font-family: 'Roboto', sans-serif; 
 }
 
 .login-card h2 {
     text-align: center;
-    font-size: 3rem;
+    font-size: 2.2rem;
     color: #111;
     margin-top: 0;
     margin-bottom: 2rem; /* Spazio sotto il titolo prima del form */
@@ -59,7 +65,7 @@ dei contenitori rompendo il layout */
 .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1.5rem; /* Spazio tra un campo e l'altro */
+    margin-bottom: 1rem; /* Spazio tra un campo e l'altro */
 }
 
 /* Stile delle etichette */
@@ -124,8 +130,8 @@ dei contenitori rompendo il layout */
    ========================================= */
 .register-link {
     text-align: center;         
-    margin-top: 2rem;          
-    padding-top: 1.5rem;       
+    margin-top: 1.5rem;          
+    padding-top: 1rem;       
     border-top: 1px solid #e0e0e0;
     font-size: 0.9rem;
     color: #333;
@@ -142,6 +148,35 @@ dei contenitori rompendo il layout */
 }
 
 
+/* Stile per gli errori */
+.error-message {
+    background-color: #fee2e2;
+    color: #b91c1c;           
+    border: 1px solid #f87171;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.2rem;     
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Stile per i successi  */
+.success-message {
+    background-color: #dcfce7;
+    color: #15803d;            
+    border: 1px solid #4ade80; 
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;     
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+
 /* =========================================
    RESPONSIVE DESIGN 
    ========================================= */
@@ -155,30 +190,50 @@ dei contenitori rompendo il layout */
 
 @media (max-width: 480px) {
     
-    .login-container {
+
+     .login-container {
         padding: 0; 
-        background-image:none;
+        gap:0.5rem;
+        background-image: none;
+        background-color: #030429; /* blu molto scuro */
+        justify-content: flex-start;
     }
 
     .login-card {
         width: 100%;
-        min-height: 100vh; 
+        min-height: 55vh; 
         border-radius: 0;
         box-shadow: none;  
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 2rem 1.5rem;
-        background-color: #ffffff; 
+        padding: 1.8rem 1.5rem;
+        background-color: #030429; 
     }
 
     .login-card h2 {
         font-size: 1.75rem;
         margin-bottom: 1.5rem;
         text-align: center;
+        color: #ffffff;
     }
-}
+
+   .form-group label {
+        color: #eeeeee; 
+    }
+
     .form-hint {
         font-size: 0.75rem; 
+        color: #aaaaaa; 
     }
-    
+
+    .register-link {
+        border-top: 1px solid #444444; 
+        color: #eeeeee;
+    }
+
+    .register-link a {
+        color: #60a5fa; 
+    }
+}
+  

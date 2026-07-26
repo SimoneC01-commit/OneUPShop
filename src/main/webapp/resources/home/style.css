@@ -14,7 +14,7 @@
 }
 
 body {
-    /* Applichiamo il font pixel a tutto il sito */
+    /*  font pixel a tutto il sito */
     font-family: 'Pixelify Sans', sans-serif;
     font-size: 1.3rem; 
     background-color: #f8f9fa;
@@ -37,9 +37,9 @@ body {
 
 .banner-img {
     width: 100%;      /* Occupa sempre tutto lo schermo in larghezza */
-    height: auto;     /* calcola l'altezza in automatico senza schiacciare l'immagine */
+    height: auto; 
     display: block;   
-    object-fit: cover; /* Se il contenitore dovesse restringersi troppo, taglia i bordi invece di deformare i pixel */
+    object-fit: cover; /*  taglia i bordi invece di deformare i pixel */
 }
 
 
