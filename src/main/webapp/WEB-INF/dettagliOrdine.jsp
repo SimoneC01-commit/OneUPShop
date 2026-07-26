@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <title>Ordine #${ordine.idOrdine} - OneUpShop</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dettagliOrdine/styleDettagliOrdine.css">
+    <script src="${pageContext.request.contextPath}/resources/dettagliOrdine/scriptDettagliOrdine.js" defer></script>
 	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
@@ -15,7 +16,6 @@
 
 <div class="container">
 
-    <!-- INTESTAZIONE AZIENDALE E FATTURA -->
     <div class="header-fattura">
         <div class="dati-azienda">
             <h2>OneUpShop S.r.l.</h2>
@@ -31,7 +31,6 @@
 
     <hr class="separatore">
 
-    <!-- INFORMAZIONI CLIENTE E SPEDIZIONE -->
     <div class="info-box">
         <div class="info-cliente">
             <h3>Dati Cliente &amp; Spedizione</h3>
@@ -62,7 +61,6 @@
         </div>
     </div>
 
-    <!-- TABELLA PRODOTTI -->
     <h2>Prodotti in Fattura</h2>
     <table class="tabella-prodotti">
         <thead>
@@ -81,16 +79,13 @@
                 </c:url>
                 
                 <tr onclick="window.location='${prodottoUrl}';" class="riga-prodotto">
-                    <!-- Immagine nascondibile in stampa -->
                     <td class="hide-on-print">
                         <img src="${pageContext.request.contextPath}/GetPicture?idProdotto=${dettaglio.prodotto.idProdotto}" 
                              alt="${dettaglio.prodotto.titolo}" class="img-prodotto">
                     </td>
                     <td><strong>${dettaglio.prodotto.titolo}</strong></td>
                     <td>${dettaglio.prodotto.tipo}</td>
-                    <!-- IVA Storica recuperata dal DettaglioOrdineBean -->
                     <td>${dettaglio.ivaStorico}%</td>
-                    <!-- Prezzo Storico recuperato dal DettaglioOrdineBean -->
                     <td>
                         <fmt:formatNumber value="${dettaglio.prezzoVenditaStorico}" type="currency" currencySymbol="€"/>
                     </td>
@@ -107,26 +102,26 @@
         </span>
     </div>
 
-    <!-- BARRA DELLE AZIONI (Completamente nascosta durante la stampa) -->
     <div class="actions-bar hide-on-print">
         <div class="btn-group-right">
         	 <a href="${pageContext.request.contextPath}/Ordini" class="btn-back">← Torna ai Miei Ordini</a>
-        
-            <!-- Tasto Stampa -->
-            <button type="button" onclick="window.print()" class="btn-stampa">🖨️ Stampa Fattura (PDF)</button>
 
-            <!-- Tasto Annulla (mostrato solo se In elaborazione) -->
-            <form action="${pageContext.request.contextPath}/CancellazioneOrdine?idOrdine=${ordine.idOrdine}" method="post" 
-                  onsubmit="return confirm('Sei sicuro di voler annullare definitivamente questo ordine?');">
-                <input type="hidden" name="idOrdine" value="${ordine.idOrdine}">
-                <button type="submit" class="btn-delete" <c:if test="${ordine.statoOrdine != 'In elaborazione'}">disabled</c:if>>
-                	Annulla Ordine
-                </button>
-            </form>
+            <button type="button" onclick="window.print()" class="btn-stampa">Stampa Fattura (PDF)</button>
+
+			<button type="submit" class="btn-delete" <c:if test="${ordine.statoOrdine != 'In elaborazione'}">disabled</c:if> 
+				data-stato="${ordine.statoOrdine}" onclick="confermaEliminazione(${ordine.idOrdine}, this)">
+				Annulla Ordine
+			</button>
         </div>
     </div>
 
 </div>
+
+<dialog id="dlg-cancellazione">
+    <p>Sicuro di voler cancellare questo prodotto?</p>
+    <button class="btn-annulla" onclick="annulla()">Annulla</button>
+    <button class="btn-conferma" onclick="elimina(this)" data-context-path="${pageContext.request.contextPath}">Conferma</button>
+</dialog>
 
 <jsp:include page="common/footer.jsp" />
 

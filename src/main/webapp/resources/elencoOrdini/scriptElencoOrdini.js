@@ -55,13 +55,13 @@ async function cambiaStato(select){
 			
 			const btnDelete = select.closest("tr").querySelector(".btn-delete");
 	        if(btnDelete) {
-	            btnDelete.disabled = (stato !== "In elaborazione");
-        }
+				btnDelete.disabled = (stato !== "In elaborazione");
+			}
+		}
 		else{
 			select.value = statoIniziale;
 			            
             mostraPopup(data.messaggio, "#fde8e8", "red", "#f9b8b8");
-			}
 		}
 	}
 	catch(err){
@@ -131,6 +131,17 @@ async function elimina(button){
 			annulla();
 			
 			mostraPopup(data.messaggio, "#d4edda", "#155724", "#c3e6cb");
+			
+			const righeRimaste = document.querySelectorAll('.main-order-row');
+			if (righeRimaste.length === 0) {
+			    const tableBody = document.getElementById('table-body');
+			    if (tableBody) {
+			        tableBody.innerHTML = `
+						<tr>
+	                        <td colspan="7">Nessun ordine presente nel sistema.</td>
+	                    </tr>`;
+			    }
+			}
 		}
 		else{
 			mostraPopup(data.messaggio, "#edd4d4", "#571515", "#e6c3c3");

@@ -45,7 +45,7 @@
                     <th>Azioni</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="table-body">
                 <c:choose>
                     <%-- Se la lista ordini NON è vuota, esegui il ciclo --%>
                     <c:when test="${not empty ordini}">

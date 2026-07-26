@@ -224,6 +224,49 @@ tr.riga-prodotto:hover {
     opacity: 0.65; 
 }
 
+/* =========================================
+   FINESTRA DI DIALOGO (CANCELLAZIONE)
+   ========================================= */
+dialog {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    padding: 25px;
+    max-width: 400px;
+    text-align: center;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog p {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.btn-annulla {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.btn-conferma {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
 
 /* ==========================================
    2. MEDIA QUERY PER LA STAMPA / PDF (@media print)
