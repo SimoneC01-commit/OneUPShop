@@ -51,15 +51,15 @@ public class ModificaProdotto extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String idStr = request.getParameter("idProdotto");
+		String idProdottoStr = request.getParameter("idProdotto");
 
-		if (idStr == null || idStr.trim().isEmpty()) {
+		if (idProdottoStr == null || idProdottoStr.trim().isEmpty()) {
 			response.sendRedirect(request.getContextPath() + "/ElencoProdotti");
 			return;
 		}
 
 		try {
-			int idProdotto = Integer.parseInt(idStr);
+			int idProdotto = Integer.parseInt(idProdottoStr);
 			ProdottoDAO pDAO = new ProdottoDAO();
 			ProdottoBean prodotto = pDAO.doRetrieveByKey(idProdotto);
 
