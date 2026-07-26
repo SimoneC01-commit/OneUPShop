@@ -9,8 +9,15 @@ body {
     background-color: #f4f6f9;
 }
 
-h1 {
-    color: #333;
+.header-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin: 0 10vw;
+}
+
+.header-container h1{
+	text-align: center;
 }
 
 .error {
@@ -43,22 +50,41 @@ h1 {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Ombreggiatura per effetto sollevato */
 }
 
+.btn-group { 
+    display: flex; 
+    gap: 10px; 
+}
+
+.btn-back { 
+    padding: 10px 15px; 
+    background-color: #555; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 4px; 
+}
+.btn-back:hover { 
+    background-color: #5a6268; 
+}
+
 /* =========================================
    TABELLA PRINCIPALE ORDINI
    ========================================= */
 .table-container {
     background-color: white;
-    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    max-width: 1200px;
     overflow-x: auto;
+    width: 90vw;
+    margin: 5vh 5vw;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
 }
 
 th, td {
@@ -73,6 +99,7 @@ th {
 
 tr:hover {
     background-color: #f8f9fa;
+    cursor: pointer;
 }
 
 /* Effetto hover specifico per la riga cliccabile */
@@ -241,4 +268,70 @@ dialog p {
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+}
+
+@media screen and (max-width: 900px) {
+	.header-container {
+        flex-direction: column;
+    }
+    
+    .btn-group {
+		gap: 15px;
+		flex-direction: column;
+		margin-top: 2vh;
+	}
+	
+	table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    
+    thead {
+        display: none;
+    }
+    
+    tr.main-order-row {
+		width: 84vw;
+        display: flex;
+        flex-direction: column;
+        gap: 8px 15px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+		padding: 1vh 3vw;
+        margin-top: 2vh;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    td{
+    	border: none;
+    }
+    
+    tr.main-order-row td:nth-child(1)::before { content: "ID: "; font-weight: bold; color: #555; }
+    tr.main-order-row td:nth-child(2)::before { content: "Utente: "; font-weight: bold; color: #555; }
+    tr.main-order-row td:nth-child(3)::before { content: "Data: "; font-weight: bold; color: #555; }
+    tr.main-order-row td:nth-child(4)::before { content: "Metodo: "; font-weight: bold; color: #555; }
+    tr.main-order-row td:nth-child(5)::before { content: "Totale: "; font-weight: bold; color: #555; }
+    tr.main-order-row td:nth-child(6)::before { content: "Stato: "; font-weight: bold; color: #555; }
+    
+    .inner-table td:nth-child(1)::before { content: "ID: "; font-weight: bold; color: #555; }
+    .inner-table td:nth-child(2)::before { content: "Titolo: "; font-weight: bold; color: #555; }
+    .inner-table td:nth-child(3)::before { content: "Prezzo: "; font-weight: bold; color: #555; }
+    .inner-table td:nth-child(4)::before { content: "IVA: "; font-weight: bold; color: #555; }
+    
+    inner-table-header{
+    	font-weight: bold; 
+    	color: #555;
+    }
+    
+    .inner-table tr{
+    	border-bottom: 1px solid #ddd;
+    	margin-bottom: 1vh;
+    	padding-bottom: 1vh;
+    }
+    
+    .inner-table td{
+    	text-align: left;
+    	border: none;
+    }
 }

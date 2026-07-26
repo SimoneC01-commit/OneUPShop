@@ -321,7 +321,7 @@ dialog p {
     tr.riga-prodotto td:nth-child(2) {
     	align-self: center;
         grid-column: 1;
-        grid-row: 1 / span 8; /* Scende per 8 righe, in modo che il testo si affianchi */
+        grid-row: 1 / span 8;
         padding: 0;
         border: none;
     }
