@@ -20,9 +20,7 @@
     
 <main class="container">
 
-<div class= "btn-back-home">
-    <a href="${pageContext.request.contextPath}/Profilo" class="btn-home">← Torna al Profilo</a>
-</div>
+
 	
     <h1>I Miei Ordini</h1>
     
@@ -99,8 +97,12 @@
 	        </c:otherwise>
 	    </c:choose>
 	    </article> 
+	    
+	 <div class= "btn-back-profile">
+    	<a href="${pageContext.request.contextPath}/Profilo" class="btn">← Torna al Profilo</a>
+	</div>
     <div class= "btn-back-home">
-    <a href="${pageContext.request.contextPath}/Home" class="btn-home">Continua lo Shopping</a>
+    	<a href="${pageContext.request.contextPath}/Home" class="btn">Continua lo Shopping</a>
     </div>
     
 </main>

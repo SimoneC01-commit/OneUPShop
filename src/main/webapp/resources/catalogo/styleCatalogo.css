@@ -35,7 +35,7 @@ h1 {
 .container {
     max-width: 95rem;
     width: 100%;
-    margin: 0 auto; /* Centrato correttamente */
+    margin: 0 auto; 
     padding: 0 20px;
     display: grid;
     grid-template-columns: 20% 1fr; 
@@ -185,7 +185,7 @@ h1 {
 .pagination {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* FONDAMENTALE: manda i bottoni su più righe se sono tanti */
+    flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 4rem;
     width: 100%;
@@ -209,10 +209,10 @@ h1 {
 }
 
 /* =========================================
-   RESPONSIVE (MEDIA QUERIES)
+   RESPONSIVE
    ========================================= */
 
-/* Tablet (Sotto i 1200px) */
+
 @media screen and (max-width: 1200px) {
     .container {
         grid-template-columns: 1fr; 
@@ -255,7 +255,7 @@ h1 {
     }
 }
 
-/* Smartphone (Sotto i 600px) */
+
 @media screen and (max-width: 600px) {
     .container {
         margin: 0 auto;

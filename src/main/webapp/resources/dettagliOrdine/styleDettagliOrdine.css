@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /* ==========================================
-   1. STILI GENERALI (Visualizzazione a schermo)
+     STYLE I MIEI ORDINI
    ========================================== */
 body {
     font-family: 'Arial', sans-serif;
@@ -105,7 +105,7 @@ th, td {
 }
 
 th {
-    background-color: #222; /* Grigio molto scuro, riprende l'header scuro del wireframe */
+    background-color: #222; 
     color: #fff;
     padding: 15px;
     text-align: left;
@@ -235,7 +235,7 @@ tr.riga-prodotto:hover {
         margin: 15mm;
     }
 
-    /* 1. NASCONDE tutti gli elementi non utili alla stampa */
+    /* NASCONDE tutti gli elementi non utili alla stampa */
     .hide-on-print,
     .btn-back,
     .btn-stampa,
@@ -245,7 +245,7 @@ tr.riga-prodotto:hover {
         display: none !important;
     }
 
-    /* 2. RESET DEL FOGLIO (Sfondo bianco puro e testo nero) */
+    /* RESET DEL FOGLIO  */
     body {
         background: #ffffff !important;
         color: #000000 !important;
@@ -275,7 +275,7 @@ tr.riga-prodotto:hover {
     }
 
     th {
-        background-color: #f2f2f2 !important; /* Grigio chiaro per risparmiare inchiostro */
+        background-color: #f2f2f2 !important; 
         color: #000000 !important;
         border: 1px solid #ccc !important;
     }
@@ -292,7 +292,7 @@ tr.riga-prodotto:hover {
         background-color: transparent !important;
     }
 
-    /* Evita che le righe vengano spezzate tra due pagine diverse */
+    
     tr {
         page-break-inside: avoid;
     }

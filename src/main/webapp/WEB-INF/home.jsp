@@ -17,7 +17,11 @@
 
    
         <section class="banner"> 
-	        <div class="banner-container"> <img src="${pageContext.request.contextPath}/resources/img/banner2.png" alt="Banner" class="banner-img"> 
+	        <div class="banner-container"> <img src="${pageContext.request.contextPath}/resources/img/bannerArcade.gif" alt="Banner" class="banner-img"> 
+		        <div class="banner-text">
+			        <h1>Benvenuto Player 1!</h1>
+			        <p>La tua avventura nel mondo del retro-gaming inizia da qui</p>
+    			</div>
 	        </div>
         </section>
         

@@ -10,17 +10,21 @@
     <script src="${pageContext.request.contextPath}/resources/modificaProfilo/scriptModificaProfilo.js"></script>
 	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
+
 <body>
+<jsp:include page="common/header.jsp" />
 
+	<main class="main-container">
     <h2>Modifica i dati del tuo profilo</h2>
-
-    <div class="form-container">
+    
+	<section class="form-container">
+   
         <c:if test="${not empty errorMessage}">
             <div class="error-box">
               	${errorMessage}
             </div>
         </c:if>
-
+ 	
         <form action="${pageContext.request.contextPath}/ModificaProfilo" method="post" onsubmit="event.preventDefault(); validate(this)">
             
             <!-- SEZIONE NOME -->
@@ -43,7 +47,7 @@
                        maxlength="100" oninput="checkSurname(this)" disabled>
             </div>
 
-            <!-- SEZIONE PASSWORD (Una sola checkbox sblocca entrambi i campi password) -->
+            <!-- PASSWOR : una checkbox per entrambi -->
             <div class="form-group">
                 <label class="checkbox-label">
                     <input type="checkbox" onchange="toggleField(this, ['nuovaPassword', 'confermaNuovaPassword'])"> Modifica Password
@@ -62,10 +66,12 @@
 
             <button type="submit" class="btn-submit">Salva Modifiche</button>
         </form>
-    </div>
+    </section>
 
     <br>
     <a href="${pageContext.request.contextPath}/Profilo">← Torna al Profilo</a>
+</main>
 
+<jsp:include page="common/footer.jsp" />
 </body>
 </html>

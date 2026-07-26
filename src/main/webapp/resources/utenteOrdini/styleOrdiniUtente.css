@@ -15,7 +15,7 @@
     font-family: 'Pixelify Sans', sans-serif;
     font-size: 2.8rem;
     color: #111; 
-    margin-top: 0;
+    margin-top: 1.5;
     margin-bottom: 1.5rem; 
     padding-bottom: 1rem;  
     border-bottom: 0.2rem solid #cc0000; 
@@ -42,7 +42,7 @@ table {
 
 /* Intestazione Tabella */
 th {
-    background-color: #222; /* Grigio molto scuro, riprende l'header scuro del wireframe */
+    background-color: #222; /* Grigio molto scuro,*/
     color: #fff;
     padding: 15px;
     text-align: left;
@@ -79,18 +79,18 @@ tbody tr:hover {
 }
 
 /* =========================================
-   BADGES (Etichette di stato colorate)
+   STATI
    ========================================= */
 .badge {
     display: inline-block;
     padding: 6px 12px;
-    border-radius: 20px; /* Bordo arrotondato "a pillola" come nel wireframe */
+    border-radius: 20px; 
     font-size: 0.85rem;
     font-weight: bold;
     text-transform: uppercase;
 }
 
-/* Stile per "IN ELABORAZIONE" (Giallo/Rosso come da tua immagine) */
+/* Stile per "IN ELABORAZIONE" */
 .badge-elaborazione {
     background-color: #ffeeba;
     color: #cc0000; /*Rosso*/
@@ -124,7 +124,13 @@ tbody tr:hover {
     margin-top: 20px;
 }
 
-.btn-home {
+.btn-back-profile {
+    display: flex;
+    justify-content: flex-start; /* Allinea il bottone a sinistra  */
+    margin-top: 20px;
+}
+
+.btn {
     background-color: #555; /* Grigio */
     color: #fff;
     text-decoration: none;
@@ -136,7 +142,7 @@ tbody tr:hover {
     transition: background-color 0.3s ease;
 }
 
-.btn-home:hover {
+.btn:hover {
     background-color: #0000ff; 
 }
 
@@ -196,7 +202,7 @@ tbody tr:hover {
         margin-top: 1.5rem;
     }
     
-    .btn-home {
+    .btn {
         width: 100%;
         text-align: center;
     }

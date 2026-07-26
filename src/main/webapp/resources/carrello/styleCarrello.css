@@ -127,7 +127,7 @@
     height: 120px;
     object-fit: cover; /* Taglia l'immagine se necessario*/
     border: 2px solid #eaeaea;
-    background-color: #f4f4f4; /* Effetto placeholder grigio in caricamento */
+    background-color: #f4f4f4; 
 }
 
 .prodotto-details {

@@ -256,7 +256,6 @@
         align-items: center;
     }
 
-    /* Le azioni si affiancano invece di incollonarsi a destra */
     .item-actions {
         flex-direction: column;
         align-items: center;

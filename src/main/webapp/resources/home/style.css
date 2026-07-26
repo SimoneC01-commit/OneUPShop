@@ -30,6 +30,7 @@ body {
 /* --- BANNER --- */
 .banner-container {
     width: 100%;
+    height: 40rem;
     /* margin-top: 1rem; */
     overflow: hidden; /* Evita che l'immagine "sbordi" in situazioni strane */
     margin-bottom: 1rem;
@@ -37,11 +38,38 @@ body {
 
 .banner-img {
     width: 100%;      /* Occupa sempre tutto lo schermo in larghezza */
-    height: auto; 
+    height: 100%; 
     display: block;   
-    object-fit: cover; /*  taglia i bordi invece di deformare i pixel */
+    object-fit: cover;
+    object-position: center; 
 }
 
+
+/* --- TESTO SUL BANNER --- */
+.banner-text {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra il testo  */
+    text-align: center;
+    color: #ffffff;
+    width: 90%;
+}
+
+.banner-text h1 {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 5.5rem; /* Titolo bello grande */
+    margin-bottom: 0.5rem;
+    /* Ombreggiatura doppia stile 8-bit (Blu + Nera) per staccarlo dallo sfondo */
+    text-shadow: 0.2rem 0.2rem 0 #0000a6, 0.4rem 0.4rem 0 #000000;
+}
+
+.banner-text p {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 1.5rem;
+    text-decoration: underline;
+    text-shadow: 0.15rem 0.15rem 0 #000000;
+}
 
 
 /* --- CARD PRODOTTO  IMPORTATO DALLO STILE GENERALE--- */
@@ -54,6 +82,11 @@ body {
     .product-grid {
         grid-template-columns: 1fr 1fr; /* Passa a 2 colonne */
     }
+    
+    .banner-text {
+    top: 50%;
+    left: 50%;
+   }
 }
 
 /* Smartphone (Schermi piccoli) */
@@ -62,4 +95,12 @@ body {
         grid-template-columns: 1fr; /* Passa a 1 colonn*/
     }
     
+    .banner-text h1 {
+        font-size: 2.5rem; 
+    }
+    
+    .banner-text p {
+        font-size: 1.2rem;
+    }
 }
+    
