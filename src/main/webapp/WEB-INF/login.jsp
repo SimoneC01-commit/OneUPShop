@@ -10,11 +10,19 @@
     <title>Accedi - 1UPShop</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/login/styleLogin.css">
 </head>
+
 <body>
-<jsp:include page="common/header.jsp" />
 
     <main class="login-container">
-    	
+    
+    	<header class="header-mini">
+		    <div class="only-logo">
+		        <a href="${pageContext.request.contextPath}/Home">
+		            <img src="${pageContext.request.contextPath}/resources/img/logoW.png" alt="1-UPShop Logo" class="logo-img">
+		        </a>
+		    </div>
+		</header>
+
     	<div class="login-card">
 	        <h2>Accedi al tuo Account!</h2>
 	

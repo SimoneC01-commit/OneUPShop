@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+.header-mini {
+	
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: 1rem;
+    
+}
+
+.logo-img {
+    max-width: 250px; 
+    height: auto;     
+    transition: transform 0.2s ease; 
+}
+
+.logo-img:hover {
+    transform: scale(1.05); /* Si ingrandisce leggermente */
+}
+
+
+@media (max-width: 480px) {
+
+    .header-mini {
+        padding: 2rem 1rem 1rem 1rem;
+    }
+
+    .logo-img {
+        max-width: 190px;
+      
+    }
+}
