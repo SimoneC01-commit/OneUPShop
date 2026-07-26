@@ -301,7 +301,7 @@ public class ProdottoDAO implements DAOInterface<ProdottoBean, Integer> {
 			}
 		}
 		
-		return lista.subList(0, amount);
+		return lista.subList(0, Math.min(amount, lista.size()));
 	}
 
 	public List<ProdottoBean> doRetrieveAllSuggested(int amount) throws SQLException {
@@ -355,7 +355,7 @@ public class ProdottoDAO implements DAOInterface<ProdottoBean, Integer> {
 			}
 		}
 		
-		return lista.subList(0, amount);
+		return lista.subList(0, Math.min(amount, lista.size()));
 	}
 	
 	public List<ProdottoBean> doRetriveAllByPageNumber(Integer minYear, Integer maxYear, String tipo, Float minPrice, Float maxPrice, String stato, int pagCorrente, int elemForPage) throws SQLException{
