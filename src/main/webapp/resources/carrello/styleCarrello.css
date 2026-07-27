@@ -5,7 +5,7 @@
    STRUTTURA PRINCIPALE
    ========================================= */
 .container {
-    max-width: 1200px;
+    max-width: 80vw;
     margin: 0 auto;
     padding: 2rem;
 }
@@ -101,7 +101,8 @@
 .cart-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
     margin-bottom: 2rem; 
     font-family: "Pixelify Sans", sans-serif;
 }

@@ -311,4 +311,8 @@ h1 {
     .stats {
         text-align: center; /* Centrato su mobile per evitare sporgenze */
     }
+    
+    .pagination{
+    	margin-bottom: 3vh;
+    }
 }
